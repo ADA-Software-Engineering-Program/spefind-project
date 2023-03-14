@@ -1,0 +1,20 @@
+* { 
+  font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+  --orange: #E3502F;
+  --green: #359E4C;
+  --grey: #948D8D;
+  --bg: rgba(227, 80, 47, 0.1);
+  --black: #000000;
+  --white: #ffffff;
+  
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
