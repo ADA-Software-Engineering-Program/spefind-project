@@ -12,7 +12,7 @@ import Register from './pages/Register/Register';
 import EventRegister from './pages/Register/EventRegister';
 import CreateProfile from './pages/CreateProfile/CreateProfile';
 import SpeakerProfile from './pages/SpeakerProfile/SpeakerProfile';
-import Bookme from './pages/BookMe/Bookme.jsx'
+import Bookme from '../src/pages/BookMe/Bookme.jsx'
 
 
 
