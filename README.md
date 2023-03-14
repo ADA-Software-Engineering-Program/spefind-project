@@ -1,5 +1,7 @@
-# spefind-project
+# spefind
 
+
+## spefind
 
 SPEFIND is an online booking platform that allows event organizers to book speakers for their events seamlessly. Our platform is a one-stop platform that makes it easy for organizers to find and book the right speakers for their events, saving them time and money while ensuring the highest level of quality and customer satisfaction.   
 
@@ -51,12 +53,12 @@ npm install create-react-app
 ```
 - Create the project folder/name by running
 ```
-npx create-react-app spefind-main-app`
+npx create-react-app spefind`
 ```
 
 - Change into the project folder by running
 ```
-cd spefind-main-app
+cd spefind
 
 ```
 - Install the dependencies by running
