@@ -9,13 +9,11 @@ import AppLayout from '../../../src/layout/AppLayout';
 const Home =()=> {
   return (
     <AppLayout>
-        <main>
             <Hero/>
             <SpeakersCard/>
             <FindSpeakers/>
             <JoinSite/>
             <FeaturedReviwe/>
-        </main>
     </AppLayout>
   )
 }

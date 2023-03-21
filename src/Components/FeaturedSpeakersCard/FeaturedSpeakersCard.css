@@ -14,7 +14,7 @@
 }
 
 .featCard {
-    margin-top: 12rem;
+    margin-top: 1rem;
 }
 
 .featInput {
@@ -149,7 +149,7 @@
 
 @media only screen and (min-width:768px) {
     .featCard {
-        margin-top: 4rem;
+        margin-top: 2rem;
     }
 
     .search {
@@ -197,7 +197,7 @@
     }
 
     .featCard {
-        margin-top: 12rem;
+        margin-top: 2rem;
     }
 
     .search {
