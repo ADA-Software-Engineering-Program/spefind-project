@@ -13,6 +13,10 @@ import EventRegister from './pages/Register/EventRegister';
 import CreateProfile from './pages/CreateProfile/CreateProfile';
 import SpeakerProfile from './pages/SpeakerProfile/SpeakerProfile';
 import Bookme from './pages/BookMe/Bookme.jsx'
+import FAQ from './pages/FAQ/FAQ';
+import Oops from './pages/Oops/Oops'
+import Congratulation from './pages/Congratulation/Congratulation'
+import Congratulation2 from './pages/Congratulation/Congratulation2'
 
 
 
@@ -31,6 +35,10 @@ function App() {
       <Route path="/createProfile" element={<CreateProfile />} />
 	  <Route path='/speakerProfile' element={<SpeakerProfile/>}/>
 	  <Route path='/bookme' element={<Bookme/>}/>
+		  <Route path='/faq' element={<FAQ/>}/>
+	  <Route path='/oops' element={<Oops/>}/>
+	  <Route path='/congratulation' element={<Congratulation/>}/>
+	  <Route path='/congratulation2' element={<Congratulation2/>}/>
     </Routes>
   );
 }
