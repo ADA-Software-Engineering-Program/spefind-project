@@ -1,0 +1,31 @@
+.chat .section-left {
+  position: fixed;
+  top: 136px;
+  left: 0;
+  width: 400px;
+  height: 100vh;
+  background-color: #e3502f1a;
+  background: blue;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.chat .section-main {
+  margin-left: 400px;
+  margin-right: 400px;
+  width: 100%;
+}
+
+.chat .section-right {
+  position: fixed;
+  top: 136px;
+  right: 0;
+  height: 100vh;
+  width: 400px;
+  height: 100vh;
+  background-color: #e3502f1a;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
