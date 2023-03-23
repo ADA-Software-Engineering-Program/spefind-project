@@ -8,9 +8,11 @@ function Hero() {
   return (
     <div className="heroContainer">
       <div className="heroText">
-        <span className="speakers">Speakers and event organizers:</span>
+        <p className="speakers">Speakers and event organizers:</p>
         <h2 className="heroTextHeading">
-          genius comes <br /> in all <span className="heroColor">colours</span>
+          genius comes
+          {/* <br /> */}
+          &nbsp; in all <span className="heroColor">colours</span>
         </h2>
         <p className="heroTextSubHeading">
           If your’e tired of being unnoticed.. if you lack confidence in your
@@ -19,7 +21,8 @@ function Hero() {
           the genius in you.
           <span className=""> Are you ready to be discovered?</span>
         </p>
-        <Link to="/SignUp" className="ms-0 mt-5 getBtn">
+
+        <Link to="/SignUp" className="getBtn">
           Get Started
           <BsArrowRight className="ms-2" />
         </Link>
