@@ -46,6 +46,9 @@
   text-decoration: none;
   border-radius: 0rem 2rem 2rem 1rem;
 }
+.getBtn:hover {
+  color: var(--black);
+}
 
 .arrow {
   margin-top: 0.3rem;
@@ -155,6 +158,7 @@
   .heroTextHeading {
     font-size: 3.5rem;
     line-height: 5rem;
+    width: 100%;
   }
   .heroTextSubHeading {
     margin-bottom: 2rem;
@@ -177,7 +181,13 @@
   }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1200px) {
+  .heroTextHeading {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
   .heroContainer {
     grid-template-columns: 1.3fr 1fr;
   }
@@ -187,6 +197,6 @@
   .heroTextHeading {
     width: 80%;
     margin-top: 2rem;
-    font-size: 4rem;
+    font-size: 4.2rem;
   }
 }
