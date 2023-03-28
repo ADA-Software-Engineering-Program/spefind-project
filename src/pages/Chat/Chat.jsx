@@ -169,7 +169,7 @@ const Chat = () => {
           </div>
         </section>
 
-        <section className="section-main">Hello there</section>
+        <section className="section-main"><div className="chat-header"></div></section>
 
         <section className="section-right">
           <div className="image-box">
