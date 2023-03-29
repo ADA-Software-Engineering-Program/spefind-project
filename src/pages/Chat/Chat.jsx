@@ -1,6 +1,6 @@
 import React from "react";
 import "./Chat.css";
-import Header from "../../Components/Navbar/Navbar";
+// import Head  er from "../../Components/Navbar/Navbar";
 import { BsFillCameraVideoFill, BsThreeDotsVertical } from "react-icons/bs";
 import { BiBlock, BiCheckDouble, BiUserCircle } from "react-icons/bi";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -169,7 +169,9 @@ const Chat = () => {
           </div>
         </section>
 
-        <section className="section-main"><div className="chat-header"></div></section>
+        <section className="section-main">
+          <div className="chat-header"></div>
+        </section>
 
         <section className="section-right">
           <div className="image-box">

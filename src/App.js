@@ -24,12 +24,12 @@ function App() {
       <Route path="/blog" element={<Blog />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<SignIn />} />
-      <Route path="/signUp" element={<SignUp />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/eventRegister" element={<EventRegister />} />
-      <Route path="/createProfile" element={<CreateProfile />} />
-      <Route path="/speakerProfile" element={<SpeakerProfile />} />
-      <Route path="/bookme" element={<Bookme />} />
+      <Route path="/event-register" element={<EventRegister />} />
+      <Route path="/create-profile" element={<CreateProfile />} />
+      <Route path="/speaker-profile" element={<SpeakerProfile />} />
+      <Route path="/book-me" element={<Bookme />} />
       <Route path="/chat" element={<Chat />} />
     </Routes>
   );

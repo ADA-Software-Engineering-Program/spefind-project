@@ -8,21 +8,19 @@ function Hero() {
   return (
     <div className="heroContainer">
       <div className="heroText">
-        <p className="speakers">Speakers and event organizers:</p>
+        <p className="speakers">Communicators and event organizers:</p>
         <h2 className="heroTextHeading">
-          genius comes
-          {/* <br /> */}
-          &nbsp; in all <span className="heroColor">colours</span>
+          genius comes &nbsp; in all <span className="heroColor">colours</span>
         </h2>
         <p className="heroTextSubHeading">
-          If your’e tired of being unnoticed.. if you lack confidence in your
-          work.. if you’re seeking for job opportunities.. stop worrying.
-          Spefind has got you covered. We are solely here to widen and expand
-          the genius in you.
-          <span className=""> Are you ready to be discovered?</span>
+          Find the perfect communicator for your next event from our pool of
+          diverse and highly curated selection of communicators, ranging from
+          public/motivational speakers to thought leaders, industry experts,
+          performing artists, dancers, and MCs. No matter your industry or the
+          uniqueness of your event, we've got someone for you.
         </p>
 
-        <Link to="/SignUp" className="getBtn">
+        <Link to="/signup" className="getBtn">
           Get Started
           <BsArrowRight className="ms-2" />
         </Link>
