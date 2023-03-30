@@ -87,7 +87,7 @@ export default function SpeakerAbout({data}) {
         <section className='text-center my-5'>
             <h3 className='spoken'>EVENTS I HAVE SPOKEN AT</h3>
             <div className='row my-5 eventRow mx-lg-auto'> 
-                {data?.pastEventsImages.map((item) =>(
+                {data?.pastEventsImages?.map((item) =>(
                     <div key={item.id} className='col-lg-3'>
                         <SpeakEvents eventPics={item} title={item.title} date={item.date} venue={item.venue}/>
                     </div>
