@@ -13,20 +13,23 @@ function Register() {
     const navigate = useNavigate();
   
     const { signup, googleSignIn } = useAuth()
+    const [loading, setLoading] = useState(false)
 
   //form submit function
     const onSubmit = async (values) => {
-     
+     setLoading(true)
       await signup(values.email, values.password)
         .then((userCredential) => {
           const user = userCredential.user;
           // console.log(user);
+          setLoading(false)
           toast.success('Registration Successful, Please complete your registration')
           navigate( '/createProfile')
         })
         .catch((error) => {
           const errorCode = error.code;
           toast.error(errorCode)
+          setLoading(false)
         });
     };
 
@@ -123,14 +126,13 @@ function Register() {
                 <label className="labelForm">E-mail Address</label>
                 <input
                 type="email"
-                label="Email address"
                 name='email'
                 {...formik.getFieldProps('email')}
-                className="regInput"
+                className="regInput mb-0"
                 placeholder="Email address"
                 />
+                { formik.errors.email ? <div className='text-danger mb-1' style={{fontSize: '0.7rem', textAlign: 'left', fontWeight: 'bold'}}>{ formik.errors.email }</div> : null }
                 </div>
-                { formik.errors.email ? <div className='text-danger mb-3 ' style={{fontSize: '0.7rem', textAlign: 'left', fontWeight: 'bold'}}>{ formik.errors.email }</div> : null }
 
                 <div>
                   
@@ -144,8 +146,8 @@ function Register() {
                 className="regInput"
                 placeholder="Password"
                 />
+                { formik.errors.password ? <div className='text-danger mb-1' style={{fontSize: '0.7rem', textAlign: 'left', fontWeight: 'bold'}}>{ formik.errors.password }</div> : null }
                 </div>
-                { formik.errors.password ? <div className='text-danger mb-3 ' style={{fontSize: '0.7rem', textAlign: 'left', fontWeight: 'bold'}}>{ formik.errors.password }</div> : null }
 
                 <div>
                   
@@ -157,11 +159,11 @@ function Register() {
                   name='confirmPassword'
                 {...formik.getFieldProps('confirmPassword')}
                 />
+                { formik.errors.confirmPassword ? <div className='text-danger mb-1' style={{fontSize: '0.7rem', textAlign: 'left', fontWeight: 'bold'}}>{ formik.errors.confirmPassword }</div> : null }
                 </div>
-                { formik.errors.confirmPassword ? <div className='text-danger mb-3 ' style={{fontSize: '0.7rem', textAlign: 'left', fontWeight: 'bold'}}>{ formik.errors.confirmPassword }</div> : null }
 
                 <button className=" btn btnSign-up" type="submit">
-                     Sign up
+                     {loading ? 'Signing up...' : 'Sign up'}
                 </button>
                 <p className="or">OR</p>
           
