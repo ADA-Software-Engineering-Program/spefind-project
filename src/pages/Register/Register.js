@@ -12,7 +12,7 @@ import { useAuth } from "../../contexts/AuthContext";
 function Register() {
     const navigate = useNavigate();
   
-    const { signup } = useAuth()
+    const { signup, googleSignIn } = useAuth()
 
   //form submit function
     const onSubmit = async (values) => {
@@ -73,6 +73,18 @@ function Register() {
     onSubmit
    } );
 
+
+  const handleGoogleSignUp = async () => {
+    try {
+      await googleSignIn()
+      toast.success('Registration Successful, Please complete your registration')
+      navigate( '/createProfile')
+
+    } catch ( error ) {
+      return null
+     }
+
+   }
   
   return (
     <div>
@@ -154,7 +166,7 @@ function Register() {
                 <p className="or">OR</p>
           
             <div className="regIcon">
-                <FcGoogle className="regSocial"/>
+            <FcGoogle className="regSocial" onClick={ handleGoogleSignUp} style={{cursor: 'pointer'}} />
                 <FaFacebookF className="regSocial text-primary"/>
                 <FaTwitter className="regSocial text-primary"/>
             </div>

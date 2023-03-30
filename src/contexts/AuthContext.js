@@ -6,7 +6,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "firebase/auth"
 
 
@@ -35,6 +37,24 @@ export default function AuthProvider({children}) {
             return signOut(auth);
         }
 
+        //google authentication
+  async function googleSignIn() {
+    const googleAuthProvider = new GoogleAuthProvider();
+    return signInWithPopup( auth, googleAuthProvider )
+      .then( result => {
+        /*Google access token*/
+        const credential = GoogleAuthProvider.credentialFromResult( result );
+        const token = credential.accessToken;
+        const user = result.user;
+      } ).catch( error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customDate.email;
+        return null
+      } );
+  }
+
+
 
 
 
@@ -60,7 +80,8 @@ export default function AuthProvider({children}) {
     currentUser,
     signup,
     logIn,
-    logOut
+    logOut,
+    googleSignIn
   };
   return (
     <AuthContext.Provider value={value}>
