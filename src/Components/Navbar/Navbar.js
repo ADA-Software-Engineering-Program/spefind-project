@@ -6,9 +6,14 @@ import { Nav } from "react-bootstrap";
 import Logo from "../../images/Spefind-logo.png";
 import { BsArrowRight } from "react-icons/bs";
 import "./Navbar.css";
+import { useAuth } from "../../contexts/AuthContext";
+
+
 
 const Header = ({ backgroundColor }) => {
   const location = useLocation();
+
+  const {currentUser} = useAuth()
 
   const { pathname } = location;
 
@@ -61,14 +66,14 @@ const Header = ({ backgroundColor }) => {
             >
               Contact
             </Nav.Link>
-            <Nav.Link
+           {!currentUser && ( <Nav.Link
               href="./login"
               className={splitLocation[1] === "login" ? "active" : ""}
               id="logBtn"
             >
               Log In
               <BsArrowRight className="arrow" />
-            </Nav.Link>
+            </Nav.Link>)}
           </Nav>
         </Navbar.Collapse>
       </Container>

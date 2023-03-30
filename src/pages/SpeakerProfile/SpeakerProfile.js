@@ -8,38 +8,47 @@ import { doc, getDoc } from "firebase/firestore";
 import { storage, db } from '../../firebase/firebase';
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate, useNavigation } from 'react-router-dom';
-
+import toast from 'react-hot-toast';
 
 
 function SpeakerProfile() {
 
-  const [data, setData] = useState({})
-  const navigate = useNavigate()
+  const [ data, setData ] = useState( {} );
+  const navigate = useNavigate();
 
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth();
   // console.log(currentUser)
 
   if ( !currentUser ) {
-    navigate('/login')
+    navigate( '/login' );
   }
 
-  useEffect(() => {
+  useEffect( () => {
     const fetchData = async () => {
-        const docRef = await doc(db, "speakers", currentUser.uid);
-        const docSnap = await getDoc(docRef);
+      const docRef = await doc( db, "speakers", currentUser.uid );
+      const docSnap = await getDoc( docRef );
        
-        if (docSnap.exists()) {
+      if ( docSnap.exists() ) {
          
-            setData(docSnap.data())
-          } else {
-            // doc.data() will be undefined in this case
-            // console.log("No such document!");
-            setData(undefined)
-          }
-        // console.log(docSnap)
+        setData( docSnap.data() );
+      } else {
+        // doc.data() will be undefined in this case
+        // console.log("No such document!");
+        setData( undefined );
+      }
+      // console.log(docSnap)
+    };
+    fetchData();
+  }, [ currentUser.uid ] );
+
+  useEffect( () => {
+    if ( !data || data.length < 0) {
+      toast.success('Please Complete your profile to continue!!!')
+      navigate( '/create-profile' );
     }
-    fetchData()
-}, [currentUser.uid])
+  }, [data])
+
+ 
 
 
 

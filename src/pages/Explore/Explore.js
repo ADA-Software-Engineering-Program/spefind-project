@@ -1,4 +1,4 @@
-import React from 'react'
+
 import "./Explore.css"
 import AppLayout from '../../layout/AppLayout'
 import explore from '../../images/explore.png'
@@ -20,10 +20,48 @@ import {BiEnvelope} from 'react-icons/bi'
 import {AiOutlineCheckCircle} from 'react-icons/ai'
 import {FaAngleLeft, FaAngleRight, FaAngleDown} from 'react-icons/fa'
 import {BsDot} from 'react-icons/bs'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext';
+import { useEffect, useState } from 'react';
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+import toast from 'react-hot-toast';
 
 const Explore = () => {
+    const {currentUser} = useAuth()
+    const navigate = useNavigate()
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const docRef = await doc(db, "speakers", currentUser.uid);
+            const docSnap = await getDoc(docRef);
+           
+            if (docSnap.exists()) {
+             
+                setData(docSnap.data())
+              } else {
+                // doc.data() will be undefined in this case
+                // console.log("No such document!");
+                setData(undefined)
+              }
+            // console.log(docSnap)
+        }
+        fetchData()
+    }, [currentUser.uid])
+    console.log(data)
+
+
+    if ( !currentUser ) {
+        navigate('/login')
+    }
+
+    if ( !data || data?.length < 0 ) {
+        toast.error('Incomplete Profile, Kindly complete your profile to continue')
+        navigate('/create-profile')
+    }
+
+
     return (
         <AppLayout>
             <div className='explore'>

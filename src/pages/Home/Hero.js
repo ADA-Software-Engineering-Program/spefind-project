@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 import microphone from "../../images/microphone.png";
 import "../../Components/Navbar/Navbar.css";
+import { useAuth } from "../../contexts/AuthContext";
+
 
 function Hero() {
+
+  const {currentUser} = useAuth()
   return (
     <div className="heroContainer">
       <div className="heroText">
@@ -20,10 +24,10 @@ function Hero() {
           uniqueness of your event, we've got someone for you.
         </p>
 
-        <Link to="/signup" className="getBtn">
+        {!currentUser && (<Link to="/signup" className="getBtn">
           Get Started
           <BsArrowRight className="ms-2" />
-        </Link>
+        </Link>)}
       </div>
       <div className="heroImage">
         <img src={microphone} alt="speakers" className="" />
