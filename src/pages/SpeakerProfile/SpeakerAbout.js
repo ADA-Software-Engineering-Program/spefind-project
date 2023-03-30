@@ -11,7 +11,7 @@ import SpeakEvents from './SpeakEvents';
 
 
 
-export default function SpeakerAbout() {
+export default function SpeakerAbout({data}) {
     const [events] = useState([
         {
             id: 1,
@@ -48,15 +48,13 @@ export default function SpeakerAbout() {
     <div className='speakAboutMain'>
         <section className='row'>
             <div className='col-lg-6 speakAboutLeft'>
-                <img src={Titilayo} alt='Speaker-identity' className='titiLayo img-responsive' />
+                <img src={data.profilePicture} alt='Speaker-identity' className='titiLayo img-responsive' />
             </div>
             <div className='col-lg-6 speakAboutRight'>
                 <div className='speakAboutContent '>
                     <h3>ABOUT ME.</h3>
                     <p>
-                        A Lagos State resident in charge of drafting over 10 statements per mount and speaking with radio and television media about the clients' ongoing 
-                        or forthcoming events organize and arrange more than 20 speaking appearances. Conduct Training in product usage and product demos for clients,
-                        new hires, and independent contractors. Prepare concepts for new clients who use commercial spots to market their brands.
+                       {data.bio}
                     </p>
                     <a href='/' className='aboutRightA'>Show more</a>
                 </div>
@@ -89,9 +87,9 @@ export default function SpeakerAbout() {
         <section className='text-center my-5'>
             <h3 className='spoken'>EVENTS I HAVE SPOKEN AT</h3>
             <div className='row my-5 eventRow mx-lg-auto'> 
-                {events.map((item) =>(
+                {data.pastEventsImages.map((item) =>(
                     <div key={item.id} className='col-lg-3'>
-                        <SpeakEvents eventPics={item.eventPics} title={item.title} date={item.date} venue={item.venue}/>
+                        <SpeakEvents eventPics={item} title={item.title} date={item.date} venue={item.venue}/>
                     </div>
                 ))}
             </div>
