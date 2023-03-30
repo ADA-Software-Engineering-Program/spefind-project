@@ -1,9 +1,10 @@
 .headerLogo {
   width: 35%;
 }
-.navbar-main {
+
+/* .navbar-main {
   background-color: rgba(227, 80, 47, 0.1);
-}
+} */
 
 .nav-gap {
   margin-left: 0rem;
@@ -26,7 +27,7 @@
 #logBtn {
   display: flex;
   background-color: var(--orange);
-  color: var(--black);
+  color: var(--white);
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0rem 1.5rem 1.5rem 1rem;
@@ -46,6 +47,7 @@
   text-decoration: none;
   border-radius: 0rem 2rem 2rem 1rem;
 }
+
 .getBtn:hover {
   color: var(--black);
 }
@@ -82,6 +84,7 @@
   color: #111010;
   text-align: center;
 }
+
 .heroTextHeading {
   font-style: normal;
   font-weight: 500;
@@ -92,8 +95,12 @@
 
 .heroColor {
   color: #e3502f;
-  border-bottom: 3px solid #e3502f;
 }
+
+.heroContainer .heroColor {
+  text-decoration: 3px underline wavy #e3502f;
+}
+
 .heroTextSubHeading {
   font-style: normal;
   font-weight: 400;
@@ -104,13 +111,16 @@
   margin-bottom: 2rem;
   text-align: justify;
 }
+
 .heroTextSubHeading span {
   font-weight: bolder;
 }
+
 .heroImage {
   margin-top: 2rem;
   text-align: center;
 }
+
 .heroImage img {
   width: 80%;
 }

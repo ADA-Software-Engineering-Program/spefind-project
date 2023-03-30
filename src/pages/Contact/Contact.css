@@ -1,47 +1,47 @@
-.contact{
-    background-image: url(../../images/contact-bg.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.contact {
+  background-image: url(../../images/contact-bg.png);
+  background-repeat: no-repeat;
+  /* background-position: center; */
+  /* background-size: cover; */
 }
 
-.form-heading{
-    color: #E3502F;
+.form-heading {
+  color: #e3502f;
 }
 
-.contactForm{
-    background-color: #ffffff;
-    font-size: 12px;
+.contactForm {
+  background-color: #ffffff;
+  font-size: 12px;
 }
 
-.contactLabel{
-    font-size: 17px;
+.contactLabel {
+  font-size: 17px;
 }
 
-.form-holder{
-    background-color: #ffffff;
+.form-holder {
+  background-color: #ffffff;
 }
 
-.image-holder{
-    background-color: #ffffff;
-    box-shadow: 0.5rem 0.2rem 1rem rgba(0, 0, 0, 0.15) !important;
+.image-holder {
+  background-color: #ffffff;
+  box-shadow: 0.5rem 0.2rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
-.icons{
-    color: #E3502F;
+.icons {
+  color: #e3502f;
 }
 
-.socials{
-    display: inline-block;
-    padding: 1rem;
-    font-size: 20px;
+.socials {
+  display: inline-block;
+  padding: 1rem;
+  font-size: 20px;
 }
 
-input::placeholder{
-    font-size: 12px;    
+input::placeholder {
+  font-size: 12px;
 }
 
-.contatTextarea{
-    height: 15vh !important;
-    resize: none;
+.contatTextarea {
+  height: 15vh !important;
+  resize: none;
 }
