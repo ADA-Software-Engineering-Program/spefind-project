@@ -43,7 +43,14 @@ function SpeakerProfile() {
 
   useEffect( () => {
     if ( !data || data.length < 0) {
-      toast.success('Please Complete your profile to continue!!!')
+      toast.success('Please Complete your profile to continue!!!',  {
+        duration: 4000,
+        position: 'top-center',
+      
+        // Styling
+        style: {fontSize: '13px'},
+        className: '',
+      })
       navigate( '/create-profile' );
     }
   }, [data])

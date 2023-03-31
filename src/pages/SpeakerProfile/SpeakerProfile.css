@@ -2,7 +2,7 @@
     background-image: url(../../images/registerBG.png);
     background-repeat: no-repeat;
     background-size: cover; 
-    height: 100dvh;
+    height: 100vh;
     margin-top: -22%;
 }
 
@@ -55,11 +55,11 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding: 10px;
   }
 
 .speakAboutMain {
-    width: 80dvw;
-   margin-left: 19.1%;
+    width: 100%;
     box-shadow: -.8rem .8rem .6rem rgba(148, 141, 141, 0.2);
 }
 

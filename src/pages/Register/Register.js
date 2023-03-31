@@ -24,7 +24,15 @@ function Register() {
        // console.log(user);
        setLoading(false);
        toast.success(
-        "Registration Successful, Please complete your registration"
+        "Registration Successful, Please complete your registration",
+        {
+          duration: 4000,
+          position: 'top-center',
+        
+          // Styling
+          style: {fontSize: '13px'},
+          className: '',
+        }
        );
        navigate("/create-profile");
       })
@@ -88,7 +96,15 @@ function Register() {
      try {
       await googleSignIn();
       toast.success(
-       "Registration Successful, Please complete your registration"
+        "Registration Successful, Please complete your registration",
+        {
+          duration: 4000,
+          position: 'top-center',
+        
+          // Styling
+          style: {fontSize: '13px'},
+          className: '',
+        }
       );
       navigate("/create-profile");
      } catch (error) {

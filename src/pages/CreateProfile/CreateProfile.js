@@ -117,11 +117,25 @@ const CreateProfile = () => {
               timeStamp: serverTimestamp()
               });
 
-            toast.success('Profile setup Complete, Thank you!!')
-            navigate('/speakerProfile')
+            toast.success( 'Profile setup Complete, Thank you!!', {
+              duration: 4000,
+              position: 'top-center',
+            
+              // Styling
+              style: {fontSize: '13px'},
+              className: '',
+            } )
+            navigate('/speaker-profile')
               
           } catch (error) {
-            toast.error('Ooopps!!! Sorry, An error occurred')
+            toast.error('Ooopps!!! Sorry, An error occurred',  {
+              duration: 4000,
+              position: 'top-center',
+            
+              // Styling
+              style: {fontSize: '13px'},
+              className: '',
+            })
           }
 
     
