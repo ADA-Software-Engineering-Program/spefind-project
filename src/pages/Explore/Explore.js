@@ -57,7 +57,14 @@ const Explore = () => {
     }
 
     if ( !data || data?.length < 0 ) {
-        toast.error('Incomplete Profile, Kindly complete your profile to continue')
+        toast.error('Kindly complete your profile to continue',  {
+            duration: 4000,
+            position: 'top-center',
+          
+            // Styling
+            style: {fontSize: '13px'},
+            className: '',
+          })
         navigate('/create-profile')
     }
 

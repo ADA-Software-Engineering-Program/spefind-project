@@ -24,7 +24,14 @@ const SignIn = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        toast.success('Login Successful, Welcome')
+        toast.success('Login Successful, Welcome',  {
+          duration: 4000,
+          position: 'top-center',
+        
+          // Styling
+          style: {fontSize: '13px'},
+          className: '',
+        })
         navigate("/explore");
         // console.log(user);
       })
