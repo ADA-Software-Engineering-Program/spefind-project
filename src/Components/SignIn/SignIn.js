@@ -5,21 +5,35 @@ import { auth } from "../../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { MdToggleOff } from "react-icons/md"
+import { useAuth } from "../../contexts/AuthContext";
+import toast from 'react-hot-toast';
+
+
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { logIn} = useAuth()
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    signInWithEmailAndPassword(auth, email, password)
+    logIn(email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        toast.success('Login Successful, Welcome',  {
+          duration: 4000,
+          position: 'top-center',
+        
+          // Styling
+          style: {fontSize: '13px'},
+          className: '',
+        })
         navigate("/explore");
-        console.log(user);
+        // console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;

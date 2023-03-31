@@ -23,6 +23,7 @@
         background: #FFFFFF;
         box-shadow: 0px 3.16342px 62.4016px 3.16342px rgba(227, 80, 47, 0.1);
         border-radius: 7.92623px;
+        padding-top: 1rem;
    }
 
    .ovalBG {
@@ -55,6 +56,7 @@
    .labell,
    .labelForm {
      font-weight: 600;
+     margin-bottom: 15px;
     
    }
    
@@ -68,7 +70,7 @@
      border-radius: 5px;
      margin-top: -1.5rem;
      background-color: transparent;
-     z-index: 1;
+    
    }
    .btnSign-up {
     width: 100%;
@@ -79,6 +81,9 @@
     padding-top: .6rem;
     margin-top: 1rem;
    
+   }
+   .btnSign-up:hover{
+    border: 1px solid gray;
    }
    
    .or {
