@@ -74,6 +74,7 @@ function FeaturedReview() {
           </div>
         ))}
       </div>
+
       <div className="row mt-lg-4 reviewRow  mt-2">
         {lastThreeSpeakers.map((item) => (
           <div key={item.id} className="col-lg-3 mt-lg-0 mt-2">
