@@ -83,6 +83,7 @@
   .heroContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 50px;
     padding: 0rem 2rem 2rem;
   }
 

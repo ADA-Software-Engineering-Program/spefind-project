@@ -7,7 +7,6 @@ import { useAuth } from "../../contexts/AuthContext";
 
 function Hero() {
   const { currentUser } = useAuth();
-  const { currentUser } = useAuth();
 
   return (
     <div className="heroContainer">
