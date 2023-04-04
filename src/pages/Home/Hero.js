@@ -5,10 +5,8 @@ import microphone from "../../images/microphone.png";
 import "../../Components/Navbar/Navbar.css";
 import { useAuth } from "../../contexts/AuthContext";
 
-
 function Hero() {
-
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth();
   return (
     <div className="heroContainer">
       <div className="heroText">
@@ -24,10 +22,12 @@ function Hero() {
           uniqueness of your event, we've got someone for you.
         </p>
 
-        {!currentUser && (<Link to="/signup" className="getBtn">
-          Get Started
-          <BsArrowRight className="ms-2" />
-        </Link>)}
+        {!currentUser && (
+          <Link to="/signup" className="getBtn">
+            Get Started
+            <BsArrowRight className="arrowIcon" />
+          </Link>
+        )}
       </div>
       <div className="heroImage">
         <img src={microphone} alt="speakers" className="" />

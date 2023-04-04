@@ -20,31 +20,6 @@ function EventRegister() {
   // const [loading, setLoading] = useState(false);
 
   const onSubmit = async (values) => {
-    // setLoading(true);
-
-    // await signup(values.email, values.password)
-    //   .then((userCredential) => {
-    //     const user = userCredential.user;
-    //     // console.log(user);
-    //     setLoading(false);
-    //     toast.success(
-    //       "Registration Successful, Please complete your registration",
-    //       {
-    //         duration: 4000,
-    //         position: "top-center",
-
-    //         // Styling
-    //         style: { fontSize: "13px" },
-    //         className: "",
-    //       }
-    //     );
-    //     navigate("/create-profile");
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     toast.error(errorCode);
-    //     setLoading(false);
-    //   });
 
     values.preventDefault();
 
