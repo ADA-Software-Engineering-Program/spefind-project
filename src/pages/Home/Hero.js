@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 import microphone from "../../images/microphone.png";
-import "../../Components/Navbar/Navbar.css";
+import "../../Components/HomeCSS/Hero.css";
 import { useAuth } from "../../contexts/AuthContext";
 
 function Hero() {
   const { currentUser } = useAuth();
+
   return (
     <div className="heroContainer">
       <div className="heroText">
@@ -23,12 +24,15 @@ function Hero() {
         </p>
 
         {!currentUser && (
-          <Link to="/signup" className="getBtn">
-            Get Started
-            <BsArrowRight className="arrowIcon" />
-          </Link>
+          <div>
+            <Link to="/signup" className="getBtn">
+              Get Started
+              <BsArrowRight style={{ width: "auto" }} />
+            </Link>
+          </div>
         )}
       </div>
+
       <div className="heroImage">
         <img src={microphone} alt="speakers" className="" />
       </div>
