@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReviewCard from "./ReviewCard";
 import Slider from "react-slick";
 // style files
