@@ -1,6 +1,11 @@
-.speakerImg,
-.profilePics {
+.speakerImg {
   width: 30%;
+}
+
+.starRating {
+  color: rgba(254, 183, 3, 1);
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .card-button {
@@ -61,12 +66,6 @@
   background-color: var(--bg);
 }
 
-.starRating {
-  color: rgba(254, 183, 3, 1);
-  width: 1.3rem;
-  height: 1.3rem;
-}
-
 .mailHeart {
   width: 1.3rem;
   height: 1.3rem;
@@ -114,43 +113,6 @@
   margin: auto 0rem;
 }
 
-.reviewSection {
-  background-color: var(--bg);
-  padding-bottom: 5rem;
-}
-
-.reviewCards {
-  background-color: var(--bg);
-  padding: 1rem;
-  /* height: 260px; */
-  height: max-content;
-  border-radius: 2rem;
-  display: flex;
-  flex-direction: column;
-}
-/* .reviewDetail {
-  margin-top: -1.5rem;
-  margin-left: 6.3rem;
-  border: 1px solid blue;
-} */
-
-.designation {
-  font-size: 0.7rem;
-  font-weight: 500;
-  margin-top: -0.4rem;
-}
-
-.reviewDetailText {
-  font-size: 0.7rem;
-  font-weight: 500;
-  margin-top: 0.5rem;
-}
-
-.reviewRow {
-  justify-content: center;
-  align-items: center;
-}
-
 @media only screen and (min-width: 768px) {
   .featCard {
     margin-top: 2rem;
@@ -163,18 +125,6 @@
     width: 2rem;
     height: 2rem;
     color: var(--grey);
-  }
-
-  /* .reviewDetail {
-    margin-top: -10rem;
-    margin-left: 14.3rem;
-    border: 1px solid red;
-  } */
-
-  .reviewDetailText {
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-top: 0.5rem;
   }
 }
 
@@ -232,15 +182,4 @@
         height: 2rem;
         color: var(--grey);
     } */
-
-  /* .reviewDetail {
-    margin-top: -1.5rem;
-    margin-left: 6.3rem;
-  } */
-
-  .reviewDetailText {
-    font-size: 0.7rem;
-    font-weight: 500;
-    margin-top: 0.5rem;
-  }
 }
