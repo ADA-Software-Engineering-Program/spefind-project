@@ -12,12 +12,12 @@ const ReviewCard = ({ profilePic, speakerName, occupation, review }) => {
 
         <div>
           <div className="">
-            <h6 className="fw-semibold">{speakerName}</h6>
-            <p className="designation">{occupation}</p>
+            <h6 className="speaker-name">{speakerName}</h6>
+            <p className="speaker-occu">{occupation}</p>
           </div>
 
           <div className="reviewDetail">
-            <div>
+            <div className="mb-2">
               <HiStar className="starRating" />
               <HiStar className="starRating" />
               <HiStar className="starRating" />
