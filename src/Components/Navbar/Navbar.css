@@ -38,23 +38,21 @@
   background-color: var(--orange);
   color: var(--black);
   padding: 1rem 1.3rem;
-  margin: 0rem auto;
   font-size: 1.2rem;
   font-weight: 500;
   display: block;
-  width: 100%;
+  width: 50%;
   text-align: center;
   text-decoration: none;
   border-radius: 0rem 2rem 2rem 1rem;
+  white-space: nowrap;
 }
 
 .getBtn:hover {
   color: var(--black);
 }
-
-.arrow {
-  margin-top: 0.3rem;
-  margin-left: 0.5rem;
+.arrowIcon {
+  width: 10%;
 }
 
 .nav-link.active {
@@ -144,9 +142,7 @@
     margin-bottom: 2rem;
     text-align: center;
   }
-  .getBtn {
-    width: 75%;
-  }
+
   .heroContainer {
     grid-template-columns: 1fr;
   }

@@ -1,133 +1,155 @@
 .footer {
-    background-color: var(--orange);
+  background-color: var(--orange);
 }
 
-.eventBtn{
-    border: 1.5px solid white;
-    font-weight: 600;
-    color: white;
-    margin-right: 1rem;
+.eventBtn {
+  border: 1.5px solid white;
+  font-weight: 600;
+  color: white;
+}
+.btns {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.btns a {
+  width: max-content;
+  white-space: nowrap;
+  padding: 0.5rem;
+  margin: 0rem auto;
 }
 
 .eventBtn1 {
-    background-color: white;
-    color: var(--orange);
+  background-color: white;
+  color: var(--orange);
 }
 
-.news{
-    width: 30%;
-    font-size: .7rem;
-    text-align: start;
-    color: var(--orange);
+.news {
+  width: 30%;
+  font-size: 0.7rem;
+  text-align: start;
+  color: var(--orange);
 }
 
 .footerForm {
-    width: 100%;
-    border-radius: .4rem;
+  width: 80%;
+  border-radius: 0.4rem;
+  margin: 2rem auto;
+  padding: 1rem;
+  gap: 0.5rem;
 }
 
 .footerInput {
-    width: 50%;
-    border: 1px solid var(--grey);
-    border-radius: .4rem;
-    color: var(--grey);
+  border: 1px solid var(--grey);
+  border-radius: 0.4rem;
+  color: var(--grey);
 }
 
-.footBtn{
-    height: 2.5rem;
-    color: white;
-    background-color: var(--grey);
+.footBtn {
+  color: white;
+  background-color: var(--grey);
 }
 
 .footerNav {
-    justify-content: center;
-    margin: auto 1rem ;
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr)); */
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: auto 1rem;
 }
 
 .footerLogo {
-    width: 6.5rem;
-    height: 6rem;
+  width: 6.5rem;
+  height: 6rem;
 }
 
 .socialMedia {
-    display: flex;
-    justify-content: space-evenly;
-    color: white;
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
 }
 
 .icon {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 0rem;
+}
+
+.social {
+  margin-top: 0.3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .footerNav {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .news {
+    width: 30%;
+    font-size: 1rem;
+    text-align: start;
+    color: var(--orange);
+  }
+  .btns {
+    flex-direction: row;
+  }
+  .btns a {
+    width: 50%;
+  }
+  .copySection {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .news {
+    width: 30%;
+    font-size: 1.3rem;
+    text-align: start;
+    color: var(--orange);
+  }
+
+  .footerForm {
+    width: 50%;
+    border-radius: 0.4rem;
+  }
+
+  .footerNav {
+    justify-content: center;
+    margin: auto 12rem;
+  }
+
+  li {
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+
+  .copySection {
+    flex-direction: row;
+  }
+
+  .icon {
     width: 2rem;
     height: 2rem;
     border: 1px solid white;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    margin-right: 0rem;
-}
+    margin-right: 0.4rem;
+  }
 
-.social {
+  .social {
     margin-top: 0.3rem;
-    
-}
+  }
 
-@media  screen and (min-width:768px) {
-    .news{
-        width: 30%;
-        font-size: 1rem;
-        text-align: start;
-        color: var(--orange);
-    }
-}
-
-@media only screen and (min-width:1024px) {
-    
-    
-    .news{
-        width: 30%;
-        font-size: 1.3rem;
-        text-align: start;
-        color: var(--orange);
-    }
-    
-    .footerForm {
-        width: 50%;
-        border-radius: .4rem;
-    }
-
-    .footerNav {
-        justify-content: center;
-        margin: auto 12rem;
-    }
-    
-    li {
-        font-size: .8rem;
-        font-weight: 400;
-    }
-    
-    .copySection {
-        display: flex;
-        align-items: center;
-        margin: auto 11rem;
-    }
-    
-   
-    .icon {
-        width: 2rem;
-        height: 2rem;
-        border: 1px solid white;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        margin-right: .4rem;
-    }
-    
-    .social {
-        margin-top: 0.3rem;
-        
-    }
-    
-    .copyRight {
-        font-size: .7rem;
-        margin-top: 1rem;
-    }
+  .copyRight {
+    font-size: 0.7rem;
+    margin-top: 1rem;
+  }
 }
