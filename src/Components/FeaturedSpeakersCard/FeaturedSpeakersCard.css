@@ -1,21 +1,6 @@
-.speakerImg {
-  width: 30%;
-}
-
-.starRating {
-  color: rgba(254, 183, 3, 1);
-  width: 1.3rem;
-  height: 1.3rem;
-}
-
-.card-button {
-  width: 100px;
-  background-color: transparent;
-  border: 2px solid var(--grey);
-  font-weight: 500;
-  border-radius: 1.5rem;
-  padding: 0.5rem 1rem;
-  color: var(--green);
+.header {
+  font-size: 2rem;
+  margin: 2.5rem 0rem;
 }
 
 .featCard {
@@ -30,6 +15,7 @@
   border: 2px solid var(--grey);
   border-radius: 2rem;
   background: transparent;
+  padding-right: 3rem;
 }
 
 .search {
@@ -41,21 +27,9 @@
   color: var(--grey);
 }
 
-.header {
-  font-size: 2rem;
-  margin: 2.5rem 0rem;
-}
-
-.upperRow {
-  gap: 4rem;
+.speaker-cont {
   justify-content: center;
-  align-items: center;
-}
-.lowerRow {
-  padding-top: 2rem;
-  gap: 4rem;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
 }
 
 .card {
@@ -64,6 +38,26 @@
   border-radius: 2rem;
   padding: 1rem 0rem;
   background-color: var(--bg);
+}
+
+.speakerImg {
+  width: 30%;
+}
+
+.card-button {
+  width: 100px;
+  background-color: transparent;
+  border: 2px solid var(--grey);
+  font-weight: 500;
+  border-radius: 1.5rem;
+  padding: 0.5rem 1rem;
+  color: var(--green);
+}
+
+.starRating {
+  color: rgba(254, 183, 3, 1);
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .mailHeart {
@@ -91,28 +85,6 @@
   margin-left: 0.4rem;
 }
 
-.findSection {
-  margin-top: 6rem;
-  background-color: var(--bg);
-}
-
-.findHead {
-  font-size: 2rem;
-  padding-top: 3rem;
-}
-
-.findText {
-  width: 100%;
-  font-size: 1.3rem;
-  padding-top: 2rem;
-  padding-bottom: 4rem;
-  margin: auto;
-}
-
-.joinRow1 {
-  margin: auto 0rem;
-}
-
 @media only screen and (min-width: 768px) {
   .featCard {
     margin-top: 2rem;
@@ -132,23 +104,6 @@
   .header {
     font-size: 2.8rem;
     margin: 2.5rem 0rem;
-  }
-
-  .findHead {
-    font-size: 2.8rem;
-    padding-top: 4rem;
-  }
-
-  .joinRow1 {
-    margin: auto 6rem;
-  }
-
-  .findText {
-    width: 60%;
-    font-size: 1.3rem;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
-    margin: auto;
   }
 
   .featCard {
@@ -173,13 +128,4 @@
     border-radius: 2rem;
     background: transparent;
   }
-
-  /* .search {
-        position: absolute;
-        margin-top: 1.8rem !important;
-        margin-left: -3rem;
-        width: 2rem;
-        height: 2rem;
-        color: var(--grey);
-    } */
 }

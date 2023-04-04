@@ -2,8 +2,6 @@ import React from "react";
 import ReviewCard from "./ReviewCard";
 import Slider from "react-slick";
 // style files
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import "../../Components/HomeCSS/ReviewCard.css";
 // images
 import Gold from "../../images/Gold.png";
@@ -22,6 +20,22 @@ function SampleNextArrow(props) {
         ...style,
         display: "block",
         color: "red",
+        background: "green",
+        borderRadius: "50%",
+      }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
         background: "green",
         borderRadius: "50%",
       }}
@@ -79,22 +93,6 @@ const speakers = [
   },
 ];
 
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: "block",
-        background: "green",
-        borderRadius: "50%",
-      }}
-      onClick={onClick}
-    />
-  );
-}
-
 function FeaturedReview() {
   const settings = {
     dots: true,
@@ -107,7 +105,7 @@ function FeaturedReview() {
   };
 
   return (
-    <div className="text-center reviewSection px-lg-5 px-3">
+    <div className="text-center reviewSection px-lg-5 px-md-4 px-3">
       <h3 className="header fw-bolder pt-5">Featured reviews</h3>
 
       <div className="review-box d-md-grid d-none">

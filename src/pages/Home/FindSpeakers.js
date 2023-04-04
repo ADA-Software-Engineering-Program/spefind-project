@@ -1,12 +1,13 @@
 import React from "react";
-import "../../Components/FeaturedSpeakersCard/FeaturedSpeakersCard.css";
+import "../../Components/HomeCSS/FindSpeakers.css";
 
 export default function FindSpeakers() {
   return (
-    <div className="text-center findSection">
+    <div className="text-center findSection px-lg-5 px-md-4 px-3">
       <h3 className="findHead fw-bolder">
         Why find <span className="heroColor">communicators</span> on our site?
       </h3>
+
       <p className="findText">
         Speakers go through rigorous process and qualifications to join our
         community, this measure is taken to ensure adequacy and quality in the
