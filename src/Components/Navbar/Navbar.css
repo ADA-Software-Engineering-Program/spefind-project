@@ -37,6 +37,30 @@
 .arrow {
   margin-top: 0.3rem;
   margin-left: 0.5rem;
+
+.getBtn {
+  background-color: var(--orange);
+  color: var(--black);
+  padding: 1rem 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: block;
+  width: 50%;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 0rem 2rem 2rem 1rem;
+  white-space: nowrap;
+}
+
+.getBtn:hover {
+  color: var(--black);
+}
+.arrowIcon {
+  width: 10%;
+}
+
+.arrowIcon {
+  width: 10%;
 }
 
 .nav-link.active {
