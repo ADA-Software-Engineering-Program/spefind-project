@@ -59,6 +59,7 @@ function FeaturedReview() {
 
   const firstThreeSpeakers = speakers.slice(0, 3);
   const lastThreeSpeakers = speakers.slice(3);
+
   return (
     <div className="text-center reviewSection">
       <h3 className="header fw-bolder pt-5">Featured reviews</h3>

@@ -5,7 +5,7 @@ import "../../Components/HomeCSS/ReviewCard.css";
 const ReviewCard = ({ profilePic, speakerName, occupation, review }) => {
   return (
     <div className="text-start reviewCards">
-      <div className="d-flex justify-content-between">
+      <div className="reviewCont">
         <div className="profilePics">
           <img src={profilePic} alt="profilePics" className="img-responsive" />
         </div>
