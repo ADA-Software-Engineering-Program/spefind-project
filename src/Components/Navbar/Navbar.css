@@ -1,10 +1,10 @@
 .headerLogo {
-  width: 35%;
+  width: 50%;
 }
 
-/* .navbar-main {
-  background-color: rgba(227, 80, 47, 0.1);
-} */
+.navbar-main {
+  background-color: var(--orange) !important;
+}
 
 .nav-gap {
   margin-left: 0rem;
@@ -72,6 +72,12 @@
 #logBtn.active {
   color: white !important;
   text-decoration: none;
+}
+
+@media only screen and (min-width: 992px) {
+  .navbar-main {
+    background-color: unset !important;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
