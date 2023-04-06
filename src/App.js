@@ -18,6 +18,7 @@ import Oops from "./pages/Oops/Oops";
 import Congratulation from "./pages/Congratulation/Congratulation";
 import Congratulation2 from "./pages/Congratulation/Congratulation2";
 import Chat from "./pages/Chat/Chat";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
       <Route path="/oops" element={<Oops />} />
       <Route path="/congratulation" element={<Congratulation />} />
       <Route path="/congratulation2" element={<Congratulation2 />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }
