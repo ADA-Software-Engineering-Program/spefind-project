@@ -1,5 +1,7 @@
 .dashboard {
   padding: 0rem;
+  display: grid;
+  grid-template-rows: 4rem 1fr;
 }
 .dashboard h3 {
   font-style: normal;
@@ -10,50 +12,42 @@
   color: #eae1e1;
   background-color: #e3502f;
 }
-/* .ant-anchor-link {
-  background-color: red;
-} */
-.ant-row {
-  margin-top: -0.5rem !important;
+.dashboardContainer {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  margin-top: -0.5rem;
 }
-.ant-col-8 {
+.sidebar {
   background-color: #e3502f;
-  padding: 0.5rem;
+  padding: 1.5rem;
 }
-.ant-col-8 div {
-  width: 100%;
-}
-.ant-col-8 div img {
-  width: 100%;
-}
-.ant-col-8 .userProfile p {
+.sidebar .userProfile p {
   text-align: center;
   line-height: 10px;
   color: #ffffff;
   font-weight: 600;
 }
-.userMenu a {
+.userMenu {
+  margin: 1rem auto;
+}
+.userMenu li {
+  list-style-type: none;
+  margin: 0.5rem auto;
+}
+.userMenu li a {
   line-height: 50px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+}
+.userMenu li a:active {
+  background: rgba(217, 217, 217, 0.2);
 }
 .username {
   margin: 1rem auto 0.5rem;
 }
-.ant-anchor::before {
-  border-inline-start: none !important;
-}
-.ant-anchor-link {
-  padding-inline: 0rem !important;
-}
-.ant-anchor-link-title {
-  color: #eae1e1 !important;
-  text-decoration: none;
-  font-weight: 600;
-  line-height: 25px;
-}
 
-:where(.css-dev-only-do-not-override-1vtf12y).ant-anchor-wrapper:not(
-    .ant-anchor-wrapper-horizontal
-  )
+.ant-anchor-wrapper:not(.ant-anchor-wrapper-horizontal)
   .ant-anchor
   .ant-anchor-ink {
   background-color: #fff !important;
@@ -61,12 +55,9 @@
   width: 5px !important;
   left: -6px;
 }
-.ant-anchor-link-title-active {
-  background: rgba(217, 217, 217, 0.2) !important;
+.dahsboardBody {
+  padding: 3rem;
 }
-/* .ant-col-16 #part-1 {
-  background-color: #bdb6b4 !important;
-} */
 .dashboardDetail {
   font-style: normal;
   font-weight: 500;
@@ -74,9 +65,7 @@
   margin-bottom: 0rem !important;
   text-align: right;
 }
-/* .formContainer {
-  margin: 1rem 2rem;
-} */
+
 #form_item_path {
   margin: 2rem auto !important;
 }
@@ -86,6 +75,7 @@
 }
 .ant-input {
   width: 90%;
+  outline: none !important;
 }
 .ant-input:hover {
   border-color: rgba(0, 0, 0, 0.3) !important;
@@ -93,4 +83,38 @@
 .ant-form-label {
   justify-content: flex-start !important;
   align-items: flex-start !important;
+}
+.ant-radio-wrapper {
+  width: 50%;
+}
+.editProfilePicture {
+  display: flex;
+  width: 50%;
+  gap: 1.5rem;
+}
+.editProfilePicture div {
+  display: grid;
+}
+.selectFile {
+  width: 30% !important;
+}
+.editProfilePicture div button,
+.selectFile {
+  background-color: #e3502f !important;
+  border-radius: 1.5px !important;
+  color: white !important;
+}
+
+/* @media only screen and (max-width:665px){
+.dashboardContainer {
+  grid-template-columns: 15rem 1fr;
+}
+} */
+@media only screen and (max-width: 665px) {
+  .dashboardContainer {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
 }
