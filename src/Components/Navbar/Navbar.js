@@ -30,7 +30,10 @@ const Header = ({ backgroundColor }) => {
           <Navbar.Brand href="/">
             <img src={Logo} alt="logo" className="headerLogo" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle
+            className="nav-toggle"
+            aria-controls="basic-navbar-nav"
+          />
         </div>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="nav-gap">

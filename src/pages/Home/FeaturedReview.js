@@ -109,13 +109,14 @@ function FeaturedReview() {
       <h3 className="header fw-bolder pt-5">Featured reviews</h3>
 
       <div className="review-box d-md-grid d-none">
-        {speakers.map((slide, i) => {
+        {speakers.map((slide, key) => {
           return (
             <ReviewCard
               profilePic={slide.profilePic}
               speakerName={slide.speakerName}
               occupation={slide.occupation}
               review={slide.review}
+              key={key}
             />
           );
         })}
@@ -123,13 +124,14 @@ function FeaturedReview() {
 
       <div className="slick my-5 d-md-none d-block">
         <Slider {...settings} className="slick-box">
-          {speakers.map((slide, i) => {
+          {speakers.map((slide, key) => {
             return (
               <ReviewCard
                 profilePic={slide.profilePic}
                 speakerName={slide.speakerName}
                 occupation={slide.occupation}
                 review={slide.review}
+                key={key}
               />
             );
           })}

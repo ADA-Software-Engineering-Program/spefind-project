@@ -1,28 +1,6 @@
 import React from "react";
-import { useFormik } from "formik";
 
-const Niche = ({ nextStep, prevStep }) => {
-  const validate = (values) => {
-    const errors = {};
-    // fullname
-    if (!values.fullName) {
-      errors.fullName = "Please fill out this field";
-    } else if (values.fullName.length < 5) {
-      errors.fullName = "Must be 5 characters or more";
-    }
-  };
-
-  const formik = useFormik({
-    initialValues: {
-      mainTopics: "",
-      expertiseTags: "",
-      education: "",
-      currentPosition: "",
-      language: "",
-    },
-    validate,
-  });
-
+const Niche = ({ nextStep, prevStep, formik }) => {
   const handleNext = (e) => {
     e.preventDefault();
     nextStep();
@@ -35,50 +13,75 @@ const Niche = ({ nextStep, prevStep }) => {
 
   return (
     <div>
-      <label className="profileLabel">YOUR MAIN TOPICS* </label>
-      <input
-        type="text"
-        name="lastName"
-        className="profileInput"
-        placeholder="i.e family, leadership, technology"
-        {...formik.getFieldProps("mainTopics")}
-      />
+      <div className="profile-group">
+        <label className="profile-label">YOUR MAIN TOPICS* </label>
+        <input
+          type="text"
+          name="lastName"
+          className="profile-input"
+          placeholder="i.e family, leadership, technology"
+          {...formik.getFieldProps("mainTopics")}
+        />
+        {formik.touched.mainTopics && formik.errors.mainTopics ? (
+          <div className="profile-error">{formik.errors.mainTopics}</div>
+        ) : null}
+      </div>
 
-      <label className="profileLabel">EXPERTISE TAGS*</label>
-      <input
-        type="text"
-        name="lastName"
-        className="profileInput"
-        placeholder="i.e under technology as your main topic, your expertise tag is coding"
-        {...formik.getFieldProps("expertiseTags")}
-      />
+      <div className="profile-group">
+        <label className="profile-label">EXPERTISE TAGS*</label>
+        <input
+          type="text"
+          name="lastName"
+          className="profile-input"
+          placeholder="i.e under technology as your main topic, your expertise tag is coding"
+          {...formik.getFieldProps("expertiseTags")}
+        />
+        {formik.touched.expertiseTags && formik.errors.expertiseTags ? (
+          <div className="profile-error">{formik.errors.expertiseTags}</div>
+        ) : null}
+      </div>
 
-      <label className="profileLabel">EDUCATION*</label>
-      <input
-        type="text"
-        name="lastName"
-        className="profileInput"
-        placeholder="i.e school, field of study, year duration"
-        {...formik.getFieldProps("education")}
-      />
+      <div className="profile-group">
+        <label className="profile-label">EDUCATION*</label>
+        <input
+          type="text"
+          name="lastName"
+          className="profile-input"
+          placeholder="i.e school, field of study, year duration"
+          {...formik.getFieldProps("education")}
+        />
+        {formik.touched.education && formik.errors.education ? (
+          <div className="profile-error">{formik.errors.education}</div>
+        ) : null}
+      </div>
 
-      <label className="profileLabel">CURRENT POSITION*</label>
-      <input
-        type="text"
-        name="lastName"
-        className="profileInput"
-        placeholder="i.e position, company, field"
-        {...formik.getFieldProps("currentPosition")}
-      />
+      <div className="profile-group">
+        <label className="profile-label">CURRENT POSITION*</label>
+        <input
+          type="text"
+          name="lastName"
+          className="profile-input"
+          placeholder="i.e position, company, field"
+          {...formik.getFieldProps("currentPosition")}
+        />
+        {formik.touched.currentPosition && formik.errors.currentPosition ? (
+          <div className="profile-error">{formik.errors.currentPosition}</div>
+        ) : null}
+      </div>
 
-      <label className="profileLabel">LANGUAGE*</label>
-      <input
-        type="text"
-        name="lastName"
-        className="profileInput"
-        placeholder="English"
-        {...formik.getFieldProps("language")}
-      />
+      <div className="profile-group">
+        <label className="profile-label">LANGUAGE*</label>
+        <input
+          type="text"
+          name="lastName"
+          className="profile-input"
+          placeholder="English"
+          {...formik.getFieldProps("language")}
+        />
+        {formik.touched.language && formik.errors.language ? (
+          <div className="profile-error">{formik.errors.language}</div>
+        ) : null}
+      </div>
 
       <div className="btn-box">
         <button

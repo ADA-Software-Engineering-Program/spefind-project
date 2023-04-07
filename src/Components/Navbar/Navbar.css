@@ -1,13 +1,20 @@
 .headerLogo {
   width: 50%;
+  height: auto;
+  min-width: 110px;
+  max-width: 200px;
 }
 
-.navbar-main {
+/* .navbar-main {
   background-color: var(--orange) !important;
+} */
+
+.nav-toggle {
+  width: auto;
+  color: white;
 }
 
 .nav-gap {
-  margin-left: 0rem;
   justify-content: space-between;
 }
 
@@ -15,7 +22,14 @@
   font-weight: 600;
   font-size: 1.1rem;
   margin: auto;
+  /* color: var(--white); */
   color: var(--grey);
+  text-align: center;
+}
+
+.nav-link.active {
+  color: var(--orange) !important;
+  text-decoration: none;
 }
 
 .speakToggle {
@@ -26,47 +40,20 @@
 
 #logBtn {
   display: flex;
-  background-color: var(--orange);
-  color: var(--white);
+  background-color: var(--white);
+  color: var(--orange);
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0rem 1.5rem 1.5rem 1rem;
   white-space: nowrap;
+  width: auto;
 }
 
 .arrow {
-  margin-top: 0.3rem;
-  margin-left: 0.5rem;
-}
-
-.getBtn {
-  background-color: var(--orange);
-  color: var(--black);
-  padding: 1rem 1.3rem;
-  font-size: 1.2rem;
-  font-weight: 500;
-  display: block;
-  width: 50%;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 0rem 2rem 2rem 1rem;
-  white-space: nowrap;
-}
-
-.getBtn:hover {
-  color: var(--black);
-}
-.arrowIcon {
-  width: 10%;
-}
-
-.arrowIcon {
-  width: 10%;
-}
-
-.nav-link.active {
-  color: var(--orange) !important;
-  text-decoration: none;
+  width: auto;
+  vertical-align: middle;
+  margin: auto 0 auto 0.5rem;
+  font-size: 20px;
 }
 
 #logBtn.active {
@@ -75,16 +62,18 @@
 }
 
 @media only screen and (min-width: 992px) {
-  .navbar-main {
+  /* .navbar-main {
     background-color: unset !important;
-  }
-}
+  } */
 
-@media only screen and (min-width: 1024px) {
   .nav-link {
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin: 0rem 0.6rem;
     color: var(--grey);
+    text-align: unset;
+    margin: 0rem 0.6rem;
+  }
+
+  #logBtn {
+    background-color: var(--orange);
+    color: var(--white);
   }
 }

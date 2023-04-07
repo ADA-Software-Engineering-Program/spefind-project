@@ -1,16 +1,9 @@
-import { useFormik } from "formik";
 import React from "react";
 
-const Visibilty = ({ submit, prevStep }) => {
-  const formik = useFormik({
-    initialValues: {
-      visibility: "",
-    },
-  });
-
+const Visibilty = ({ submit, prevStep, formik }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // submit();
+    submit();
   };
 
   const handlePrev = (e) => {
@@ -23,31 +16,38 @@ const Visibilty = ({ submit, prevStep }) => {
       <h2 className="visibilty-heading">VISIBILITY AND NOTIFICATIONS</h2>
 
       <div className="visibilty-container">
-        <label className="profileLabel">PROFILE VISIBILITY*</label>
+        <label className="profile-label">PROFILE VISIBILITY*</label>
         <p className="visibilty-paragraph">
           To make your profile public, it needs to be confirmed by you first
         </p>
-
-        <div className="gender" {...formik.getFieldProps("visibility")}>
-          <label className="genderLabel color--grey">
+        <div className="check-cont" {...formik.getFieldProps("visibilty")}>
+          <div>
             <input
               type="radio"
               name="visibility"
-              className="genders"
+              className="check-input"
               value="public"
+              id="public"
             />
-            Public (visibility to everyone)
-          </label>
+            <label className="check-label" htmlFor="public">
+              <span className="check-radio-button"></span>Public (visibility to
+              everyone)
+            </label>
+          </div>
 
-          <label className="genderLabel color--orange">
+          <div>
             <input
               type="radio"
               name="visibility"
-              className="genders"
+              className="check-input"
               value="private"
+              id="private"
             />
-            Private (only you and site administrators can see your profile)
-          </label>
+            <label className="check-label" htmlFor="private">
+              <span className="check-radio-button"></span>Private (only you and
+              site administrators can see your profile)
+            </label>
+          </div>
         </div>
       </div>
 

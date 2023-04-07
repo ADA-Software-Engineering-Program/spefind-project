@@ -1,16 +1,6 @@
 import React from "react";
-import { useFormik } from "formik";
 
-const Availabilty = ({ nextStep, prevStep }) => {
-  const formik = useFormik({
-    initialValues: {
-      events: [],
-      available: [],
-      fee: "",
-      volunteer: "",
-    },
-  });
-
+const Availabilty = ({ nextStep, prevStep, formik }) => {
   const handleNext = (e) => {
     e.preventDefault();
     nextStep();
@@ -23,178 +13,277 @@ const Availabilty = ({ nextStep, prevStep }) => {
 
   return (
     <div>
-      <label className="profileLabel">
-        WHICH TYPES OF EVENTS ARE YOU INTERESTED IN?*
-      </label>
-      <div className="gender" {...formik.getFieldProps("events")}>
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="events"
-            className="genders"
-            value="conference"
-          />
-          Conference (Full-day Event)
+      <div className="profile-group">
+        <label className="profile-label">
+          WHICH TYPES OF EVENTS ARE YOU INTERESTED IN?*
         </label>
+        <div className="check-cont" {...formik.getFieldProps("events")}>
+          <div>
+            <input
+              type="checkbox"
+              name="events"
+              className="check-checkbox"
+              value="conference"
+              id="conference"
+            />
+            <label className="check-label" htmlFor="conference">
+              <span className="check-checkbox-button"></span>Conference
+              (Full-day Event)
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="events"
-            className="genders"
-            value="workshop"
-          />
-          Workshop (3+ hour event)
-        </label>
+          <div>
+            <input
+              type="checkbox"
+              name="events"
+              className="check-checkbox"
+              value="workshop"
+              id="workshop"
+            />
+            <label className="check-label" htmlFor="workshop">
+              <span className="check-checkbox-button"></span>Workshop (3+ hour
+              event)
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="events"
-            className="genders"
-            value="session"
-          />
-          Session (1-2 hr event)
-        </label>
+          <div>
+            <input
+              type="checkbox"
+              name="events"
+              className="check-checkbox"
+              value="session"
+              id="session"
+            />
+            <label className="check-label" htmlFor="session">
+              <span className="check-checkbox-button"></span>Session (1-2 hr
+              event)
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="events"
-            className="genders"
-            value="moderator"
-          />
-          Moderator
-        </label>
+          <div>
+            <input
+              type="checkbox"
+              name="events"
+              className="check-checkbox"
+              value="moderator"
+              id="moderator"
+            />
+            <label className="check-label" htmlFor="moderator">
+              <span className="check-checkbox-button"></span>Moderator
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="events"
-            className="genders"
-            value="webinar"
-          />
-          Webinar (virtual event)
-        </label>
+          <div>
+            <input
+              type="checkbox"
+              name="events"
+              className="check-checkbox"
+              value="webinar"
+              id="webinar"
+            />
+            <label className="check-label" htmlFor="webinar">
+              <span className="check-checkbox-button"></span>Webinar (virtual
+              event)
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="events"
-            className="genders"
-            value="school"
-          />
-          School
-        </label>
+          <div>
+            <input
+              type="checkbox"
+              name="events"
+              className="check-checkbox"
+              value="school"
+              id="school"
+            />
+            <label className="check-label" htmlFor="school">
+              <span className="check-checkbox-button"></span> School
+            </label>
+          </div>
+        </div>
       </div>
 
-      <label className="profileLabel">AVAILABLE TO*</label>
-      <div className="gender" {...formik.getFieldProps("available")}>
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="available"
-            className="genders"
-            value="Nigeria"
-          />
-          Nigeria
-        </label>
+      <div className="profile-group">
+        <label className="profile-label">AVAILABLE TO*</label>
+        <div className="check-cont" {...formik.getFieldProps("available")}>
+          <div>
+            <input
+              type="checkbox"
+              name="available"
+              className="check-checkbox"
+              value="nigeria"
+              id="nigeria"
+            />
+            <label className="check-label" htmlFor="nigeria">
+              <span className="check-checkbox-button"></span>Nigeria
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="available"
-            className="genders"
-            value="Ghana"
-          />
-          Ghana
-        </label>
+          <div>
+            <input
+              type="checkbox"
+              name="available"
+              className="check-checkbox"
+              value="ghana"
+              id="ghana"
+            />
+            <label className="check-label" htmlFor="ghana">
+              <span className="check-checkbox-button"></span>Ghana
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="available"
-            className="genders"
-            value="Somalia"
-          />
-          Somalia
-        </label>
+          <div>
+            <input
+              type="checkbox"
+              name="available"
+              className="check-checkbox"
+              value="somalia"
+              id="somalia"
+            />
+            <label className="check-label" htmlFor="somalia">
+              <span className="check-checkbox-button"></span>Somalia
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="available"
-            className="genders"
-            value="South Africa"
-          />
-          South Africa
-        </label>
+          <div>
+            <input
+              type="checkbox"
+              name="available"
+              className="check-checkbox"
+              value="south africa"
+              id="south_africa"
+            />
+            <label className="check-label" htmlFor="south_africa">
+              <span className="check-checkbox-button"></span>South Africa
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="available"
-            className="genders"
-            value="Turkey"
-          />
-          Turkey
-        </label>
+          <div>
+            <input
+              type="checkbox"
+              name="available"
+              className="check-checkbox"
+              value="turkey"
+              id="turkey"
+            />
+            <label className="check-label" htmlFor="turkey">
+              <span className="check-checkbox-button"></span>Turkey
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="checkbox"
-            name="available"
-            className="genders"
-            value="Egypt"
-          />
-          Egypt
-        </label>
+          <div>
+            <input
+              type="checkbox"
+              name="available"
+              className="check-checkbox"
+              value="egypt"
+              id="egypt"
+            />
+            <label className="check-label" htmlFor="egypt">
+              <span className="check-checkbox-button"></span>Egypt
+            </label>
+          </div>
+        </div>
       </div>
 
-      <label className="profileLabel">FEE*</label>
-      <div className="gender" {...formik.getFieldProps("fee")}>
-        <label className="genderLabel">
-          <input type="radio" name="fee" className="genders" value="0-20" />
-          Up to #20000
-        </label>
+      <div className="profile-group">
+        <label className="profile-label">FEE*</label>
+        <div className="check-cont" {...formik.getFieldProps("fee")}>
+          <div>
+            <input
+              type="radio"
+              name="fee"
+              className="check-input"
+              value="0-20"
+              id="fee1"
+            />
+            <label className="check-label" htmlFor="fee1">
+              <span className="check-radio-button"></span> Up to #20000
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input type="radio" name="fee" className="genders" value="20-30" />
-          #20000 - 30000
-        </label>
+          <div>
+            <input
+              type="radio"
+              name="fee"
+              className="check-input"
+              value="20-30"
+              id="fee2"
+            />
+            <label className="check-label" htmlFor="fee2">
+              <span className="check-radio-button"></span>#20000 - 30000
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input type="radio" name="fee" className="genders" value="30-40" />
-          #30000 - 40000
-        </label>
+          <div>
+            <input
+              type="radio"
+              name="fee"
+              className="check-input"
+              value="30-40"
+              id="fee3"
+            />
+            <label className="check-label" htmlFor="fee3">
+              <span className="check-radio-button"></span>#30000 - 40000
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input type="radio" name="fee" className="genders" value="40-70" />
-          #40000 - 70000
-        </label>
+          <div>
+            <input
+              type="radio"
+              name="fee"
+              className="check-input"
+              value="40-70"
+              id="fee4"
+            />
+            <label className="check-label" htmlFor="fee4">
+              <span className="check-radio-button"></span> #40000 - 70000
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input type="radio" name="fee" className="genders" value="70-100" />
-          #70000 - 100000
-        </label>
+          <div>
+            <input
+              type="radio"
+              name="fee"
+              className="check-input"
+              value="70-100"
+              id="fee5"
+            />
+            <label className="check-label" htmlFor="fee5">
+              <span className="check-radio-button"></span> #70000 - 100000
+            </label>
+          </div>
+        </div>
       </div>
 
-      <label className="profileLabel">VOLUNTEER*</label>
-      <div className="gender" {...formik.getFieldProps("volunteer")}>
-        <label className="genderLabel">
-          <input type="radio" name="volunteer" className="genders" value="No" />
-          No
-        </label>
+      <div className="profile-group">
+        <label className="profile-label">VOLUNTEER*</label>
+        <div className="check-cont" {...formik.getFieldProps("volunteer")}>
+          <div>
+            <input
+              type="radio"
+              name="volunteer"
+              className="check-input"
+              value="no"
+              id="no"
+            />
+            <label className="check-label" htmlFor="no">
+              <span className="check-radio-button"></span>No
+            </label>
+          </div>
 
-        <label className="genderLabel">
-          <input
-            type="radio"
-            name="volunteer"
-            className="genders"
-            value="Yes"
-          />
-          Yes
-        </label>
+          <div>
+            <input
+              type="radio"
+              name="volunteer"
+              className="check-input"
+              value="yes"
+              id="yes"
+            />
+            <label className="check-label" htmlFor="yes">
+              <span className="check-radio-button"></span>Yes
+            </label>
+          </div>
+        </div>
       </div>
 
       <div className="btn-box">

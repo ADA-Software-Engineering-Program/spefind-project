@@ -73,7 +73,7 @@ const speakers = [
     id: 6,
     speakerImage: Bola,
     speakerName: "Augustina Mobolaji",
-  }
+  },
 ];
 
 function SpeakersCard() {
@@ -114,12 +114,13 @@ function SpeakersCard() {
 
       <div className="slick my-5 d-md-none d-block">
         <Slider {...settings} className="slick-box">
-          {speakers.map((item, i) => {
+          {speakers.map((item, key) => {
             return (
               <FeaturedSpeakersCard
-              speakerImage={item.speakerImage}
-              speakerName={item.speakerName}
-            />
+                speakerImage={item.speakerImage}
+                speakerName={item.speakerName}
+                key={key}
+              />
             );
           })}
         </Slider>

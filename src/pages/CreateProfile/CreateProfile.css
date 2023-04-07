@@ -1,18 +1,22 @@
+.create-profile {
+  padding: 0 20px;
+}
+
 .form-header {
   margin: 30px 0;
   text-align: center;
 }
 
 .form-header h1 {
-  font-size: 47px;
+  font-size: 30px;
   font-weight: 500;
-  line-height: 57px;
+  line-height: 44px;
   text-transform: uppercase;
-  margin-bottom: 0;
+  margin-bottom: 10px;
 }
 
 .form-header p {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 24px;
   color: #948d8d;
@@ -20,79 +24,208 @@
   margin: 0 auto;
 }
 
-.form {
+.form-container {
   text-align: center;
-  /* margin: 0 10px ; */
   width: 100%;
   overflow: hidden;
-  padding: 10px;
+  margin: 40px auto;
 }
 
-.profileLabel {
+.profile-form ::placeholder {
+  font-family: inherit;
+  color: #11101066;
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  text-align: center;
-  /* display: flex; */
-  /* justify-content: center; */
 }
 
-.profileInput,
-select,
-textarea {
+.profile-group {
+  margin-bottom: 30px;
+}
+
+.profile-label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  margin-bottom: 10px;
+}
+
+.profile-input,
+.profile-file,
+.profile-textarea {
   width: 100%;
-  padding: 5px;
-  margin: 15px 0;
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid #948d8d;
   background-color: #f6f4f4;
 }
 
-.profileForms .gender {
+.profile-error {
+  color: red;
+  text-align: left;
+  font-size: 14px;
+}
+
+.profile-file {
+  max-width: 550px;
+  padding: 20px;
+  margin: 20px 0 0;
+}
+
+.check-cont {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
-  gap: 5px;
+  gap: 10px;
   text-align: left;
 }
 
-.genders {
-  display: inline-block;
-  vertical-align: middle;
-  /* -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      border-radius: 50%; */
-  width: 1.2rem;
-  height: 1.2rem;
-  border: 1px solid #d9d9d9;
-  margin-right: 16px;
+.check-input {
+  display: none;
 }
 
-.genderLabel {
+.check-label {
+  font-size: 16px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.genderLabel.color--grey {
-  color: #11101080;
+.check-radio-button {
+  height: 24px;
+  width: 24px;
+  min-width: 24px;
+  border: 4px solid #ded9d8;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
 }
 
-.genderLabel.color--orange {
+.check-radio-button::after {
+  content: "";
+  display: block;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #e3502f;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.check-input:checked ~ .check-label {
   color: #e3502f;
 }
 
-.profileForms .upload {
+.check-input:checked ~ .check-label .check-radio-button {
+  border: 4px solid #e3502f;
+}
+
+.check-input:checked ~ .check-label .check-radio-button::after {
+  opacity: 1;
+}
+
+.check-checkbox {
+  display: none;
+}
+
+.check-checkbox-button {
+  height: 24px;
+  width: 24px;
+  background-color: #ded9d8;
+  display: inline-block;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.check-checkbox:checked ~ .check-label {
+  color: #e3502f;
+}
+
+.check-checkbox:checked ~ .check-label .check-checkbox-button {
+  background-color: #e3502f;
+}
+
+.visibilty-heading {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 30px;
+  margin-bottom: 50px;
+}
+
+.visibilty-container {
+  background-color: #f6f4f4;
+  max-width: 1140px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 25px 10px;
+  border-radius: 6px;
+}
+
+.visibilty-paragraph {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #111010b2;
+}
+
+.btn-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px 0 40px;
+  gap: 20px 50px;
+}
+
+.submitBtn {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+.submitBtn--grey {
+  background-color: #948d8de5;
+}
+
+.submitBtn--grey:hover {
+  color: #454545;
+  background-color: #fff;
+  border: 1px solid #454545;
+}
+
+.submitBtn--orange {
+  background-color: #e3502f;
+}
+
+.submitBtn--orange:hover {
+  color: #e3502f;
+  background-color: #fff;
+  border: 1px solid #e3502f;
+}
+
+/* .profile-form .upload {
   display: flex;
   flex-direction: column;
   align-items: baseline;
   text-align: left;
 }
 
-.profileForms .upload {
+.profile-form .upload {
   margin-bottom: 20px;
 }
 
-.profileForms .upload button {
+.profile-form .upload button {
   border-radius: 5px;
   background-color: #e3502f;
   padding: 5px 10px;
@@ -101,62 +234,11 @@ textarea {
   margin: 15px 0;
 }
 
-.profileForms .upload p {
+.profile-form .upload p {
   font-size: 12px;
-}
+} */
 
-.visibilty-container {
-  background-color: #f6f4f4;
-  max-width: 1140px;
-  margin: 0 auto;
-  text-align-last: left;
-  padding: 25px 40px;
-  border-radius: 6px;
-}
-
-.visibilty-heading {
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 37px;
-  margin-bottom: 70px;
-}
-
-.visibilty-container .visibilty-paragraph {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 28px;
-  color: #111010b2;
-  margin-top: 5px;
-}
-
-.btn-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.submitBtn {
-  margin-top: 14px;
-  /* background-color: #04aa6d; */
-  border: none;
-  padding: 10px 20px;
-  font-size: 15px;
-  border-radius: 5px;
-  color: #fff;
-  margin-bottom: 40px;
-  width: auto;
-}
-
-.submitBtn--grey {
-  background-color: #948d8de5;
-}
-
-.submitBtn--orange {
-  background-color: #e3502f;
-}
-
-.bio {
+/* .bio {
   background-color: #f2f2f2;
   padding: 20px;
 }
@@ -169,9 +251,9 @@ textarea {
 .bio-items {
   display: flex;
   align-items: center;
-}
+} */
 
-.profileForms #addnew {
+/* .profile-form #addnew {
   padding: 5px 10px;
   display: flex;
   margin-top: 20px;
@@ -179,61 +261,95 @@ textarea {
   color: #d9d9d9;
   background-color: #fff;
   border: #d9d9d9 1px solid;
-}
+} */
 
 @media (min-width: 768px) {
-  .form {
+  .create-profile {
+    padding: 0 50px;
+  }
+
+  .form-container {
     max-width: 700px;
-    width: 100%;
-    margin: 0 auto;
   }
 
   .form-header h1 {
-    font-size: 32px;
+    font-size: 45px;
+    font-weight: 500;
+    line-height: 57px;
   }
 
   .form-header p {
-    font-size: 23px;
+    font-size: 20px;
   }
 
-  .form {
-    margin: 0 80px;
-  }
-
-  .profileInput,
-  select,
-  textarea {
-    padding: 10px;
-    margin: 10px 0 20px;
-  }
-
-  .profileForms .upload button {
+  /* .profile-form .upload button {
     font-size: 18px;
   }
 
-  .profileForms .upload p {
+  .profile-form .upload p {
     font-size: 14px;
+  } */
+
+  .profile-form ::placeholder {
+    font-size: 15px;
   }
 
-  .profileLabel {
+  .profile-group {
+    margin-bottom: 40px;
+  }
+
+  .profile-label {
     font-size: 25px;
     line-height: 30px;
   }
 
-  input[type="submit"] {
-    margin-top: 14px;
-    background-color: #04aa6d;
-    border: none;
+  .profile-input,
+  .profile-textarea {
+    padding: 15px 20px;
+  }
+
+  .check-label {
+    font-size: 18px;
+  }
+
+  .check-radio-button {
+    height: 28px;
+    width: 28px;
+  }
+
+  .check-radio-button::after {
+    height: 12px;
+    width: 12px;
+  }
+
+  .check-checkbox-button {
+    height: 28px;
+    width: 28px;
+  }
+
+  .visibilty-heading {
+    font-size: 30px;
+    line-height: 37px;
+    margin-bottom: 70px;
+  }
+
+  .visibilty-container {
+    padding: 25px 40px;
+  }
+
+  .visibilty-paragraph {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .submitBtn {
+    font-size: 20px;
     padding: 10px 20px;
-    font-size: 23px;
-    border-radius: 5px;
-    color: #fff;
   }
 }
 
 @media (min-width: 1024px) {
-  .form {
+  .form-container {
     max-width: 1000px;
-    margin: 0 auto;
   }
 }
