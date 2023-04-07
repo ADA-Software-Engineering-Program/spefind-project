@@ -1,38 +1,8 @@
 import React, { useState } from "react";
-import { useFormik } from "formik";
-import { BsTrashFill } from "react-icons/bs";
-import { ImArrowDown, ImArrowUp } from "react-icons/im";
 
-const Personal = ({ nextStep }) => {
-  const [unprocessProfilePic, setUnprocessProfilePic] = useState("");
-  const [progressTime2, setProgressTime2] = useState(0);
-  const [pastEventsImgs, setPastEventsImgs] = useState([]);
-  const [profilePics, setProfilePics] = useState("");
+const Personal = ({ nextStep, formik }) => {
   const [progressTime, setProgressTime] = useState(0);
-
-  const validate = (values) => {
-    const errors = {};
-    // fullname
-    if (!values.firstName) {
-      errors.firstName = "Please fill out this field";
-    } else if (values.firstName.length < 5) {
-      errors.firstName = "Must be 5 characters or more";
-    }
-  };
-
-  const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      gender: "",
-      country: "",
-      biographies: "",
-      pastEvents: "",
-      eventPictures: "",
-    },
-    validate,
-  });
-  console.log(formik.values);
+  const [files, setFiles] = useState([]);
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -41,106 +11,166 @@ const Personal = ({ nextStep }) => {
 
   return (
     <div>
-      <label className="profileLabel">FIRST NAME*</label>
-      <input
-        type="text"
-        name="firstName"
-        className="profileInput"
-        {...formik.getFieldProps("firstName")}
-      />
-      {/* {formik.touched.firstName && formik.errors.firstName ? (
-        <div className="error">{formik.errors.firstName}</div>
-      ) : null} */}
-      <label className="profileLabel">LAST NAME*</label>
-      <input
-        type="text"
-        name="lastName"
-        className="profileInput"
-        {...formik.getFieldProps("lastName")}
-      />
-      <label className="profileLabel">GENDER*</label>
-      <div className="gender" {...formik.getFieldProps("gender")}>
-        <label className="genderLabel">
-          <input type="radio" name="gender" className="genders" value="Male" />
-          Male
+      <div className="profile-group">
+        <label className="profile-label" htmlFor="firstName">
+          FIRST NAME*
         </label>
-
-        <label className="genderLabel">
-          <input
-            type="radio"
-            name="gender"
-            className="genders"
-            value="Female"
-          />
-          Female
-        </label>
-
-        <label className="genderLabel">
-          <input
-            type="radio"
-            name="gender"
-            className="genders"
-            value="Others"
-          />
-          Others
-        </label>
-      </div>
-      <label className="profileLabel">COUNTRY OR STATE & CITY* </label>
-      <select {...formik.getFieldProps("country")}>
-        <option value="0">-None-</option>
-        <option value="Nigeria">Nigeria</option>
-        <option value="Ghana">Ghana</option>
-        <option value="South Africa">South Africa</option>
-        <option value="Ethiopia">Ethiopia</option>
-        <option value="Uganda">Uganda</option>
-      </select>
-      <label className="profileLabel" style={{ margin: 20 }}>
-        BIOGRAPHIES
-      </label>
-      <textarea
-        name="biographies"
-        id=""
-        cols="30"
-        rows="5"
-        style={{ resize: "none" }}
-        {...formik.getFieldProps("biographies")}
-      ></textarea>
-      <label className="profileLabel" style={{ margin: 20 }}>
-        PAST EVENTS*
-      </label>
-      <textarea
-        name="pastEvents"
-        id=""
-        cols="30"
-        rows="5"
-        style={{ resize: "none" }}
-        {...formik.getFieldProps("pastEvents")}
-      ></textarea>
-      <label className="profileLabel">PROFILE PICTURE*</label>
-      <div className="upload">
         <input
-          type="file"
-          className="select"
-          onChange={(e) => setUnprocessProfilePic(e.target.files[0])}
+          type="text"
+          name="firstName"
+          id="firstName"
+          className="profile-input"
+          placeholder="Type here"
+          {...formik.getFieldProps("firstName")}
         />
-        <p>
-          Files must be less than 100 MB. Allowed file types:png, gif, jpg,
-          jpeg.
-        </p>
-        <span style={{ fontSize: "13px", marginTop: "-18px" }}>
-          Uploading Image - {progressTime2}%
-        </span>
+        {formik.touched.firstName && formik.errors.firstName ? (
+          <div className="profile-error">{formik.errors.firstName}</div>
+        ) : null}
       </div>
-      <button
-        type="button"
-        className="submitBtn submitBtn--grey"
-        onClick={handleNext}
-      >
-        Next
-      </button>
-      {/*
 
-        {/* <div className="bio">
+      <div className="profile-group">
+        <label className="profile-label" htmlFor="lastName">
+          LAST NAME*
+        </label>
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          className="profile-input"
+          placeholder="Type here"
+          {...formik.getFieldProps("lastName")}
+        />
+        {formik.touched.lastName && formik.errors.lastName ? (
+          <div className="profile-error">{formik.errors.lastName}</div>
+        ) : null}
+      </div>
+
+      <div className="profile-group">
+        <label className="profile-label">GENDER*</label>
+        <div className="check-cont" {...formik.getFieldProps("gender")}>
+          <div>
+            <input
+              type="radio"
+              name="gender"
+              className="check-input"
+              value="male"
+              id="male"
+            />
+            <label className="check-label" htmlFor="male">
+              <span className="check-radio-button"></span>Male
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              name="gender"
+              className="check-input"
+              value="female"
+              id="female"
+            />
+            <label className="check-label" htmlFor="female">
+              <span className="check-radio-button"></span>Female
+            </label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              name="gender"
+              className="check-input"
+              value="others"
+              id="others"
+            />
+            <label className="check-label" htmlFor="others">
+              <span className="check-radio-button"></span>Others
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div className="profile-group">
+        <label className="profile-label" htmlFor="country">
+          COUNTRY OR STATE & CITY*{" "}
+        </label>
+        <input
+          type="text"
+          name="country"
+          id="country"
+          className="profile-input"
+          placeholder="Type here"
+          {...formik.getFieldProps("country")}
+        />
+        {formik.touched.country && formik.errors.country ? (
+          <div className="profile-error">{formik.errors.country}</div>
+        ) : null}
+      </div>
+
+      <div className="profile-group">
+        <label className="profile-label" htmlFor="biographies">
+          BIOGRAPHIES*
+        </label>
+        <textarea
+          name="biographies"
+          id="biographies"
+          className="profile-textarea"
+          cols="30"
+          rows="5"
+          placeholder="Type here"
+          style={{ resize: "none" }}
+          {...formik.getFieldProps("biographies")}
+        ></textarea>
+        {formik.touched.biographies && formik.errors.biographies ? (
+          <div className="profile-error">{formik.errors.biographies}</div>
+        ) : null}
+      </div>
+
+      <div className="profile-group">
+        <label className="profile-label" htmlFor="pastEvents">
+          PAST EVENTS*
+        </label>
+        <textarea
+          name="pastEvents"
+          id="pastEvents"
+          className="profile-textarea"
+          cols="30"
+          rows="5"
+          placeholder="Type here"
+          style={{ resize: "none" }}
+          {...formik.getFieldProps("pastEvents")}
+        ></textarea>
+        {formik.touched.pastEvents && formik.errors.pastEvents ? (
+          <div className="profile-error">{formik.errors.pastEvents}</div>
+        ) : null}
+        <div style={{ textAlign: "left" }}>
+          <input
+            type="file"
+            className="profile-file"
+            placeholder="hey, there"
+            multiple
+            onChange={(e) => setFiles(Array.from(e.target.files))}
+          />
+          <p>
+            Files must be less than 100 MB. Allowed file types:png, gif, jpg,
+            jpeg. <br />
+            <span style={{ fontSize: "13px" }}>
+              Uploading Image - {progressTime}%
+            </span>
+          </p>
+        </div>
+      </div>
+      <div className="btn-box">
+        <button
+          type="button"
+          className="submitBtn submitBtn--grey"
+          onClick={handleNext}
+          style={{ marginLeft: "auto" }}
+        >
+          Next
+        </button>
+      </div>
+
+      {/* <div className="bio">
         <h2>Bio* </h2>
         <div className="bio-items">
           <div className="arrow">
@@ -154,17 +184,9 @@ const Personal = ({ nextStep }) => {
           ></textarea>
           <BsTrashFill />
         </div>
-      </div> 
-      <label className="profileLabel">TIMEZONE* </label>
-      <select {...formik.getFieldProps("timezone")}>
-        <option value="0">-None-</option>
-        <option value="Nigeria">Nigeria</option>
-        <option value="Ghana">Ghana</option>
-        <option value="South Africa">South Africa</option>
-        <option value="Ethiopia">Ethiopia</option>
-        <option value="Uganda">Uganda</option>
-      </select>
-      <label className="profileLabel" style={{ margin: 20 }}>
+      </div>
+
+      <label className="profile-label" style={{ margin: 20 }}>
         PAST EVENTS
       </label>
       <small>Pictures of your past events</small>
@@ -182,8 +204,7 @@ const Personal = ({ nextStep }) => {
         <span style={{ fontSize: "13px", marginTop: "-18px" }}>
           Uploading Image - {progressTime}%
         </span>
-      </div>{" "}
-      */}
+      </div> */}
     </div>
   );
 };

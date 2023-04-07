@@ -1,7 +1,7 @@
 .heroContainer {
   display: flex;
   flex-direction: column-reverse;
-  padding: 0 0 2rem;
+  padding: 0rem 0 2rem;
   background-color: rgba(227, 80, 47, 0.1);
 }
 
@@ -84,7 +84,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
-    padding: 0rem 2rem 2rem;
+    padding: 1rem 2rem 2rem;
   }
 
   .heroText {

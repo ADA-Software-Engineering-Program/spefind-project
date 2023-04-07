@@ -130,16 +130,93 @@ const CreateProfile = () => {
 
   const [step, setStep] = useState(0);
 
+  const validate = (values) => {
+    const errors = {};
+    // firstname
+    if (!values.firstName) {
+      errors.firstName = "Please fill out this field";
+    }
+
+    if (!values.lastName) {
+      errors.lastName = "Please fill out this field";
+    }
+
+    if (!values.country) {
+      errors.country = "Please fill out this field";
+    }
+
+    if (!values.biographies) {
+      errors.biographies = "Please fill out this field";
+    }
+
+    if (!values.pastEvents) {
+      errors.pastEvents = "Please fill out this field";
+    }
+
+    if (!values.mainTopics) {
+      errors.mainTopics = "Please fill out this field";
+    }
+
+    if (!values.expertiseTags) {
+      errors.expertiseTags = "Please fill out this field";
+    }
+
+    if (!values.education) {
+      errors.education = "Please fill out this field";
+    }
+
+    if (!values.currentPosition) {
+      errors.currentPosition = "Please fill out this field";
+    }
+
+    if (!values.language) {
+      errors.language = "Please fill out this field";
+    }
+
+    return errors;
+  };
+
   const formik = useFormik({
-    onSubmit,
+    initialValues: {
+      // personal
+      firstName: "",
+      lastName: "",
+      gender: "",
+      country: "",
+      biographies: "",
+      pastEvents: "",
+      eventPictures: "",
+      // niche
+      mainTopics: "",
+      expertiseTags: "",
+      education: "",
+      currentPosition: "",
+      language: "",
+      // availability
+      events: [],
+      available: [],
+      fee: "",
+      volunteer: "",
+      // visibility
+      visibility: "",
+    },
+    validate,
   });
 
-  // Proceed to next step
+  // console.log(formik.values);
+
+  // proceed to next step
   const nextStep = () => {
+    // if (Object.keys(formik.errors).length > 0) {
+    //   Object.keys(formik.errors).forEach(function (error) {
+    //     formik.touched[error] = true;
+    //   });
+    //   return;
+    // }
     setStep(step + 1);
   };
 
-  // Go back to prev step
+  // go back to prev step
   const prevStep = () => {
     setStep(step - 1);
   };
@@ -149,22 +226,9 @@ const CreateProfile = () => {
     formik.handleSubmit();
   };
 
-  // switch (step) {
-  //   case 1:
-  //     return <Personal nextStep={nextStep} />;
-  //   case 2:
-  //     return <Niche nextStep={nextStep} prevStep={prevStep} />;
-  //   case 3:
-  //     return <Availabilty nextStep={nextStep} prevStep={prevStep} />;
-  //   case 4:
-  //     return <Visibilty nextStep={nextStep} prevStep={prevStep} />;
-  //   default:
-  //     console.log("This is a multi-step form built with React.");
-  // }
-
   return (
     <AppLayout>
-      <div className="createprofile">
+      <div className="create-profile">
         <div className="form-header">
           <h1>Create Your Profile</h1>
           <p>
@@ -172,14 +236,22 @@ const CreateProfile = () => {
           </p>
         </div>
 
-        <div className="form">
-          <form className="profileForms" onSubmit={formik.handleSubmit}>
-            {step === 0 && <Personal nextStep={nextStep} />}
-            {step === 1 && <Niche nextStep={nextStep} prevStep={prevStep} />}
-            {step === 2 && (
-              <Availabilty nextStep={nextStep} prevStep={prevStep} />
+        <div className="form-container">
+          <form className="profile-form">
+            {step === 0 && <Personal nextStep={nextStep} formik={formik} />}
+            {step === 1 && (
+              <Niche nextStep={nextStep} prevStep={prevStep} formik={formik} />
             )}
-            {step === 3 && <Visibilty submit={submit} prevStep={prevStep} />}
+            {step === 2 && (
+              <Availabilty
+                nextStep={nextStep}
+                prevStep={prevStep}
+                formik={formik}
+              />
+            )}
+            {step === 3 && (
+              <Visibilty submit={submit} prevStep={prevStep} formik={formik} />
+            )}
           </form>
         </div>
       </div>
