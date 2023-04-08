@@ -55,13 +55,6 @@ export default function AuthProvider({children}) {
   }
 
 
-
-
-
-
-
-
-
   // Sets the user to the object and we can keep track if logged in or not.
   // useEffect() lets react know to run after render
   useEffect(() => {

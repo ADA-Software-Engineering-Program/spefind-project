@@ -1,0 +1,120 @@
+.FAQ{
+text-align: center;
+}
+.FAQ h1{
+    font-size: 20px;
+    margin: 20px auto;
+}
+
+.accordion{
+    text-align: justify;
+    margin: auto 40px;
+    
+}
+
+
+.accordion h2{
+    font-size: 14px;
+    font-weight: 400px;
+}
+
+.content{
+    font-size: 12px;
+    margin-bottom: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.15s cubic-bezier(0,1,0,1);
+}
+
+
+
+.show{
+    font-size: 12px;
+    margin-bottom: 20px;
+    height: auto;
+    max-height: 999px;
+    transition: all 0.15s cubic-bezier(1,0,1,0);
+}
+
+
+.item{
+    border-bottom:2px solid #000 ;
+    margin-bottom: 20px;
+}
+
+.item .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+@media (min-width:768px) {
+    .FAQ h1{
+        font-size: 24px;
+        margin: 20px auto;
+    }
+
+    .accordion h2{
+    font-size: 18px;
+    font-weight: 400px;
+}
+
+.content{
+    font-size: 14px;
+    margin-bottom: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.15s cubic-bezier(0,1,0,1);
+}
+
+
+
+.show{
+    font-size: 14px;
+    margin-bottom: 20px;
+    height: auto;
+    max-height: 999px;
+    transition: all 0.15s cubic-bezier(1,0,1,0);
+}
+}
+
+@media (min-width:1024px) {
+    .FAQ h1{
+        font-size: 36px;
+        margin: 40px auto;
+    }
+
+    .accordion h2{
+    font-size: 24px;
+    font-weight: 400px;
+}
+
+.content{
+    font-size: 18px;
+    margin-bottom: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.15s cubic-bezier(0,1,0,1);
+}
+
+
+
+.show{
+    font-size: 18px;
+    margin-bottom: 20px;
+    height: auto;
+    max-height: 999px;
+    transition: all 0.15s cubic-bezier(1,0,1,0);
+}
+
+
+.accordion{
+    text-align: justify;
+    margin: auto 150px;
+    
+}
+}
+

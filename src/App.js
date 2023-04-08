@@ -13,7 +13,12 @@ import EventRegister from "./pages/Register/EventRegister";
 import CreateProfile from "./pages/CreateProfile/CreateProfile";
 import SpeakerProfile from "./pages/SpeakerProfile/SpeakerProfile";
 import Bookme from "./pages/BookMe/Bookme.jsx";
+import FAQ from "./pages/FAQ/FAQ";
+import Oops from "./pages/Oops/Oops";
+import Congratulation from "./pages/Congratulation/Congratulation";
+import Congratulation2 from "./pages/Congratulation/Congratulation2";
 import Chat from "./pages/Chat/Chat";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -31,6 +36,11 @@ function App() {
       <Route path="/speaker-profile" element={<SpeakerProfile />} />
       <Route path="/book-me" element={<Bookme />} />
       <Route path="/chat" element={<Chat />} />
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/oops" element={<Oops />} />
+      <Route path="/congratulation" element={<Congratulation />} />
+      <Route path="/congratulation2" element={<Congratulation2 />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }

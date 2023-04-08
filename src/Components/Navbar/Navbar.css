@@ -1,13 +1,20 @@
 .headerLogo {
-  width: 35%;
+  width: 50%;
+  height: auto;
+  min-width: 110px;
+  max-width: 200px;
 }
 
 /* .navbar-main {
-  background-color: rgba(227, 80, 47, 0.1);
+  background-color: var(--orange) !important;
 } */
 
+.nav-toggle {
+  width: auto;
+  color: white;
+}
+
 .nav-gap {
-  margin-left: 0rem;
   justify-content: space-between;
 }
 
@@ -15,7 +22,14 @@
   font-weight: 600;
   font-size: 1.1rem;
   margin: auto;
+  /* color: var(--white); */
   color: var(--grey);
+  text-align: center;
+}
+
+.nav-link.active {
+  color: var(--orange) !important;
+  text-decoration: none;
 }
 
 .speakToggle {
@@ -26,40 +40,20 @@
 
 #logBtn {
   display: flex;
-  background-color: var(--orange);
-  color: var(--white);
+  background-color: var(--white);
+  color: var(--orange);
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0rem 1.5rem 1.5rem 1rem;
   white-space: nowrap;
-}
-
-.getBtn {
-  background-color: var(--orange);
-  color: var(--black);
-  padding: 1rem 1.3rem;
-  margin: 0rem auto;
-  font-size: 1.2rem;
-  font-weight: 500;
-  display: block;
-  width: 100%;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 0rem 2rem 2rem 1rem;
-}
-
-.getBtn:hover {
-  color: var(--black);
+  width: auto;
 }
 
 .arrow {
-  margin-top: 0.3rem;
-  margin-left: 0.5rem;
-}
-
-.nav-link.active {
-  color: var(--orange) !important;
-  text-decoration: none;
+  width: auto;
+  vertical-align: middle;
+  margin: auto 0 auto 0.5rem;
+  font-size: 20px;
 }
 
 #logBtn.active {
@@ -67,146 +61,19 @@
   text-decoration: none;
 }
 
-.heroContainer {
-  display: grid;
-  padding: 0rem 2rem 2rem;
-  justify-content: start;
-  align-items: start;
-  height: max-content;
-  background-color: rgba(227, 80, 47, 0.1);
-}
+@media only screen and (min-width: 992px) {
+  /* .navbar-main {
+    background-color: unset !important;
+  } */
 
-.speakers {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 20px;
-  color: #111010;
-  text-align: center;
-}
-
-.heroTextHeading {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 2rem;
-  text-align: center;
-  color: #111010;
-}
-
-.heroColor {
-  color: #e3502f;
-}
-
-.heroContainer .heroColor {
-  text-decoration: 3px underline wavy #e3502f;
-}
-
-.heroTextSubHeading {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 150%;
-  letter-spacing: 0.011em;
-  color: rgba(0, 0, 0, 0.8);
-  margin-bottom: 2rem;
-  text-align: justify;
-}
-
-.heroTextSubHeading span {
-  font-weight: bolder;
-}
-
-.heroImage {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.heroImage img {
-  width: 80%;
-}
-
-@media only screen and (min-width: 768px) {
-  .speakers {
-    text-align: center;
-    font-size: 22.9531px;
-    line-height: 25px;
-  }
-  .heroTextHeading {
-    font-size: 3rem;
-  }
-  .heroTextSubHeading {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 23px;
-    line-height: 150%;
-    letter-spacing: -0.011em;
-    color: rgba(0, 0, 0, 0.8);
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  .getBtn {
-    width: 75%;
-  }
-  .heroContainer {
-    grid-template-columns: 1fr;
-  }
-  .heroImage {
-    margin-top: 2rem;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .heroContainer {
-    grid-template-columns: 1.2fr 1fr;
-    margin: 0rem 0rem;
-  }
-  .heroText .speakers,
-  .heroTextHeading,
-  .heroTextSubHeading {
-    text-align: left;
-  }
-  .heroTextHeading {
-    font-size: 3.5rem;
-    line-height: 5rem;
-    width: 100%;
-  }
-  .heroTextSubHeading {
-    margin-bottom: 2rem;
-  }
   .nav-link {
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin: 0rem 0.6rem;
     color: var(--grey);
+    text-align: unset;
+    margin: 0rem 0.6rem;
   }
 
-  .heroText {
-    padding-bottom: 2rem;
-    margin: 0rem 3rem;
-  }
-
-  .getBtn {
-    display: inline;
-    text-align: center;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .heroTextHeading {
-    width: 90%;
-  }
-}
-
-@media only screen and (min-width: 1400px) {
-  .heroContainer {
-    grid-template-columns: 1.3fr 1fr;
-  }
-  .heroText {
-    margin: 0rem 5rem;
-  }
-  .heroTextHeading {
-    width: 80%;
-    margin-top: 2rem;
-    font-size: 4.2rem;
+  #logBtn {
+    background-color: var(--orange);
+    color: var(--white);
   }
 }

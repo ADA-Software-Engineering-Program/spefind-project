@@ -1,0 +1,120 @@
+.dashboard {
+  padding: 0rem;
+  display: grid;
+  grid-template-rows: 4rem 1fr;
+}
+.dashboard h3 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34.8282px;
+  line-height: 51px;
+  text-align: center;
+  color: #eae1e1;
+  background-color: #e3502f;
+}
+.dashboardContainer {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  margin-top: -0.5rem;
+}
+.sidebar {
+  background-color: #e3502f;
+  padding: 1.5rem;
+}
+.sidebar .userProfile p {
+  text-align: center;
+  line-height: 10px;
+  color: #ffffff;
+  font-weight: 600;
+}
+.userMenu {
+  margin: 1rem auto;
+}
+.userMenu li {
+  list-style-type: none;
+  margin: 0.5rem auto;
+}
+.userMenu li a {
+  line-height: 50px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+}
+.userMenu li a:active {
+  background: rgba(217, 217, 217, 0.2);
+}
+.username {
+  margin: 1rem auto 0.5rem;
+}
+
+.ant-anchor-wrapper:not(.ant-anchor-wrapper-horizontal)
+  .ant-anchor
+  .ant-anchor-ink {
+  background-color: #fff !important;
+  height: 45px !important;
+  width: 5px !important;
+  left: -6px;
+}
+.dahsboardBody {
+  padding: 3rem;
+}
+.dashboardDetail {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  margin-bottom: 0rem !important;
+  text-align: right;
+}
+
+#form_item_path {
+  margin: 2rem auto !important;
+}
+.ant-row .ant-form-item-row {
+  margin: auto 2rem;
+  /* width: 80%; */
+}
+.ant-input {
+  width: 90%;
+  outline: none !important;
+}
+.ant-input:hover {
+  border-color: rgba(0, 0, 0, 0.3) !important;
+}
+.ant-form-label {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+.ant-radio-wrapper {
+  width: 50%;
+}
+.editProfilePicture {
+  display: flex;
+  width: 50%;
+  gap: 1.5rem;
+}
+.editProfilePicture div {
+  display: grid;
+}
+.selectFile {
+  width: 30% !important;
+}
+.editProfilePicture div button,
+.selectFile {
+  background-color: #e3502f !important;
+  border-radius: 1.5px !important;
+  color: white !important;
+}
+
+/* @media only screen and (max-width:665px){
+.dashboardContainer {
+  grid-template-columns: 15rem 1fr;
+}
+} */
+@media only screen and (max-width: 665px) {
+  .dashboardContainer {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+}

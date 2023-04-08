@@ -1,0 +1,47 @@
+.findSection {
+  margin-top: 6rem;
+  background-color: var(--bg);
+}
+
+.findHead {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 38px;
+  padding-top: 2rem;
+}
+
+.findText {
+  font-size: 16px;
+  line-height: 24px;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .findHead {
+    font-size: 2.8rem;
+    line-height: 1.5;
+    padding-top: 3rem;
+  }
+
+  .findText {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    padding-top: 1.2rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .findHead {
+    font-size: 65px;
+    line-height: 80px;
+  }
+
+  .findText {
+    max-width: 1160px;
+    font-size: 25px;
+    line-height: 40px;
+  }
+}

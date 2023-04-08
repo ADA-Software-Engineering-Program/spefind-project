@@ -5,15 +5,13 @@ import Navbar from "react-bootstrap/Navbar";
 import { Nav } from "react-bootstrap";
 import Logo from "../../images/Spefind-logo.png";
 import { BsArrowRight } from "react-icons/bs";
-import "./Navbar.css";
 import { useAuth } from "../../contexts/AuthContext";
-
-
+import "./Navbar.css";
 
 const Header = ({ backgroundColor }) => {
   const location = useLocation();
 
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth();
 
   const { pathname } = location;
 
@@ -32,7 +30,10 @@ const Header = ({ backgroundColor }) => {
           <Navbar.Brand href="/">
             <img src={Logo} alt="logo" className="headerLogo" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle
+            className="nav-toggle"
+            aria-controls="basic-navbar-nav"
+          />
         </div>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="nav-gap">
@@ -66,14 +67,16 @@ const Header = ({ backgroundColor }) => {
             >
               Contact
             </Nav.Link>
-           {!currentUser && ( <Nav.Link
-              href="./login"
-              className={splitLocation[1] === "login" ? "active" : ""}
-              id="logBtn"
-            >
-              Log In
-              <BsArrowRight className="arrow" />
-            </Nav.Link>)}
+            {!currentUser && (
+              <Nav.Link
+                href="./login"
+                className={splitLocation[1] === "login" ? "active" : ""}
+                id="logBtn"
+              >
+                Log In
+                <BsArrowRight className="arrow" />
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

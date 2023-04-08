@@ -1,0 +1,99 @@
+.header{
+    margin: 50px 0;
+    
+}
+
+.header h1{
+    color: #359E4C;
+    font-size: 1.5em;
+}
+
+.tick{
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.paragraph{
+    margin: 20px 8px;
+
+}
+.paragraph p{
+    text-align: center;
+    font-size: 1em;
+}
+
+.paragraph-two{
+    margin: 20px 8px;
+    font-size: .8em;
+    color:#111010 ;
+    text-align: center;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    margin: 50px 5px;
+    justify-content: space-evenly;
+    
+}
+
+.buttons button{
+    border:none ;
+    border-radius: 17px;
+    padding: 20px;
+    font-size: 1em;
+}
+
+.buttons  .one{
+    background-color: #359E4C;
+    color: #fff;
+}
+
+.buttons  .two{
+    border: 1px red solid;
+    background-color: #fff;
+    color: red;
+}
+
+
+@media (min-width:720px) {
+
+    .header h1{
+    font-size: 2.5em;
+}
+
+.paragraph p{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+.paragraph-two{
+    margin: 20px 8px;
+    font-size: 1em;
+    color:#111010 ;
+    text-align: center;
+}
+
+
+
+.buttons button{
+    border:none ;
+    border-radius: 17px;
+    padding: 20px;
+    font-size: 1.8em;
+}
+
+.buttons  .one{
+    background-color: #359E4C;
+    color: #fff;
+}
+
+.buttons  .two{
+    border: 1px red solid;
+    background-color: #fff;
+    color: red;
+}
+
+}

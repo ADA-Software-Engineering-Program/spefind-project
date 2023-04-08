@@ -1,0 +1,98 @@
+.heroContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0rem 0 2rem;
+  background-color: rgba(227, 80, 47, 0.1);
+}
+
+.speakers {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #111010;
+}
+
+.heroTextHeading {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #111010;
+}
+
+.heroColor {
+  color: #e3502f;
+}
+
+.heroContainer .heroColor {
+  text-decoration: 3px underline wavy #e3502f;
+}
+
+.heroText {
+  padding: 1rem;
+}
+
+.heroTextSubHeading {
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+
+.heroTextSubHeading span {
+  font-weight: bolder;
+}
+
+.heroImage img {
+  width: 100%;
+}
+
+.getBtn {
+  background-color: var(--orange);
+  color: var(--white);
+  padding: 1rem 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 0rem 2rem 2rem 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: max-content;
+}
+
+.getBtn:hover {
+  gap: 30px;
+  color: var(--white);
+}
+
+@media only screen and (min-width: 768px) {
+  .speakers,
+  .heroTextSubHeading {
+    font-size: 23px;
+    line-height: 34px;
+  }
+
+  .heroTextHeading {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .heroContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 1rem 2rem 2rem;
+  }
+
+  .heroText {
+    padding: 0rem;
+  }
+
+  .heroTextHeading {
+    font-size: 3.5rem;
+    line-height: 5rem;
+  }
+}
