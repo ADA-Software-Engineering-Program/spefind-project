@@ -99,6 +99,9 @@ label {
   align-items: center;
   gap: 1rem;
 }
+.genderWrapper label{
+  cursor: pointer;
+}
 
 .newInput {
   background-color: #ded9d8;
@@ -108,9 +111,11 @@ label {
   display: grid;
   place-content: center;
   margin-top: 1rem;
+  cursor: pointer;
 }
 .newInput:checked {
   border: 1px solid #e3502f;
+  /* cursor: pointer; */
 }
 .newInput:checked:after {
   content: "";
@@ -119,6 +124,7 @@ label {
   background-color: #e3502f;
   width: 0.5rem;
   height: 0.5rem;
+  cursor: pointer;
 }
 
 .selectFile {
@@ -135,6 +141,7 @@ label {
   padding: 0.4rem;
   display: grid;
   place-content: center;
+  cursor: pointer;
 }
 .editProfilePicture {
   display: grid;
