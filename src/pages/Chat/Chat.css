@@ -1,14 +1,10 @@
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .chat {
   font-family: "Poppins", sans-serif;
   color: #000;
+}
+
+.chat p {
+  margin-bottom: 0;
 }
 
 .chat .section-left {
@@ -22,7 +18,7 @@
   overflow-x: hidden;
   border-radius: 20px 20px 0 0;
   margin-bottom: 40px;
-  padding-bottom: 40px;
+  /* padding-bottom: 40px; */
 }
 
 .chat .section-left::-webkit-scrollbar {
@@ -39,6 +35,7 @@
 
 .chat .section-left .image-box {
   width: 63px;
+  min-width: 63px;
   height: 63px;
   border-radius: 50%;
   overflow: hidden;
@@ -51,15 +48,33 @@
 }
 
 .chat .section-left .user {
-  padding: 20px 10px;
+  padding: 10px 10px;
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0;
+  /* margin: 0; */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.chat .section-left .user-box {
+  padding-bottom: 40px;
+}
+
+.chat .section-left .user-boxes {
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .chat .section-left .user.activee {
   background-color: #e3502f;
+}
+
+.chat .section-left .user-cont {
+  width: 100%;
+  max-width: 100%;
 }
 
 .chat .section-left .user-name {
@@ -72,17 +87,21 @@
 
 .chat .section-left .user-text {
   font-size: 15px;
-  font-weight: 400;
   line-height: 18px;
-  margin: 0;
-  width: 100%;
-  position: relative;
+  font-weight: 400;
+  /* width: 100%; */
+  /* position: relative; */
+  /* Avoids text being rendered outside the container */
+  /* width: 100%; */
+  overflow: hidden;
+  /* Avoid text going to multiple lines */
+  white-space: nowrap;
+  /* Sets the ... once the text overflows */
+  text-overflow: ellipsis;
+  max-width: 75%;
 }
 
-.chat .section-left .user-text .read-icon {
-  position: absolute;
-  right: -30px;
-  top: 0;
+.chat .section-left .read-icon {
   font-size: 25px;
 }
 
@@ -104,12 +123,113 @@
   padding: 38px 33px;
 }
 
-.chat .section-left .chat .section-left {
+/* .chat .section-left .chat .section-left {
   padding: 0px;
-}
+} */
+
 .chat .section-main {
-  margin: 14px 250px 0 400px;
+  margin: 0px 260px 0 400px;
+  height: 100%;
+  max-height: 100vh;
+  /* overflow-y: hidden; */
+  overflow: hidden;
+}
+
+.chat .section-main .chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 20px;
+  box-shadow: 0px 10px 10px -2px rgba(0, 0, 0, 0.25);
   width: 100%;
+  height: 90px;
+  border-bottom: 3px solid blue;
+}
+
+.chat .section-main .chat-body {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 0, 0, 0.1);
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  padding: 10px;
+  hyphens: auto;
+  position: relative;
+  padding: 20px 40px;
+}
+
+.chat .section-main .chat-block {
+  width: 100%;
+  scroll-behavior: smooth;
+  hyphens: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+}
+
+.chat .section-main .user-message {
+  align-self: flex-end;
+  /* text-align: right; */
+  max-width: 60%;
+}
+
+.chat .section-main .user-message p {
+  background: #e3502f80;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 400;
+}
+
+.chat .section-main .user-message .timestamp {
+  color: #707070;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 23px;
+  letter-spacing: 0.05em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chat .section-main .reply-message {
+  align-self: flex-start;
+  text-align: left;
+  max-width: 60%;
+}
+
+.chat .section-main .reply-message p {
+  background: #359e4c80;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 25px;
+}
+
+.chat .section-main .reply-message .timestamp {
+  color: #707070;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 23px;
+  letter-spacing: 0.05em;
+}
+
+.chat .section-main .chat-footer {
+  margin-top: auto;
+  padding: 20px 0;
+  background: #d9d9d9;
+  height: 80px;
+}
+
+.chat .section-main .chat-input {
+  width: 100%;
+  height: 40px;
+  font-family: inherit;
+  outline: 0;
+  border: 0;
+  padding: 0 20px;
 }
 
 .chat .section-right {
@@ -123,6 +243,10 @@
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 20px 20px 0 0;
+}
+
+.chat .section-right::-webkit-scrollbar {
+  display: none;
 }
 
 .chat .section-right .image-box {
@@ -219,4 +343,25 @@
   font-weight: 400;
   line-height: 22px;
   color: #ff0000;
+}
+
+@media screen and (max-width: 900px) {
+  .chat .section-main {
+    margin-right: 0;
+  }
+
+  .chat .section-right {
+    position: unset;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .chat .section-main {
+    display: none;
+  }
+
+  .chat .section-left {
+    width: 100%;
+  }
 }

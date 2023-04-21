@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Chat.css";
-// import Head  er from "../../Components/Navbar/Navbar";
+// import Header from "../../Components/Navbar/Navbar";
 import { BsFillCameraVideoFill, BsThreeDotsVertical } from "react-icons/bs";
 import { BiBlock, BiCheckDouble, BiUserCircle } from "react-icons/bi";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -8,12 +8,22 @@ import { TbMessageCircle2Filled } from "react-icons/tb";
 import { AiFillDelete, AiOutlineHeart } from "react-icons/ai";
 import User from "../../images/user.png";
 import User2 from "../../images/user-2.png";
+// import InputEmoji from "react-input-emoji";
+
+import { Picker } from "emoji-mart";
+// import "emoji-mart/css/emoji-mart.css";
 
 const Chat = () => {
+  const [showEmojis, setShowEmojis] = useState(false);
   return (
     <>
       {/* <Header /> */}
       <main className="chat">
+        {showEmojis && (
+          <div>
+            <Picker />
+          </div>
+        )}
         <section className="section-left">
           <div className="user-header">
             <div className="image-box">
@@ -39,7 +49,7 @@ const Chat = () => {
                   <p className="user-name">Titilayo Chibuike</p>
                   <small>7:35pm</small>
                 </div>
-                <p className="user-text">
+                <p className="user-text truncate">
                   Hello. Can you please provide more...
                   <span>
                     <BiCheckDouble className="read-icon" />
@@ -51,13 +61,14 @@ const Chat = () => {
               <div className="image-box">
                 <img src={User} alt="user-dp" />
               </div>
-              <div>
+              <div className="user-cont">
                 <div className="user-div">
                   <p className="user-name">Titilayo Chibuike</p>
                   <small>7:35pm</small>
                 </div>
-                <p className="user-text">
-                  Hello. Can you please provide more...
+                <p className="user-text truncate">
+                  Hello. jsjs jsjss sjCan you please provide lrem shsshs ssjjs
+                  more...
                   <span>
                     <BiCheckDouble className="read-icon" />
                   </span>
@@ -68,17 +79,17 @@ const Chat = () => {
               <div className="image-box">
                 <img src={User} alt="user-dp" />
               </div>
-              <div>
+              <div className="user-cont">
                 <div className="user-div">
                   <p className="user-name">Titilayo Chibuike</p>
                   <small>7:35pm</small>
                 </div>
-                <p className="user-text">
-                  Hello. Can you please provide more...
-                  <span>
+                <div className="user-boxes">
+                  <p className="user-text">Hello. Can you please</p>
+                  <div>
                     <BiCheckDouble className="read-icon" />
-                  </span>
-                </p>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="user">
@@ -170,7 +181,59 @@ const Chat = () => {
         </section>
 
         <section className="section-main">
-          <div className="chat-header"></div>
+          <div className="chat-header">
+            <div className="image-box">
+              <img src={User} alt="user-dp" />
+            </div>
+            <div>
+              <p>Titilayo Chibuike</p>
+              <p>Online</p>
+            </div>
+          </div>
+
+          <div className="chat-body">
+            <div className="chat-block">
+              <div className="user-message">
+                <p>Hello! I am in need of a speaker for my wedding!</p>
+                <small className="timestamp">Today, 8.58pm</small>
+              </div>
+              <div className="reply-message">
+                <p>Hello. Can you please provide more information</p>
+                <small className="timestamp">Today, 9:05pm</small>
+              </div>
+            </div>
+          </div>
+
+          <div className="chat-footer">
+            <form className="chat-form">
+              <input type="text" className="chat-input" />
+              {/* <InputEmoji
+                // value={text}
+                // onChange={setText}
+                cleanOnEnter
+                // onEnter={handleOnEnter}
+                placeholder="Type a message"
+              /> */}
+              {/* <button>
+                {" "}
+                onClick={() => setShowEmojis(!showEmojis)}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button> */}
+            </form>
+          </div>
         </section>
 
         <section className="section-right">

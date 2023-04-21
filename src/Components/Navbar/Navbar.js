@@ -26,7 +26,7 @@ const Header = ({ backgroundColor }) => {
       }}
     >
       <Container>
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center" style={{ width: "100%" }}>
           <Navbar.Brand href="/">
             <img src={Logo} alt="logo" className="headerLogo" />
           </Navbar.Brand>
