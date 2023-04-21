@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./Chat.css";
 // import Header from "../../Components/Navbar/Navbar";
-import { BsFillCameraVideoFill, BsThreeDotsVertical } from "react-icons/bs";
+import {
+  BsFillCameraVideoFill,
+  BsSearch,
+  BsThreeDotsVertical,
+} from "react-icons/bs";
 import { BiBlock, BiCheckDouble, BiUserCircle } from "react-icons/bi";
 import { FaPhoneAlt } from "react-icons/fa";
 import { TbMessageCircle2Filled } from "react-icons/tb";
@@ -37,27 +41,13 @@ const Chat = () => {
           <div className="user-search">
             <form action="">
               <input type="text" placeholder="Search" />
+              <button type="button">
+                <BsSearch className="search-icon" />
+              </button>
             </form>
           </div>
           <div className="user-box">
             <div className="user activee">
-              <div className="image-box">
-                <img src={User} alt="user-dp" />
-              </div>
-              <div>
-                <div className="user-div">
-                  <p className="user-name">Titilayo Chibuike</p>
-                  <small>7:35pm</small>
-                </div>
-                <p className="user-text truncate">
-                  Hello. Can you please provide more...
-                  <span>
-                    <BiCheckDouble className="read-icon" />
-                  </span>
-                </p>
-              </div>
-            </div>
-            <div className="user">
               <div className="image-box">
                 <img src={User} alt="user-dp" />
               </div>
@@ -66,15 +56,17 @@ const Chat = () => {
                   <p className="user-name">Titilayo Chibuike</p>
                   <small>7:35pm</small>
                 </div>
-                <p className="user-text truncate">
-                  Hello. jsjs jsjss sjCan you please provide lrem shsshs ssjjs
-                  more...
-                  <span>
+                <div className="user-boxes">
+                  <p className="user-text">
+                    Hello. Can you please leuey heeej eejj ssh hsh
+                  </p>
+                  <div>
                     <BiCheckDouble className="read-icon" />
-                  </span>
-                </p>
+                  </div>
+                </div>
               </div>
             </div>
+
             <div className="user">
               <div className="image-box">
                 <img src={User} alt="user-dp" />
@@ -85,96 +77,133 @@ const Chat = () => {
                   <small>7:35pm</small>
                 </div>
                 <div className="user-boxes">
-                  <p className="user-text">Hello. Can you please</p>
+                  <p className="user-text">
+                    Hello. Can you please leuey heeej eejj ssh hsh
+                  </p>
                   <div>
                     <BiCheckDouble className="read-icon" />
                   </div>
                 </div>
               </div>
             </div>
+
             <div className="user">
               <div className="image-box">
                 <img src={User} alt="user-dp" />
               </div>
-              <div>
+              <div className="user-cont">
                 <div className="user-div">
                   <p className="user-name">Titilayo Chibuike</p>
                   <small>7:35pm</small>
                 </div>
-                <p className="user-text">
-                  Hello. Can you please provide more...
-                  <span>
+                <div className="user-boxes">
+                  <p className="user-text">
+                    Hello. Can you please leuey heeej eejj ssh hsh
+                  </p>
+                  <div>
                     <BiCheckDouble className="read-icon" />
-                  </span>
-                </p>
+                  </div>
+                </div>
               </div>
             </div>
+
             <div className="user">
               <div className="image-box">
                 <img src={User} alt="user-dp" />
               </div>
-              <div>
+              <div className="user-cont">
                 <div className="user-div">
                   <p className="user-name">Titilayo Chibuike</p>
                   <small>7:35pm</small>
                 </div>
-                <p className="user-text">
-                  Hello. Can you please provide more...
-                  <span>
+                <div className="user-boxes">
+                  <p className="user-text">
+                    Hello. Can you please leuey heeej eejj ssh hsh
+                  </p>
+                  <div>
                     <BiCheckDouble className="read-icon" />
-                  </span>
-                </p>
+                  </div>
+                </div>
               </div>
             </div>
+
             <div className="user">
               <div className="image-box">
                 <img src={User} alt="user-dp" />
               </div>
-              <div>
+              <div className="user-cont">
                 <div className="user-div">
                   <p className="user-name">Titilayo Chibuike</p>
                   <small>7:35pm</small>
                 </div>
-                <p className="user-text">
-                  Hello. Can you please provide more...
-                  <span>
+                <div className="user-boxes">
+                  <p className="user-text">
+                    Hello. Can you please leuey heeej eejj ssh hsh
+                  </p>
+                  <div>
                     <BiCheckDouble className="read-icon" />
-                  </span>
-                </p>
+                  </div>
+                </div>
               </div>
             </div>
+
             <div className="user">
               <div className="image-box">
                 <img src={User} alt="user-dp" />
               </div>
-              <div>
+              <div className="user-cont">
                 <div className="user-div">
                   <p className="user-name">Titilayo Chibuike</p>
                   <small>7:35pm</small>
                 </div>
-                <p className="user-text">
-                  Hello. Can you please provide more...
-                  <span>
+                <div className="user-boxes">
+                  <p className="user-text">
+                    Hello. Can you please leuey heeej eejj ssh hsh
+                  </p>
+                  <div>
                     <BiCheckDouble className="read-icon" />
-                  </span>
-                </p>
+                  </div>
+                </div>
               </div>
             </div>
+
             <div className="user">
               <div className="image-box">
                 <img src={User} alt="user-dp" />
               </div>
-              <div>
+              <div className="user-cont">
                 <div className="user-div">
                   <p className="user-name">Titilayo Chibuike</p>
                   <small>7:35pm</small>
                 </div>
-                <p className="user-text">
-                  Hello. Can you please provide more...
-                  <span>
+                <div className="user-boxes">
+                  <p className="user-text">
+                    Hello. Can you please leuey heeej eejj ssh hsh
+                  </p>
+                  <div>
                     <BiCheckDouble className="read-icon" />
-                  </span>
-                </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="user">
+              <div className="image-box">
+                <img src={User} alt="user-dp" />
+              </div>
+              <div className="user-cont">
+                <div className="user-div">
+                  <p className="user-name">Titilayo Chibuike</p>
+                  <small>7:35pm</small>
+                </div>
+                <div className="user-boxes">
+                  <p className="user-text">
+                    Hello. Can you please leuey heeej eejj ssh hsh
+                  </p>
+                  <div>
+                    <BiCheckDouble className="read-icon" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -197,6 +226,25 @@ const Chat = () => {
                 <p>Hello! I am in need of a speaker for my wedding!</p>
                 <small className="timestamp">Today, 8.58pm</small>
               </div>
+              <div className="reply-message">
+                <p>Hello. Can you please provide more information</p>
+                <small className="timestamp">Today, 9:05pm</small>
+              </div>
+
+              <div className="reply-message">
+                <p>Hello. Can you please provide more information</p>
+                <small className="timestamp">Today, 9:05pm</small>
+              </div>
+              <div className="user-message">
+                <p>Hello! I am in need of a speaker for my wedding!</p>
+                <small className="timestamp">Today, 8.58pm</small>
+              </div>
+
+              <div className="reply-message">
+                <p>Hello. Can you please provide more information</p>
+                <small className="timestamp">Today, 9:05pm</small>
+              </div>
+
               <div className="reply-message">
                 <p>Hello. Can you please provide more information</p>
                 <small className="timestamp">Today, 9:05pm</small>
