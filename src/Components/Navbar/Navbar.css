@@ -7,11 +7,12 @@
 
 /* .navbar-main {
   background-color: var(--orange) !important;
+  width: 100%;
 } */
 
 .nav-toggle {
-  width: auto;
   color: white;
+  margin-left: auto;
 }
 
 .nav-gap {
