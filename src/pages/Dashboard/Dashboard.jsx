@@ -81,39 +81,47 @@ const Dashboard = () => {
                 Spefind automatically saves your dashboard changes
               </p>
               <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
-                <label htmlFor="firstName"> First Name</label>
+                <div>
+                  <label htmlFor="firstName"> First Name</label>
+                </div>
+
                 <Input
                   aria-label="firstname"
                   placeholder="Type here"
                   id="firstName"
                 />
-
-                <label htmlFor="lastName"> Last Name</label>
+                <div>
+                  <label htmlFor="lastName"> Last Name</label>
+                </div>
                 <Input
                   aria-label="lastname"
                   placeholder="Type here"
                   id="lastName"
                 />
-
-                <label htmlFor="age"> Age</label>
+                <div>
+                  <label htmlFor="age"> Age</label>
+                </div>
                 <Input aria-label="age" placeholder="Type here" id="age" />
-
-                <label htmlFor="professional_credentials">
-                  Professional Credentials
-                </label>
+                <div>
+                  <label htmlFor="professional_credentials">
+                    Professional Credentials
+                  </label>
+                </div>
                 <Input
                   aria-label="professional_credentials"
                   placeholder="Type here"
                 />
-
-                <label htmlFor="prefered_pronouns">Prefered pronouns</label>
+                <div>
+                  <label htmlFor="prefered_pronouns">Prefered pronouns</label>
+                </div>
                 <Input
                   aria-label="prefered_pronouns"
                   placeholder="Type here"
                   id="prefered_pronouns"
                 />
-
-                <label htmlFor="gender">Gender</label>
+                <div>
+                  <label htmlFor="gender">Gender</label>
+                </div>
 
                 <div className="genderWrapper">
                   <input
@@ -159,8 +167,9 @@ const Dashboard = () => {
                     className="selectFile"
                   />
                 </label>
-
-                <label htmlFor="image">Edit Profile Picture</label>
+                <div>
+                  <label htmlFor="image">Edit Profile Picture</label>
+                </div>
                 <div className="editProfilePicture">
                   <img src={userImg} alt="edit your profile avatar" />
                   <div className="btnWrapper">
@@ -169,31 +178,35 @@ const Dashboard = () => {
                     <button className="btn">Crop Picture</button>
                   </div>
                 </div>
-
-                <label htmlFor="country_or_state">
-                  Country or State & City
-                </label>
+                <div>
+                  <label htmlFor="country_or_state">
+                    Country or State & City
+                  </label>
+                </div>
                 <Input
                   aria-label="country_or_state"
                   placeholder="Type here"
                   id="country_or_state"
                 />
-
-                <label htmlFor="timeZone">Time Zone</label>
+                <div>
+                  <label htmlFor="timeZone">Time Zone</label>
+                </div>
                 <Input
                   aria-label="timeZone"
                   placeholder="Type here"
                   id="timeZone"
                 />
-
-                <label htmlFor="biography">Biography</label>
+                <div>
+                  <label htmlFor="biography">Biography</label>
+                </div>
                 <textarea
                   placeholder="Type here"
                   className="textArea"
                   id="biography"
                 ></textarea>
-
-                <label htmlFor="whyChooseMe">Why Choose Me?</label>
+                <div>
+                  <label htmlFor="whyChooseMe">Why Choose Me?</label>
+                </div>
                 <textarea
                   placeholder="Type here"
                   className="textArea"
