@@ -27,6 +27,9 @@
   color: #ffffff;
   font-weight: 600;
 }
+.userCareer {
+  font-size: 12px;
+}
 .userMenu {
   margin: 1rem auto;
 }
@@ -99,7 +102,7 @@ label {
   align-items: center;
   gap: 1rem;
 }
-.genderWrapper label{
+.genderWrapper label {
   cursor: pointer;
 }
 
