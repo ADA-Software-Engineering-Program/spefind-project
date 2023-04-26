@@ -9,6 +9,7 @@ import Contact from "./pages/Contact/Contact";
 import SignIn from "../src/Components/SignIn/SignIn";
 import SignUp from "../src/Components/SignUp/SignUp";
 import Register from "./pages/Register/Register";
+import RegisterTest from "./pages/Register/RegisterTest";
 import EventRegister from "./pages/Register/EventRegister";
 import CreateProfile from "./pages/CreateProfile/CreateProfile";
 import SpeakerProfile from "./pages/SpeakerProfile/SpeakerProfile";
@@ -41,6 +42,7 @@ function App() {
       <Route path="/congratulation" element={<Congratulation />} />
       <Route path="/congratulation2" element={<Congratulation2 />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="reg" element={<RegisterTest />} />
     </Routes>
   );
 }
