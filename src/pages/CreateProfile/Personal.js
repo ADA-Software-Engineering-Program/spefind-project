@@ -1,48 +1,84 @@
 import React, { useState } from "react";
 
 const Personal = ({ nextStep, formik }) => {
+  // eslint-disable-next-line no-unused-vars
   const [progressTime, setProgressTime] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [files, setFiles] = useState([]);
+
+  const formValues = [
+    "firstName",
+    "lastName",
+    "gender",
+    "country",
+    "city",
+    "biography",
+    "eventName",
+    "eventDate",
+    "eventLocation",
+    "eventPopulation",
+    "eventField",
+    "eventPictures",
+  ];
 
   const handleNext = (e) => {
     e.preventDefault();
-    nextStep();
+    const errorField = [];
+    formValues.forEach((value) => {
+      if (formik.errors[value]) {
+        // console.log(value, formik.errors[value]);
+        formik.setFieldTouched(value, true);
+        errorField.push(value);
+      } else {
+        const index = errorField.indexOf(value);
+        if (index > -1) {
+          // only splice array when item is found
+          errorField.splice(index, 1);
+          // 2nd parameter means remove one item only
+        }
+      }
+
+      return;
+    });
+
+    if (errorField.length === 0) {
+      nextStep();
+    }
   };
 
   return (
     <div>
       <div className="profile-group">
-        <label className="profile-label" htmlFor="firstName">
-          FIRST NAME*
-        </label>
-        <input
-          type="text"
-          name="firstName"
-          id="firstName"
-          className="profile-input"
-          placeholder="Type here"
-          {...formik.getFieldProps("firstName")}
-        />
-        {formik.touched.firstName && formik.errors.firstName ? (
-          <div className="profile-error">{formik.errors.firstName}</div>
-        ) : null}
-      </div>
+        <label className="profile-label">NAME*</label>
+        <div className="profile-field">
+          <div>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              className="profile-input"
+              placeholder="First Name"
+              {...formik.getFieldProps("firstName")}
+            />
+            {formik.touched.firstName && formik.errors.firstName ? (
+              <div className="profile-error">{formik.errors.firstName}</div>
+            ) : null}
+          </div>
 
-      <div className="profile-group">
-        <label className="profile-label" htmlFor="lastName">
-          LAST NAME*
-        </label>
-        <input
-          type="text"
-          name="lastName"
-          id="lastName"
-          className="profile-input"
-          placeholder="Type here"
-          {...formik.getFieldProps("lastName")}
-        />
-        {formik.touched.lastName && formik.errors.lastName ? (
-          <div className="profile-error">{formik.errors.lastName}</div>
-        ) : null}
+          <div>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              className="profile-input"
+              placeholder="Last Name"
+              {...formik.getFieldProps("lastName")}
+            />
+            {formik.touched.lastName && formik.errors.lastName ? (
+              <div className="profile-error">{formik.errors.lastName}</div>
+            ) : null}
+          </div>
+        </div>
       </div>
 
       <div className="profile-group">
@@ -90,73 +126,168 @@ const Personal = ({ nextStep, formik }) => {
       </div>
 
       <div className="profile-group">
-        <label className="profile-label" htmlFor="country">
-          COUNTRY OR STATE & CITY*{" "}
-        </label>
-        <input
-          type="text"
-          name="country"
-          id="country"
-          className="profile-input"
-          placeholder="Type here"
-          {...formik.getFieldProps("country")}
-        />
-        {formik.touched.country && formik.errors.country ? (
-          <div className="profile-error">{formik.errors.country}</div>
-        ) : null}
+        <label className="profile-label">COUNTRY & CITY* </label>
+        <div className="profile-field">
+          <div>
+            <input
+              type="text"
+              name="country"
+              id="country"
+              className="profile-input"
+              placeholder="Type Country"
+              {...formik.getFieldProps("country")}
+            />
+            {formik.touched.country && formik.errors.country ? (
+              <div className="profile-error">{formik.errors.country}</div>
+            ) : null}
+          </div>
+
+          <div>
+            <input
+              type="text"
+              name="city"
+              id="city"
+              className="profile-input"
+              placeholder="Type City"
+              {...formik.getFieldProps("city")}
+            />
+            {formik.touched.city && formik.errors.city ? (
+              <div className="profile-error">{formik.errors.city}</div>
+            ) : null}
+          </div>
+        </div>
       </div>
 
       <div className="profile-group">
-        <label className="profile-label" htmlFor="biographies">
-          BIOGRAPHIES*
+        <label className="profile-label" htmlFor="biography">
+          BIOGRAPHY*
         </label>
         <textarea
-          name="biographies"
-          id="biographies"
+          name="biography"
+          id="biography"
           className="profile-textarea"
           cols="30"
           rows="5"
           placeholder="Type here"
           style={{ resize: "none" }}
-          {...formik.getFieldProps("biographies")}
+          {...formik.getFieldProps("biography")}
         ></textarea>
-        {formik.touched.biographies && formik.errors.biographies ? (
-          <div className="profile-error">{formik.errors.biographies}</div>
+        {formik.touched.biography && formik.errors.biography ? (
+          <div className="profile-error">{formik.errors.biography}</div>
         ) : null}
       </div>
 
       <div className="profile-group">
-        <label className="profile-label" htmlFor="pastEvents">
-          PAST EVENTS*
-        </label>
-        <textarea
-          name="pastEvents"
-          id="pastEvents"
-          className="profile-textarea"
-          cols="30"
-          rows="5"
-          placeholder="Type here"
-          style={{ resize: "none" }}
-          {...formik.getFieldProps("pastEvents")}
-        ></textarea>
-        {formik.touched.pastEvents && formik.errors.pastEvents ? (
-          <div className="profile-error">{formik.errors.pastEvents}</div>
-        ) : null}
-        <div style={{ textAlign: "left" }}>
-          <input
-            type="file"
-            className="profile-file"
-            placeholder="hey, there"
-            multiple
-            onChange={(e) => setFiles(Array.from(e.target.files))}
-          />
-          <p>
-            Files must be less than 100 MB. Allowed file types:png, gif, jpg,
-            jpeg. <br />
-            <span style={{ fontSize: "13px" }}>
-              Uploading Image - {progressTime}%
-            </span>
-          </p>
+        <label className="profile-label">PAST EVENTS*</label>
+        <div className="profile-field">
+          <div>
+            <label className="profile-label-field" htmlFor="eventName">
+              Name of Event
+            </label>
+            <input
+              type="text"
+              name="eventName"
+              id="eventName"
+              className="profile-input"
+              placeholder="Type here"
+              {...formik.getFieldProps("eventName")}
+            />
+            {formik.touched.eventName && formik.errors.eventName ? (
+              <div className="profile-error">{formik.errors.eventName}</div>
+            ) : null}
+          </div>
+
+          <div>
+            <label className="profile-label-field" htmlFor="eventDate">
+              Date of Event
+            </label>
+            <input
+              type="date"
+              name="eventDate"
+              id="eventDate"
+              className="profile-input"
+              placeholder="Type here"
+              {...formik.getFieldProps("eventDate")}
+            />
+            {formik.touched.eventDate && formik.errors.eventDate ? (
+              <div className="profile-error">{formik.errors.eventDate}</div>
+            ) : null}
+          </div>
+
+          <div>
+            <label className="profile-label-field" htmlFor="eventLocation">
+              Location of Event
+            </label>
+            <input
+              type="text"
+              name="eventLocation"
+              id="eventLocation"
+              className="profile-input"
+              placeholder="Type here"
+              {...formik.getFieldProps("eventLocation")}
+            />
+            {formik.touched.eventLocation && formik.errors.eventLocation ? (
+              <div className="profile-error">{formik.errors.eventLocation}</div>
+            ) : null}
+          </div>
+
+          <div>
+            <label className="profile-label-field" htmlFor="eventPopulation">
+              Event of How Many People?
+            </label>
+            <input
+              type="number"
+              name="eventPopulation"
+              id="eventPopulation"
+              className="profile-input"
+              placeholder="Type here"
+              {...formik.getFieldProps("eventPopulation")}
+            />
+            {formik.touched.eventPopulation && formik.errors.eventPopulation ? (
+              <div className="profile-error">
+                {formik.errors.eventPopulation}
+              </div>
+            ) : null}
+          </div>
+
+          <div>
+            <label className="profile-label-field" htmlFor="eventField">
+              Which field did you speak for?
+            </label>
+            <input
+              type="text"
+              name="eventField"
+              id="eventField"
+              className="profile-input"
+              placeholder="Type here"
+              {...formik.getFieldProps("eventField")}
+            />
+            {formik.touched.eventField && formik.errors.eventField ? (
+              <div className="profile-error">{formik.errors.eventField}</div>
+            ) : null}
+          </div>
+
+          <div>
+            <label className="profile-label-field" htmlFor="eventPicture">
+              Upload Event Picture
+            </label>
+            <div style={{ textAlign: "left" }}>
+              <input
+                type="file"
+                className="profile-file"
+                placeholder="hey, there"
+                multiple
+                onChange={(e) => setFiles(Array.from(e.target.files))}
+              />
+              <p>
+                Files must be less than 100 MB. Allowed file types:png, gif,
+                jpg, jpeg. <br />
+                <span style={{ fontSize: "13px" }}>
+                  Uploading Image - {progressTime}%
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div className="btn-box">
@@ -170,7 +301,8 @@ const Personal = ({ nextStep, formik }) => {
         </button>
       </div>
 
-      {/* <div className="bio">
+      {/* 
+      <div className="bio">
         <h2>Bio* </h2>
         <div className="bio-items">
           <div className="arrow">
@@ -186,11 +318,11 @@ const Personal = ({ nextStep, formik }) => {
         </div>
       </div>
 
-      <label className="profile-label" style={{ margin: 20 }}>
-        PAST EVENTS
-      </label>
-      <small>Pictures of your past events</small>
       <div className="upload">
+      <label className="profile-label-field" style={{ margin: 20 }}>
+      PAST EVENTS
+        </label>
+      <small>Pictures of your past events</small>
         <input
           type="file"
           className="select"

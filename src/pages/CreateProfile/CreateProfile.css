@@ -31,6 +31,14 @@
   margin: 40px auto;
 }
 
+.profile-steppers {
+  margin-bottom: 50px;
+}
+
+.profile-step {
+  display: none;
+}
+
 .profile-form ::placeholder {
   font-family: inherit;
   color: #11101066;
@@ -40,7 +48,23 @@
 }
 
 .profile-group {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.profile-field {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  width: 100%;
+  text-align: left;
+}
+
+.profile-label-field {
+  align-self: start;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 10px;
 }
 
 .profile-label {
@@ -66,11 +90,11 @@
   font-size: 14px;
 }
 
-.profile-file {
+/* .profile-file {
   max-width: 550px;
   padding: 20px;
   margin: 20px 0 0;
-}
+} */
 
 .check-cont {
   display: flex;
@@ -272,6 +296,10 @@
     max-width: 700px;
   }
 
+  .profile-step {
+    display: block;
+  }
+
   .form-header h1 {
     font-size: 45px;
     font-weight: 500;
@@ -280,6 +308,19 @@
 
   .form-header p {
     font-size: 20px;
+  }
+
+  .profile-field {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 30px;
+  }
+
+  .profile-label-field {
+    align-self: start;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 10px;
   }
 
   /* .profile-form .upload button {
@@ -294,9 +335,9 @@
     font-size: 15px;
   }
 
-  .profile-group {
-    margin-bottom: 40px;
-  }
+  /* .profile-group {
+    margin-bottom: 30px;
+  } */
 
   .profile-label {
     font-size: 25px;

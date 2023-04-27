@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./CreateProfile.css";
 import AppLayout from "../../layout/AppLayout";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ import Personal from "./Personal";
 import Niche from "./Niche";
 import Availabilty from "./Availabilty";
 import Visibilty from "./Visibilty";
+import Steppers from "./Steppers";
 
 const CreateProfile = () => {
   //getting the firstName and lastName passed from the registration page
@@ -24,81 +25,82 @@ const CreateProfile = () => {
   //   navigate("/register");
   // }
 
-  const [files, setFiles] = useState([]);
-  const [unprocessProfilePic, setUnprocessProfilePic] = useState("");
-  const [pastEventsImgs, setPastEventsImgs] = useState([]);
-  const [profilePics, setProfilePics] = useState("");
-  const [progressTime, setProgressTime] = useState(0);
-  const [progressTime2, setProgressTime2] = useState(0);
+  // const [files, setFiles] = useState([]);
+  // const [unprocessProfilePic, setUnprocessProfilePic] = useState("");
+  // const [pastEventsImgs, setPastEventsImgs] = useState([]);
+  // const [profilePics, setProfilePics] = useState("");
+  // const [progressTime, setProgressTime] = useState(0);
+  // const [progressTime2, setProgressTime2] = useState(0);
   // console.log(files)
 
   //saving an array of pastImgs to firebase
-  useEffect(() => {
-    if (files.length > 0) {
-      const urls = [];
-      // Loop through the images and upload each one to Firebase Storage
-      for (const file of files) {
-        // Generate a unique filename for the image
-        const name = new Date().getTime() + file.name;
-        // Create a reference to the file in Firebase Storage
-        const storageRef = ref(storage, name);
-        const uploadTask = uploadBytesResumable(storageRef, file);
+  // useEffect(() => {
+  //   if (files.length > 0) {
+  //     const urls = [];
+  //     // Loop through the images and upload each one to Firebase Storage
+  //     for (const file of files) {
+  //       // Generate a unique filename for the image
+  //       const name = new Date().getTime() + file.name;
+  //       // Create a reference to the file in Firebase Storage
+  //       const storageRef = ref(storage, name);
+  //       const uploadTask = uploadBytesResumable(storageRef, file);
 
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            setProgressTime(progress);
-          },
-          (error) => {
-            console.log(error);
-          },
-          () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              urls.push(downloadURL);
-              setPastEventsImgs(urls);
-            });
-          }
-        );
-      }
-    }
+  //       uploadTask.on(
+  //         "state_changed",
+  //         (snapshot) => {
+  //           const progress =
+  //             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //           setProgressTime(progress);
+  //         },
+  //         (error) => {
+  //           console.log(error);
+  //         },
+  //         () => {
+  //           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //             urls.push(downloadURL);
+  //             setPastEventsImgs(urls);
+  //           });
+  //         }
+  //       );
+  //     }
+  //   }
 
-    // console.log(pastEventsImgs)
-  }, [files]);
+  //   // console.log(pastEventsImgs)
+  // }, [files]);
 
   //saving profile picture to firebase
 
-  useEffect(() => {
-    if (unprocessProfilePic) {
-      const name = new Date().getTime() + unprocessProfilePic.name;
-      // Create a reference to the file in Firebase Storage
-      const storageRef = ref(storage, name);
-      const uploadTask = uploadBytesResumable(storageRef, unprocessProfilePic);
+  // useEffect(() => {
+  //   if (unprocessProfilePic) {
+  //     const name = new Date().getTime() + unprocessProfilePic.name;
+  //     // Create a reference to the file in Firebase Storage
+  //     const storageRef = ref(storage, name);
+  //     const uploadTask = uploadBytesResumable(storageRef, unprocessProfilePic);
 
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setProgressTime2(progress);
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setProfilePics(downloadURL);
-          });
-        }
-      );
-    }
-  }, [unprocessProfilePic]);
+  //     uploadTask.on(
+  //       "state_changed",
+  //       (snapshot) => {
+  //         const progress =
+  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //         setProgressTime2(progress);
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //       },
+  //       () => {
+  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //           setProfilePics(downloadURL);
+  //         });
+  //       }
+  //     );
+  //   }
+  // }, [unprocessProfilePic]);
 
   //form submit function
+
   const onSubmit = async (values) => {
-    values.pastEventsImages = pastEventsImgs;
-    values.profilePicture = profilePics;
+    // values.pastEventsImages = pastEventsImgs;
+    // values.profilePicture = profilePics;
     //  console.log(values)
 
     try {
@@ -183,20 +185,31 @@ const CreateProfile = () => {
       lastName: "",
       gender: "",
       country: "",
-      biographies: "",
-      pastEvents: "",
+      city: "",
+      biography: "",
+      eventName: "",
+      eventDate: "",
+      eventLocation: "",
+      eventPopulation: "",
+      eventField: "",
       eventPictures: "",
+
       // niche
       mainTopics: "",
       expertiseTags: "",
       education: "",
-      currentPosition: "",
+      jobName: "",
+      yearsOfPractice: "",
+      jobDescription: "",
+      position: "",
       language: "",
+
       // availability
       events: [],
       available: [],
       fee: "",
       volunteer: "",
+
       // visibility
       visibility: "",
     },
@@ -207,24 +220,25 @@ const CreateProfile = () => {
 
   // proceed to next step
   const nextStep = () => {
-    // if (Object.keys(formik.errors).length > 0) {
-    //   Object.keys(formik.errors).forEach(function (error) {
-    //     formik.touched[error] = true;
-    //   });
-    //   return;
-    // }
+    // console.log(Object.keys(formik.errors));
     setStep(step + 1);
+    ref.current.next();
+    window.scrollTo(0, 0);
   };
 
   // go back to prev step
   const prevStep = () => {
     setStep(step - 1);
+    ref.current.prev();
+    window.scrollTo(0, 0);
   };
 
   const submit = (e) => {
     e.preventDefault();
     formik.handleSubmit();
   };
+
+  const ref = useRef(null);
 
   return (
     <AppLayout>
@@ -238,6 +252,10 @@ const CreateProfile = () => {
 
         <div className="form-container">
           <form className="profile-form">
+            <div className="profile-steppers">
+              <Steppers ref={ref} />
+            </div>
+
             {step === 0 && <Personal nextStep={nextStep} formik={formik} />}
             {step === 1 && (
               <Niche nextStep={nextStep} prevStep={prevStep} formik={formik} />
