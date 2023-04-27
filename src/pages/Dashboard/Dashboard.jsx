@@ -5,12 +5,17 @@ import "./Dashboard.css";
 import { Form, Input } from "antd";
 
 import userImg from "./assets/userImg.png";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(true);
-
+  const navigate = useNavigate();
   const onFinish = (value) => {
     console.log(value);
+  };
+  const logout = () => {
+    sessionStorage.removeItem("token");
+    navigate("/");
   };
 
   return (
@@ -72,6 +77,7 @@ const Dashboard = () => {
               <li>
                 <a href="#Part1">Media</a>
               </li>
+              <button onClick={logout}>Log out</button>
             </ul>
           </div>
 

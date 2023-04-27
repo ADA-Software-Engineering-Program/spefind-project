@@ -1,0 +1,8 @@
+.invalidInput {
+  border: 1px solid #f4511e;
+  outline: none;
+}
+.errorText {
+  color: #f4511e;
+  font-weight: 300;
+}
