@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../images/footerLogo.png";
+// import Logo from "../../images/footerLogo.png";
+import Logo from "./logo new 1 1.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import toast from "react-hot-toast";
@@ -152,95 +153,104 @@ function Register() {
   return (
     <div>
       <div className="Bg-img">
-        <img src={Logo} alt="Logo" className="regLogo" />
-        <form className="JoinForm" onSubmit={signUpSubmitHandler}>
-          <div className="ovalBG"></div>
-          <div>
-            <label className="labelForm">E-mail Address</label>
-            <input
-              type="email"
-              name="email"
-              className={
-                emailInputHasError
-                  ? `${styles.invalidInput} regInput mb-0`
-                  : "regInput mb-0"
-              }
-              placeholder="Email address"
-              value={emailInputvalue}
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHandler}
-            />
-            {emailInputHasError && !enteredEmailIsValid && (
-              <p className={styles.errorText}>Please enter a valid email !</p>
-            )}
+        <div className="regCont">
+          <div className="regLogoCont">
+            <img src={Logo} alt="Logo" className="regLogo" />
           </div>
 
-          <div>
-            <label className="labelForm">Password</label>
-            <input
-              type="password"
-              label="Create password"
-              name="password"
-              required
-              className={
-                passwordInputHasError
-                  ? `${styles.invalidInput} regInput mb-0`
-                  : "regInput mb-0"
-              }
-              placeholder="Password"
-              value={passwordInputValue}
-              onChange={passwordChangeHandler}
-              onBlur={passwordBlurHandler}
-            />
-            {passwordInputHasError && !enteredPasswordIsValid && (
-              <p className={styles.errorText}>
-                Password must be greater than 6 characters !
+          <form className="JoinForm" onSubmit={signUpSubmitHandler}>
+            <div className="ovalBG">
+              <div className="formCont">
+                <label className="labelForm">E-mail Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  className={
+                    emailInputHasError
+                      ? `${styles.invalidInput} regInput mb-0`
+                      : "regInput mb-0"
+                  }
+                  placeholder="Email address"
+                  value={emailInputvalue}
+                  onChange={emailChangeHandler}
+                  onBlur={emailBlurHandler}
+                />
+                {emailInputHasError && !enteredEmailIsValid && (
+                  <p className={styles.errorText}>
+                    Please enter a valid email !
+                  </p>
+                )}
+              </div>
+
+              <div className="formCont">
+                <label className="labelForm">Password</label>
+                <input
+                  type="password"
+                  label="Create password"
+                  name="password"
+                  required
+                  className={
+                    passwordInputHasError
+                      ? `${styles.invalidInput} regInput mb-0`
+                      : "regInput mb-0"
+                  }
+                  placeholder="Password"
+                  value={passwordInputValue}
+                  onChange={passwordChangeHandler}
+                  onBlur={passwordBlurHandler}
+                />
+                {passwordInputHasError && !enteredPasswordIsValid && (
+                  <p className={styles.errorText}>
+                    Password must be greater than 6 characters !
+                  </p>
+                )}
+              </div>
+
+              <div className="formCont">
+                <label className="labelForm">Confirm Password</label>
+                <input
+                  type="password"
+                  placeholder="Confirm password"
+                  className={
+                    confirmPasswordInputHasError
+                      ? `${styles.invalidInput} regInput mb-0`
+                      : "regInput mb-0"
+                  }
+                  name="confirmPassword"
+                  value={confirmPasswordInputValue}
+                  onChange={confirmPasswordChangeHandler}
+                  onBlur={confirmPasswordBlurHandler}
+                />
+                {confirmPasswordInputHasError &&
+                  !enteredconfirmPasswordIsValid && (
+                    <p className={styles.errorText}>Passwords do not match !</p>
+                  )}
+              </div>
+
+              <button
+                className=" btn btnSign-up"
+                type="submit"
+                disabled={!formIsValid}
+              >
+                {loading ? "Signing up..." : "Sign up"}
+              </button>
+              <p className="or">OR</p>
+
+              <div className="regIcon">
+                <FcGoogle
+                  className="regSocial"
+                  onClick={handleGoogleSignUp}
+                  style={{ cursor: "pointer" }}
+                />
+                <FaFacebookF className="regSocial text-primary" />
+                <FaTwitter className="regSocial text-primary" />
+              </div>
+              <p className="acct">
+                Already have an account? <a href="/login">Sign in</a>
               </p>
-            )}
-          </div>
-
-          <div>
-            <label className="labelForm">Confirm Password</label>
-            <input
-              type="password"
-              placeholder="Confirm password"
-              className={
-                confirmPasswordInputHasError
-                  ? `${styles.invalidInput} regInput mb-0`
-                  : "regInput mb-0"
-              }
-              name="confirmPassword"
-              value={confirmPasswordInputValue}
-              onChange={confirmPasswordChangeHandler}
-              onBlur={confirmPasswordBlurHandler}
-            />
-            {confirmPasswordInputHasError && !enteredconfirmPasswordIsValid && (
-              <p className={styles.errorText}>Passwords do not match !</p>
-            )}
-          </div>
-
-          <button
-            className=" btn btnSign-up"
-            type="submit"
-            disabled={!formIsValid}
-          >
-            {loading ? "Signing up..." : "Sign up"}
-          </button>
-          <p className="or">OR</p>
-
-          <div className="regIcon">
-            <FcGoogle
-              className="regSocial"
-              onClick={handleGoogleSignUp}
-              style={{ cursor: "pointer" }}
-            />
-            <FaFacebookF className="regSocial text-primary" />
-            <FaTwitter className="regSocial text-primary" />
-          </div>
-          <p className="acct">
-            Already have an account? <a href="/login">Sign in</a>
-          </p>
-        </form>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
