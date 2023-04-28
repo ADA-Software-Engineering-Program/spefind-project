@@ -1,9 +1,31 @@
 import React from "react";
 
 const Visibilty = ({ submit, prevStep, formik }) => {
+  const formValues = ["visibility"];
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    submit();
+    const errorField = [];
+    formValues.forEach((value) => {
+      if (formik.errors[value]) {
+        // console.log(value, formik.errors[value]);
+        formik.setFieldTouched(value, true);
+        errorField.push(value);
+      } else {
+        const index = errorField.indexOf(value);
+        if (index > -1) {
+          // only splice array when item is found
+          errorField.splice(index, 1);
+          // 2nd parameter means remove one item only
+        }
+      }
+
+      return;
+    });
+
+    if (errorField.length === 0) {
+      submit();
+    }
   };
 
   const handlePrev = (e) => {
