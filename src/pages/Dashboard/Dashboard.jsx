@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import AppLayout from "../../layout/AppLayout";
 import "./Dashboard.css";
 
+import toast from "react-hot-toast";
+
 import { Form, Input } from "antd";
 
 import userImg from "./assets/userImg.png";
@@ -15,7 +17,15 @@ const Dashboard = () => {
   };
   const logout = () => {
     sessionStorage.removeItem("token");
-    navigate("/");
+    navigate("/login");
+    toast.success(`Log out succesful!`, {
+      duration: 4000,
+      position: "top-center",
+
+      // Styling
+      style: { fontSize: "13px" },
+      className: "",
+    });
   };
 
   return (

@@ -3,16 +3,14 @@ import Navbar from "../Navbar/Navbar";
 import "./SignIn.css";
 import { auth } from "../../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { MdToggleOff } from "react-icons/md";
 import { useAuth } from "../../contexts/AuthContext";
 import toast from "react-hot-toast";
 
 const SignIn = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { logIn } = useAuth();
 
@@ -50,11 +48,13 @@ const SignIn = () => {
           },
         }
       );
+      setLoading(true);
       const data = await response.json();
+
       console.log(data);
       if (response.ok) {
         sessionStorage.setItem("token", data.token);
-        navigate("/dashboard");
+        window.location.href = "/dashboard";
 
         // Redirect to home page or dashboard
         toast.success(`${data.message},`, {
@@ -74,10 +74,11 @@ const SignIn = () => {
           style: { fontSize: "13px" },
           className: "",
         });
-        setError(data.message);
       }
+      setLoading(false);
     } catch (error) {
-      setError(error.message);
+      setLoading(false);
+
       toast.error(`Invalid email or password`, {
         duration: 4000,
         position: "top-center",
@@ -131,12 +132,16 @@ const SignIn = () => {
           <p className="fw-semibold">Forgot Password? </p>
         </div>
 
-        <button className="btn btnSign" onClick={onSubmit} type="submit">
-          Submit
+        <button
+          className="btn btnSign"
+          onClick={onSubmit}
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? "Signing In..." : "Submit"}
         </button>
       </form>
       <p className="new">
-        {" "}
         New here? <a href="/register"> Sign up</a>{" "}
       </p>
     </div>

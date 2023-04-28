@@ -40,9 +40,9 @@ function App() {
       <Route
         path="/create-profile"
         element={
-          // <ProtectedRoutes isLoggedIn={isLoggedIn()}>
+          <ProtectedRoutes isLoggedIn={isLoggedIn()}>
             <CreateProfile />
-          // </ProtectedRoutes>
+          </ProtectedRoutes>
         }
       />
       <Route path="/speaker-profile" element={<SpeakerProfile />} />
@@ -55,9 +55,9 @@ function App() {
       <Route
         path="/dashboard"
         element={
-          // <ProtectedRoutes isLoggedIn={isLoggedIn()}>
+          <ProtectedRoutes isLoggedIn={isLoggedIn()}>
             <Dashboard />
-          // </ProtectedRoutes>
+          </ProtectedRoutes>
         }
       />
     </Routes>
