@@ -5,10 +5,12 @@
   max-width: 200px;
 }
 
-/* .navbar-main {
-  background-color: var(--orange) !important;
-  width: 100%;
-} */
+.navbar-main {
+  /* background-color: var(--orange) !important; */
+  /* width: 100%; */
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
 
 .nav-toggle {
   color: white;

@@ -37,7 +37,7 @@ const details = [
 
 export default function JoinSite() {
   return (
-    <div className="text-center px-lg-5 px-md-4 px-3">
+    <div className="joinSite text-center px-lg-5 px-md-4 px-3">
       <h3 className="findHead fw-bolder">
         Why join our site as a <span className="heroColor">communicator?</span>
       </h3>
