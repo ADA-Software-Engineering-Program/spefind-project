@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React, { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
@@ -36,6 +37,8 @@ function Register() {
       return null;
     }
   };
+  const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
   const {
     value: emailInputvalue,
     isValid: enteredEmailIsValid,
@@ -43,8 +46,7 @@ function Register() {
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmailInput,
-  } = useInput((value) => value.includes("@"));
-
+  } = useInput((value) => value.includes("@") && value.match(mailFormat));
   const {
     value: passwordInputValue,
     isValid: enteredPasswordIsValid,
