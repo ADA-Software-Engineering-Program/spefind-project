@@ -6,6 +6,7 @@ import "../../Components/HomeCSS/Hero.css";
 import { useAuth } from "../../contexts/AuthContext";
 
 function Hero() {
+  // eslint-disable-next-line
   const { currentUser } = useAuth();
 
   return (
@@ -23,14 +24,12 @@ function Hero() {
           uniqueness of your event, we've got someone for you.
         </p>
 
-        {!currentUser && (
-          <div>
-            <Link to="/signup" className="getBtn">
-              Get Started
-              <BsArrowRight style={{ width: "auto" }} />
-            </Link>
-          </div>
-        )}
+        <div>
+          <Link to="/signup" className="getBtn">
+            Get Started
+            <BsArrowRight style={{ width: "auto" }} />
+          </Link>
+        </div>
       </div>
 
       <div className="heroImage">
