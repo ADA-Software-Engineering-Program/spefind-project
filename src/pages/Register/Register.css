@@ -143,21 +143,17 @@
     width: 100%;
     flex-direction: column;
   }
-
   .regInput {
     width: 100%;
     margin-top: -0.5rem;
   }
-
   .btnSign-up {
     width: 100%;
   }
-
   .regIcon {
     flex-direction: row;
     font-size: 0.5px;
   }
-
   .labelForm {
     flex-direction: column;
   }
