@@ -3,6 +3,8 @@
   flex-direction: column-reverse;
   padding: 0rem 0 2rem;
   background-color: rgba(227, 80, 47, 0.1);
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+  /* -webkit-clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); */
 }
 
 .speakers {
@@ -10,12 +12,14 @@
   line-height: 20px;
   font-weight: 600;
   color: #111010;
+  margin-bottom: 5px;
 }
 
 .heroTextHeading {
   font-size: 2rem;
   font-weight: 500;
   color: #111010;
+  margin-bottom: 1rem;
 }
 
 .heroColor {
@@ -36,7 +40,6 @@
   font-weight: 400;
   color: rgba(0, 0, 0, 0.8);
   margin-bottom: 2rem;
-  text-align: justify;
 }
 
 .heroTextSubHeading span {
@@ -84,7 +87,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
-    padding: 1rem 2rem 2rem;
+    padding: 2rem 2rem 6rem;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
   }
 
   .heroText {
@@ -93,6 +98,6 @@
 
   .heroTextHeading {
     font-size: 3.5rem;
-    line-height: 5rem;
+    line-height: 3.9rem;
   }
 }
