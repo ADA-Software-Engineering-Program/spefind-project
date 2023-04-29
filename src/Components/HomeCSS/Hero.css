@@ -1,10 +1,10 @@
 .heroContainer {
   display: flex;
   flex-direction: column-reverse;
-  padding: 0rem 0 2rem;
+  padding: 0rem 0 3rem;
   background-color: rgba(227, 80, 47, 0.1);
   clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
-  /* -webkit-clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
 }
 
 .speakers {
@@ -12,7 +12,8 @@
   line-height: 20px;
   font-weight: 600;
   color: #111010;
-  margin-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .heroTextHeading {
@@ -26,9 +27,9 @@
   color: #e3502f;
 }
 
-.heroContainer .heroColor {
+/* .heroContainer .heroColor {
   text-decoration: 3px underline wavy #e3502f;
-}
+} */
 
 .heroText {
   padding: 1rem;
@@ -90,6 +91,10 @@
     padding: 2rem 2rem 6rem;
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  }
+
+  .speakers {
+    margin-top: 0;
   }
 
   .heroText {
