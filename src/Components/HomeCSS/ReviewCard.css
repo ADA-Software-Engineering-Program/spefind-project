@@ -1,8 +1,7 @@
 .reviewSection {
   background-color: var(--bg);
-  padding-bottom: 40px;
-  margin-bottom: 50px;
-  margin-top: 30px;
+  padding-bottom: 50px;
+  margin-top: -3rem;
   clip-path: polygon(0% 0%, 50% 5%, 100% 0%, 100% 100%, 0% 100%);
   padding-top: 10px;
 }
@@ -33,6 +32,7 @@
 }
 
 .profilePics {
+  min-width: 68px;
   width: 68px;
   height: 68px;
 }
@@ -82,5 +82,17 @@
   .review-box {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profilePics {
+    min-width: 50px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .reviewCards {
+    height: 260px;
   }
 }

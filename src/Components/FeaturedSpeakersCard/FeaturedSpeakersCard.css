@@ -4,7 +4,10 @@
 }
 
 .featCard {
-  margin-top: 1rem;
+  background: url(../HomeCSS/Vector\ 14.svg) center center;
+  padding-top: 7rem;
+  padding-bottom: 6rem;
+  margin-top: -4rem;
 }
 
 .featInput {
@@ -86,10 +89,6 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .featCard {
-    margin-top: 2rem;
-  }
-
   .search {
     position: absolute;
     margin-top: 2.5rem;
@@ -104,10 +103,6 @@
   .header {
     font-size: 2.8rem;
     margin: 2.5rem 0rem;
-  }
-
-  .featCard {
-    margin-top: 2rem;
   }
 
   .search {
