@@ -2,124 +2,97 @@
   background-image: url(../../images/regBH.png);
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
-  min-height: 100vh;
-  padding: 100px 50px;
+  padding: 80px 50px;
 }
 
 .regCont {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
   max-width: 900px;
-  margin: auto;
 }
 
 .regLogoCont {
-  width: 200px;
-  max-width: 100%;
-}
-
-.regLogo {
-  width: 100%;
+  width: 248px;
 }
 
 .JoinForm {
-  display: grid;
-  position: relative;
   width: 500px;
-  height: 600px;
-  justify-content: center;
   background: #ffffff;
   box-shadow: 0px 3.16342px 62.4016px 3.16342px rgba(227, 80, 47, 0.1);
-  border-radius: 7.92623px;
-  padding-top: 1rem;
-}
-
-.ovalBG {
-  width: 100%;
-  height: 100%;
-  background: url(./Ellipse\ 803.svg);
-}
-
-.formCont {
-  width: 100%;
-}
-
-.NameCard {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  z-index: 1;
-}
-
-.regInput1 {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid var(--grey);
-  border-radius: 5px;
-  background-color: transparent;
+  border-radius: 8px;
+  padding: 70px 30px;
+  background: url(./Ellipse\ 803.svg) center center, #fff;
 }
 
 .labelForm {
-  font-family: Montserrat;
+  display: block;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
-  margin-bottom: 15px;
-  display: block;
-  width: 100%;
+  margin-bottom: 5px;
 }
 
 .regInput {
   width: 100%;
   height: 3rem;
-  justify-content: center;
   border: 1px solid var(--grey);
-  padding: 8px;
+  padding: 8px 10px;
   border-radius: 5px;
-  margin-top: -1.5rem;
   background-color: transparent;
 }
+
+.regInput::placeholder {
+  font-size: 14px;
+}
+
 .btnSign-up {
   width: 100%;
   height: 3rem;
   background-color: var(--green);
   color: #fff;
   font-weight: 600;
-  padding-top: 0.6rem;
+  font-family: inherit;
   margin-top: 1rem;
+  transition: all 0.3s ease;
 }
+
+.btnSign-up:disabled {
+  background-color: #359e4c;
+  color: #fff;
+}
+
 .btnSign-up:hover {
   border: 1px solid gray;
 }
 
+.btnSign-up:active {
+  transform: scale(0.97);
+}
+
 .or {
+  margin-top: 20px;
   font-size: 16px;
   text-align: center;
-  /* margin-top: -0.2rem; */
   font-weight: 600;
 }
+
 .regIcon {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 25px;
-  /* margin-top: -2.5rem; */
+  margin-bottom: 20px;
 }
+
 .regSocial {
-  width: 1rem;
-  height: 1rem;
+  font-size: 20px;
 }
+
 .acct {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  /* margin-top: -1rem; */
+  text-align: center;
 }
 
 .acct a {
@@ -128,6 +101,24 @@
   font-weight: 600;
   margin-left: 1rem;
 }
+
+/* styles for RegisterOld.js I think */
+
+/* .NameCard {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  z-index: 1;
+} */
+
+/* .regInput1 {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+  background-color: transparent;
+} */
 
 /* Media query for screens below 900*/
 @media screen and (max-width: 900px) {
@@ -139,18 +130,15 @@
     display: none;
   }
 
-  .regCont {
-    justify-content: center;
-  }
-
   .JoinForm {
     margin: 0 auto;
     max-width: 100%;
+    padding: 50px 20px;
   }
 }
 
 /* Media query for screens smaller than 600px */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .NameCard {
     width: 100%;
     flex-direction: column;
@@ -173,4 +161,4 @@
   .labelForm {
     flex-direction: column;
   }
-}
+} */
