@@ -14,7 +14,7 @@ function Hero() {
       <div className="heroText">
         <p className="speakers">Communicators and event organizers:</p>
         <h2 className="heroTextHeading">
-          genius comes &nbsp; in all <span className="heroColor">colours</span>
+          genius comes in all <span className="heroColor">colours</span>
         </h2>
         <p className="heroTextSubHeading">
           Find the perfect communicator for your next event from our pool of
