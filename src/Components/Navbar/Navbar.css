@@ -79,7 +79,9 @@
     text-align: unset;
     margin: 0rem 0.6rem;
   }
+}
 
+@media only screen and (min-width: 768px) {
   #logBtn {
     background-color: var(--orange);
     color: var(--white);

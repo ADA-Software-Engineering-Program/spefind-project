@@ -21,8 +21,8 @@ const Header = ({ backgroundColor }) => {
   return (
     <>
       <Navbar
-        expand="lg"
-        className="navbar-main d-none d-lg-flex"
+        expand="md"
+        className="navbar-main d-none d-md-flex"
         style={{
           backgroundColor: backgroundColor ? backgroundColor : "transparent",
         }}
@@ -85,8 +85,8 @@ const Header = ({ backgroundColor }) => {
       </Navbar>
 
       <Navbar
-        expand="lg"
-        className="navbar-main-1 d-lg-none d-flex"
+        expand="md"
+        className="navbar-main-1 d-md-none d-flex"
         variant="dark"
       >
         <Container>
