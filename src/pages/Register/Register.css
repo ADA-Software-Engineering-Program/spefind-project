@@ -57,6 +57,7 @@
 .btnSign-up:disabled {
   background-color: #359e4c;
   color: #fff;
+  cursor: not-allowed;
 }
 
 .btnSign-up:hover {

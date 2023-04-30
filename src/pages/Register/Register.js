@@ -234,7 +234,7 @@ function Register() {
                 />
                 {firstNameInputHasError && !enteredFirstNameIsValid && (
                   <p className={styles.errorText}>
-                    Please enter a value that is more than 3 letters !
+                    Please enter at least 3 letters !
                   </p>
                 )}
               </div>
@@ -256,7 +256,7 @@ function Register() {
                 />
                 {lastNameInputHasError && !enteredLastNameIsValid && (
                   <p className={styles.errorText}>
-                    Please enter a value that is more than 3 letters !
+                    Please enter at least 3 letters !
                   </p>
                 )}
               </div>
