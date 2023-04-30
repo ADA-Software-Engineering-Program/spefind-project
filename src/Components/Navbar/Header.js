@@ -7,11 +7,10 @@ import Logo from "../../images/footerLogo.png";
 import { BsArrowRight } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import "./Navbar.css";
-import { useAuth } from "../../contexts/AuthContext";
+// import { useAuth } from "../../contexts/AuthContext";
 
 const Header = () => {
-
-  const {currentUser} = useAuth()
+  // const {currentUser} = useAuth()
   const location = useLocation();
 
   const { pathname } = location;
@@ -61,14 +60,14 @@ const Header = () => {
             >
               Contact
             </Nav.Link>
-            {!currentUser && (<Nav.Link
+            <Nav.Link
               href="./login"
               className={splitLocation[1] === "login" ? "active" : ""}
               id="logBtn"
             >
               Log In
               <BsArrowRight className="arrow" />
-            </Nav.Link>)}
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

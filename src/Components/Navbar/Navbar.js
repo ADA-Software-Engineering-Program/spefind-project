@@ -6,13 +6,10 @@ import Nav from "react-bootstrap/Nav";
 import Logo from "../../images/Spefind-logo.png";
 import Logo2 from "../../images/spelogo-white.png";
 import { BsArrowRight } from "react-icons/bs";
-import { useAuth } from "../../contexts/AuthContext";
 import "./Navbar.css";
 
 const Header = ({ backgroundColor }) => {
   const location = useLocation();
-
-  const { currentUser } = useAuth();
 
   const { pathname } = location;
 
@@ -69,16 +66,14 @@ const Header = ({ backgroundColor }) => {
               >
                 Contact
               </Nav.Link>
-              {!currentUser && (
-                <Nav.Link
-                  href="./login"
-                  className={splitLocation[1] === "login" ? "active" : ""}
-                  id="logBtn"
-                >
-                  Log In
-                  <BsArrowRight className="arrow" />
-                </Nav.Link>
-              )}
+              <Nav.Link
+                href="./login"
+                className={splitLocation[1] === "login" ? "active" : ""}
+                id="logBtn"
+              >
+                Log In
+                <BsArrowRight className="arrow" />
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -131,16 +126,14 @@ const Header = ({ backgroundColor }) => {
               >
                 Contact
               </Nav.Link>
-              {!currentUser && (
-                <Nav.Link
-                  href="./login"
-                  className={splitLocation[1] === "login" ? "active" : ""}
-                  id="logBtn"
-                >
-                  Log In
-                  <BsArrowRight className="arrow" />
-                </Nav.Link>
-              )}
+              <Nav.Link
+                href="./login"
+                className={splitLocation[1] === "login" ? "active" : ""}
+                id="logBtn"
+              >
+                Log In
+                <BsArrowRight className="arrow" />
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
