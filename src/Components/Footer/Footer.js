@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import footerLogo from "../../images/footerLogo.png";
 import footerLogo2 from "../../images/spelogo-white.png";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import "./Footer.css";
@@ -93,12 +92,12 @@ function Footer() {
           <ul className="list-unstyled">
             <li className="mb-2">
               <a href={"/"} className="text-decoration-none text-white">
-                support@spefind.com{" "}
+                infospefind@gmail.com
               </a>
             </li>
             <li className="mb-2">
               <a href={"/"} className="text-decoration-none text-white">
-                +234 1234567891{" "}
+                +234 7059592726
               </a>
             </li>
             <li className="mb-2">
@@ -108,7 +107,7 @@ function Footer() {
             </li>
             <li className="mb-2">
               <a href={"/"} className="text-decoration-none text-white">
-                Facebook{" "}
+                Facebook
               </a>
             </li>
             <li className="mb-2">
