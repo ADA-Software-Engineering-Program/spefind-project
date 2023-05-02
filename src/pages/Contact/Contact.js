@@ -15,8 +15,10 @@ const Contact = () => {
       <div className="row justify-content-center">
         <div className="col-10 col-xl-4 col-lg-4 col-md-5 col-sm-10 col-xs-10 form-holder p-3 rounded-start shadow">
           <h3 className="form-heading p-3">Get in Touch</h3>
-          <form className="p-3 contatForm">
-            <p>We are here for you! How can we help?</p>
+          <form className="p-3 contactForm">
+            <p className="contactFormText">
+              We are here for you! How can we help?
+            </p>
 
             <div className="form-group mb-3">
               <label
@@ -52,7 +54,8 @@ const Contact = () => {
               Tell us anything
             </label>
             <div className="form-floating mb-3">
-              <textarea cols={10}
+              <textarea
+                cols={10}
                 className="form-control contactTextarea"
                 name="message"
               />
