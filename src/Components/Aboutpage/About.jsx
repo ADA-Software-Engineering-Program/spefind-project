@@ -66,16 +66,14 @@ export default function About() {
             Spe<span className="heroColor">find</span>
           </h1>
           <p className="aboutsubheading mx-auto">
-            <span className="fw-bolder">
-              The world's first and largest community platform.{" "}
-            </span>
-            <br />
-            Spefind is an online booking platform that allows event organizers
-            to book communicators for their events seamlessly. Our platform is a
-            one-stop platform that makes it easy for organizers to find and book
-            the right speakers for their events hereby saving them time and
-            money while ensuring the highest level of quality and customer
-            satisfaction.{" "}
+            We are a booking platform that allows event organizers to find and
+            book communicators for their events seamlessly. We believe that
+            every communicator that knows their craft can be discovered, which
+            is why we created Spefind. We are Nigeria's first community of
+            professional, independent, or non-professional communicators who
+            would like to be found by companies and event organizers. Anyone
+            with expertise in any field who is open to speaking or performing at
+            conferences or events as a paid or unpaid communicator is welcome.
           </p>
 
           <div className="aboutimg">
