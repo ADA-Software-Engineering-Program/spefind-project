@@ -7,6 +7,7 @@ import Logo from "../../images/Spefind-logo.png";
 import Logo2 from "../../images/spelogo-white.png";
 import { BsArrowRight } from "react-icons/bs";
 import "./Navbar.css";
+import Logout from "../Logout/Logout";
 
 const Header = ({ backgroundColor }) => {
   const location = useLocation();
@@ -14,6 +15,9 @@ const Header = ({ backgroundColor }) => {
   const { pathname } = location;
 
   const splitLocation = pathname.split("/");
+
+  //check if user is logged in or not
+  const isAuthenticated = !!sessionStorage.getItem("token");
 
   return (
     <>
@@ -71,7 +75,7 @@ const Header = ({ backgroundColor }) => {
                 className={splitLocation[1] === "login" ? "active" : ""}
                 id="logBtn"
               >
-                Log In
+                {isAuthenticated ? <Logout /> : "Log In"}
                 <BsArrowRight className="arrow" />
               </Nav.Link>
             </Nav>
