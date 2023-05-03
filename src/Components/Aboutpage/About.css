@@ -6,8 +6,9 @@
 
 .aboutsubheading {
   text-align: center;
-  padding: 0 20%;
-  line-height: 2;
+  max-width: 1150px;
+  line-height: 1.7;
+  font-size: 22px;
 }
 
 .aboutimg {
@@ -19,7 +20,7 @@
 
 .values {
   background: rgba(227, 80, 47, 0.1);
-  padding: 2% 10%;
+  padding: 2% 20px;
   margin: 0 auto;
 }
 
@@ -50,7 +51,7 @@
 
 .visionandmission {
   background-color: #ffff;
-  margin: 5% 10%;
+  margin: 5% 30px;
 }
 
 .vision {
@@ -58,6 +59,8 @@
   border-radius: 65px;
   padding: 50px;
   margin-top: 8%;
+  max-width: 1140px;
+  position: relative;
 }
 
 .visiontitle {
@@ -70,10 +73,22 @@
   line-height: 1.8;
 }
 
+.visionbox {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 50px;
+  height: 50px;
+  background: #359e4c;
+  border-radius: 50%;
+  z-index: 2;
+}
+
 /* Meet the Team */
 .team {
   background-color: #ffff;
-  margin: 5% 12%;
+  margin: 5% auto;
+  max-width: 1140px;
 }
 
 .teamtitle {
@@ -95,6 +110,7 @@
   width: 300px;
   height: 300px;
   padding: 0;
+  max-width: 100%;
 }
 
 .teamname {
@@ -121,6 +137,7 @@
   color: #fff;
   border-radius: 40px;
   padding: 15px 20px;
+  display: inline-block;
 }
 
 .teamlink:hover {
@@ -144,7 +161,7 @@
   }
 
   .aboutsubheading {
-    padding: 0 8%;
+    font-size: 1.1rem;
   }
 
   .values {
@@ -164,7 +181,7 @@
   }
 
   .visionandmission {
-    margin: 10%;
+    margin: 10% 20px;
   }
 
   .vision {
@@ -176,7 +193,7 @@
   }
 
   .visionsubtitle {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .team {

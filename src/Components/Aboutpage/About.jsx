@@ -61,11 +61,11 @@ export default function About() {
     <AppLayout>
       <div>
         {/* Hero section */}
-        <div className="herosection">
+        <div className="herosection px-3 px-md-4">
           <h1 className="aboutheading">
             Spe<span className="heroColor">find</span>
           </h1>
-          <p className="aboutsubheading">
+          <p className="aboutsubheading mx-auto">
             <span className="fw-bolder">
               The world's first and largest community platform.{" "}
             </span>
@@ -107,16 +107,17 @@ export default function About() {
         {/* Vision and Mission */}
 
         <div className="visionandmission">
-          <div className="vision">
+          <div className="vision mx-auto">
             <h3 className="visiontitle mb-3">Our Vision</h3>
             <p className="visionsubtitle">
               To be the premier platform for event and conference organizers to
               find and book the best speakers, making the process seamless and
               stress-free.
             </p>
+            <div className="visionbox"></div>
           </div>
 
-          <div className="vision">
+          <div className="vision mx-auto">
             <h3 className="visiontitle mb-3">Our Mission</h3>
             <p className="visionsubtitle">
               To provide a comprehensive and user-friendly platform for event
@@ -125,12 +126,13 @@ export default function About() {
               booking speakers while ensuring the highest level of quality and
               customer satisfaction.
             </p>
+            <div className="visionbox"></div>
           </div>
         </div>
 
         {/* Meet the team */}
 
-        <div className="team">
+        <div className="team px-3 px-md-4">
           <div>
             <h2 className="teamtitle mb-3">Meet The Team</h2>
             {/* <p className="teamsubtitle mb-3">
@@ -145,7 +147,7 @@ export default function About() {
           </div>
 
           <div className="teammembers row">
-            <div className="col-lg-6 text-center mt-5">
+            <div className="col-md-6 text-center mt-5">
               <img src={udoka} alt="teamimg" className="teamimg" />
               <p className="teamname mt-4">Udoka Success Etus</p>
               <p className="teamrole">Founder/Team Lead</p>
@@ -163,7 +165,7 @@ export default function About() {
               </a>
             </div>
 
-            <div className="col-lg-6 text-center mt-5">
+            <div className="col-md-6 text-center mt-5">
               <img src={Aisha} alt="teamimg" className="teamimg" />
               <p className="teamname mt-4">Rabiu Aisha Kemi</p>
               <p className="teamrole">Product Designer</p>
@@ -182,7 +184,7 @@ export default function About() {
               </a>
             </div>
 
-            <div className="col-lg-6 text-center mt-5">
+            <div className="col-md-6 text-center mt-5">
               <img src={Coletta} alt="teamimg" className="teamimg" />
               <p className="teamname mt-4">Coletta Ezeagba</p>
               <p className="teamrole">Product Designer</p>
@@ -200,7 +202,7 @@ export default function About() {
               </a>
             </div>
 
-            <div className="col-lg-6 text-center mt-5">
+            <div className="col-md-6 text-center mt-5">
               <img src={Nengi} alt="teamimg" className="teamimg" />
               <p className="teamname mt-4">Nengi Aberenika</p>
               <p className="teamrole">Data Analyst</p>
