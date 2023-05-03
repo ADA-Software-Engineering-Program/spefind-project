@@ -38,6 +38,7 @@ const SignIn = () => {
     //     console.log(errorCode, errorMessage);
     //   });
     try {
+      setLoading(true);
       const response = await fetch(
         "https://spefind-server.onrender.com/api/auth/login",
         {
@@ -48,9 +49,7 @@ const SignIn = () => {
           },
         }
       );
-      setLoading(true);
       const data = await response.json();
-
       console.log(data);
       if (response.ok) {
         sessionStorage.setItem("token", data.token);
