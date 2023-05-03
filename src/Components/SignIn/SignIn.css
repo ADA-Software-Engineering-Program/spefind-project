@@ -5,9 +5,6 @@
     padding: 1.4rem;
 }
 
-
-
-
 .miss {
     color: var(--orange);
     font-size: 2rem;
@@ -52,6 +49,12 @@
     font-weight: 600;
     margin: auto 28%;
     margin-top: 1rem;
+}
+
+.btnSign:disabled {
+  background-color: #359e4c;
+  color: #fff;
+  cursor: not-allowed;
 }
 
 .new {
