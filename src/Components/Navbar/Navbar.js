@@ -135,7 +135,7 @@ const Header = ({ backgroundColor }) => {
                 className={splitLocation[1] === "login" ? "active" : ""}
                 id="logBtn"
               >
-                Log In
+                {isAuthenticated ? <Logout /> : "Log In"}
                 <BsArrowRight className="arrow" />
               </Nav.Link>
             </Nav>

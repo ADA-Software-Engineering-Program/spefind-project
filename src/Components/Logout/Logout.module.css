@@ -4,3 +4,8 @@
   color: #fff;
   font-weight: 600;
 }
+@media screen and (max-width: 767px) {
+  .button {
+    color: #e3502f;
+  }
+}
