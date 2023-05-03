@@ -125,7 +125,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="copySection mt-5">
+      <div className="copySection mt-5  px-3 px-md-5">
         <div>
           <img src={footerLogo2} alt="logo" className="footerLogo" />
         </div>

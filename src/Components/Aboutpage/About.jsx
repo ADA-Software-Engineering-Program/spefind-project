@@ -5,6 +5,7 @@ import aboutpageimage from "../../images/aboutpageimg.png";
 import udoka from "../../images/udoka.png";
 import Aisha from "../../images/Aisha.png";
 import Coletta from "../../images/Coletta.png";
+import Nengi from "../../images/Nengi.png";
 import teamprofile from "../../images/teamprofile.png";
 import Ourvalue from "./Ourvalue";
 // import data from "./Valuedata"
@@ -60,11 +61,11 @@ export default function About() {
     <AppLayout>
       <div>
         {/* Hero section */}
-        <div className="herosection">
+        <div className="herosection px-3 px-md-4">
           <h1 className="aboutheading">
             Spe<span className="heroColor">find</span>
           </h1>
-          <p className="aboutsubheading">
+          <p className="aboutsubheading mx-auto">
             <span className="fw-bolder">
               The world's first and largest community platform.{" "}
             </span>
@@ -106,16 +107,17 @@ export default function About() {
         {/* Vision and Mission */}
 
         <div className="visionandmission">
-          <div className="vision">
+          <div className="vision mx-auto">
             <h3 className="visiontitle mb-3">Our Vision</h3>
             <p className="visionsubtitle">
               To be the premier platform for event and conference organizers to
               find and book the best speakers, making the process seamless and
               stress-free.
             </p>
+            <div className="visionbox"></div>
           </div>
 
-          <div className="vision">
+          <div className="vision mx-auto">
             <h3 className="visiontitle mb-3">Our Mission</h3>
             <p className="visionsubtitle">
               To provide a comprehensive and user-friendly platform for event
@@ -124,15 +126,16 @@ export default function About() {
               booking speakers while ensuring the highest level of quality and
               customer satisfaction.
             </p>
+            <div className="visionbox"></div>
           </div>
         </div>
 
         {/* Meet the team */}
 
-        <div className="team">
+        <div className="team px-3 px-md-4">
           <div>
             <h2 className="teamtitle mb-3">Meet The Team</h2>
-            <p className="teamsubtitle mb-3">
+            {/* <p className="teamsubtitle mb-3">
               We are a small group of techies based in Nigeria, trying to bring
               about ease for event organizers. We have been working on this
               project for a while and we are really excited we get to share our
@@ -140,41 +143,84 @@ export default function About() {
               and we believe in building a brand from the ground up with
               persistence and passion. So therefore you should be rest assured
               that we have got you covered!
-            </p>
+            </p> */}
           </div>
 
           <div className="teammembers row">
-            <div className="col-lg-4 text-center mt-5">
+            <div className="col-md-6 text-center mt-5">
               <img src={udoka} alt="teamimg" className="teamimg" />
               <p className="teamname mt-4">Udoka Success Etus</p>
-              <p className="teamrole">Product Manager</p>
+              <p className="teamrole">Founder/Team Lead</p>
+              <p className="teamdetail">
+                Udoka is an electrical electronics engineer transitioned into a
+                product manager. She is passionate about technology, with the
+                intention to leverage technology to solve problems and deliver
+                value to individuals and organizations.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/udoka-etus-product-manager/"
+                className="teamlink"
+              >
+                LinkedIn Profile
+              </a>
             </div>
 
-            <div className="col-lg-4 text-center mt-5">
+            <div className="col-md-6 text-center mt-5">
               <img src={Aisha} alt="teamimg" className="teamimg" />
               <p className="teamname mt-4">Rabiu Aisha Kemi</p>
               <p className="teamrole">Product Designer</p>
+              <p className="teamdetail">
+                Aisha is a Psychology student who transitioned into tech as a
+                product designer. She is very well interested in giving
+                solutions to problems with the aid of user centered designs. She
+                has a free & open minded approach to design. Aisha is also one
+                of SPEFIND’s co-founders.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/aisha-rabiu-42462118b/"
+                className="teamlink"
+              >
+                LinkedIn Profile
+              </a>
             </div>
 
-            <div className="col-lg-4 text-center mt-5">
+            <div className="col-md-6 text-center mt-5">
               <img src={Coletta} alt="teamimg" className="teamimg" />
               <p className="teamname mt-4">Coletta Ezeagba</p>
               <p className="teamrole">Product Designer</p>
+              <p className="teamdetail">
+                Coletta Ezeagba is a Tech. Enthusiast. She's an Author, Product
+                Designer, Software Engineer and Cofounder of SPEFIND . She's
+                very passionate about designing and developing digital products
+                that makes people's life easy.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/coletta-ezeagba-a86a63147/"
+                className="teamlink"
+              >
+                LinkedIn Profile
+              </a>
             </div>
 
-            <div className="col-lg-4 text-center mt-5">
-              <img src={teamprofile} alt="teamimg" className="teamimg" />
-              <p className="teamname mt-4">Ugochukwu Nnelly</p>
-              <p className="teamrole">Product Manager</p>
-            </div>
-
-            <div className="col-lg-4 text-center mt-5">
-              <img src={teamprofile} alt="teamimg" className="teamimg" />
+            <div className="col-md-6 text-center mt-5">
+              <img src={Nengi} alt="teamimg" className="teamimg" />
               <p className="teamname mt-4">Nengi Aberenika</p>
               <p className="teamrole">Data Analyst</p>
+              <p className="teamdetail">
+                Nengi is a creative data analyst with expertise in Excel, Power
+                BI, SQL and Python. I enjoy extracting hidden insights from data
+                and building dynamic analytics solutions that help businesses
+                grow.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/nengi-aberenika/"
+                className="teamlink"
+              >
+                LinkedIn Profile
+              </a>
             </div>
 
-            <div className="col-lg-4 text-center mt-5">
+            {/* <div className="col-lg-4 text-center mt-5">
               <img src={teamprofile} alt="teamimg" className="teamimg" />
               <p className="teamname mt-4">Assyah Ibraheem</p>
               <p className="teamrole">Product Designer</p>
@@ -196,7 +242,7 @@ export default function About() {
               <img src={teamprofile} alt="teamimg" className="teamimg" />
               <p className="teamname mt-4">Nnoli Armstrong</p>
               <p className="teamrole">Data Analyst</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
