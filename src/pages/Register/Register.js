@@ -1,9 +1,8 @@
 /* eslint-disable no-useless-escape */
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
-// import Logo from "../../images/footerLogo.png";
-// import Logo from "./logo new 1 1.png";
+
 import Logo from "./logo new 1 2.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
