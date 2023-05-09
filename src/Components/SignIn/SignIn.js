@@ -53,8 +53,6 @@ const SignIn = () => {
       console.log(data);
       if (response.ok) {
         sessionStorage.setItem("token", data.token);
-        window.location.href = "/dashboard";
-
         // Redirect to home page or dashboard
         toast.success(`${data.message},`, {
           duration: 4000,
@@ -64,21 +62,28 @@ const SignIn = () => {
           style: { fontSize: "13px" },
           className: "",
         });
-      } else {
-        toast.error(`${data.message},`, {
-          duration: 4000,
-          position: "top-center",
+        setLoading(false);
+      }
+      if (!response) {
+        setLoading(false);
+        throw new Error();
+      }
+      if (!response.ok) {
+        setLoading(false);
 
-          // Styling
-          style: { fontSize: "13px" },
-          className: "",
-        });
+        throw new Error();
+      }
+      if (data.data.userRole === "speaker") {
+        window.location.href = "/dashboard";
+      }
+      if (data.data.userRole === "organizer") {
+        window.location.href = "/explore";
       }
       setLoading(false);
     } catch (error) {
       setLoading(false);
 
-      toast.error(`Invalid email or password`, {
+      toast.error(`${error} Please cross check your details and try again`, {
         duration: 4000,
         position: "top-center",
 

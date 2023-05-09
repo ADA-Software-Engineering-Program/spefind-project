@@ -30,7 +30,14 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/explore" element={<Explore />} />
+      <Route
+        path="/explore"
+        element={
+          <ProtectedRoutes isLoggedIn={isLoggedIn()}>
+            <Explore />
+          </ProtectedRoutes>
+        }
+      />
       <Route path="/blog" element={<Blog />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<SignIn />} />
