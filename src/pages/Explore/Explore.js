@@ -54,17 +54,17 @@ const Explore = () => {
   //     navigate("/login");
   //   }
 
-  if (!data || data?.length < 0) {
-    toast.error("Kindly complete your profile to continue", {
-      duration: 4000,
-      position: "top-center",
+  // if (!data || data?.length < 0) {
+  //   toast.error("Kindly complete your profile to continue", {
+  //     duration: 4000,
+  //     position: "top-center",
 
-      // Styling
-      style: { fontSize: "13px" },
-      className: "",
-    });
-    navigate("/create-profile");
-  }
+  //     // Styling
+  //     style: { fontSize: "13px" },
+  //     className: "",
+  //   });
+  //   navigate("/create-profile");
+  // }
 
   return (
     <AppLayout>

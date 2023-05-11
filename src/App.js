@@ -62,9 +62,9 @@ function App() {
       <Route
         path="/dashboard"
         element={
-          <ProtectedRoutes isLoggedIn={isLoggedIn()}>
-            <Dashboard />
-          </ProtectedRoutes>
+          // <ProtectedRoutes isLoggedIn={isLoggedIn()}>
+          <Dashboard />
+          // </ProtectedRoutes>
         }
       />
     </Routes>

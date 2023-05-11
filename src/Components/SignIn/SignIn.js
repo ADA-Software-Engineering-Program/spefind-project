@@ -96,7 +96,7 @@ const SignIn = () => {
   return (
     <div>
       <Navbar />
-      <h1 className="miss">We missed you!</h1>
+      <h1 className="miss mt-5 mt-md-4">We missed you!</h1>
 
       <form className="SignInForm">
         <label htmlFor="email" className="logLabel">
@@ -131,6 +131,7 @@ const SignIn = () => {
         <div className="forgot">
           <div className="d-flex">
             <MdToggleOff className="toggle" />
+            <input type="checkbox" className="check" />
             <p>Keep logged in</p>
           </div>
           <p className="fw-semibold">Forgot Password? </p>
