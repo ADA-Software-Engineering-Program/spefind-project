@@ -19,7 +19,7 @@
 }
 .sidebar {
   background-color: #e3502f;
-  padding: 1.5rem;
+  padding: 1.5rem 0;
 }
 .userProfile p {
   text-align: center;
@@ -32,6 +32,7 @@
 }
 .userMenu {
   margin: 1rem auto;
+  padding-left: 0;
 }
 .userMenu li {
   list-style-type: none;
@@ -42,6 +43,27 @@
   font-weight: 600;
   color: #fff;
   text-decoration: none;
+  padding-left: 30px;
+}
+
+.userMenu li span {
+  line-height: 50px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+  padding-left: 30px;
+}
+
+.userMenu li span:hover {
+  background: rgba(217, 217, 217, 0.2);
+}
+
+.userMenu li span.span-select {
+  border-left: 10px solid #fff;
+  background: rgba(217, 217, 217, 0.2);
+  padding-left: 20px;
 }
 .userMenu li a:active {
   background: rgba(217, 217, 217, 0.2);
@@ -166,7 +188,77 @@
   margin: 0.2rem 0rem;
 }
 
-@media only screen and (max-width: 665px) {
+.upgradeBox {
+  max-width: 800px;
+  box-shadow: 0px 3px 20px 0px #00000040;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 80px !important;
+}
+
+.upgradeType {
+  position: absolute;
+  left: -70px;
+  top: 30px;
+  display: inline-block;
+  padding: 10px 100px;
+  background: #359e4ce5;
+  color: #fff;
+  font-weight: 700;
+  transform: rotate(-45deg);
+}
+
+.upgradeOption span {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border: 7px solid #359e4c;
+  border-radius: 50%;
+}
+
+.upgradeOption p {
+  font-size: 20px;
+  line-height: 25px;
+  margin: 0;
+}
+
+.btn-disabled {
+  background-color: #e3502fcc;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+}
+
+.btn-green {
+  background-color: #359e4ce5;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 30px;
+  outline: none;
+  border: none;
+}
+
+.btn-orange {
+  background-color: #e3502f;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 30px;
+  outline: none;
+  border: 1px solid transparent;
+}
+
+.btn-orange-line {
+  background-color: transparent;
+  border-radius: 10px;
+  color: #e3502f;
+  padding: 10px 30px;
+  outline: none;
+  border: 1px solid #e3502f;
+}
+
+@media only screen and (max-width: 900px) {
   .harmburger {
     display: block;
     margin-right: 1rem;
