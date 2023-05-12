@@ -216,7 +216,7 @@ const CreateProfile = () => {
     validate,
   });
 
-  console.log(formik.values);
+  // console.log(formik.values);
 
   // proceed to next step
   const nextStep = () => {

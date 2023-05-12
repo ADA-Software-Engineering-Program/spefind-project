@@ -11,8 +11,9 @@ const Dashboard = () => {
   const [dashboardBodyContent, setDashboardBodyContent] = useState(
     <PersonalDetails />
   );
-
   const [isNavExpanded, setIsNavExpanded] = useState(true);
+
+  const [currentMenu, setCurrentMenu] = useState("menu1");
 
   const sideBarTitleAndComponent = [
     {
@@ -23,38 +24,47 @@ const Dashboard = () => {
     {
       id: "menu2",
       text: "Niche",
+      component: "",
     },
     {
       id: "menu3",
       text: "Availability & Fees",
+      component: "",
     },
     {
       id: "menu4",
       text: "Account Preferences",
+      component: "",
     },
     {
       id: "menu5",
       text: "Publication",
+      component: "",
     },
     {
       id: "menu6",
       text: "Passwords",
+      component: "",
     },
     {
       id: "menu7",
       text: "Email",
+      component: "",
     },
     {
       id: "menu8",
       text: "Signature",
+      component: "",
     },
     {
       id: "menu9",
       text: "Media",
+      component: "",
     },
     {
       id: "menu10",
       text: "Messages",
+      component: "",
     },
     {
       id: "menu11",
@@ -104,11 +114,12 @@ const Dashboard = () => {
               {sideBarTitleAndComponent.map((menu) => {
                 return (
                   <li
-                    className={"span-select"}
+                    className={currentMenu === menu.id ? "span-select" : ""}
                     key={menu.id}
                     onClick={() => {
+                      setCurrentMenu(menu.id);
                       setDashboardBodyContent(menu.component);
-                      // setIsNavExpanded(false);
+                      window.scrollTo(0, 0);
                     }}
                   >
                     <span>{menu.text}</span>
