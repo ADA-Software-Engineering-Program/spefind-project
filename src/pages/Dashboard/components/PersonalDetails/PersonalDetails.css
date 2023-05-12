@@ -1,0 +1,102 @@
+.dashboardDetail {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  margin-bottom: 0rem !important;
+  text-align: right;
+}
+
+#form_item_path {
+  margin: 2rem auto !important;
+}
+
+.dashboard label {
+  margin-top: 1rem;
+}
+.ant-input,
+.textArea {
+  width: 90%;
+}
+.ant-input:hover {
+  border-color: #e3502f !important;
+}
+
+.textArea {
+  resize: none;
+  border: 1px solid #ded9d8;
+  border-radius: 7px;
+  padding: 0.5rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 15px;
+  outline: none;
+}
+
+.genderWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.genderWrapper label {
+  cursor: pointer;
+}
+
+.newInput {
+  background-color: #ded9d8;
+  width: 1.2rem;
+  height: 1rem;
+  appearance: none;
+  display: grid;
+  place-content: center;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.newInput:checked {
+  border: 1px solid #e3502f;
+}
+.newInput:checked:after {
+  content: "";
+  border-radius: 0%;
+  padding: 0.2rem;
+  background-color: #e3502f;
+  width: 0.5rem;
+  height: 0.5rem;
+  cursor: pointer;
+}
+
+.selectFile {
+  visibility: hidden;
+}
+.selectFile::before {
+  content: "Select file ";
+  display: block;
+  visibility: visible;
+  background-color: #e3502f;
+  color: white;
+  border-radius: 1.5px;
+  width: max-content;
+  padding: 0.4rem;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+.editProfilePicture {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: max-content;
+  margin-top: 1rem;
+}
+
+.btnWrapper {
+  display: grid;
+}
+.editProfilePicture div .btn {
+  background-color: #e3502f;
+  border-radius: 1.5px;
+  color: white;
+  border-radius: 1.5px;
+  white-space: nowrap;
+  margin: 0.2rem 0rem;
+}
