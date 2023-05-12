@@ -41,19 +41,10 @@
   list-style-type: none;
   margin: 0.5rem auto;
 }
-.userMenu li a {
-  line-height: 50px;
-  font-weight: 600;
-  color: #fff;
-  text-decoration: none;
-  padding-left: 30px;
-}
-
 .userMenu li span {
-  line-height: 50px;
+  line-height: 40px;
   font-weight: 600;
   color: #fff;
-  text-decoration: none;
   cursor: pointer;
   display: block;
   padding-left: 30px;
@@ -62,19 +53,15 @@
 .userMenu li span:hover {
   background: rgba(217, 217, 217, 0.2);
 }
-
-.userMenu li span.span-select {
+.span-select {
   border-left: 10px solid #fff;
   background: rgba(217, 217, 217, 0.2);
-  padding-left: 20px;
-}
-.userMenu li a:active {
-  background: rgba(217, 217, 217, 0.2);
+  padding-left: 10px;
+  transition: 0.1s ease-in-out all;
 }
 .username {
   margin: 1rem auto 0.5rem;
 }
-
 .harmburger {
   display: none;
   border: 0;

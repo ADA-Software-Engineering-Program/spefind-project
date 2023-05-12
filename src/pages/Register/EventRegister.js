@@ -3,6 +3,8 @@ import { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 
+import AppLayout from "../../layout/AppLayout";
+
 import Logo from "./logo new 1 2.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
@@ -203,7 +205,7 @@ function EventRegister() {
   };
 
   return (
-    <div>
+    <AppLayout>
       <div className="Bg-img w-100 min-vh-100">
         <div className="regCont w-100 d-flex mx-auto align-items-center justify-content-md-between justify-content-center">
           <div className="regLogoCont mw-100">
@@ -358,7 +360,7 @@ function EventRegister() {
           </form>
         </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }
 
