@@ -4,6 +4,8 @@ import "./Dashboard.css";
 
 import userImg from "./assets/userImg.png";
 
+import { HiOutlineLogout } from "react-icons/hi";
+
 import PersonalDetails from "./components/PersonalDetails/PersonalDetails";
 import Upgrade from "./components/Upgrade/Upgrade";
 
@@ -105,30 +107,35 @@ const Dashboard = () => {
         </button>
         <div className="dashboardContainer">
           <div className={isNavExpanded ? "sidebar" : "sidebarMobile"}>
-            <div className="userProfile">
-              <img src={userImg} alt="user profile" />
-              <p className="username">Titilayo</p>
-              <p className="userCareer">Career Speaker</p>
+            <div>
+              <div className="userProfile">
+                <img src={userImg} alt="user profile" />
+                <p className="username">Titilayo</p>
+                <p className="userCareer">Career Speaker</p>
+              </div>
+              <ul className="userMenu">
+                {sideBarTitleAndComponent.map((menu) => {
+                  return (
+                    <li
+                      className={currentMenu === menu.id ? "span-select" : ""}
+                      key={menu.id}
+                      onClick={() => {
+                        setCurrentMenu(menu.id);
+                        setDashboardBodyContent(menu.component);
+                        window.scrollTo(0, 0);
+                      }}
+                    >
+                      <span>{menu.text}</span>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="userMenu">
-              {sideBarTitleAndComponent.map((menu) => {
-                return (
-                  <li
-                    className={currentMenu === menu.id ? "span-select" : ""}
-                    key={menu.id}
-                    onClick={() => {
-                      setCurrentMenu(menu.id);
-                      setDashboardBodyContent(menu.component);
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    <span>{menu.text}</span>
-                  </li>
-                );
-              })}
-            </ul>
+            <button className="logout">
+              Logout
+              <HiOutlineLogout className="logoutIcon" />
+            </button>
           </div>
-
           <div className="dahsboardBody">{dashboardBodyContent}</div>
         </div>
       </div>

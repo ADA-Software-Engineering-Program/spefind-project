@@ -20,6 +20,9 @@
 .sidebar {
   background-color: #e3502f;
   padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .userProfile {
   text-align: center;
@@ -73,6 +76,22 @@
 }
 .dahsboardBody {
   padding: 3rem;
+}
+.logout {
+  background: #359e4c;
+  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  color: #eae1e1;
+  margin: 0rem 2rem;
+}
+.logoutIcon {
+  font-size: 2rem;
+  color: #eae1e1;
 }
 @media only screen and (max-width: 900px) {
   .harmburger {
