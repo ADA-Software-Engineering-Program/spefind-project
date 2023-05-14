@@ -1,4 +1,3 @@
-import React from "react";
 import AppLayout from "../../../src/layout/AppLayout";
 import Hero from "./Hero";
 import FeaturedReview from "./FeaturedReview";

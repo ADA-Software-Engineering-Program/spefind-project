@@ -1,4 +1,3 @@
-import React from "react";
 import "../../Components/HomeCSS/FindSpeakers.css";
 
 export default function FindSpeakers() {
