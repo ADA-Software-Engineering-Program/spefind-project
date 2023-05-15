@@ -73,6 +73,18 @@
   text-decoration: none;
 }
 
+.logout {
+  background: #359e4c !important;
+  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px !important;
+  color: #eae1e1;
+  margin: 0rem 2rem;
+}
 @media only screen and (min-width: 992px) {
   .nav-link {
     color: var(--grey);

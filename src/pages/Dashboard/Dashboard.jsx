@@ -6,6 +6,8 @@ import userImg from "./assets/userImg.png";
 
 import { HiOutlineLogout } from "react-icons/hi";
 
+import Logout from "../../Components/Logout/Logout";
+
 import PersonalDetails from "./components/PersonalDetails/PersonalDetails";
 import Upgrade from "./components/Upgrade/Upgrade";
 
@@ -131,10 +133,9 @@ const Dashboard = () => {
                 })}
               </ul>
             </div>
-            <button className="logout">
-              Logout
+            <Logout classes="logout">
               <HiOutlineLogout className="logoutIcon" />
-            </button>
+            </Logout>
           </div>
           <div className="dahsboardBody">{dashboardBodyContent}</div>
         </div>
