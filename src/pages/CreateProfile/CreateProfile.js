@@ -98,37 +98,36 @@ const CreateProfile = () => {
 
   //form submit function
 
-  const onSubmit = async (values) => {
-    // values.pastEventsImages = pastEventsImgs;
-    // values.profilePicture = profilePics;
-    //  console.log(values)
+  // const onSubmit = async (values) => {
+  //   // values.pastEventsImages = pastEventsImgs;
+  //   // values.profilePicture = profilePics;
+  //   //  console.log(values)
+  //   try {
+  //     await setDoc(doc(db, "speakers", currentUser.uid), {
+  //       ...values,
+  //       timeStamp: serverTimestamp(),
+  //     });
 
-    try {
-      await setDoc(doc(db, "speakers", currentUser.uid), {
-        ...values,
-        timeStamp: serverTimestamp(),
-      });
+  //     toast.success("Profile setup Complete, Thank you!!", {
+  //       duration: 4000,
+  //       position: "top-center",
 
-      toast.success("Profile setup Complete, Thank you!!", {
-        duration: 4000,
-        position: "top-center",
+  //       // Styling
+  //       style: { fontSize: "13px" },
+  //       className: "",
+  //     });
+  //     navigate("/speaker-profile");
+  //   } catch (error) {
+  //     toast.error("Ooopps!!! Sorry, An error occurred", {
+  //       duration: 4000,
+  //       position: "top-center",
 
-        // Styling
-        style: { fontSize: "13px" },
-        className: "",
-      });
-      navigate("/speaker-profile");
-    } catch (error) {
-      toast.error("Ooopps!!! Sorry, An error occurred", {
-        duration: 4000,
-        position: "top-center",
-
-        // Styling
-        style: { fontSize: "13px" },
-        className: "",
-      });
-    }
-  };
+  //       // Styling
+  //       style: { fontSize: "13px" },
+  //       className: "",
+  //     });
+  //   }
+  // };
 
   const [step, setStep] = useState(0);
 
@@ -233,9 +232,9 @@ const CreateProfile = () => {
     window.scrollTo(0, 0);
   };
 
-  const submit = (e) => {
-    e.preventDefault();
+  const submit = () => {
     formik.handleSubmit();
+    console.log(formik.values);
   };
 
   const ref = useRef(null);
