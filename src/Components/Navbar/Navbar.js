@@ -70,14 +70,20 @@ const Header = ({ backgroundColor }) => {
               >
                 Contact
               </Nav.Link>
-              <Nav.Link
-                href="./login"
-                className={splitLocation[1] === "login" ? "active" : ""}
-                id="logBtn"
-              >
-                {isAuthenticated ? <Logout /> : "Log In"}
-                <BsArrowRight className="arrow" />
-              </Nav.Link>
+              {isAuthenticated ? (
+                <Logout classes="logout">
+                  <BsArrowRight className="arrow" />
+                </Logout>
+              ) : (
+                <Nav.Link
+                  href="./login"
+                  className={splitLocation[1] === "login" ? "active" : ""}
+                  id="logBtn"
+                >
+                  Login
+                  <BsArrowRight className="arrow" />
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -130,14 +136,20 @@ const Header = ({ backgroundColor }) => {
               >
                 Contact
               </Nav.Link>
-              <Nav.Link
-                href="./login"
-                className={splitLocation[1] === "login" ? "active" : ""}
-                id="logBtn"
-              >
-                {isAuthenticated ? <Logout /> : "Log In"}
-                <BsArrowRight className="arrow" />
-              </Nav.Link>
+              {isAuthenticated ? (
+                <Logout classes="logout">
+                  <BsArrowRight className="arrow" />
+                </Logout>
+              ) : (
+                <Nav.Link
+                  href="./login"
+                  className={splitLocation[1] === "login" ? "active" : ""}
+                  id="logBtn"
+                >
+                  Login
+                  <BsArrowRight className="arrow" />
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

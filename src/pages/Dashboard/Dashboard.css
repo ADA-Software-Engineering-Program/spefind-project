@@ -78,7 +78,7 @@
   padding: 3rem;
 }
 .logout {
-  background: #359e4c;
+  background: #359e4c !important;
   border-radius: 20px;
   padding: 0.4rem 0.8rem;
   border: none;
@@ -129,7 +129,7 @@
     animation-name: animateleft;
     animation-duration: 1s;
     width: 50%;
-    padding-top: 1rem;
+    padding: 1rem 0rem;
   }
   .userProfile {
     text-align: center;

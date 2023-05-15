@@ -3,6 +3,7 @@
   border: none;
   color: #fff;
   font-weight: 600;
+  white-space: nowrap;
 }
 @media screen and (max-width: 767px) {
   .button {

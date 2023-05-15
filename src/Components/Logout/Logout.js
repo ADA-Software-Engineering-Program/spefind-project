@@ -1,9 +1,8 @@
-import React from "react";
 import styles from "./Logout.module.css";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const Logout = ({ children }) => {
+const Logout = ({ children, classes }) => {
   const navigate = useNavigate();
   const logoutHandler = () => {
     sessionStorage.removeItem("token");
@@ -19,8 +18,9 @@ const Logout = ({ children }) => {
   };
 
   return (
-    <button className={styles.button} onClick={logoutHandler}>
-      Log out
+    <button className={`${styles.button} ${classes}`} onClick={logoutHandler}>
+      Logout
+      {children}
     </button>
   );
 };
