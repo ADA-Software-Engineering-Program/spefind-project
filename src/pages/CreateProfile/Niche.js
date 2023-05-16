@@ -157,7 +157,7 @@ const Niche = ({ nextStep, prevStep, formik }) => {
               Position
             </label>
             <input
-              type="number"
+              type="text"
               name="position"
               id="position"
               className="profile-input"

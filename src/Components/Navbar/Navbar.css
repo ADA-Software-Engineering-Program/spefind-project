@@ -76,8 +76,9 @@
 .logout {
   background: #359e4c !important;
   border-radius: 20px;
-  padding: 0.4rem 0.8rem;
   border: none;
+  padding: 0.5rem 1rem !important;
+  border-radius: 0rem 1.5rem 1.5rem 1rem !important;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
