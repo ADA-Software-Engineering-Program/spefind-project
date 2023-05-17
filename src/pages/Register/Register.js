@@ -9,7 +9,7 @@ import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useAuth } from "../../contexts/AuthContext";
 
-import useInput from "./useInput";
+import useInput from "../../hooks/useInput";
 import styles from "./Register.module.css";
 
 import AppLayout from "../../layout/AppLayout";
