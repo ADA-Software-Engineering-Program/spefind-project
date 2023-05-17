@@ -6,7 +6,7 @@ import udoka from "../../images/udoka.png";
 import Aisha from "../../images/Aisha.png";
 import Coletta from "../../images/Coletta.png";
 import Nengi from "../../images/Nengi.png";
-import teamprofile from "../../images/teamprofile.png";
+// import teamprofile from "../../images/teamprofile.png";
 import Ourvalue from "./Ourvalue";
 // import data from "./Valuedata"
 // import rectangle from '../../images/Rectangle.png';
@@ -16,44 +16,37 @@ export default function About() {
     {
       id: 1,
       number: "01",
+      title: "Community",
+      subtitle:
+        "Our company exists because we want to emphasize community and promote communicators while also helping event organizers get amazing communicators for their events. ",
+    },
+    {
+      id: 4,
+      number: "04",
       title: "Diversity",
       subtitle:
-        "All speakers of different ethnicity, culture, country are welcomed here. No form of bias or stigmatization.",
+        "All communicators of different ethnicity, culture, and country are welcomed. No form of bias or stigmatization.",
     },
     {
       id: 2,
       number: "02",
       title: "Authenticity",
       subtitle:
-        "Speakers go through rigorous process and qualifications to join our platform, this measure is taken to ensure adequacy and quality in the speakers we provide.",
-    },
-    {
-      id: 3,
-      number: "03",
-      title: "Availability",
-      subtitle:
-        "We have a very good system put in place whereby speakers will always be ready and available for events except for dire circumstances. ",
-    },
-    {
-      id: 4,
-      number: "04",
-      title: "Accuracy",
-      subtitle:
-        "We take pride in being free from mistakes. We are very careful in selecting speakers as the speakers we provide also represent our company’s image.",
+        "Communicators go through rigorous processes to join our platform. This measure is taken to ensure adequacy and quality in the communicators we provide.",
     },
     {
       id: 5,
       number: "05",
-      title: "Trust",
-      subtitle:
-        "Event organizers can always put their trust in us to provide speakers that match and fits what they are looking for in a speaker",
-    },
-    {
-      id: 6,
-      number: "06",
       title: "Convenience ",
       subtitle:
-        "Our platform is easy to navigate and user friendly. Our goal is to make the “search for a speaker” process seamless and easy for event organizers and te world at large.",
+        'Our platform is easy to navigate and user-friendly. Our goal is to make the "search for a communicator" process seamless and easy for event organizers and companies.',
+    },
+    {
+      id: 3,
+      number: "03",
+      title: "Visibility",
+      subtitle:
+        "By creating this platform, we’re helping communicators gain more visibility and bookings for events. As well as reducing the stress event organizers pass through in finding ideal communicators for events.",
     },
   ]);
 
@@ -91,7 +84,7 @@ export default function About() {
           <h2 className="valueheading p-5 ">Our Values</h2>
           <div className="row">
             {data.map((item) => (
-              <div key={item.id} className="col-lg-6 mx-auto">
+              <div key={item.id} className="col-lg-6">
                 <Ourvalue
                   number={item.number}
                   title={item.title}

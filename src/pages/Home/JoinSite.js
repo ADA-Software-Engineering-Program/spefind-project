@@ -5,33 +5,27 @@ import JoinCard from "./JoinCard";
 const details = [
   {
     id: 1,
-    title: "Increased Visibility",
+    title: "Better Access To Events",
     detail:
-      "Joining an event speakers platform can increase your visibility and help you reach a broader audience. Platforms typically have a large user base of event planners, conference organizers, and businesses looking for speakers for their events. By joining, you can increase your chances of getting discovered and booked for speaking engagements.",
+      "By joining our platform, you will gain access to an exclusive range of event opportunities that event organizers will be posting on our platform which are not publicly advertised.",
   },
   {
     id: 2,
-    title: "Networking Opportunities",
+    title: "Profesional Development",
     detail:
-      "Joining an event speakers platform can increase your visibility and help you reach a broader audience. Platforms typically have a large user base of event planners, conference organizers, and businesses looking for speakers for their events. By joining, you can increase your chances of getting discovered and booked for speaking engagements.",
+      "By joining our platform, you will learn from other communicators and have access to resources that can help you improve your skill as a communicator.",
   },
   {
     id: 3,
-    title: "Better Access To Events",
+    title: "Marketing and Promotion",
     detail:
-      "By joining an event speakers platform, you can gain access to a range of speaking opportunities that you may not have been able to find otherwise. These platforms often provide access to events that are not publicly advertised or are exclusive to members.",
+      "By joining our platform, we can market you, promote you, and give you premium recommendations for high-profile events.",
   },
   {
     id: 4,
-    title: "Profesional Development",
+    title: "Increased Visibility",
     detail:
-      "By joining an event speakers platform, you can learn from other speakers and access resources that can help you improve your skills as a speaker. This can include tips on crafting engaging presentations, building your personal brand, and improving your stage presence.",
-  },
-  {
-    id: 5,
-    title: "Marketing and Promotion",
-    detail:
-      "Many event speakers platforms offer marketing and promotional support to their members. This can include social media promotion, email campaigns, and other promotional activities that can help you reach a wider audience.",
+      "Joining SPEFIND will increase your visibility and help you get discovered and booked for events.",
   },
 ];
 
@@ -42,9 +36,9 @@ export default function JoinSite() {
         Why join our site as a <span className="heroColor">communicator?</span>
       </h3>
 
-      <div className="row joinRow justify-content-center">
+      <div className="row joinRow justify-content-center mx-auto">
         {details.map((item) => (
-          <div key={item.id} className="col-lg-4 col-md-6">
+          <div key={item.id} className="col-md-6">
             <JoinCard title={item.title} detail={item.detail} />
           </div>
         ))}
