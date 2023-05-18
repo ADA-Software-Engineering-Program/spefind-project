@@ -2,10 +2,10 @@ import React from "react";
 
 const Niche = ({ nextStep, prevStep, formik }) => {
   const formValues = [
-    "mainTopics",
-    "expertiseTags",
+    "speakerField",
+    "speakerSubField",
     "education",
-    "jobName",
+    "jobTitle",
     "yearsOfPractice",
     "jobDescription",
     "position",
@@ -45,36 +45,36 @@ const Niche = ({ nextStep, prevStep, formik }) => {
   return (
     <div>
       <div className="profile-group">
-        <label className="profile-label" htmlFor="mainTopics">
+        <label className="profile-label" htmlFor="speakerField">
           YOUR MAIN TOPICS*{" "}
         </label>
         <input
           type="text"
-          name="mainTopics"
-          id="mainTopics"
+          name="speakerField"
+          id="speakerField"
           className="profile-input"
           placeholder="i.e family, leadership, technology"
-          {...formik.getFieldProps("mainTopics")}
+          {...formik.getFieldProps("speakerField")}
         />
-        {formik.touched.mainTopics && formik.errors.mainTopics ? (
-          <div className="profile-error">{formik.errors.mainTopics}</div>
+        {formik.touched.speakerField && formik.errors.speakerField ? (
+          <div className="profile-error">{formik.errors.speakerField}</div>
         ) : null}
       </div>
 
       <div className="profile-group">
-        <label className="profile-label" htmlFor="expertiseTags">
+        <label className="profile-label" htmlFor="speakerSubField">
           EXPERTISE TAGS*
         </label>
         <input
           type="text"
-          name="expertiseTags"
-          id="expertiseTags"
+          name="speakerSubField"
+          id="speakerSubField"
           className="profile-input"
           placeholder="i.e under technology as your main topic, your expertise tag is coding"
-          {...formik.getFieldProps("expertiseTags")}
+          {...formik.getFieldProps("speakerSubField")}
         />
-        {formik.touched.expertiseTags && formik.errors.expertiseTags ? (
-          <div className="profile-error">{formik.errors.expertiseTags}</div>
+        {formik.touched.speakerSubField && formik.errors.speakerSubField ? (
+          <div className="profile-error">{formik.errors.speakerSubField}</div>
         ) : null}
       </div>
 
@@ -99,19 +99,19 @@ const Niche = ({ nextStep, prevStep, formik }) => {
         <label className="profile-label">CURRENT POSITION*</label>
         <div className="profile-field">
           <div>
-            <label className="profile-label-field" htmlFor="jobName">
+            <label className="profile-label-field" htmlFor="jobTitle">
               Job Name
             </label>
             <input
               type="text"
-              name="jobName"
-              id="jobName"
+              name="jobTitle"
+              id="jobTitle"
               className="profile-input"
               placeholder="Type here"
-              {...formik.getFieldProps("jobName")}
+              {...formik.getFieldProps("jobTitle")}
             />
-            {formik.touched.jobName && formik.errors.jobName ? (
-              <div className="profile-error">{formik.errors.jobName}</div>
+            {formik.touched.jobTitle && formik.errors.jobTitle ? (
+              <div className="profile-error">{formik.errors.jobTitle}</div>
             ) : null}
           </div>
 

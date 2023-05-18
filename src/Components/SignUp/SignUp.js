@@ -17,7 +17,6 @@ function SignUp() {
           </Link>
 
           <Link to="/event-register" id="btnsignup">
-            {" "}
             Event Organizer
           </Link>
         </div>

@@ -7,17 +7,17 @@ const Personal = ({ nextStep, formik }) => {
   const [files, setFiles] = useState([]);
 
   const formValues = [
-    "firstName",
-    "lastName",
+    // "firstName",
+    // "lastName",
     "gender",
     "country",
     "city",
     "biography",
-    "eventName",
-    "eventDate",
-    "eventLocation",
-    "eventPopulation",
-    "eventField",
+    "titleOfEvent",
+    "date",
+    "location",
+    "numberOfAttendees",
+    "field",
     "eventPictures",
   ];
 
@@ -58,11 +58,13 @@ const Personal = ({ nextStep, formik }) => {
               id="firstName"
               className="profile-input"
               placeholder="First Name"
-              {...formik.getFieldProps("firstName")}
+              disabled
+              value={"hfhfuy"}
+              // {...formik.getFieldProps("firstName")}
             />
-            {formik.touched.firstName && formik.errors.firstName ? (
+            {/* {formik.touched.firstName && formik.errors.firstName ? (
               <div className="profile-error">{formik.errors.firstName}</div>
-            ) : null}
+            ) : null} */}
           </div>
 
           <div>
@@ -72,11 +74,13 @@ const Personal = ({ nextStep, formik }) => {
               id="lastName"
               className="profile-input"
               placeholder="Last Name"
-              {...formik.getFieldProps("lastName")}
+              disabled
+              value={"kkhoybuy"}
+              // {...formik.getFieldProps("lastName")}
             />
-            {formik.touched.lastName && formik.errors.lastName ? (
+            {/* {formik.touched.lastName && formik.errors.lastName ? (
               <div className="profile-error">{formik.errors.lastName}</div>
-            ) : null}
+            ) : null} */}
           </div>
         </div>
       </div>
@@ -181,92 +185,93 @@ const Personal = ({ nextStep, formik }) => {
         <label className="profile-label">PAST EVENTS*</label>
         <div className="profile-field">
           <div>
-            <label className="profile-label-field" htmlFor="eventName">
+            <label className="profile-label-field" htmlFor="titleOfEvent">
               Name of Event
             </label>
             <input
               type="text"
-              name="eventName"
-              id="eventName"
+              name="titleOfEvent"
+              id="titleOfEvent"
               className="profile-input"
               placeholder="Type here"
-              {...formik.getFieldProps("eventName")}
+              {...formik.getFieldProps("titleOfEvent")}
             />
-            {formik.touched.eventName && formik.errors.eventName ? (
-              <div className="profile-error">{formik.errors.eventName}</div>
+            {formik.touched.titleOfEvent && formik.errors.titleOfEvent ? (
+              <div className="profile-error">{formik.errors.titleOfEvent}</div>
             ) : null}
           </div>
 
           <div>
-            <label className="profile-label-field" htmlFor="eventDate">
+            <label className="profile-label-field" htmlFor="date">
               Date of Event
             </label>
             <input
               type="date"
-              name="eventDate"
-              id="eventDate"
+              name="date"
+              id="date"
               className="profile-input"
               placeholder="Type here"
-              {...formik.getFieldProps("eventDate")}
+              {...formik.getFieldProps("date")}
             />
-            {formik.touched.eventDate && formik.errors.eventDate ? (
-              <div className="profile-error">{formik.errors.eventDate}</div>
+            {formik.touched.date && formik.errors.date ? (
+              <div className="profile-error">{formik.errors.date}</div>
             ) : null}
           </div>
 
           <div>
-            <label className="profile-label-field" htmlFor="eventLocation">
+            <label className="profile-label-field" htmlFor="location">
               Location of Event
             </label>
             <input
               type="text"
-              name="eventLocation"
-              id="eventLocation"
+              name="location"
+              id="location"
               className="profile-input"
               placeholder="Type here"
-              {...formik.getFieldProps("eventLocation")}
+              {...formik.getFieldProps("location")}
             />
-            {formik.touched.eventLocation && formik.errors.eventLocation ? (
-              <div className="profile-error">{formik.errors.eventLocation}</div>
+            {formik.touched.location && formik.errors.location ? (
+              <div className="profile-error">{formik.errors.location}</div>
             ) : null}
           </div>
 
           <div>
-            <label className="profile-label-field" htmlFor="eventPopulation">
+            <label className="profile-label-field" htmlFor="numberOfAttendees">
               Event of How Many People?
             </label>
             <input
               type="number"
-              name="eventPopulation"
-              id="eventPopulation"
+              name="numberOfAttendees"
+              id="numberOfAttendees"
               className="profile-input"
               placeholder="Type here"
-              {...formik.getFieldProps("eventPopulation")}
+              {...formik.getFieldProps("numberOfAttendees")}
             />
-            {formik.touched.eventPopulation && formik.errors.eventPopulation ? (
+            {formik.touched.numberOfAttendees &&
+            formik.errors.numberOfAttendees ? (
               <div className="profile-error">
-                {formik.errors.eventPopulation}
+                {formik.errors.numberOfAttendees}
               </div>
             ) : null}
           </div>
 
           <div>
-            <label className="profile-label-field" htmlFor="eventField">
+            <label className="profile-label-field" htmlFor="field">
               Which field did you speak for?
             </label>
             <input
               type="text"
-              name="eventField"
-              id="eventField"
+              name="field"
+              id="field"
               className="profile-input"
               placeholder="Type here"
-              {...formik.getFieldProps("eventField")}
+              {...formik.getFieldProps("field")}
             />
-            {formik.touched.eventField && formik.errors.eventField ? (
-              <div className="profile-error">{formik.errors.eventField}</div>
+            {formik.touched.field && formik.errors.field ? (
+              <div className="profile-error">{formik.errors.field}</div>
             ) : null}
           </div>
-
+          {/* 
           <div>
             <label className="profile-label-field" htmlFor="eventPicture">
               Upload Event Picture
@@ -287,7 +292,7 @@ const Personal = ({ nextStep, formik }) => {
                 </span>
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="btn-box">

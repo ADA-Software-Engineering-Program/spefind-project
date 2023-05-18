@@ -188,7 +188,7 @@ function Register() {
         });
         throw new Error();
       }
-      if (!saveUserData.ok) {
+      if (!saveUserData) {
         setLoading(false);
         formIsValid = false;
 

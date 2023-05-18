@@ -78,7 +78,7 @@ const SignIn = () => {
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (response.ok) {
         sessionStorage.setItem("token", data.token);
         // Redirect to home page or dashboard
@@ -101,7 +101,7 @@ const SignIn = () => {
         throw new Error();
       }
       if (data.data.userRole === "speaker") {
-        window.location.href = "/dashboard";
+        window.location.href = "/create-profile";
       }
       if (data.data.userRole === "organizer") {
         window.location.href = "/explore";

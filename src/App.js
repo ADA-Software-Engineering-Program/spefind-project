@@ -22,7 +22,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
   function isLoggedIn() {
-    const isAuthenticated = !!sessionStorage.getItem("token");
+    const isAuthenticated =
+      !!sessionStorage.getItem("token");
     return isAuthenticated;
   }
 

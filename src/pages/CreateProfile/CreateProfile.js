@@ -130,6 +130,7 @@ const CreateProfile = () => {
   // };
 
   const [step, setStep] = useState(0);
+  const [error, setError] = useState("");
 
   const validate = (values) => {
     const errors = {};
@@ -154,12 +155,12 @@ const CreateProfile = () => {
       errors.pastEvents = "Please fill out this field";
     }
 
-    if (!values.mainTopics) {
-      errors.mainTopics = "Please fill out this field";
+    if (!values.speakerField) {
+      errors.speakerField = "Please fill out this field";
     }
 
-    if (!values.expertiseTags) {
-      errors.expertiseTags = "Please fill out this field";
+    if (!values.speakerSubField) {
+      errors.speakerSubField = "Please fill out this field";
     }
 
     if (!values.education) {
@@ -180,37 +181,37 @@ const CreateProfile = () => {
   const formik = useFormik({
     initialValues: {
       // personal
-      firstName: "",
-      lastName: "",
+      // firstName: "",
+      // lastName: "",
       gender: "",
       country: "",
       city: "",
       biography: "",
-      eventName: "",
-      eventDate: "",
-      eventLocation: "",
-      eventPopulation: "",
-      eventField: "",
-      eventPictures: "",
+      titleOfEvent: "",
+      date: "",
+      location: "",
+      numberOfAttendees: "",
+      field: "",
+      // eventPictures: "",
 
       // niche
-      mainTopics: "",
-      expertiseTags: "",
+      speakerField: "",
+      speakerSubField: "",
       education: "",
-      jobName: "",
+      jobTitle: "",
       yearsOfPractice: "",
       jobDescription: "",
       position: "",
       language: "",
 
       // availability
-      events: [],
-      available: [],
-      fee: "",
-      volunteer: "",
+      eventType: [],
+      availableTo: [],
+      pricing: "",
+      isVolunteer: "",
 
-      // visibility
-      visibility: "",
+      // isVisibile
+      isVisibile: "",
     },
     validate,
   });
@@ -232,9 +233,99 @@ const CreateProfile = () => {
     window.scrollTo(0, 0);
   };
 
-  const submit = () => {
+  useEffect(() => {
+    const isInfoFilled = !!sessionStorage.getItem("userId");
+    isInfoFilled && navigate("/dashboard");
+  }, [navigate]);
+
+  const submit = async () => {
     formik.handleSubmit();
-    console.log(formik.values);
+    try {
+      const transformedData = {
+        gender: formik.values.gender,
+        availableTo: ["64562ea7047002d00b89c13b", "64562e9c047002d00b89c139"],
+        // availableTo: formik.values.availableTo,
+        biography: formik.values.biography,
+        // phone: "+2348033092399",
+        // address: "A3C Crimson Avenue, Denmark",
+        pastEvent: {
+          titleOfEvent: formik.values.titleOfEvent,
+          date: formik.values.date,
+          location: formik.values.location,
+          numberOfAttendees: formik.values.numberOfAttendees,
+          field: formik.values.field,
+        },
+        field: "645532c718a97f60ab471d48",
+        // field: formik.values.speakerField,
+        subField: "64625477cf500ba06284e141",
+        // subField: formik.values.speakerSubField,
+        education: formik.values.education,
+        job: {
+          title: formik.values.jobTitle,
+          yearsOfPractice: Number(formik.values.yearsOfPractice),
+          jobDescription: formik.values.jobDescription,
+          position: formik.values.position,
+        },
+        city: formik.values.city,
+        country: formik.values.country,
+        language: formik.values.language,
+        pricing: "64624ce93601576d40eaf574",
+        // pricing: formik.values.pricing,
+        eventType: ["6456262b2c13aee088f5e7d0", "645625e42c13aee088f5e7ce"],
+        // eventType: formik.values.eventType,
+        isVolunteer: formik.values.isVolunteer,
+        isVisible: formik.values.isVisibile,
+      };
+
+      const token = sessionStorage.getItem("token");
+      const saveUserData = await fetch(
+        "https://spefind-server.onrender.com/api/profile/setup",
+        {
+          method: "PUT",
+          body: JSON.stringify(transformedData),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            redirect: "follow",
+          },
+        }
+      );
+      const data = await saveUserData.json();
+      console.log(data);
+
+      if (saveUserData.ok) {
+        toast.success(`${data.message}`, {
+          duration: 4000,
+          position: "top-center",
+
+          // Styling
+          style: { fontSize: "13px", border: "2px solid green" },
+          className: "",
+        });
+        sessionStorage.setItem("userId", data.user._id);
+        navigate("/dashboard");
+        window.scrollTo(0, 0);
+      }
+
+      if (!saveUserData) {
+        setError("Please cross check your details and try again");
+        throw new Error(error);
+      }
+      if (!saveUserData.ok) {
+        setError("Your token might have expired, please try to log in again!");
+        throw new Error(error);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(`${error}`, {
+        duration: 4000,
+        position: "top-center",
+
+        // Styling
+        style: { fontSize: "13px", border: "2px solid red" },
+        className: "",
+      });
+    }
   };
 
   const ref = useRef(null);
