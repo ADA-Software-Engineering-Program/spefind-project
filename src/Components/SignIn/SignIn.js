@@ -41,6 +41,7 @@ const SignIn = () => {
   //   (value) =>
   //     value.length >= 6 && value.trim() !== "" && value.match(passwordRegex)
   // );
+  const isInfoFilled = !!sessionStorage.getItem("userId");
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -99,6 +100,9 @@ const SignIn = () => {
       if (!response.ok) {
         setLoading(false);
         throw new Error();
+      }
+      if (data.data.userRole === "speaker" && isInfoFilled) {
+        window.location.href = "/dashboard";
       }
       if (data.data.userRole === "speaker") {
         window.location.href = "/create-profile";
