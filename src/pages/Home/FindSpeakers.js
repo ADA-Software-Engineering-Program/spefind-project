@@ -8,14 +8,10 @@ export default function FindSpeakers() {
       </h3>
 
       <p className="findText">
-        Speakers go through rigorous process and qualifications to join our
-        community, this measure is taken to ensure adequacy and quality in the
-        speakers we provide. So therefore, our platform offers you the best, we
-        offer authenticity. Spefind also has a very good system put in place
-        whereby speakers will always be ready and available for events except
-        for dire circumstances. Our goal is to make the “search for a speaker”
-        process seamless, convenient, and easy for event organizers and the
-        world at large.
+        Our communicators are highly curated, they go through rigorous processes
+        to join our platform. This measure is taken to ensure adequacy and
+        quality in the communicators we provide. So, our platform offers you
+        authenticity, diversity, and convenience.
       </p>
     </div>
   );
