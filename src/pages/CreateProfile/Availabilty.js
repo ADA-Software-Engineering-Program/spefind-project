@@ -1,9 +1,10 @@
-import React from "react";
+import { useState } from "react";
 
 const Availabilty = ({ nextStep, prevStep, formik }) => {
   const formValues = ["pricing", "isVolunteer"];
+  const [loading, setLoading] = useState(false);
 
-  const handleNext = (e) => {
+  const handleNext = async (e) => {
     e.preventDefault();
     const errorField = [];
     formValues.forEach((value) => {
@@ -24,7 +25,71 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
     });
 
     if (errorField.length === 0) {
-      nextStep();
+      // try {
+      //   setLoading(true);
+      //   const saveEventType = await fetch(
+      //     "https://spefind-server.onrender.com/api/event/type/add",
+      //     {
+      //       method: "POST",
+      //       body: JSON.stringify({
+      //         eventType: JSON.stringify(formik.values.eventType),
+      //       }),
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //     }
+      //   );
+      //   console.log(saveEventType);
+      //   const eventTypeData = await saveEventType.json();
+      //   console.log(eventTypeData);
+
+      //   const saveAvailableToData = await fetch(
+      //     "https://spefind-server.onrender.com/api/state/add",
+      //     {
+      //       method: "POST",
+      //       body: JSON.stringify({
+      //         state: JSON.stringify(formik.values.availableTo),
+      //       }),
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //     }
+      //   );
+      //   console.log(saveAvailableToData);
+      //   const availableToData = await saveAvailableToData.json();
+      //   console.log(availableToData);
+
+      //   const savePricing = await fetch(
+      //     "https://spefind-server.onrender.com/api/pricing/create",
+      //     {
+      //       method: "POST",
+      //       body: JSON.stringify({ pricing: formik.values.pricing }),
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //     }
+      //   );
+      //   console.log(savePricing);
+      //   const savePricingData = await savePricing.json();
+      //   console.log(savePricingData);
+      //   setLoading(false);
+      // } catch (error) {}
+       const getEventTypeData = await fetch(
+         "https://spefind-server.onrender.com/api/event/type/all",
+         {
+           method: "GET",
+          //  body: JSON.stringify({
+          //    eventType: JSON.stringify(formik.values.eventType),
+          //  }),
+           headers: {
+             "Content-Type": "application/json",
+           },
+         }
+       );
+       console.log(getEventTypeData);
+       const eventTypeData = await getEventTypeData.json();
+       console.log(eventTypeData);
+      !loading && nextStep();
     }
   };
 
@@ -32,14 +97,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
     e.preventDefault();
     prevStep();
   };
-  const states = {
-    state: "nigeria",
-    // state: "ghana",
-    // state: "somalia",
-    // state: "south africa",
-    // state: "turkey",
-    // state: "egypt",
-  };
+
   return (
     <div>
       <div className="profile-group">
@@ -326,9 +384,10 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
         <button
           type="button"
           className="submitBtn submitBtn--grey"
+          disabled={loading}
           onClick={handleNext}
         >
-          Next
+          {loading ? "Please wait" : "Next"}
         </button>
       </div>
     </div>
