@@ -1,9 +1,10 @@
-import React from "react";
+import { useState } from "react";
 
 const Availabilty = ({ nextStep, prevStep, formik }) => {
-  const formValues = ["fee", "volunteer"];
+  const formValues = ["pricing", "isVolunteer"];
+  const [loading, setLoading] = useState(false);
 
-  const handleNext = (e) => {
+  const handleNext = async (e) => {
     e.preventDefault();
     const errorField = [];
     formValues.forEach((value) => {
@@ -24,7 +25,71 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
     });
 
     if (errorField.length === 0) {
-      nextStep();
+      // try {
+      //   setLoading(true);
+      //   const saveEventType = await fetch(
+      //     "https://spefind-server.onrender.com/api/event/type/add",
+      //     {
+      //       method: "POST",
+      //       body: JSON.stringify({
+      //         eventType: JSON.stringify(formik.values.eventType),
+      //       }),
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //     }
+      //   );
+      //   console.log(saveEventType);
+      //   const eventTypeData = await saveEventType.json();
+      //   console.log(eventTypeData);
+
+      //   const saveAvailableToData = await fetch(
+      //     "https://spefind-server.onrender.com/api/state/add",
+      //     {
+      //       method: "POST",
+      //       body: JSON.stringify({
+      //         state: JSON.stringify(formik.values.availableTo),
+      //       }),
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //     }
+      //   );
+      //   console.log(saveAvailableToData);
+      //   const availableToData = await saveAvailableToData.json();
+      //   console.log(availableToData);
+
+      //   const savePricing = await fetch(
+      //     "https://spefind-server.onrender.com/api/pricing/create",
+      //     {
+      //       method: "POST",
+      //       body: JSON.stringify({ pricing: formik.values.pricing }),
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //     }
+      //   );
+      //   console.log(savePricing);
+      //   const savePricingData = await savePricing.json();
+      //   console.log(savePricingData);
+      //   setLoading(false);
+      // } catch (error) {}
+       const getEventTypeData = await fetch(
+         "https://spefind-server.onrender.com/api/event/type/all",
+         {
+           method: "GET",
+          //  body: JSON.stringify({
+          //    eventType: JSON.stringify(formik.values.eventType),
+          //  }),
+           headers: {
+             "Content-Type": "application/json",
+           },
+         }
+       );
+       console.log(getEventTypeData);
+       const eventTypeData = await getEventTypeData.json();
+       console.log(eventTypeData);
+      !loading && nextStep();
     }
   };
 
@@ -39,11 +104,11 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
         <label className="profile-label">
           WHICH TYPES OF EVENTS ARE YOU INTERESTED IN?*
         </label>
-        <div className="check-cont" {...formik.getFieldProps("events")}>
+        <div className="check-cont" {...formik.getFieldProps("eventType")}>
           <div>
             <input
               type="checkbox"
-              name="events"
+              name="eventType"
               className="check-checkbox"
               value="conference"
               id="conference"
@@ -57,7 +122,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="checkbox"
-              name="events"
+              name="eventType"
               className="check-checkbox"
               value="workshop"
               id="workshop"
@@ -71,7 +136,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="checkbox"
-              name="events"
+              name="eventType"
               className="check-checkbox"
               value="session"
               id="session"
@@ -85,7 +150,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="checkbox"
-              name="events"
+              name="eventType"
               className="check-checkbox"
               value="moderator"
               id="moderator"
@@ -98,7 +163,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="checkbox"
-              name="events"
+              name="eventType"
               className="check-checkbox"
               value="webinar"
               id="webinar"
@@ -112,7 +177,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="checkbox"
-              name="events"
+              name="eventType"
               className="check-checkbox"
               value="school"
               id="school"
@@ -126,11 +191,11 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
 
       <div className="profile-group">
         <label className="profile-label">AVAILABLE TO*</label>
-        <div className="check-cont" {...formik.getFieldProps("available")}>
+        <div className="check-cont" {...formik.getFieldProps("availableTo")}>
           <div>
             <input
               type="checkbox"
-              name="available"
+              name="availableTo"
               className="check-checkbox"
               value="nigeria"
               id="nigeria"
@@ -143,7 +208,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="checkbox"
-              name="available"
+              name="availableTo"
               className="check-checkbox"
               value="ghana"
               id="ghana"
@@ -156,7 +221,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="checkbox"
-              name="available"
+              name="availableTo"
               className="check-checkbox"
               value="somalia"
               id="somalia"
@@ -169,7 +234,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="checkbox"
-              name="available"
+              name="availableTo"
               className="check-checkbox"
               value="south africa"
               id="south_africa"
@@ -182,7 +247,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="checkbox"
-              name="available"
+              name="availableTo"
               className="check-checkbox"
               value="turkey"
               id="turkey"
@@ -195,7 +260,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="checkbox"
-              name="available"
+              name="availableTo"
               className="check-checkbox"
               value="egypt"
               id="egypt"
@@ -209,16 +274,16 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
 
       <div className="profile-group">
         <label className="profile-label">FEE*</label>
-        <div className="check-cont" {...formik.getFieldProps("fee")}>
+        <div className="check-cont" {...formik.getFieldProps("pricing")}>
           <div>
             <input
               type="radio"
-              name="fee"
+              name="pricing"
               className="check-input"
               value="0-20"
-              id="fee1"
+              id="pricing1"
             />
-            <label className="check-label" htmlFor="fee1">
+            <label className="check-label" htmlFor="pricing1">
               <span className="check-radio-button"></span> Up to #20000
             </label>
           </div>
@@ -226,12 +291,12 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="radio"
-              name="fee"
+              name="pricing"
               className="check-input"
               value="20-30"
-              id="fee2"
+              id="pricing2"
             />
-            <label className="check-label" htmlFor="fee2">
+            <label className="check-label" htmlFor="pricing2">
               <span className="check-radio-button"></span>#20000 - 30000
             </label>
           </div>
@@ -239,12 +304,12 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="radio"
-              name="fee"
+              name="pricing"
               className="check-input"
               value="30-40"
-              id="fee3"
+              id="pricing3"
             />
-            <label className="check-label" htmlFor="fee3">
+            <label className="check-label" htmlFor="pricing3">
               <span className="check-radio-button"></span>#30000 - 40000
             </label>
           </div>
@@ -252,12 +317,12 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="radio"
-              name="fee"
+              name="pricing"
               className="check-input"
               value="40-70"
-              id="fee4"
+              id="pricing4"
             />
-            <label className="check-label" htmlFor="fee4">
+            <label className="check-label" htmlFor="pricing4">
               <span className="check-radio-button"></span> #40000 - 70000
             </label>
           </div>
@@ -265,12 +330,12 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="radio"
-              name="fee"
+              name="pricing"
               className="check-input"
               value="70-100"
-              id="fee5"
+              id="pricing5"
             />
-            <label className="check-label" htmlFor="fee5">
+            <label className="check-label" htmlFor="pricing5">
               <span className="check-radio-button"></span> #70000 - 100000
             </label>
           </div>
@@ -279,11 +344,11 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
 
       <div className="profile-group">
         <label className="profile-label">VOLUNTEER*</label>
-        <div className="check-cont" {...formik.getFieldProps("volunteer")}>
+        <div className="check-cont" {...formik.getFieldProps("isVolunteer")}>
           <div>
             <input
               type="radio"
-              name="volunteer"
+              name="isVolunteer"
               className="check-input"
               value="no"
               id="no"
@@ -296,7 +361,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           <div>
             <input
               type="radio"
-              name="volunteer"
+              name="isVolunteer"
               className="check-input"
               value="yes"
               id="yes"
@@ -319,9 +384,10 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
         <button
           type="button"
           className="submitBtn submitBtn--grey"
+          disabled={loading}
           onClick={handleNext}
         >
-          Next
+          {loading ? "Please wait" : "Next"}
         </button>
       </div>
     </div>

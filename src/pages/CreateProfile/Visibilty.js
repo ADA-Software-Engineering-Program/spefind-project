@@ -1,7 +1,7 @@
 import React from "react";
 
 const Visibilty = ({ submit, prevStep, formik }) => {
-  const formValues = ["visibility"];
+  const formValues = ["isVisibile"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +46,7 @@ const Visibilty = ({ submit, prevStep, formik }) => {
           <div>
             <input
               type="radio"
-              name="visibility"
+              name="isVisibile"
               className="check-input"
               value="public"
               id="public"
@@ -60,7 +60,7 @@ const Visibilty = ({ submit, prevStep, formik }) => {
           <div>
             <input
               type="radio"
-              name="visibility"
+              name="isVisibile"
               className="check-input"
               value="private"
               id="private"

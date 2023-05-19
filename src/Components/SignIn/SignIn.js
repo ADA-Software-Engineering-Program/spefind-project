@@ -1,12 +1,13 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import "./SignIn.css";
-import { auth } from "../../firebase/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../../firebase/firebase";
+// import { signInWithEmailAndPassword } from "firebase/auth";
+// import { useAuth } from "../../contexts/AuthContext";
 import { MdToggleOff } from "react-icons/md";
-import { useAuth } from "../../contexts/AuthContext";
 import toast from "react-hot-toast";
 
 import AppLayout from "../../layout/AppLayout";
+// import useInput from "../../hooks/useInput";
 
 // import  AuthContext  from "../../contexts/auth-context";
 
@@ -15,7 +16,32 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { logIn } = useAuth();
+  // const { logIn } = useAuth();
+
+  // const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  // const {
+  //   value: emailInputvalue,
+  //   isValid: enteredEmailIsValid,
+  //   hasError: emailInputHasError,
+  //   valueChangeHandler: emailChangeHandler,
+  //   inputBlurHandler: emailBlurHandler,
+  //   reset: resetEmailInput,
+  // } = useInput((value) => value.includes("@") && value.match(emailRegex));
+
+  // const passwordRegex =
+  //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})/;
+  // const {
+  //   value: passwordInputValue,
+  //   isValid: enteredPasswordIsValid,
+  //   hasError: passwordInputHasError,
+  //   valueChangeHandler: passwordChangeHandler,
+  //   inputBlurHandler: passwordBlurHandler,
+  //   reset: resetPasswordInput,
+  // } = useInput(
+  //   (value) =>
+  //     value.length >= 6 && value.trim() !== "" && value.match(passwordRegex)
+  // );
+  const isInfoFilled = !!sessionStorage.getItem("userId");
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +79,7 @@ const SignIn = () => {
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (response.ok) {
         sessionStorage.setItem("token", data.token);
         // Redirect to home page or dashboard
@@ -73,11 +99,13 @@ const SignIn = () => {
       }
       if (!response.ok) {
         setLoading(false);
-
         throw new Error();
       }
-      if (data.data.userRole === "speaker") {
+      if (data.data.userRole === "speaker" && isInfoFilled) {
         window.location.href = "/dashboard";
+      }
+      if (data.data.userRole === "speaker") {
+        window.location.href = "/create-profile";
       }
       if (data.data.userRole === "organizer") {
         window.location.href = "/explore";
@@ -116,7 +144,6 @@ const SignIn = () => {
             placeholder="Email address"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <br />
 
           <label htmlFor="password" className="logLabel">
             Password
