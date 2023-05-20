@@ -4,19 +4,21 @@ import AppLayout from "../../layout/AppLayout";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
-import { useAuth } from "../../contexts/AuthContext";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage, db } from "../../firebase/firebase";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+// import { useAuth } from "../../contexts/AuthContext";
+// import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+// import { storage, db } from "../../firebase/firebase";
+// import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import Personal from "./Personal";
 import Niche from "./Niche";
 import Availabilty from "./Availabilty";
 import Visibilty from "./Visibilty";
 import Steppers from "./Steppers";
 
+import { API_LINK } from "../../utils/api";
+
 const CreateProfile = () => {
   //getting the firstName and lastName passed from the registration page
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
   // console.log(currentUser)
 
   const navigate = useNavigate();
@@ -278,18 +280,15 @@ const CreateProfile = () => {
       };
 
       const token = sessionStorage.getItem("token");
-      const saveUserData = await fetch(
-        "https://spefind-server.onrender.com/api/profile/setup",
-        {
-          method: "PUT",
-          body: JSON.stringify(transformedData),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-            redirect: "follow",
-          },
-        }
-      );
+      const saveUserData = await fetch(`${API_LINK}/api/profile/setup`, {
+        method: "PUT",
+        body: JSON.stringify(transformedData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          redirect: "follow",
+        },
+      });
       const data = await saveUserData.json();
       console.log(data);
 

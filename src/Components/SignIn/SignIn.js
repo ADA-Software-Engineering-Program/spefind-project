@@ -10,6 +10,7 @@ import AppLayout from "../../layout/AppLayout";
 // import useInput from "../../hooks/useInput";
 
 // import  AuthContext  from "../../contexts/auth-context";
+import {API_LINK }from "../../utils/api"
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -68,16 +69,13 @@ const SignIn = () => {
     //   });
     try {
       setLoading(true);
-      const response = await fetch(
-        "https://spefind-server.onrender.com/api/auth/login",
-        {
-          method: "POST",
-          body: JSON.stringify({ email, password }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(` ${API_LINK}/api/auth/login`, {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const data = await response.json();
       // console.log(data);
       if (response.ok) {

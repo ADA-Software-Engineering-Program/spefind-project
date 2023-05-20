@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_LINK } from "../../utils/api";
 
 const Availabilty = ({ nextStep, prevStep, formik }) => {
   const formValues = ["pricing", "isVolunteer"];
@@ -28,7 +29,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
       // try {
       //   setLoading(true);
       //   const saveEventType = await fetch(
-      //     "https://spefind-server.onrender.com/api/event/type/add",
+      //     `${API_LINK}/api/event/type/add`,
       //     {
       //       method: "POST",
       //       body: JSON.stringify({
@@ -44,7 +45,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
       //   console.log(eventTypeData);
 
       //   const saveAvailableToData = await fetch(
-      //     "https://spefind-server.onrender.com/api/state/add",
+      //     `${API_LINK}/api/state/add`,
       //     {
       //       method: "POST",
       //       body: JSON.stringify({
@@ -60,7 +61,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
       //   console.log(availableToData);
 
       //   const savePricing = await fetch(
-      //     "https://spefind-server.onrender.com/api/pricing/create",
+      //     `${API_LINK}/api/pricing/create`,
       //     {
       //       method: "POST",
       //       body: JSON.stringify({ pricing: formik.values.pricing }),
@@ -74,21 +75,20 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
       //   console.log(savePricingData);
       //   setLoading(false);
       // } catch (error) {}
-       const getEventTypeData = await fetch(
-         "https://spefind-server.onrender.com/api/event/type/all",
-         {
-           method: "GET",
-          //  body: JSON.stringify({
-          //    eventType: JSON.stringify(formik.values.eventType),
-          //  }),
-           headers: {
-             "Content-Type": "application/json",
-           },
-         }
-       );
-       console.log(getEventTypeData);
-       const eventTypeData = await getEventTypeData.json();
-       console.log(eventTypeData);
+      setLoading(true);
+      const getEventTypeData = await fetch(`${API_LINK}/api/event/type/all`, {
+        method: "GET",
+        //  body: JSON.stringify({
+        //    eventType: JSON.stringify(formik.values.eventType),
+        //  }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(getEventTypeData);
+      setLoading(false);
+      const eventTypeData = await getEventTypeData.json();
+      console.log(eventTypeData);
       !loading && nextStep();
     }
   };

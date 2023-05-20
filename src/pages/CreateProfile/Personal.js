@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Personal = ({ nextStep, formik }) => {
   // eslint-disable-next-line no-unused-vars
