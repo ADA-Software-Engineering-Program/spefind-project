@@ -59,7 +59,7 @@ const Personal = ({ nextStep, formik }) => {
               className="profile-input"
               placeholder="First Name"
               disabled
-              value={"hfhfuy"}
+              value={""}
               // {...formik.getFieldProps("firstName")}
             />
             {/* {formik.touched.firstName && formik.errors.firstName ? (
@@ -75,7 +75,7 @@ const Personal = ({ nextStep, formik }) => {
               className="profile-input"
               placeholder="Last Name"
               disabled
-              value={"kkhoybuy"}
+              value={""}
               // {...formik.getFieldProps("lastName")}
             />
             {/* {formik.touched.lastName && formik.errors.lastName ? (
@@ -271,28 +271,6 @@ const Personal = ({ nextStep, formik }) => {
               <div className="profile-error">{formik.errors.field}</div>
             ) : null}
           </div>
-          {/* 
-          <div>
-            <label className="profile-label-field" htmlFor="eventPicture">
-              Upload Event Picture
-            </label>
-            <div style={{ textAlign: "left" }}>
-              <input
-                type="file"
-                className="profile-file"
-                placeholder="hey, there"
-                multiple
-                onChange={(e) => setFiles(Array.from(e.target.files))}
-              />
-              <p>
-                Files must be less than 100 MB. Allowed file types:png, gif,
-                jpg, jpeg. <br />
-                <span style={{ fontSize: "13px" }}>
-                  Uploading Image - {progressTime}%
-                </span>
-              </p>
-            </div>
-          </div> */}
         </div>
       </div>
       <div className="btn-box">
@@ -306,42 +284,6 @@ const Personal = ({ nextStep, formik }) => {
         </button>
       </div>
 
-      {/* 
-      <div className="bio">
-        <h2>Bio* </h2>
-        <div className="bio-items">
-          <div className="arrow">
-            <ImArrowUp />
-            <ImArrowDown />
-          </div>
-          <textarea
-            name=""
-            id="textarea"
-            {...formik.getFieldProps("bio")}
-          ></textarea>
-          <BsTrashFill />
-        </div>
-      </div>
-
-      <div className="upload">
-      <label className="profile-label-field" style={{ margin: 20 }}>
-      PAST EVENTS
-        </label>
-      <small>Pictures of your past events</small>
-        <input
-          type="file"
-          className="select"
-          multiple
-          onChange={(e) => setFiles(Array.from(e.target.files))}
-        />
-        <p>
-          Files must be less than 100 MB. Allowed file types:png, gif, jpg,
-          jpeg.
-        </p>
-        <span style={{ fontSize: "13px", marginTop: "-18px" }}>
-          Uploading Image - {progressTime}%
-        </span>
-      </div> */}
     </div>
   );
 };

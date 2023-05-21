@@ -1,9 +1,64 @@
-import { useState } from "react";
+import { useState, useLayoutEffect, useMemo } from "react";
 import { API_LINK } from "../../utils/api";
 
 const Availabilty = ({ nextStep, prevStep, formik }) => {
   const formValues = ["pricing", "isVolunteer"];
   const [loading, setLoading] = useState(false);
+  const [eventTypes, setEventTypes] = useState([]);
+  const [availableToStates, setAvailableToStates] = useState([]);
+  // const [price, setPrice] = useState("");
+
+  // const news = useMemo(() => {}, [])
+  useLayoutEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const getEventTypeData = await fetch(`${API_LINK}/api/event/type/all`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        // console.log(getEventTypeData);
+        const eventTypeData = await getEventTypeData.json();
+        console.log(eventTypeData.data);
+        const neededEventTypesArray = eventTypeData.data.slice(-6);
+        setEventTypes(neededEventTypesArray);
+
+        const getAvailabeToData = await fetch(`${API_LINK}/api/state/all`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        // console.log(getAvailabeToData);
+        const availableToData = await getAvailabeToData.json();
+        console.log(availableToData);
+        const neededAvailableToDataArray = availableToData.data.slice(-6);
+        setAvailableToStates(neededAvailableToDataArray);
+
+        // const getPriceData = await fetch(`${API_LINK}`, {
+        //   method: "GET",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        // });
+        // //  console.log(getPriceData);
+        // const priceData = await getPriceData.json();
+        // //  console.log(priceData.data);
+        // const neededPriceArray = priceData.data.slice(-5);
+        // setPrice(neededPriceArray);
+        setLoading(false);
+      } catch (error) {}
+    };
+
+    fetchData();
+  }, []);
+  const memoizedEventTypesData = useMemo(() => eventTypes, [eventTypes]);
+  const memoizedAvailableToStates = useMemo(
+    () => availableToStates,
+    [availableToStates]
+  );
 
   const handleNext = async (e) => {
     e.preventDefault();
@@ -26,69 +81,6 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
     });
 
     if (errorField.length === 0) {
-      // try {
-      //   setLoading(true);
-      //   const saveEventType = await fetch(
-      //     `${API_LINK}/api/event/type/add`,
-      //     {
-      //       method: "POST",
-      //       body: JSON.stringify({
-      //         eventType: JSON.stringify(formik.values.eventType),
-      //       }),
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //     }
-      //   );
-      //   console.log(saveEventType);
-      //   const eventTypeData = await saveEventType.json();
-      //   console.log(eventTypeData);
-
-      //   const saveAvailableToData = await fetch(
-      //     `${API_LINK}/api/state/add`,
-      //     {
-      //       method: "POST",
-      //       body: JSON.stringify({
-      //         state: JSON.stringify(formik.values.availableTo),
-      //       }),
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //     }
-      //   );
-      //   console.log(saveAvailableToData);
-      //   const availableToData = await saveAvailableToData.json();
-      //   console.log(availableToData);
-
-      //   const savePricing = await fetch(
-      //     `${API_LINK}/api/pricing/create`,
-      //     {
-      //       method: "POST",
-      //       body: JSON.stringify({ pricing: formik.values.pricing }),
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //     }
-      //   );
-      //   console.log(savePricing);
-      //   const savePricingData = await savePricing.json();
-      //   console.log(savePricingData);
-      //   setLoading(false);
-      // } catch (error) {}
-      setLoading(true);
-      const getEventTypeData = await fetch(`${API_LINK}/api/event/type/all`, {
-        method: "GET",
-        //  body: JSON.stringify({
-        //    eventType: JSON.stringify(formik.values.eventType),
-        //  }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(getEventTypeData);
-      setLoading(false);
-      const eventTypeData = await getEventTypeData.json();
-      console.log(eventTypeData);
       !loading && nextStep();
     }
   };
@@ -105,170 +97,49 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           WHICH TYPES OF EVENTS ARE YOU INTERESTED IN?*
         </label>
         <div className="check-cont" {...formik.getFieldProps("eventType")}>
-          <div>
-            <input
-              type="checkbox"
-              name="eventType"
-              className="check-checkbox"
-              value="conference"
-              id="conference"
-            />
-            <label className="check-label" htmlFor="conference">
-              <span className="check-checkbox-button"></span>Conference
-              (Full-day Event)
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              name="eventType"
-              className="check-checkbox"
-              value="workshop"
-              id="workshop"
-            />
-            <label className="check-label" htmlFor="workshop">
-              <span className="check-checkbox-button"></span>Workshop (3+ hour
-              event)
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              name="eventType"
-              className="check-checkbox"
-              value="session"
-              id="session"
-            />
-            <label className="check-label" htmlFor="session">
-              <span className="check-checkbox-button"></span>Session (1-2 hr
-              event)
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              name="eventType"
-              className="check-checkbox"
-              value="moderator"
-              id="moderator"
-            />
-            <label className="check-label" htmlFor="moderator">
-              <span className="check-checkbox-button"></span>Moderator
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              name="eventType"
-              className="check-checkbox"
-              value="webinar"
-              id="webinar"
-            />
-            <label className="check-label" htmlFor="webinar">
-              <span className="check-checkbox-button"></span>Webinar (virtual
-              event)
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              name="eventType"
-              className="check-checkbox"
-              value="school"
-              id="school"
-            />
-            <label className="check-label" htmlFor="school">
-              <span className="check-checkbox-button"></span> School
-            </label>
-          </div>
+          {memoizedEventTypesData.map(function (event) {
+            return (
+              <div key={event._id}>
+                <input
+                  type="checkbox"
+                  name="eventType"
+                  className="check-checkbox"
+                  value={event._id}
+                  id={event.eventType}
+                />
+                <label className="check-label" htmlFor={event.eventType}>
+                  <span className="check-checkbox-button"></span>
+                  {event.eventType}
+                </label>
+              </div>
+            );
+          })}
         </div>
       </div>
 
       <div className="profile-group">
         <label className="profile-label">AVAILABLE TO*</label>
         <div className="check-cont" {...formik.getFieldProps("availableTo")}>
-          <div>
-            <input
-              type="checkbox"
-              name="availableTo"
-              className="check-checkbox"
-              value="nigeria"
-              id="nigeria"
-            />
-            <label className="check-label" htmlFor="nigeria">
-              <span className="check-checkbox-button"></span>Nigeria
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              name="availableTo"
-              className="check-checkbox"
-              value="ghana"
-              id="ghana"
-            />
-            <label className="check-label" htmlFor="ghana">
-              <span className="check-checkbox-button"></span>Ghana
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              name="availableTo"
-              className="check-checkbox"
-              value="somalia"
-              id="somalia"
-            />
-            <label className="check-label" htmlFor="somalia">
-              <span className="check-checkbox-button"></span>Somalia
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              name="availableTo"
-              className="check-checkbox"
-              value="south africa"
-              id="south_africa"
-            />
-            <label className="check-label" htmlFor="south_africa">
-              <span className="check-checkbox-button"></span>South Africa
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              name="availableTo"
-              className="check-checkbox"
-              value="turkey"
-              id="turkey"
-            />
-            <label className="check-label" htmlFor="turkey">
-              <span className="check-checkbox-button"></span>Turkey
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              name="availableTo"
-              className="check-checkbox"
-              value="egypt"
-              id="egypt"
-            />
-            <label className="check-label" htmlFor="egypt">
-              <span className="check-checkbox-button"></span>Egypt
-            </label>
-          </div>
+          {memoizedAvailableToStates.map((state) => {
+            return (
+              <div key={state._id}>
+                <input
+                  type="checkbox"
+                  name="availableTo"
+                  className="check-checkbox"
+                  value={state._id}
+                  id={state.state}
+                />
+                <label className="check-label" htmlFor={state.state}>
+                  <span className="check-checkbox-button"></span>
+                  {state.state}
+                </label>
+                {formik.touched.availableTo && formik.errors.availableTo ? (
+                  <div className="profile-error">{formik.errors.availableTo}</div>
+                ) : null}
+              </div>
+            );
+          })}
         </div>
       </div>
 

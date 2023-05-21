@@ -152,6 +152,9 @@ const CreateProfile = () => {
     if (!values.biographies) {
       errors.biographies = "Please fill out this field";
     }
+    if (!values.availableTo) {
+      errors.biographies = "Please select the place you are available to";
+    }
 
     if (!values.pastEvents) {
       errors.pastEvents = "Please fill out this field";
@@ -245,8 +248,7 @@ const CreateProfile = () => {
     try {
       const transformedData = {
         gender: formik.values.gender,
-        availableTo: ["64562ea7047002d00b89c13b", "64562e9c047002d00b89c139"],
-        // availableTo: formik.values.availableTo,
+        availableTo: formik.values.availableTo,
         biography: formik.values.biography,
         // phone: "+2348033092399",
         // address: "A3C Crimson Avenue, Denmark",
@@ -273,8 +275,7 @@ const CreateProfile = () => {
         language: formik.values.language,
         pricing: "64624ce93601576d40eaf574",
         // pricing: formik.values.pricing,
-        eventType: ["6456262b2c13aee088f5e7d0", "645625e42c13aee088f5e7ce"],
-        // eventType: formik.values.eventType,
+        eventType: formik.values.eventType,
         isVolunteer: formik.values.isVolunteer,
         isVisible: formik.values.isVisibile,
       };
@@ -311,7 +312,9 @@ const CreateProfile = () => {
         throw new Error(error);
       }
       if (!saveUserData.ok) {
-        setError("Your token might have expired, please try to log in again!");
+        setError(
+          "Your session might have expired, please try to log in again!"
+        );
         throw new Error(error);
       }
     } catch (error) {
@@ -334,9 +337,9 @@ const CreateProfile = () => {
       <div className="create-profile">
         <div className="form-header">
           <h1>Create Your Profile</h1>
-          <p>
+          {/* <p>
             All data are automatically saved. You can come back later any time.
-          </p>
+          </p> */}
         </div>
 
         <div className="form-container">
