@@ -4,19 +4,21 @@ import AppLayout from "../../layout/AppLayout";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
-import { useAuth } from "../../contexts/AuthContext";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage, db } from "../../firebase/firebase";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+// import { useAuth } from "../../contexts/AuthContext";
+// import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+// import { storage, db } from "../../firebase/firebase";
+// import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import Personal from "./Personal";
 import Niche from "./Niche";
 import Availabilty from "./Availabilty";
 import Visibilty from "./Visibilty";
 import Steppers from "./Steppers";
 
+import { API_LINK } from "../../utils/api";
+
 const CreateProfile = () => {
   //getting the firstName and lastName passed from the registration page
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
   // console.log(currentUser)
 
   const navigate = useNavigate();
@@ -150,6 +152,10 @@ const CreateProfile = () => {
     if (!values.biographies) {
       errors.biographies = "Please fill out this field";
     }
+    if (!values.availableTo || values.availableTo.length === 0) {
+      errors.availableTo =
+        "Please select at least one place you are available to";
+    }
 
     if (!values.pastEvents) {
       errors.pastEvents = "Please fill out this field";
@@ -243,8 +249,7 @@ const CreateProfile = () => {
     try {
       const transformedData = {
         gender: formik.values.gender,
-        availableTo: ["64562ea7047002d00b89c13b", "64562e9c047002d00b89c139"],
-        // availableTo: formik.values.availableTo,
+        availableTo: formik.values.availableTo,
         biography: formik.values.biography,
         // phone: "+2348033092399",
         // address: "A3C Crimson Avenue, Denmark",
@@ -255,10 +260,8 @@ const CreateProfile = () => {
           numberOfAttendees: formik.values.numberOfAttendees,
           field: formik.values.field,
         },
-        field: "645532c718a97f60ab471d48",
-        // field: formik.values.speakerField,
-        subField: "64625477cf500ba06284e141",
-        // subField: formik.values.speakerSubField,
+        field: formik.values.speakerField,
+        subField: formik.values.speakerSubField,
         education: formik.values.education,
         job: {
           title: formik.values.jobTitle,
@@ -269,27 +272,22 @@ const CreateProfile = () => {
         city: formik.values.city,
         country: formik.values.country,
         language: formik.values.language,
-        pricing: "64624ce93601576d40eaf574",
-        // pricing: formik.values.pricing,
-        eventType: ["6456262b2c13aee088f5e7d0", "645625e42c13aee088f5e7ce"],
-        // eventType: formik.values.eventType,
+        pricing: formik.values.pricing,
+        eventType: formik.values.eventType,
         isVolunteer: formik.values.isVolunteer,
         isVisible: formik.values.isVisibile,
       };
 
       const token = sessionStorage.getItem("token");
-      const saveUserData = await fetch(
-        "https://spefind-server.onrender.com/api/profile/setup",
-        {
-          method: "PUT",
-          body: JSON.stringify(transformedData),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-            redirect: "follow",
-          },
-        }
-      );
+      const saveUserData = await fetch(`${API_LINK}/api/profile/setup`, {
+        method: "PUT",
+        body: JSON.stringify(transformedData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          redirect: "follow",
+        },
+      });
       const data = await saveUserData.json();
       console.log(data);
 
@@ -312,7 +310,9 @@ const CreateProfile = () => {
         throw new Error(error);
       }
       if (!saveUserData.ok) {
-        setError("Your token might have expired, please try to log in again!");
+        setError(
+          "Your session might have expired, please try to log in again!"
+        );
         throw new Error(error);
       }
     } catch (error) {
