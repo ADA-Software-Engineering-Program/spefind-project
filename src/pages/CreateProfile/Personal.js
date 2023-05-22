@@ -1,10 +1,36 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { API_LINK } from "../../utils/api";
 
 const Personal = ({ nextStep, formik }) => {
   // eslint-disable-next-line no-unused-vars
   const [progressTime, setProgressTime] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [files, setFiles] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const token = sessionStorage.getItem("token");
+
+  const fetchUserData = async () => {
+    try {
+      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // console.log(getUserData);
+      const UserData = await getUserData.json();
+      // console.log(UserData.user);
+      setFirstName(UserData.user.firstName);
+      setLastName(UserData.user.lastName);
+    } catch (error) {}
+  };
+  useMemo(() => {
+    fetchUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const formValues = [
     // "firstName",
@@ -59,12 +85,8 @@ const Personal = ({ nextStep, formik }) => {
               className="profile-input"
               placeholder="First Name"
               disabled
-              value={""}
-              // {...formik.getFieldProps("firstName")}
+              value={firstName}
             />
-            {/* {formik.touched.firstName && formik.errors.firstName ? (
-              <div className="profile-error">{formik.errors.firstName}</div>
-            ) : null} */}
           </div>
 
           <div>
@@ -75,12 +97,8 @@ const Personal = ({ nextStep, formik }) => {
               className="profile-input"
               placeholder="Last Name"
               disabled
-              value={""}
-              // {...formik.getFieldProps("lastName")}
+              value={lastName}
             />
-            {/* {formik.touched.lastName && formik.errors.lastName ? (
-              <div className="profile-error">{formik.errors.lastName}</div>
-            ) : null} */}
           </div>
         </div>
       </div>
@@ -283,7 +301,6 @@ const Personal = ({ nextStep, formik }) => {
           Next
         </button>
       </div>
-
     </div>
   );
 };

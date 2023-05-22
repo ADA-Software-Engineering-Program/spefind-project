@@ -152,8 +152,9 @@ const CreateProfile = () => {
     if (!values.biographies) {
       errors.biographies = "Please fill out this field";
     }
-    if (!values.availableTo) {
-      errors.biographies = "Please select the place you are available to";
+    if (!values.availableTo || values.availableTo.length === 0) {
+      errors.availableTo =
+        "Please select at least one place you are available to";
     }
 
     if (!values.pastEvents) {
@@ -259,10 +260,8 @@ const CreateProfile = () => {
           numberOfAttendees: formik.values.numberOfAttendees,
           field: formik.values.field,
         },
-        field: "645532c718a97f60ab471d48",
-        // field: formik.values.speakerField,
-        subField: "64625477cf500ba06284e141",
-        // subField: formik.values.speakerSubField,
+        field: formik.values.speakerField,
+        subField: formik.values.speakerSubField,
         education: formik.values.education,
         job: {
           title: formik.values.jobTitle,
@@ -273,8 +272,7 @@ const CreateProfile = () => {
         city: formik.values.city,
         country: formik.values.country,
         language: formik.values.language,
-        pricing: "64624ce93601576d40eaf574",
-        // pricing: formik.values.pricing,
+        pricing: formik.values.pricing,
         eventType: formik.values.eventType,
         isVolunteer: formik.values.isVolunteer,
         isVisible: formik.values.isVisibile,
@@ -337,9 +335,9 @@ const CreateProfile = () => {
       <div className="create-profile">
         <div className="form-header">
           <h1>Create Your Profile</h1>
-          {/* <p>
+          <p>
             All data are automatically saved. You can come back later any time.
-          </p> */}
+          </p>
         </div>
 
         <div className="form-container">

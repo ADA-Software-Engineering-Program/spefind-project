@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { API_LINK } from "../../utils/api";
 
 const Availabilty = ({ nextStep, prevStep, formik }) => {
@@ -6,59 +6,52 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
   const [loading, setLoading] = useState(false);
   const [eventTypes, setEventTypes] = useState([]);
   const [availableToStates, setAvailableToStates] = useState([]);
-  // const [price, setPrice] = useState("");
+  const [price, setPrice] = useState([]);
 
-  // const news = useMemo(() => {}, [])
-  useLayoutEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const getEventTypeData = await fetch(`${API_LINK}/api/event/type/all`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        // console.log(getEventTypeData);
-        const eventTypeData = await getEventTypeData.json();
-        console.log(eventTypeData.data);
-        const neededEventTypesArray = eventTypeData.data.slice(-6);
-        setEventTypes(neededEventTypesArray);
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const getEventTypeData = await fetch(`${API_LINK}/api/event/type/all`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      // console.log(getEventTypeData);
+      const eventTypeData = await getEventTypeData.json();
+      // console.log(eventTypeData.data);
+      const neededEventTypesArray = eventTypeData.data.slice(-6);
+      setEventTypes(neededEventTypesArray);
 
-        const getAvailabeToData = await fetch(`${API_LINK}/api/state/all`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        // console.log(getAvailabeToData);
-        const availableToData = await getAvailabeToData.json();
-        console.log(availableToData);
-        const neededAvailableToDataArray = availableToData.data.slice(-6);
-        setAvailableToStates(neededAvailableToDataArray);
+      const getAvailabeToData = await fetch(`${API_LINK}/api/state/all`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      // console.log(getAvailabeToData);
+      const availableToData = await getAvailabeToData.json();
+      // console.log(availableToData);
+      const neededAvailableToDataArray = availableToData.data.slice(-6);
+      setAvailableToStates(neededAvailableToDataArray);
 
-        // const getPriceData = await fetch(`${API_LINK}`, {
-        //   method: "GET",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        // });
-        // //  console.log(getPriceData);
-        // const priceData = await getPriceData.json();
-        // //  console.log(priceData.data);
-        // const neededPriceArray = priceData.data.slice(-5);
-        // setPrice(neededPriceArray);
-        setLoading(false);
-      } catch (error) {}
-    };
-
+      const getPriceData = await fetch(`${API_LINK}/api/pricing/all`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      //  console.log(getPriceData);
+      const priceData = await getPriceData.json();
+      // console.log(priceData.data);
+      const neededPriceArray = priceData.data.slice(-5);
+      setPrice(neededPriceArray);
+      setLoading(false);
+    } catch (error) {}
+  };
+  useMemo(() => {
     fetchData();
   }, []);
-  const memoizedEventTypesData = useMemo(() => eventTypes, [eventTypes]);
-  const memoizedAvailableToStates = useMemo(
-    () => availableToStates,
-    [availableToStates]
-  );
 
   const handleNext = async (e) => {
     e.preventDefault();
@@ -97,7 +90,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           WHICH TYPES OF EVENTS ARE YOU INTERESTED IN?*
         </label>
         <div className="check-cont" {...formik.getFieldProps("eventType")}>
-          {memoizedEventTypesData.map(function (event) {
+          {eventTypes.map(function (event) {
             return (
               <div key={event._id}>
                 <input
@@ -120,7 +113,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
       <div className="profile-group">
         <label className="profile-label">AVAILABLE TO*</label>
         <div className="check-cont" {...formik.getFieldProps("availableTo")}>
-          {memoizedAvailableToStates.map((state) => {
+          {availableToStates.map((state) => {
             return (
               <div key={state._id}>
                 <input
@@ -135,7 +128,9 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
                   {state.state}
                 </label>
                 {formik.touched.availableTo && formik.errors.availableTo ? (
-                  <div className="profile-error">{formik.errors.availableTo}</div>
+                  <div className="profile-error">
+                    {formik.errors.availableTo}
+                  </div>
                 ) : null}
               </div>
             );
@@ -146,70 +141,22 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
       <div className="profile-group">
         <label className="profile-label">FEE*</label>
         <div className="check-cont" {...formik.getFieldProps("pricing")}>
-          <div>
-            <input
-              type="radio"
-              name="pricing"
-              className="check-input"
-              value="0-20"
-              id="pricing1"
-            />
-            <label className="check-label" htmlFor="pricing1">
-              <span className="check-radio-button"></span> Up to #20000
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="radio"
-              name="pricing"
-              className="check-input"
-              value="20-30"
-              id="pricing2"
-            />
-            <label className="check-label" htmlFor="pricing2">
-              <span className="check-radio-button"></span>#20000 - 30000
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="radio"
-              name="pricing"
-              className="check-input"
-              value="30-40"
-              id="pricing3"
-            />
-            <label className="check-label" htmlFor="pricing3">
-              <span className="check-radio-button"></span>#30000 - 40000
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="radio"
-              name="pricing"
-              className="check-input"
-              value="40-70"
-              id="pricing4"
-            />
-            <label className="check-label" htmlFor="pricing4">
-              <span className="check-radio-button"></span> #40000 - 70000
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="radio"
-              name="pricing"
-              className="check-input"
-              value="70-100"
-              id="pricing5"
-            />
-            <label className="check-label" htmlFor="pricing5">
-              <span className="check-radio-button"></span> #70000 - 100000
-            </label>
-          </div>
+          {price.map((prices) => {
+            return (
+              <div key={prices._id}>
+                <input
+                  type="radio"
+                  name="pricing"
+                  className="check-input"
+                  value={prices._id}
+                  id={prices.pricing}
+                />
+                <label className="check-label" htmlFor={prices.pricing}>
+                  <span className="check-radio-button"></span> {prices.pricing}
+                </label>
+              </div>
+            );
+          })}
         </div>
       </div>
 
