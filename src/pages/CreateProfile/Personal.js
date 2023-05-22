@@ -1,10 +1,36 @@
-import React, { useState } from "react";
+import { useState, useMemo } from "react";
+import { API_LINK } from "../../utils/api";
 
 const Personal = ({ nextStep, formik }) => {
   // eslint-disable-next-line no-unused-vars
   const [progressTime, setProgressTime] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [files, setFiles] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const token = sessionStorage.getItem("token");
+
+  const fetchUserData = async () => {
+    try {
+      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // console.log(getUserData);
+      const UserData = await getUserData.json();
+      // console.log(UserData.user);
+      setFirstName(UserData.user.firstName);
+      setLastName(UserData.user.lastName);
+    } catch (error) {}
+  };
+  useMemo(() => {
+    fetchUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const formValues = [
     // "firstName",
@@ -59,12 +85,8 @@ const Personal = ({ nextStep, formik }) => {
               className="profile-input"
               placeholder="First Name"
               disabled
-              value={"hfhfuy"}
-              // {...formik.getFieldProps("firstName")}
+              value={firstName}
             />
-            {/* {formik.touched.firstName && formik.errors.firstName ? (
-              <div className="profile-error">{formik.errors.firstName}</div>
-            ) : null} */}
           </div>
 
           <div>
@@ -75,12 +97,8 @@ const Personal = ({ nextStep, formik }) => {
               className="profile-input"
               placeholder="Last Name"
               disabled
-              value={"kkhoybuy"}
-              // {...formik.getFieldProps("lastName")}
+              value={lastName}
             />
-            {/* {formik.touched.lastName && formik.errors.lastName ? (
-              <div className="profile-error">{formik.errors.lastName}</div>
-            ) : null} */}
           </div>
         </div>
       </div>
@@ -271,28 +289,6 @@ const Personal = ({ nextStep, formik }) => {
               <div className="profile-error">{formik.errors.field}</div>
             ) : null}
           </div>
-          {/* 
-          <div>
-            <label className="profile-label-field" htmlFor="eventPicture">
-              Upload Event Picture
-            </label>
-            <div style={{ textAlign: "left" }}>
-              <input
-                type="file"
-                className="profile-file"
-                placeholder="hey, there"
-                multiple
-                onChange={(e) => setFiles(Array.from(e.target.files))}
-              />
-              <p>
-                Files must be less than 100 MB. Allowed file types:png, gif,
-                jpg, jpeg. <br />
-                <span style={{ fontSize: "13px" }}>
-                  Uploading Image - {progressTime}%
-                </span>
-              </p>
-            </div>
-          </div> */}
         </div>
       </div>
       <div className="btn-box">
@@ -305,43 +301,6 @@ const Personal = ({ nextStep, formik }) => {
           Next
         </button>
       </div>
-
-      {/* 
-      <div className="bio">
-        <h2>Bio* </h2>
-        <div className="bio-items">
-          <div className="arrow">
-            <ImArrowUp />
-            <ImArrowDown />
-          </div>
-          <textarea
-            name=""
-            id="textarea"
-            {...formik.getFieldProps("bio")}
-          ></textarea>
-          <BsTrashFill />
-        </div>
-      </div>
-
-      <div className="upload">
-      <label className="profile-label-field" style={{ margin: 20 }}>
-      PAST EVENTS
-        </label>
-      <small>Pictures of your past events</small>
-        <input
-          type="file"
-          className="select"
-          multiple
-          onChange={(e) => setFiles(Array.from(e.target.files))}
-        />
-        <p>
-          Files must be less than 100 MB. Allowed file types:png, gif, jpg,
-          jpeg.
-        </p>
-        <span style={{ fontSize: "13px", marginTop: "-18px" }}>
-          Uploading Image - {progressTime}%
-        </span>
-      </div> */}
     </div>
   );
 };

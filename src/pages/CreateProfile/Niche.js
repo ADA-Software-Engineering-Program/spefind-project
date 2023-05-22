@@ -161,7 +161,7 @@ const Niche = ({ nextStep, prevStep, formik }) => {
               name="position"
               id="position"
               className="profile-input"
-              placeholder="Type City"
+              placeholder="Type Here"
               {...formik.getFieldProps("position")}
             />
             {formik.touched.position && formik.errors.position ? (

@@ -13,6 +13,7 @@ import useInput from "../../hooks/useInput";
 import styles from "./Register.module.css";
 
 import AppLayout from "../../layout/AppLayout";
+import { API_LINK } from "../../utils/api";
 
 function Register() {
   const navigate = useNavigate();
@@ -137,21 +138,18 @@ function Register() {
         return;
       }
 
-      const saveUserData = await fetch(
-        "https://spefind-server.onrender.com/api/auth/speaker/signup",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            firstName: firstNameInputValue,
-            lastName: lastNameInputValue,
-            email: emailInputvalue,
-            password: passwordInputValue,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const saveUserData = await fetch(`${API_LINK}/api/auth/speaker/signup`, {
+        method: "POST",
+        body: JSON.stringify({
+          firstName: firstNameInputValue,
+          lastName: lastNameInputValue,
+          email: emailInputvalue,
+          password: passwordInputValue,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       setLoading(true);
       console.log(saveUserData);
 

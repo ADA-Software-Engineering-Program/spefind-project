@@ -13,6 +13,7 @@ import { useAuth } from "../../contexts/AuthContext";
 
 import useInput from "../../hooks/useInput";
 import styles from "./Register.module.css";
+import { API_LINK } from "../../utils/api";
 
 function EventRegister() {
   const navigate = useNavigate();
@@ -138,7 +139,7 @@ function EventRegister() {
       }
 
       const saveUserData = await fetch(
-        "https://spefind-server.onrender.com/api/auth/organizer/signup",
+        `${API_LINK}/api/auth/organizer/signup`,
         {
           method: "POST",
           body: JSON.stringify({
