@@ -1,58 +1,5 @@
-import { useState, useMemo } from "react";
-import { API_LINK } from "../../utils/api";
-
-const Availabilty = ({ nextStep, prevStep, formik }) => {
+const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
   const formValues = ["pricing", "isVolunteer"];
-  const [loading, setLoading] = useState(false);
-  const [eventTypes, setEventTypes] = useState([]);
-  const [availableToStates, setAvailableToStates] = useState([]);
-  const [price, setPrice] = useState([]);
-
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const getEventTypeData = await fetch(`${API_LINK}/api/event/type/all`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      // console.log(getEventTypeData);
-      const eventTypeData = await getEventTypeData.json();
-      // console.log(eventTypeData.data);
-      const neededEventTypesArray = eventTypeData.data.slice(-6);
-      setEventTypes(neededEventTypesArray);
-
-      const getAvailabeToData = await fetch(`${API_LINK}/api/state/all`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      // console.log(getAvailabeToData);
-      const availableToData = await getAvailabeToData.json();
-      // console.log(availableToData);
-      const neededAvailableToDataArray = availableToData.data.slice(-6);
-      setAvailableToStates(neededAvailableToDataArray);
-
-      const getPriceData = await fetch(`${API_LINK}/api/pricing/all`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      //  console.log(getPriceData);
-      const priceData = await getPriceData.json();
-      // console.log(priceData.data);
-      const neededPriceArray = priceData.data.slice(-5);
-      setPrice(neededPriceArray);
-      setLoading(false);
-    } catch (error) {}
-  };
-  useMemo(() => {
-    fetchData();
-  }, []);
-
   const handleNext = async (e) => {
     e.preventDefault();
     const errorField = [];
@@ -74,7 +21,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
     });
 
     if (errorField.length === 0) {
-      !loading && nextStep();
+      nextStep();
     }
   };
 
@@ -90,7 +37,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
           WHICH TYPES OF EVENTS ARE YOU INTERESTED IN?*
         </label>
         <div className="check-cont" {...formik.getFieldProps("eventType")}>
-          {eventTypes.map(function (event) {
+          {fetchData.eventTypes.map(function (event) {
             return (
               <div key={event._id}>
                 <input
@@ -113,7 +60,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
       <div className="profile-group">
         <label className="profile-label">AVAILABLE TO*</label>
         <div className="check-cont" {...formik.getFieldProps("availableTo")}>
-          {availableToStates.map((state) => {
+          {fetchData.availableToStates.map((state) => {
             return (
               <div key={state._id}>
                 <input
@@ -141,7 +88,7 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
       <div className="profile-group">
         <label className="profile-label">FEE*</label>
         <div className="check-cont" {...formik.getFieldProps("pricing")}>
-          {price.map((prices) => {
+          {fetchData.price.map((prices) => {
             return (
               <div key={prices._id}>
                 <input
@@ -202,10 +149,9 @@ const Availabilty = ({ nextStep, prevStep, formik }) => {
         <button
           type="button"
           className="submitBtn submitBtn--grey"
-          disabled={loading}
           onClick={handleNext}
         >
-          {loading ? "Please wait" : "Next"}
+          {"Next"}
         </button>
       </div>
     </div>
