@@ -134,6 +134,72 @@ const CreateProfile = () => {
   const [step, setStep] = useState(0);
   const [error, setError] = useState("");
 
+  const [neededData, setNeededData] = useState({
+    eventTypes: [],
+    availableToStates: [],
+    price: [],
+    fieldOptions: [],
+  });
+
+  const dataFectch = async () => {
+    try {
+      const getEventTypeData = await fetch(`${API_LINK}/api/event/type/all`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const eventTypeData = await getEventTypeData.json();
+      // console.log(eventTypeData.data);
+      const neededEventTypesArray = eventTypeData.data.slice(-6);
+      setNeededData((prevData) => ({
+        ...prevData,
+        eventTypes: neededEventTypesArray,
+      }));
+
+      const getAvailabeToData = await fetch(`${API_LINK}/api/state/all`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const availableToData = await getAvailabeToData.json();
+      // console.log(availableToData);
+      const neededAvailableToDataArray = availableToData.data.slice(-6);
+      setNeededData((prevData) => ({
+        ...prevData,
+        availableToStates: neededAvailableToDataArray,
+      }));
+
+      const getPriceData = await fetch(`${API_LINK}/api/pricing/all`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const priceData = await getPriceData.json();
+      // console.log(priceData.data);
+      const neededPriceArray = priceData.data.slice(-5);
+      setNeededData((prevData) => ({
+        ...prevData,
+        price: neededPriceArray,
+      }));
+
+      const getSpeakerFieldOption = await fetch(`${API_LINK}/api/field/all`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      // console.log(getSpeakerFieldOption);
+      const speakerFieldOption = await getSpeakerFieldOption.json();
+      // console.log(speakerFieldOption.data);
+      setNeededData((prevData) => ({
+        ...prevData,
+        fieldOptions: speakerFieldOption.data,
+      }));
+    } catch (error) {}
+  };
   const validate = (values) => {
     const errors = {};
     // firstname
@@ -183,7 +249,6 @@ const CreateProfile = () => {
 
     return errors;
   };
-
   const formik = useFormik({
     initialValues: {
       // personal
@@ -242,6 +307,7 @@ const CreateProfile = () => {
   useEffect(() => {
     const isInfoFilled = !!sessionStorage.getItem("userId");
     isInfoFilled && navigate("/dashboard");
+    dataFectch();
   }, [navigate]);
 
   const submit = async () => {
@@ -348,13 +414,19 @@ const CreateProfile = () => {
 
             {step === 0 && <Personal nextStep={nextStep} formik={formik} />}
             {step === 1 && (
-              <Niche nextStep={nextStep} prevStep={prevStep} formik={formik} />
+              <Niche
+                nextStep={nextStep}
+                prevStep={prevStep}
+                formik={formik}
+                optionFields={neededData}
+              />
             )}
             {step === 2 && (
               <Availabilty
                 nextStep={nextStep}
                 prevStep={prevStep}
                 formik={formik}
+                fetchData={neededData}
               />
             )}
             {step === 3 && (
