@@ -1,6 +1,4 @@
-import React from "react";
-
-const Niche = ({ nextStep, prevStep, formik }) => {
+const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
   const formValues = [
     "speakerField",
     "speakerSubField",
@@ -48,14 +46,25 @@ const Niche = ({ nextStep, prevStep, formik }) => {
         <label className="profile-label" htmlFor="speakerField">
           YOUR MAIN TOPICS*{" "}
         </label>
-        <input
-          type="text"
-          name="speakerField"
-          id="speakerField"
+        <select
           className="profile-input"
-          placeholder="i.e family, leadership, technology"
           {...formik.getFieldProps("speakerField")}
-        />
+        >
+          <option value={""} disabled defaultValue={""}>
+            i.e family, leadership, technology
+          </option>
+          {optionFields.fieldOptions.map((option) => {
+            return (
+              <option
+                key={option._id}
+                value={option.field}
+                className="profile-input"
+              >
+                {option.field}
+              </option>
+            );
+          })}
+        </select>
         {formik.touched.speakerField && formik.errors.speakerField ? (
           <div className="profile-error">{formik.errors.speakerField}</div>
         ) : null}
