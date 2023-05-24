@@ -5,20 +5,45 @@
   margin-bottom: 0rem !important;
   text-align: right;
 }
-
-#form_item_path {
-  margin: 2rem auto !important;
-}
-
 .dashboard label {
   margin-top: 1rem;
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
 }
-.ant-input,
+.inputsWrapper {
+  display: flex;
+  gap: 2rem;
+}
+.credentialsInstructions {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: rgba(17, 16, 16, 0.4);
+}
+.input {
+  width: 50%;
+  padding: 0.5rem;
+}
+.input,
 .textArea {
-  width: 90%;
+  border: 2.43px solid rgba(148, 141, 141, 0.3);
+  border-radius: 5.15455px;
 }
-.ant-input:hover {
-  border-color: #e3502f !important;
+.textArea {
+  width: 100%;
+  padding: 1rem 2rem 1rem 2rem;
+}
+.input:focus,
+.textArea:focus {
+  outline: 1px solid #e3502f;
+}
+.input:hover,
+.textArea:hover {
+  border-color: 1px solid #e3502f !important;
 }
 
 .textArea {
@@ -83,7 +108,7 @@
 }
 .editProfilePicture {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2rem;
   gap: 1rem;
   width: max-content;
   margin-top: 1rem;
@@ -91,12 +116,26 @@
 
 .btnWrapper {
   display: grid;
+  grid-template-rows: 3.8rem 3.8rem 3.8rem;
+  gap: 0.2rem;
 }
 .editProfilePicture div .btn {
   background-color: #e3502f;
   border-radius: 1.5px;
   color: white;
-  border-radius: 1.5px;
-  white-space: nowrap;
-  margin: 0.2rem 0rem;
+  padding: 0rem 1rem !important;
+}
+@media only screen and (max-width: 676px) {
+  .inputsWrapper {
+    flex-direction: column;
+  }
+  .input {
+    width: 100%;
+  }
+  .editProfilePicture {
+    grid-template-columns: 1fr 1fr;
+  }
+  .btnWrapper {
+    grid-template-rows: 3rem 3rem 3rem;
+  }
 }

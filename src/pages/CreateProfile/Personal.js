@@ -85,7 +85,8 @@ const Personal = ({ nextStep, formik }) => {
               className="profile-input"
               placeholder="First Name"
               disabled
-              value={firstName}
+              readOnly={true}
+              defaultValue={firstName}
             />
           </div>
 
@@ -97,7 +98,8 @@ const Personal = ({ nextStep, formik }) => {
               className="profile-input"
               placeholder="Last Name"
               disabled
-              value={lastName}
+              readOnly={true}
+              defaultValue={lastName}
             />
           </div>
         </div>
