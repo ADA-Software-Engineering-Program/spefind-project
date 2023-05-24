@@ -1,8 +1,6 @@
 import React from "react";
 
 import "./PersonalDetails.css";
-
-import { Form, Input } from "antd";
 import userImg from "../../assets/userImg.png";
 
 const PersonalDetails = () => {
@@ -15,38 +13,51 @@ const PersonalDetails = () => {
       <p className="dashboardDetail">
         Spefind automatically saves your dashboard changes
       </p>
-      <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
+      <form onSubmit={onFinish}>
         <div>
-          <label htmlFor="firstName"> First Name</label>
+          <label htmlFor="name">Name</label>
         </div>
-
-        <Input aria-label="firstname" placeholder="Type here" id="firstName" />
-        <div>
-          <label htmlFor="lastName"> Last Name</label>
+        <div className="inputsWrapper">
+          <input
+            aria-label="first name"
+            placeholder="First Name"
+            id="firstName"
+            className="input"
+          />
+          <input
+            aria-label="last name"
+            placeholder="Last Name"
+            id="lastName"
+            className="input"
+          />
         </div>
-        <Input aria-label="lastname" placeholder="Type here" id="lastName" />
-        <div>
-          <label htmlFor="age"> Age</label>
-        </div>
-        <Input aria-label="age" placeholder="Type here" id="age" />
         <div>
           <label htmlFor="professional_credentials">
             Professional Credentials
           </label>
+          <p className="credentialsInstructions">
+            i.e courses, trainings, school certificates
+          </p>
         </div>
-        <Input aria-label="professional_credentials" placeholder="Type here" />
-        <div>
-          <label htmlFor="prefered_pronouns">Prefered pronouns</label>
-        </div>
-        <Input
-          aria-label="prefered_pronouns"
+        <input
+          aria-label="professional_credentials"
           placeholder="Type here"
-          id="prefered_pronouns"
+          className="input"
+          id="professional_credentials"
+        />
+        <div>
+          <label htmlFor="credentials">Upload Credentials/Certificates</label>
+        </div>
+        <input
+          type="file"
+          aria-label="credentials"
+          placeholder="Type here"
+          className="input"
+          id="credentials"
         />
         <div>
           <label htmlFor="gender">Gender</label>
         </div>
-
         <div className="genderWrapper">
           <input
             id="male"
@@ -80,40 +91,59 @@ const PersonalDetails = () => {
           />
           <label htmlFor="others">Others</label>
         </div>
-
-        <label htmlFor="coverBanner">
-          Cover Banner
-          <input
-            type="file"
-            name="selectFile"
-            id="coverBanner"
-            aria-label="cover banner"
-            className="selectFile"
-          />
-        </label>
+        <div>
+          <label htmlFor="coverBanner"> Cover Banner</label>
+        </div>
+        <input
+          type="file"
+          name="selectFile"
+          id="coverBanner"
+          aria-label="cover banner"
+          className="selectFile"
+        />
         <div>
           <label htmlFor="image">Edit Profile Picture</label>
         </div>
         <div className="editProfilePicture">
-          <img src={userImg} alt="edit your profile avatar" />
+          <img src={userImg} alt=" profile avatar" />
           <div className="btnWrapper">
-            <button className="btn">Remove</button>
-            <button className="btn">Change Picture</button>
-            <button className="btn">Crop Picture</button>
+            <button type="button" className="btn">
+              Remove
+            </button>
+            <button type="button" className="btn">
+              Change Picture
+            </button>
+            <button type="button" className="btn">
+              Crop Picture
+            </button>
           </div>
         </div>
         <div>
-          <label htmlFor="country_or_state">Country or State & City</label>
+          <label htmlFor="country_or_city">Country & City</label>
         </div>
-        <Input
-          aria-label="country_or_state"
-          placeholder="Type here"
-          id="country_or_state"
-        />
+        <div className="inputsWrapper">
+          <input
+            aria-label="country"
+            placeholder="Type Country"
+            id="country"
+            className="input"
+          />
+          <input
+            aria-label="country"
+            placeholder="Type City"
+            id="country"
+            className="input"
+          />
+        </div>
         <div>
           <label htmlFor="timeZone">Time Zone</label>
         </div>
-        <Input aria-label="timeZone" placeholder="Type here" id="timeZone" />
+        <input
+          aria-label="timeZone"
+          placeholder="Type here"
+          id="timeZone"
+          className="input"
+        />
         <div>
           <label htmlFor="biography">Biography</label>
         </div>
@@ -130,7 +160,7 @@ const PersonalDetails = () => {
           className="textArea"
           id="whyChooseMe"
         ></textarea>
-      </Form>
+      </form>
     </div>
   );
 };
