@@ -139,6 +139,8 @@ const CreateProfile = () => {
     availableToStates: [],
     price: [],
     fieldOptions: [],
+    firstName: "",
+    lastName: "",
   });
 
   const dataFectch = async () => {
@@ -197,6 +199,23 @@ const CreateProfile = () => {
       setNeededData((prevData) => ({
         ...prevData,
         fieldOptions: speakerFieldOption.data,
+      }));
+
+      const token = sessionStorage.getItem("token");
+      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // console.log(getUserData);
+      const userData = await getUserData.json();
+      // console.log(userData.user);
+      setNeededData((prevData) => ({
+        ...prevData,
+        firstName: userData?.user?.firstName,
+        lastName: userData?.user?.lastName,
       }));
     } catch (error) {}
   };
@@ -412,7 +431,13 @@ const CreateProfile = () => {
               <Steppers ref={ref} />
             </div>
 
-            {step === 0 && <Personal nextStep={nextStep} formik={formik} />}
+            {step === 0 && (
+              <Personal
+                nextStep={nextStep}
+                formik={formik}
+                userData={neededData}
+              />
+            )}
             {step === 1 && (
               <Niche
                 nextStep={nextStep}

@@ -1,36 +1,10 @@
-import { useState, useMemo } from "react";
-import { API_LINK } from "../../utils/api";
+import { useState } from "react";
 
-const Personal = ({ nextStep, formik }) => {
+const Personal = ({ nextStep, formik, userData }) => {
   // eslint-disable-next-line no-unused-vars
   const [progressTime, setProgressTime] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [files, setFiles] = useState([]);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-
-  const token = sessionStorage.getItem("token");
-
-  const fetchUserData = async () => {
-    try {
-      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      // console.log(getUserData);
-      const UserData = await getUserData.json();
-      // console.log(UserData.user);
-      setFirstName(UserData.user.firstName);
-      setLastName(UserData.user.lastName);
-    } catch (error) {}
-  };
-  useMemo(() => {
-    fetchUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const formValues = [
     // "firstName",
@@ -86,7 +60,7 @@ const Personal = ({ nextStep, formik }) => {
               placeholder="First Name"
               disabled
               readOnly={true}
-              defaultValue={firstName}
+              defaultValue={userData.firstName}
             />
           </div>
 
@@ -99,7 +73,7 @@ const Personal = ({ nextStep, formik }) => {
               placeholder="Last Name"
               disabled
               readOnly={true}
-              defaultValue={lastName}
+              defaultValue={userData.lastName}
             />
           </div>
         </div>

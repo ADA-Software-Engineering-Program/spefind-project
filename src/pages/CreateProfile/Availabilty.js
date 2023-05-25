@@ -1,4 +1,7 @@
+import { useState } from "react";
 const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
+  const [showOtherstates, setshowOtherstates] = useState(false);
+
   const formValues = ["pricing", "isVolunteer"];
   const handleNext = async (e) => {
     e.preventDefault();
@@ -74,20 +77,52 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
                   <span className="check-checkbox-button"></span>
                   {state.state}
                 </label>
-                {formik.touched.availableTo && formik.errors.availableTo ? (
-                  <div className="profile-error">
-                    {formik.errors.availableTo}
-                  </div>
-                ) : null}
               </div>
             );
           })}
+          <input
+            type="checkbox"
+            className="check-checkbox"
+            onClick={() => {
+              setshowOtherstates(!showOtherstates);
+            }}
+            id={"otherStates"}
+          />
+          <label className="check-label" htmlFor={"otherStates"}>
+            <span className="check-checkbox-button"></span>
+            Other Country
+          </label>
+          {formik.touched.availableTo && formik.errors.availableTo ? (
+            <div className="profile-error">{formik.errors.availableTo}</div>
+          ) : null}
+          <input
+            type="text"
+            name="availableTo"
+            placeholder="Type country here"
+            className={
+              showOtherstates
+                ? "otherState-input displayBlock"
+                : "otherState-input"
+            }
+            // value={""}
+            // id={"otherStates"}
+          />
         </div>
       </div>
 
       <div className="profile-group">
         <label className="profile-label">FEE*</label>
         <div className="check-cont" {...formik.getFieldProps("pricing")}>
+          <input
+            type="radio"
+            className="check-input"
+            id={"askForPrice"}
+            name="pricing"
+            // value={prices._id}
+          />
+          <label className="check-label" htmlFor={"askForPrice"}>
+            <span className="check-radio-button"></span> Ask for Pricing
+          </label>
           {fetchData.price.map((prices) => {
             return (
               <div key={prices._id}>
