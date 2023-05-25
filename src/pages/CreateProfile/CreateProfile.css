@@ -173,6 +173,18 @@
 .check-checkbox:checked ~ .check-label .check-checkbox-button {
   background-color: #e3502f;
 }
+.otherState-input {
+  border: 1px solid #e3502f;
+  padding: 0.5rem;
+  border-radius: 3px;
+  display: none;
+}
+.displayBlock {
+  display: block;
+}
+.otherState-input:active {
+  outline: none;
+}
 
 .visibilty-heading {
   font-size: 22px;
