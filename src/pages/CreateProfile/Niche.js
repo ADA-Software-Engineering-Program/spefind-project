@@ -13,24 +13,34 @@ const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
   const handleNext = (e) => {
     e.preventDefault();
     const errorField = [];
+    const emptyField = [];
+
+    // set the fields to touched
     formValues.forEach((value) => {
+      formik.setFieldTouched(value, true);
+    });
+
+    formValues.forEach((value) => {
+      if (!formik.values[value]) {
+        emptyField.push(value);
+      } else {
+        const index = emptyField.indexOf(value);
+        if (index > -1) {
+          errorField.splice(index, 1);
+        }
+      }
+
       if (formik.errors[value]) {
-        // console.log(value, formik.errors[value]);
-        formik.setFieldTouched(value, true);
         errorField.push(value);
       } else {
         const index = errorField.indexOf(value);
         if (index > -1) {
-          // only splice array when item is found
           errorField.splice(index, 1);
-          // 2nd parameter means remove one item only
         }
       }
-
-      return;
     });
 
-    if (errorField.length === 0) {
+    if (errorField.length === 0 && emptyField.length === 0) {
       nextStep();
     }
   };

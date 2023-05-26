@@ -90,12 +90,6 @@
   font-size: 14px;
 }
 
-/* .profile-file {
-  max-width: 550px;
-  padding: 20px;
-  margin: 20px 0 0;
-} */
-
 .check-cont {
   display: flex;
   flex-direction: column;
@@ -186,14 +180,14 @@
   outline: none;
 }
 
-.visibilty-heading {
+.visibility-heading {
   font-size: 22px;
   font-weight: 500;
   line-height: 30px;
   margin-bottom: 50px;
 }
 
-.visibilty-container {
+.visibility-container {
   background-color: #f6f4f4;
   max-width: 1140px;
   margin: 0 auto;
@@ -202,7 +196,7 @@
   border-radius: 6px;
 }
 
-.visibilty-paragraph {
+.visibility-paragraph {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -228,6 +222,7 @@
   color: #fff;
   width: auto;
   transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
 .submitBtn--grey {
@@ -249,55 +244,6 @@
   background-color: #fff;
   border: 1px solid #e3502f;
 }
-
-/* .profile-form .upload {
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  text-align: left;
-}
-
-.profile-form .upload {
-  margin-bottom: 20px;
-}
-
-.profile-form .upload button {
-  border-radius: 5px;
-  background-color: #e3502f;
-  padding: 5px 10px;
-  border: none;
-  color: #fff;
-  margin: 15px 0;
-}
-
-.profile-form .upload p {
-  font-size: 12px;
-} */
-
-/* .bio {
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-
-.bio h2 {
-  font-size: 16px;
-  display: flex;
-}
-
-.bio-items {
-  display: flex;
-  align-items: center;
-} */
-
-/* .profile-form #addnew {
-  padding: 5px 10px;
-  display: flex;
-  margin-top: 20px;
-  font-family: 700;
-  color: #d9d9d9;
-  background-color: #fff;
-  border: #d9d9d9 1px solid;
-} */
 
 @media (min-width: 768px) {
   .create-profile {
@@ -335,21 +281,9 @@
     margin-bottom: 10px;
   }
 
-  /* .profile-form .upload button {
-    font-size: 18px;
-  }
-
-  .profile-form .upload p {
-    font-size: 14px;
-  } */
-
   .profile-form ::placeholder {
     font-size: 15px;
   }
-
-  /* .profile-group {
-    margin-bottom: 30px;
-  } */
 
   .profile-label {
     font-size: 25px;
@@ -380,17 +314,17 @@
     width: 28px;
   }
 
-  .visibilty-heading {
+  .visibility-heading {
     font-size: 30px;
     line-height: 37px;
     margin-bottom: 70px;
   }
 
-  .visibilty-container {
+  .visibility-container {
     padding: 25px 40px;
   }
 
-  .visibilty-paragraph {
+  .visibility-paragraph {
     font-size: 20px;
     line-height: 28px;
   }

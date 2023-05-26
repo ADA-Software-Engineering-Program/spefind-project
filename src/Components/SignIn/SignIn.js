@@ -1,27 +1,19 @@
 import { useState } from "react";
 import "./SignIn.css";
-// import { auth } from "../../firebase/firebase";
-// import { signInWithEmailAndPassword } from "firebase/auth";
-// import { useAuth } from "../../contexts/AuthContext";
-import { MdToggleOff } from "react-icons/md";
 import toast from "react-hot-toast";
-
-import AppLayout from "../../layout/AppLayout";
+import Header from "../Navbar/Navbar";
 // import useInput from "../../hooks/useInput";
 
-// import  AuthContext  from "../../contexts/auth-context";
-import {API_LINK }from "../../utils/api"
+import { API_LINK } from "../../utils/api";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const { logIn } = useAuth();
-
   // const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   // const {
-  //   value: emailInputvalue,
+  //   value: emailInputValue,
   //   isValid: enteredEmailIsValid,
   //   hasError: emailInputHasError,
   //   valueChangeHandler: emailChangeHandler,
@@ -44,29 +36,9 @@ const SignIn = () => {
   // );
   const isInfoFilled = !!sessionStorage.getItem("userId");
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // logIn(email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     toast.success('Login Successful, Welcome',  {
-    //       duration: 4000,
-    //       position: 'top-center',
-
-    //       // Styling
-    //       style: {fontSize: '13px'},
-    //       className: '',
-    //     })
-    //     navigate("/explore");
-    //     // console.log(user);
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log(errorCode, errorMessage);
-    //   });
     try {
       setLoading(true);
       const response = await fetch(` ${API_LINK}/api/auth/login`, {
@@ -123,62 +95,65 @@ const SignIn = () => {
     }
   };
   return (
-    <AppLayout>
-      <div>
-        <h1 className="miss mt-5 mt-md-4">We missed you!</h1>
+    <div className="signInCont">
+      <Header />
+      <h1 className="miss mt-5 mt-md-4">We missed you!</h1>
 
-        <form className="SignInForm">
-          <label htmlFor="email" className="logLabel">
-            Email Address
-          </label>
-          <br />
-          <input
-            id="email"
-            name="email"
-            className="inputForm"
-            type="email"
-            autoComplete="username"
-            required
-            placeholder="Email address"
-            onChange={(e) => setEmail(e.target.value)}
-          />
+      <form className="SignInForm" onSubmit={handleSubmit}>
+        <label htmlFor="email" className="logLabel">
+          Email Address
+        </label>
+        <br />
+        <input
+          id="email"
+          name="email"
+          className="inputForm"
+          type="email"
+          autoComplete="username"
+          required={true}
+          placeholder="Email address"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          <label htmlFor="password" className="logLabel">
-            Password
-          </label>
-          <br />
-          <input
-            id="password"
-            className="inputForm"
-            type="password"
-            autoComplete="current-password"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Type here"
-          />
-          <br />
-          <div className="forgot">
-            <div className="d-flex">
-              <MdToggleOff className="toggle" />
-              <input type="checkbox" className="check" />
-              <p>Keep logged in</p>
-            </div>
-            <p className="fw-semibold">Forgot Password? </p>
+        <label htmlFor="password" className="logLabel">
+          Password
+        </label>
+        <br />
+        <input
+          id="password"
+          className="inputForm"
+          type="password"
+          required={true}
+          autoComplete="current-password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Type here"
+        />
+        <br />
+        <div className="forgot">
+          <div className="d-flex align-items-center gap-2">
+            <input
+              type="checkbox"
+              name="loggedIn"
+              id="loggedIn"
+              className="check-keep"
+            />
+            <label className="keep" htmlFor="loggedIn">
+              <span></span>
+            </label>
+            <p className="mb-0">Keep logged in</p>
           </div>
+          <p className="fw-semibold">Forgot Password? </p>
+        </div>
 
-          <button
-            className="btn btnSign"
-            onClick={onSubmit}
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "Signing In..." : "Submit"}
-          </button>
-        </form>
-        <p className="new">
-          New here? <a href="/register"> Sign up</a>{" "}
-        </p>
-      </div>
-    </AppLayout>
+        <button className="btn btnSign" type="submit" disabled={loading}>
+          {loading ? "Signing In..." : "Submit"}
+        </button>
+      </form>
+
+      <p className="new">
+        New here? <a href="/register"> Sign up</a>{" "}
+      </p>
+    </div>
   );
 };
 

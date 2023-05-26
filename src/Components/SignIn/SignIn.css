@@ -1,54 +1,66 @@
+.signInCont {
+  min-height: 100vh;
+}
+
 .SignInForm {
-    width: 100%;
-    margin: auto;
-    margin-top: .5rem;
-    padding: 1.4rem;
+  width: 100%;
+  margin: auto;
+  margin-top: 0.5rem;
+  padding: 1.4rem;
+  max-width: 700px;
 }
 
 .miss {
-    color: var(--orange);
-    font-size: 2rem;
-    text-align: center;
+  color: var(--orange);
+  font-size: 2rem;
+  text-align: center;
 }
 
 .logLabel {
-    text-align: start;
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-top: 1rem;
-    margin-bottom: -2rem;
+  text-align: start;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  margin-bottom: -2rem;
 }
 
 .inputForm {
-    width: 100%;
-    padding: .5rem;
-    margin-top: 1rem;
-    border: 1.7px solid var(--grey);
-    border-radius: .5rem;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border: 1.7px solid var(--grey);
+  border-radius: 0.5rem;
 }
 
 .forgot {
-    display: flex;
-    justify-content: space-between;
-    font-size: .8rem;
-    margin-top: .8rem;
-    font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-top: 0.8rem;
+  font-weight: 500;
 }
 
-.toggle{
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-top: -.2rem;
-    color: var(--green);
+.toggle {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: -0.2rem;
+  color: var(--green);
 }
 
 .btnSign {
-    width: 45%;
-    background-color: var(--green);
-    color: #fff;
-    font-weight: 600;
-    margin: auto 28%;
-    margin-top: 1rem;
+  width: 45%;
+  background-color: var(--green);
+  color: #fff;
+  font-weight: 600;
+  margin: auto 28%;
+  margin-top: 1rem;
+  border: 1px solid transparent;
+}
+
+.btnSign:hover {
+  color: var(--green);
+  background-color: #fff;
+  border: 1px solid var(--green);
 }
 
 .btnSign:disabled {
@@ -58,31 +70,64 @@
 }
 
 .new {
-    text-align: center;
-    font-size: .9rem;
-    margin-top: -.6rem;
-    font-weight: 500;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: -0.6rem;
+  font-weight: 500;
 }
 
 .new a {
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #111010;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111010;
 }
 
-@media only screen and (min-width:1024px) {
-    .SignInForm {
-        width: 50%;
-        
-    }
+.check-keep {
+  display: none;
+}
 
-    .miss {
-        font-size: 4rem;
-    }
+.keep {
+  height: 24px;
+  width: 50px;
+  background-color: #232323;
+  display: inline-block;
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.2s;
+}
 
-    .btnSign {
-        width: 35%;
-        margin: auto 30%;
-    }
+.keep span {
+  display: inline-block;
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  top: 4px;
+  left: 5px;
+  transition: all 0.2s;
+}
+
+.check-keep:checked ~ .keep {
+  background-color: #359e4c;
+}
+
+.check-keep:checked ~ .keep span {
+  left: 29px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .SignInForm {
+    width: 50%;
+  }
+
+  .miss {
+    font-size: 4rem;
+  }
+
+  .btnSign {
+    width: 35%;
+    margin: auto 30%;
+  }
 }
