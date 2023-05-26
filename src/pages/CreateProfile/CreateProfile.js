@@ -4,132 +4,16 @@ import AppLayout from "../../layout/AppLayout";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
-// import { useAuth } from "../../contexts/AuthContext";
-// import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-// import { storage, db } from "../../firebase/firebase";
-// import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import Personal from "./Personal";
 import Niche from "./Niche";
-import Availabilty from "./Availabilty";
-import Visibilty from "./Visibilty";
+import Availability from "./Availability";
+import Visibility from "./Visibility";
 import Steppers from "./Steppers";
-
+import validate from "./Validate";
 import { API_LINK } from "../../utils/api";
 
 const CreateProfile = () => {
-  //getting the firstName and lastName passed from the registration page
-  // const { currentUser } = useAuth();
-  // console.log(currentUser)
-
   const navigate = useNavigate();
-
-  // if (!currentUser) {
-  //   navigate("/register");
-  // }
-
-  // const [files, setFiles] = useState([]);
-  // const [unprocessProfilePic, setUnprocessProfilePic] = useState("");
-  // const [pastEventsImgs, setPastEventsImgs] = useState([]);
-  // const [profilePics, setProfilePics] = useState("");
-  // const [progressTime, setProgressTime] = useState(0);
-  // const [progressTime2, setProgressTime2] = useState(0);
-  // console.log(files)
-
-  //saving an array of pastImgs to firebase
-  // useEffect(() => {
-  //   if (files.length > 0) {
-  //     const urls = [];
-  //     // Loop through the images and upload each one to Firebase Storage
-  //     for (const file of files) {
-  //       // Generate a unique filename for the image
-  //       const name = new Date().getTime() + file.name;
-  //       // Create a reference to the file in Firebase Storage
-  //       const storageRef = ref(storage, name);
-  //       const uploadTask = uploadBytesResumable(storageRef, file);
-
-  //       uploadTask.on(
-  //         "state_changed",
-  //         (snapshot) => {
-  //           const progress =
-  //             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //           setProgressTime(progress);
-  //         },
-  //         (error) => {
-  //           console.log(error);
-  //         },
-  //         () => {
-  //           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //             urls.push(downloadURL);
-  //             setPastEventsImgs(urls);
-  //           });
-  //         }
-  //       );
-  //     }
-  //   }
-
-  //   // console.log(pastEventsImgs)
-  // }, [files]);
-
-  //saving profile picture to firebase
-
-  // useEffect(() => {
-  //   if (unprocessProfilePic) {
-  //     const name = new Date().getTime() + unprocessProfilePic.name;
-  //     // Create a reference to the file in Firebase Storage
-  //     const storageRef = ref(storage, name);
-  //     const uploadTask = uploadBytesResumable(storageRef, unprocessProfilePic);
-
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         const progress =
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //         setProgressTime2(progress);
-  //       },
-  //       (error) => {
-  //         console.log(error);
-  //       },
-  //       () => {
-  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //           setProfilePics(downloadURL);
-  //         });
-  //       }
-  //     );
-  //   }
-  // }, [unprocessProfilePic]);
-
-  //form submit function
-
-  // const onSubmit = async (values) => {
-  //   // values.pastEventsImages = pastEventsImgs;
-  //   // values.profilePicture = profilePics;
-  //   //  console.log(values)
-  //   try {
-  //     await setDoc(doc(db, "speakers", currentUser.uid), {
-  //       ...values,
-  //       timeStamp: serverTimestamp(),
-  //     });
-
-  //     toast.success("Profile setup Complete, Thank you!!", {
-  //       duration: 4000,
-  //       position: "top-center",
-
-  //       // Styling
-  //       style: { fontSize: "13px" },
-  //       className: "",
-  //     });
-  //     navigate("/speaker-profile");
-  //   } catch (error) {
-  //     toast.error("Ooopps!!! Sorry, An error occurred", {
-  //       duration: 4000,
-  //       position: "top-center",
-
-  //       // Styling
-  //       style: { fontSize: "13px" },
-  //       className: "",
-  //     });
-  //   }
-  // };
 
   const [step, setStep] = useState(0);
   const [error, setError] = useState("");
@@ -143,7 +27,7 @@ const CreateProfile = () => {
     lastName: "",
   });
 
-  const dataFectch = async () => {
+  const dataFetch = async () => {
     try {
       const getEventTypeData = await fetch(`${API_LINK}/api/event/type/all`, {
         method: "GET",
@@ -159,13 +43,13 @@ const CreateProfile = () => {
         eventTypes: neededEventTypesArray,
       }));
 
-      const getAvailabeToData = await fetch(`${API_LINK}/api/state/all`, {
+      const getAvailableToData = await fetch(`${API_LINK}/api/state/all`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      const availableToData = await getAvailabeToData.json();
+      const availableToData = await getAvailableToData.json();
       // console.log(availableToData);
       const neededAvailableToDataArray = availableToData.data.slice(-6);
       setNeededData((prevData) => ({
@@ -219,55 +103,7 @@ const CreateProfile = () => {
       }));
     } catch (error) {}
   };
-  const validate = (values) => {
-    const errors = {};
-    // firstname
-    if (!values.firstName) {
-      errors.firstName = "Please fill out this field";
-    }
 
-    if (!values.lastName) {
-      errors.lastName = "Please fill out this field";
-    }
-
-    if (!values.country) {
-      errors.country = "Please fill out this field";
-    }
-
-    if (!values.biographies) {
-      errors.biographies = "Please fill out this field";
-    }
-    if (!values.availableTo || values.availableTo.length === 0) {
-      errors.availableTo =
-        "Please select at least one place you are available to";
-    }
-
-    if (!values.pastEvents) {
-      errors.pastEvents = "Please fill out this field";
-    }
-
-    if (!values.speakerField) {
-      errors.speakerField = "Please fill out this field";
-    }
-
-    if (!values.speakerSubField) {
-      errors.speakerSubField = "Please fill out this field";
-    }
-
-    if (!values.education) {
-      errors.education = "Please fill out this field";
-    }
-
-    if (!values.currentPosition) {
-      errors.currentPosition = "Please fill out this field";
-    }
-
-    if (!values.language) {
-      errors.language = "Please fill out this field";
-    }
-
-    return errors;
-  };
   const formik = useFormik({
     initialValues: {
       // personal
@@ -300,20 +136,18 @@ const CreateProfile = () => {
       pricing: "",
       isVolunteer: "",
 
-      // isVisibile
-      isVisibile: "",
+      // isVisible
+      isVisible: "",
     },
     validate,
   });
 
-  // console.log(formik.values);
-
   // proceed to next step
   const nextStep = () => {
-    // console.log(Object.keys(formik.errors));
-    setStep(step + 1);
-    ref.current.next();
-    window.scrollTo(0, 0);
+    console.log(Object.values(formik.errors));
+    // setStep(step + 1);
+    // ref.current.next();
+    // window.scrollTo(0, 0);
   };
 
   // go back to prev step
@@ -326,7 +160,7 @@ const CreateProfile = () => {
   useEffect(() => {
     const isInfoFilled = !!sessionStorage.getItem("userId");
     isInfoFilled && navigate("/dashboard");
-    dataFectch();
+    dataFetch();
   }, [navigate]);
 
   const submit = async () => {
@@ -360,7 +194,7 @@ const CreateProfile = () => {
         pricing: formik.values.pricing,
         eventType: formik.values.eventType,
         isVolunteer: formik.values.isVolunteer,
-        isVisible: formik.values.isVisibile,
+        isVisible: formik.values.isVisible,
       };
 
       const token = sessionStorage.getItem("token");
@@ -447,7 +281,7 @@ const CreateProfile = () => {
               />
             )}
             {step === 2 && (
-              <Availabilty
+              <Availability
                 nextStep={nextStep}
                 prevStep={prevStep}
                 formik={formik}
@@ -455,7 +289,7 @@ const CreateProfile = () => {
               />
             )}
             {step === 3 && (
-              <Visibilty submit={submit} prevStep={prevStep} formik={formik} />
+              <Visibility submit={submit} prevStep={prevStep} formik={formik} />
             )}
           </form>
         </div>

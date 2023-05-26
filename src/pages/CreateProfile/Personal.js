@@ -1,11 +1,6 @@
-import { useState } from "react";
+import React from "react";
 
 const Personal = ({ nextStep, formik, userData }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [progressTime, setProgressTime] = useState(0);
-  // eslint-disable-next-line no-unused-vars
-  const [files, setFiles] = useState([]);
-
   const formValues = [
     // "firstName",
     // "lastName",
@@ -20,14 +15,26 @@ const Personal = ({ nextStep, formik, userData }) => {
     "field",
     "eventPictures",
   ];
+  // console.log(formik.errors);
 
   const handleNext = (e) => {
     e.preventDefault();
     const errorField = [];
+
+    formik.validateField("city");
+    // formik.validateField("lastName");
+
+    // set the fields to touched
+    formValues.forEach((value) => {
+      formik.setFieldTouched(value, true);
+      formik.validateField(value);
+      return;
+    });
+
     formValues.forEach((value) => {
       if (formik.errors[value]) {
         // console.log(value, formik.errors[value]);
-        formik.setFieldTouched(value, true);
+        // formik.setFieldTouched(value, true);
         errorField.push(value);
       } else {
         const index = errorField.indexOf(value);
@@ -37,13 +44,15 @@ const Personal = ({ nextStep, formik, userData }) => {
           // 2nd parameter means remove one item only
         }
       }
-
       return;
     });
 
-    if (errorField.length === 0) {
-      nextStep();
-    }
+    // if (errorField.length === 0) {
+    nextStep();
+    //   console.log("hello");
+    // }
+
+    console.log(formik.errors);
   };
 
   return (
@@ -133,6 +142,7 @@ const Personal = ({ nextStep, formik, userData }) => {
               id="country"
               className="profile-input"
               placeholder="Type Country"
+              required
               {...formik.getFieldProps("country")}
             />
             {formik.touched.country && formik.errors.country ? (
@@ -147,6 +157,7 @@ const Personal = ({ nextStep, formik, userData }) => {
               id="city"
               className="profile-input"
               placeholder="Type City"
+              required
               {...formik.getFieldProps("city")}
             />
             {formik.touched.city && formik.errors.city ? (
@@ -168,6 +179,7 @@ const Personal = ({ nextStep, formik, userData }) => {
           rows="5"
           placeholder="Type here"
           style={{ resize: "none" }}
+          required
           {...formik.getFieldProps("biography")}
         ></textarea>
         {formik.touched.biography && formik.errors.biography ? (
