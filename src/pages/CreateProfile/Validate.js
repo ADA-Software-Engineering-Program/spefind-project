@@ -8,6 +8,10 @@ const validate = (values) => {
     errors.lastName = "Please fill out this field";
   }
 
+  if (!values.gender) {
+    errors.gender = "Please select an option";
+  }
+
   if (!values.country) {
     errors.country = "Please fill out this field";
   }
@@ -19,6 +23,27 @@ const validate = (values) => {
   if (!values.biography) {
     errors.biography = "Please fill out this field";
   }
+
+  if (!values.titleOfEvent) {
+    errors.titleOfEvent = "Please fill out this field";
+  }
+
+  if (!values.date) {
+    errors.date = "Please select a date";
+  }
+
+  if (!values.location) {
+    errors.location = "Please fill out this field";
+  }
+
+  if (!values.numberOfAttendees) {
+    errors.numberOfAttendees = "Please fill out this field";
+  }
+
+  if (!values.field) {
+    errors.field = "Please fill out this field";
+  }
+
   if (!values.availableTo || values.availableTo.length === 0) {
     errors.availableTo =
       "Please select at least one place you are available to";

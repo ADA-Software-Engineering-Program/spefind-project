@@ -17,7 +17,6 @@ const CreateProfile = () => {
 
   const [step, setStep] = useState(0);
   const [error, setError] = useState("");
-
   const [neededData, setNeededData] = useState({
     eventTypes: [],
     availableToStates: [],
@@ -101,7 +100,9 @@ const CreateProfile = () => {
         firstName: userData?.user?.firstName,
         lastName: userData?.user?.lastName,
       }));
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const formik = useFormik({
@@ -144,10 +145,10 @@ const CreateProfile = () => {
 
   // proceed to next step
   const nextStep = () => {
-    console.log(Object.values(formik.errors));
-    // setStep(step + 1);
-    // ref.current.next();
-    // window.scrollTo(0, 0);
+    console.log(Object.keys(formik.errors));
+    setStep(step + 1);
+    ref.current.next();
+    window.scrollTo(0, 0);
   };
 
   // go back to prev step

@@ -13,46 +13,45 @@ const Personal = ({ nextStep, formik, userData }) => {
     "location",
     "numberOfAttendees",
     "field",
-    "eventPictures",
   ];
-  // console.log(formik.errors);
 
   const handleNext = (e) => {
     e.preventDefault();
     const errorField = [];
-
-    formik.validateField("city");
-    // formik.validateField("lastName");
+    const emptyField = [];
 
     // set the fields to touched
     formValues.forEach((value) => {
       formik.setFieldTouched(value, true);
-      formik.validateField(value);
-      return;
     });
 
     formValues.forEach((value) => {
-      if (formik.errors[value]) {
-        // console.log(value, formik.errors[value]);
-        // formik.setFieldTouched(value, true);
-        errorField.push(value);
+      if (!formik.values[value]) {
+        emptyField.push(value);
       } else {
-        const index = errorField.indexOf(value);
+        const index = emptyField.indexOf(value);
         if (index > -1) {
           // only splice array when item is found
           errorField.splice(index, 1);
           // 2nd parameter means remove one item only
         }
       }
-      return;
+
+      if (formik.errors[value]) {
+        errorField.push(value);
+      } else {
+        const index = errorField.indexOf(value);
+        if (index > -1) {
+          errorField.splice(index, 1);
+        }
+      }
     });
 
-    // if (errorField.length === 0) {
-    nextStep();
-    //   console.log("hello");
-    // }
+    if (errorField.length === 0 && emptyField.length === 0) {
+      nextStep();
+    }
 
-    console.log(formik.errors);
+    // nextStep();
   };
 
   return (
@@ -129,6 +128,9 @@ const Personal = ({ nextStep, formik, userData }) => {
               <span className="check-radio-button"></span>Others
             </label>
           </div>
+          {formik.touched.gender && formik.errors.gender ? (
+            <div className="profile-error">{formik.errors.gender}</div>
+          ) : null}
         </div>
       </div>
 
