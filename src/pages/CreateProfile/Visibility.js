@@ -1,29 +1,39 @@
 import React from "react";
 
-const Visibilty = ({ submit, prevStep, formik }) => {
-  const formValues = ["isVisibile"];
+const Visibility = ({ submit, prevStep, formik }) => {
+  const formValues = ["isVisible"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const errorField = [];
+    const emptyField = [];
+
+    // set the fields to touched
     formValues.forEach((value) => {
+      formik.setFieldTouched(value, true);
+    });
+
+    formValues.forEach((value) => {
+      if (!formik.values[value]) {
+        emptyField.push(value);
+      } else {
+        const index = emptyField.indexOf(value);
+        if (index > -1) {
+          errorField.splice(index, 1);
+        }
+      }
+
       if (formik.errors[value]) {
-        // console.log(value, formik.errors[value]);
-        formik.setFieldTouched(value, true);
         errorField.push(value);
       } else {
         const index = errorField.indexOf(value);
         if (index > -1) {
-          // only splice array when item is found
           errorField.splice(index, 1);
-          // 2nd parameter means remove one item only
         }
       }
-
-      return;
     });
 
-    if (errorField.length === 0) {
+    if (errorField.length === 0 && emptyField.length === 0) {
       submit();
     }
   };
@@ -35,21 +45,24 @@ const Visibilty = ({ submit, prevStep, formik }) => {
 
   return (
     <div>
-      <h2 className="visibilty-heading">VISIBILITY AND NOTIFICATIONS</h2>
+      <h2 className="visibility-heading">VISIBILITY AND NOTIFICATIONS</h2>
 
-      <div className="visibilty-container">
+      <div className="visibility-container">
         <label className="profile-label">PROFILE VISIBILITY*</label>
-        <p className="visibilty-paragraph">
+        <p className="visibility-paragraph">
           To make your profile public, it needs to be confirmed by you first
         </p>
-        <div className="check-cont" {...formik.getFieldProps("visibilty")}>
+        <div className="check-cont" {...formik.getFieldProps("visibility")}>
           <div>
             <input
               type="radio"
-              name="isVisibile"
+              name="isVisible"
               className="check-input"
               value="public"
               id="public"
+              defaultChecked={
+                formik.values.isVisible === "public" ? true : false
+              }
             />
             <label className="check-label" htmlFor="public">
               <span className="check-radio-button"></span>Public (visibility to
@@ -60,10 +73,13 @@ const Visibilty = ({ submit, prevStep, formik }) => {
           <div>
             <input
               type="radio"
-              name="isVisibile"
+              name="isVisible"
               className="check-input"
               value="private"
               id="private"
+              defaultChecked={
+                formik.values.isVisible === "private" ? true : false
+              }
             />
             <label className="check-label" htmlFor="private">
               <span className="check-radio-button"></span>Private (only you and
@@ -79,7 +95,7 @@ const Visibilty = ({ submit, prevStep, formik }) => {
           className="submitBtn submitBtn--grey"
           onClick={handlePrev}
         >
-          Back to Availablity & fees
+          Back to Availability & fees
         </button>
         <button
           type="button"
@@ -93,4 +109,4 @@ const Visibilty = ({ submit, prevStep, formik }) => {
   );
 };
 
-export default Visibilty;
+export default Visibility;

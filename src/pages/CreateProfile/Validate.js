@@ -44,15 +44,6 @@ const validate = (values) => {
     errors.field = "Please fill out this field";
   }
 
-  if (!values.availableTo || values.availableTo.length === 0) {
-    errors.availableTo =
-      "Please select at least one place you are available to";
-  }
-
-  if (!values.pastEvents) {
-    errors.pastEvents = "Please fill out this field";
-  }
-
   if (!values.speakerField) {
     errors.speakerField = "Please fill out this field";
   }
@@ -65,12 +56,45 @@ const validate = (values) => {
     errors.education = "Please fill out this field";
   }
 
-  if (!values.currentPosition) {
-    errors.currentPosition = "Please fill out this field";
+  if (!values.jobTitle) {
+    errors.jobTitle = "Please fill out this field";
+  }
+
+  if (!values.yearsOfPractice) {
+    errors.yearsOfPractice = "Please fill out this field";
+  }
+
+  if (!values.jobDescription) {
+    errors.jobDescription = "Please fill out this field";
+  }
+
+  if (!values.position) {
+    errors.position = "Please fill out this field";
   }
 
   if (!values.language) {
     errors.language = "Please fill out this field";
+  }
+
+  if (!values.eventType || values.eventType.length === 0) {
+    errors.eventType = "Please select at least one event type";
+  }
+
+  if (!values.availableTo || values.availableTo.length === 0) {
+    errors.availableTo =
+      "Please select at least one place you are available to";
+  }
+
+  if (!values.pricing) {
+    errors.pricing = "Please select an option";
+  }
+
+  if (!values.isVolunteer) {
+    errors.isVolunteer = "Please select an option";
+  }
+
+  if (!values.isVisible) {
+    errors.isVisible = "Please select an option";
   }
 
   return errors;

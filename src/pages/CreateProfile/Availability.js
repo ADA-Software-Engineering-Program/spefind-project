@@ -1,29 +1,40 @@
 import { useState } from "react";
-const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
-  const [showOtherstates, setshowOtherstates] = useState(false);
+const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
+  const [showOtherStates, setShowOtherStates] = useState(false);
 
-  const formValues = ["pricing", "isVolunteer"];
-  const handleNext = async (e) => {
+  const formValues = ["eventType", "availableTo", "pricing", "isVolunteer"];
+
+  const handleNext = (e) => {
     e.preventDefault();
     const errorField = [];
+    const emptyField = [];
+
+    // set the fields to touched
     formValues.forEach((value) => {
+      formik.setFieldTouched(value, true);
+    });
+
+    formValues.forEach((value) => {
+      if (!formik.values[value]) {
+        emptyField.push(value);
+      } else {
+        const index = emptyField.indexOf(value);
+        if (index > -1) {
+          errorField.splice(index, 1);
+        }
+      }
+
       if (formik.errors[value]) {
-        // console.log(value, formik.errors[value]);
-        formik.setFieldTouched(value, true);
         errorField.push(value);
       } else {
         const index = errorField.indexOf(value);
         if (index > -1) {
-          // only splice array when item is found
           errorField.splice(index, 1);
-          // 2nd parameter means remove one item only
         }
       }
-
-      return;
     });
 
-    if (errorField.length === 0) {
+    if (errorField.length === 0 && emptyField.length === 0) {
       nextStep();
     }
   };
@@ -49,6 +60,13 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
                   className="check-checkbox"
                   value={event._id}
                   id={event.eventType}
+                  defaultChecked={
+                    formik.values.eventType.find((value) => {
+                      return value === event._id;
+                    })
+                      ? true
+                      : false
+                  }
                 />
                 <label className="check-label" htmlFor={event.eventType}>
                   <span className="check-checkbox-button"></span>
@@ -57,6 +75,9 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
               </div>
             );
           })}
+          {formik.touched.eventType && formik.errors.eventType ? (
+            <div className="profile-error">{formik.errors.eventType}</div>
+          ) : null}
         </div>
       </div>
 
@@ -72,6 +93,13 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
                   className="check-checkbox"
                   value={state._id}
                   id={state.state}
+                  defaultChecked={
+                    formik.values.availableTo.find((value) => {
+                      return value === state._id;
+                    })
+                      ? true
+                      : false
+                  }
                 />
                 <label className="check-label" htmlFor={state.state}>
                   <span className="check-checkbox-button"></span>
@@ -84,7 +112,7 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
             type="checkbox"
             className="check-checkbox"
             onClick={() => {
-              setshowOtherstates(!showOtherstates);
+              setShowOtherStates(!showOtherStates);
             }}
             id={"otherStates"}
           />
@@ -92,15 +120,13 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
             <span className="check-checkbox-button"></span>
             Other Country
           </label>
-          {formik.touched.availableTo && formik.errors.availableTo ? (
-            <div className="profile-error">{formik.errors.availableTo}</div>
-          ) : null}
+
           <input
             type="text"
-            name="availableTo"
+            name="availableT"
             placeholder="Type country here"
             className={
-              showOtherstates
+              showOtherStates
                 ? "otherState-input displayBlock"
                 : "otherState-input"
             }
@@ -108,6 +134,9 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
             // id={"otherStates"}
           />
         </div>
+        {formik.touched.availableTo && formik.errors.availableTo ? (
+          <div className="profile-error">{formik.errors.availableTo}</div>
+        ) : null}
       </div>
 
       <div className="profile-group">
@@ -132,6 +161,9 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
                   className="check-input"
                   value={prices._id}
                   id={prices.pricing}
+                  defaultChecked={
+                    formik.values.pricing === prices._id ? true : false
+                  }
                 />
                 <label className="check-label" htmlFor={prices.pricing}>
                   <span className="check-radio-button"></span> {prices.pricing}
@@ -140,6 +172,9 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
             );
           })}
         </div>
+        {formik.touched.pricing && formik.errors.pricing ? (
+          <div className="profile-error">{formik.errors.pricing}</div>
+        ) : null}
       </div>
 
       <div className="profile-group">
@@ -152,6 +187,7 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
               className="check-input"
               value="no"
               id="no"
+              defaultChecked={formik.values.isVolunteer === "no" ? true : false}
             />
             <label className="check-label" htmlFor="no">
               <span className="check-radio-button"></span>No
@@ -165,11 +201,17 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
               className="check-input"
               value="yes"
               id="yes"
+              defaultChecked={
+                formik.values.isVolunteer === "yes" ? true : false
+              }
             />
             <label className="check-label" htmlFor="yes">
               <span className="check-radio-button"></span>Yes
             </label>
           </div>
+          {formik.touched.isVolunteer && formik.errors.isVolunteer ? (
+            <div className="profile-error">{formik.errors.isVolunteer}</div>
+          ) : null}
         </div>
       </div>
 
@@ -193,4 +235,4 @@ const Availabilty = ({ nextStep, prevStep, formik, fetchData }) => {
   );
 };
 
-export default Availabilty;
+export default Availability;

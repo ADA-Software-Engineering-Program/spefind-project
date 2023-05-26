@@ -50,8 +50,6 @@ const Personal = ({ nextStep, formik, userData }) => {
     if (errorField.length === 0 && emptyField.length === 0) {
       nextStep();
     }
-
-    // nextStep();
   };
 
   return (
@@ -97,6 +95,7 @@ const Personal = ({ nextStep, formik, userData }) => {
               className="check-input"
               value="male"
               id="male"
+              defaultChecked={formik.values.gender === "male" ? true : false}
             />
             <label className="check-label" htmlFor="male">
               <span className="check-radio-button"></span>Male
@@ -110,6 +109,7 @@ const Personal = ({ nextStep, formik, userData }) => {
               className="check-input"
               value="female"
               id="female"
+              defaultChecked={formik.values.gender === "female" ? true : false}
             />
             <label className="check-label" htmlFor="female">
               <span className="check-radio-button"></span>Female
@@ -123,6 +123,7 @@ const Personal = ({ nextStep, formik, userData }) => {
               className="check-input"
               value="others"
               id="others"
+              defaultChecked={formik.values.gender === "others" ? true : false}
             />
             <label className="check-label" htmlFor="others">
               <span className="check-radio-button"></span>Others

@@ -145,7 +145,7 @@ const CreateProfile = () => {
 
   // proceed to next step
   const nextStep = () => {
-    console.log(Object.keys(formik.errors));
+    // console.log(Object.keys(formik.errors));
     setStep(step + 1);
     ref.current.next();
     window.scrollTo(0, 0);

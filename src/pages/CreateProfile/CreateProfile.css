@@ -186,14 +186,14 @@
   outline: none;
 }
 
-.visibilty-heading {
+.visibility-heading {
   font-size: 22px;
   font-weight: 500;
   line-height: 30px;
   margin-bottom: 50px;
 }
 
-.visibilty-container {
+.visibility-container {
   background-color: #f6f4f4;
   max-width: 1140px;
   margin: 0 auto;
@@ -202,7 +202,7 @@
   border-radius: 6px;
 }
 
-.visibilty-paragraph {
+.visibility-paragraph {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -289,7 +289,7 @@
   align-items: center;
 } */
 
-/* .profile-form #addnew {
+/* .profile-form #addNew {
   padding: 5px 10px;
   display: flex;
   margin-top: 20px;
@@ -380,17 +380,17 @@
     width: 28px;
   }
 
-  .visibilty-heading {
+  .visibility-heading {
     font-size: 30px;
     line-height: 37px;
     margin-bottom: 70px;
   }
 
-  .visibilty-container {
+  .visibility-container {
     padding: 25px 40px;
   }
 
-  .visibilty-paragraph {
+  .visibility-paragraph {
     font-size: 20px;
     line-height: 28px;
   }
