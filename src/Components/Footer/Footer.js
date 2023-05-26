@@ -1,10 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import footerLogo2 from "../../images/spelogo-white.png";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import "./Footer.css";
+import toast from "react-hot-toast";
+
+import useInput from "../../hooks/useInput";
+import { API_LINK } from "../../utils/api";
 
 function Footer() {
+  const [loading, setLoading] = useState(false);
+
+  // eslint-disable-next-line no-useless-escape
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const {
+    value: emailInputvalue,
+    isValid: enteredEmailIsValid,
+    hasError: emailInputHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmailInput,
+  } = useInput((value) => value.includes("@") && value.match(emailRegex));
+
+  const emailSubscriptionHandler = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+    try {
+      const saveUserData = await fetch(
+        `${API_LINK}/api/news/letter/subscribe`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: emailInputvalue,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setLoading(true);
+      const data = await saveUserData.json();
+      // console.log(data);
+      if (saveUserData.ok) {
+        setLoading(false);
+
+        toast.success(`${data.message}`, {
+          duration: 4000,
+          position: "top-center",
+
+          // Styling
+          style: { fontSize: "13px" },
+          className: "",
+        });
+      }
+      if (!saveUserData.ok) {
+        setLoading(false);
+        throw new Error("Something went wrong!");
+      }
+      if (!saveUserData) {
+        setLoading(false);
+        throw new Error("Please try again!");
+      }
+      resetEmailInput();
+    } catch (error) {
+      toast.error("Something went wrong! Please try again!", {
+        duration: 4000,
+        position: "top-center",
+
+        // Styling
+        style: { fontSize: "13px" },
+        className: "",
+      });
+      resetEmailInput();
+      setLoading(false);
+    }
+  };
   return (
     <section className="text-center justify-content-center footer">
       <div className="btns p-5">
@@ -17,21 +87,33 @@ function Footer() {
       </div>
 
       <div className="px-3">
-        <form action="#" method="POST" className="bg-white footerForm px-3">
+        <form action="#" className="bg-white footerForm px-3">
           <h5 className="news my-auto">Subscribe to our newsletter</h5>
           <div className="d-flex gap-3">
             <div className="footerInCont">
               <input
                 type="text"
                 placeholder="Enter your email"
-                className="footerInput"
+                className={emailInputHasError ? "invalidInput" : "footerInput"}
+                // className="invalidInput"
                 name="email"
+                value={emailInputvalue}
+                onChange={emailChangeHandler}
+                onBlur={emailBlurHandler}
               />
             </div>
-            <button type="submit" className="btn footBtn my-auto">
-              Submit
+            <button
+              type="submit"
+              className="btn footBtn my-auto"
+              disabled={loading}
+              onClick={emailSubscriptionHandler}
+            >
+              {loading ? "Submiting..." : "Submit"}
             </button>
           </div>
+          {emailInputHasError && !enteredEmailIsValid && (
+            <p className={"errorText"}>Please enter a valid email !</p>
+          )}
         </form>
       </div>
 
@@ -97,7 +179,7 @@ function Footer() {
             </li>
             <li className="mb-2">
               <a href={"/"} className="text-decoration-none text-white">
-                +234 7059592726
+                +2347059592726
               </a>
             </li>
             <li className="mb-2">
