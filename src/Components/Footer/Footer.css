@@ -23,7 +23,22 @@
   white-space: nowrap;
   padding: 0.5rem;
 }
-
+.invalidInput {
+  border: 1px solid #f4511e;
+  color: #f4511e;
+  outline: none;
+  border-radius: 0.4rem;
+  width: 100%;
+  padding: 10px;
+  height: 45px;
+}
+.errorText {
+  color: #f4511e;
+  font-weight: 300;
+  font-size: 14px;
+  margin-bottom: 0;
+  margin-top: 0px;
+}
 .eventBtn1 {
   background-color: white;
   color: var(--orange);
