@@ -118,7 +118,7 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
           />
           <label className="check-label" htmlFor={"otherStates"}>
             <span className="check-checkbox-button"></span>
-            Other Country
+            Other Countries
           </label>
 
           <input
