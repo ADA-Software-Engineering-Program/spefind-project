@@ -53,7 +53,7 @@
 
 .getBtn {
   background-color: var(--orange);
-  color: var(--white);
+  color: var(--black);
   padding: 1rem 1.3rem;
   font-size: 1.2rem;
   font-weight: 500;
@@ -68,7 +68,7 @@
 
 .getBtn:hover {
   gap: 30px;
-  color: var(--white);
+  color: var(--black);
 }
 
 @media only screen and (min-width: 768px) {
@@ -104,5 +104,9 @@
   .heroTextHeading {
     font-size: 3.5rem;
     line-height: 3.9rem;
+  }
+
+  .heroImage {
+    max-width: 500px;
   }
 }

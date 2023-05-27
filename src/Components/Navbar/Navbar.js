@@ -41,12 +41,6 @@ const Header = ({ backgroundColor }) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="nav-gap">
               <Nav.Link
-                href="/"
-                className={splitLocation[1] === "" ? "active" : ""}
-              >
-                Home
-              </Nav.Link>
-              <Nav.Link
                 href="./about"
                 className={splitLocation[1] === "about" ? "active" : ""}
               >
@@ -56,19 +50,19 @@ const Header = ({ backgroundColor }) => {
                 href="./explore"
                 className={splitLocation[1] === "explore" ? "active" : ""}
               >
-                Explore
+                Communicators
               </Nav.Link>
               <Nav.Link
-                href="./blog"
-                className={splitLocation[1] === "blog" ? "active" : ""}
+                href="./"
+                className={splitLocation[1] === "organizers" ? "active" : ""}
               >
-                Blog
+                Organizers
               </Nav.Link>
               <Nav.Link
-                href="./contact"
+                href="./"
                 className={splitLocation[1] === "contact" ? "active" : ""}
               >
-                Contact
+                How it works
               </Nav.Link>
               {isAuthenticated ? (
                 <Logout classes="logout">
