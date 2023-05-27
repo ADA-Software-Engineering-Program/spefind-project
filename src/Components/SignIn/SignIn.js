@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./SignIn.css";
 import toast from "react-hot-toast";
 import Header from "../Navbar/Navbar";
-// import useInput from "../../hooks/useInput";
 
 import { API_LINK } from "../../utils/api";
 
@@ -11,29 +10,6 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  // const {
-  //   value: emailInputValue,
-  //   isValid: enteredEmailIsValid,
-  //   hasError: emailInputHasError,
-  //   valueChangeHandler: emailChangeHandler,
-  //   inputBlurHandler: emailBlurHandler,
-  //   reset: resetEmailInput,
-  // } = useInput((value) => value.includes("@") && value.match(emailRegex));
-
-  // const passwordRegex =
-  //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})/;
-  // const {
-  //   value: passwordInputValue,
-  //   isValid: enteredPasswordIsValid,
-  //   hasError: passwordInputHasError,
-  //   valueChangeHandler: passwordChangeHandler,
-  //   inputBlurHandler: passwordBlurHandler,
-  //   reset: resetPasswordInput,
-  // } = useInput(
-  //   (value) =>
-  //     value.length >= 6 && value.trim() !== "" && value.match(passwordRegex)
-  // );
   const isInfoFilled = !!sessionStorage.getItem("userId");
 
   const handleSubmit = async (e) => {
@@ -49,7 +25,7 @@ const SignIn = () => {
         },
       });
       const data = await response.json();
-      // console.log(data);
+      console.log(data);
       if (response.ok) {
         sessionStorage.setItem("token", data.token);
         // Redirect to home page or dashboard

@@ -22,11 +22,24 @@ function Footer() {
     reset: resetEmailInput,
   } = useInput((value) => value.includes("@") && value.match(emailRegex));
 
+  let formIsValid = false;
+
+  if (emailInputvalue && !emailInputHasError && enteredEmailIsValid) {
+    formIsValid = true;
+  }
   const emailSubscriptionHandler = async (e) => {
     setLoading(true);
-    e.preventDefault();
     try {
-      const saveUserData = await fetch(
+      e.preventDefault();
+      if (!formIsValid) {
+        setLoading(false);
+        return;
+      }
+      if (!emailInputvalue) {
+        setLoading(false);
+        return;
+      }
+      const saveUserEmail = await fetch(
         `${API_LINK}/api/news/letter/subscribe`,
         {
           method: "POST",
@@ -39,9 +52,9 @@ function Footer() {
         }
       );
       setLoading(true);
-      const data = await saveUserData.json();
+      const data = await saveUserEmail.json();
       // console.log(data);
-      if (saveUserData.ok) {
+      if (saveUserEmail.ok) {
         setLoading(false);
 
         toast.success(`${data.message}`, {
@@ -53,11 +66,11 @@ function Footer() {
           className: "",
         });
       }
-      if (!saveUserData.ok) {
+      if (!saveUserEmail.ok) {
         setLoading(false);
         throw new Error("Something went wrong!");
       }
-      if (!saveUserData) {
+      if (!saveUserEmail) {
         setLoading(false);
         throw new Error("Please try again!");
       }
@@ -105,7 +118,7 @@ function Footer() {
             <button
               type="submit"
               className="btn footBtn my-auto"
-              disabled={loading}
+              disabled={!formIsValid && !loading}
               onClick={emailSubscriptionHandler}
             >
               {loading ? "Submiting..." : "Submit"}

@@ -4,12 +4,13 @@
   grid-template-rows: 4rem 1fr;
 }
 .dashboard h3 {
-  font-style: normal;
+  font-family: "Montserrat";
   font-weight: 600;
-  font-size: 34.8282px;
+  font-size: 30px;
+  line-height: 81px;
+  color: #eae1e1;
   line-height: 51px;
   text-align: center;
-  color: #eae1e1;
   background-color: #e3502f;
 }
 .dashboardContainer {
@@ -35,6 +36,7 @@
 }
 .userCareer {
   font-size: 12px;
+  margin-bottom: 2rem;
 }
 .userMenu {
   margin: 1rem auto;
@@ -42,7 +44,7 @@
 }
 .userMenu li {
   list-style-type: none;
-  margin: 0.5rem auto;
+  margin: 1.5rem auto;
 }
 .userMenu li span {
   line-height: 40px;
@@ -50,7 +52,7 @@
   color: #fff;
   cursor: pointer;
   display: block;
-  padding-left: 30px;
+  text-align: center;
 }
 
 .userMenu li span:hover {

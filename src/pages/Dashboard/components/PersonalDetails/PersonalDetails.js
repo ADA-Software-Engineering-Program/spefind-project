@@ -10,9 +10,7 @@ const PersonalDetails = () => {
 
   return (
     <div className="formContainer">
-      <p className="dashboardDetail">
-        Spefind automatically saves your dashboard changes
-      </p>
+
       <form onSubmit={onFinish}>
         <div>
           <label htmlFor="name">Name</label>
@@ -44,16 +42,6 @@ const PersonalDetails = () => {
           placeholder="Type here"
           className="input"
           id="professional_credentials"
-        />
-        <div>
-          <label htmlFor="credentials">Upload Credentials/Certificates</label>
-        </div>
-        <input
-          type="file"
-          aria-label="credentials"
-          placeholder="Type here"
-          className="input"
-          id="credentials"
         />
         <div>
           <label htmlFor="gender">Gender</label>
@@ -135,15 +123,6 @@ const PersonalDetails = () => {
             className="input"
           />
         </div>
-        <div>
-          <label htmlFor="timeZone">Time Zone</label>
-        </div>
-        <input
-          aria-label="timeZone"
-          placeholder="Type here"
-          id="timeZone"
-          className="input"
-        />
         <div>
           <label htmlFor="biography">Biography</label>
         </div>

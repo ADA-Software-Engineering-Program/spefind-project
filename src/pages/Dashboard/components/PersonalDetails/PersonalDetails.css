@@ -1,10 +1,3 @@
-.dashboardDetail {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 10px;
-  margin-bottom: 0rem !important;
-  text-align: right;
-}
 .dashboard label {
   margin-top: 1rem;
   font-family: "Montserrat";
@@ -23,6 +16,7 @@
   font-size: 12px;
   line-height: 15px;
   color: rgba(17, 16, 16, 0.4);
+  margin-bottom: 0rem;
 }
 .input {
   width: 50%;
@@ -65,6 +59,7 @@
 }
 .genderWrapper label {
   cursor: pointer;
+  font-size: 16px !important;
 }
 
 .newInput {
