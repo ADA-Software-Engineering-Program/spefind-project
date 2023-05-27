@@ -27,7 +27,7 @@ const Dashboard = () => {
     },
     {
       id: "menu2",
-      text: "Niche",
+      text: "View Profile",
       component: "",
     },
     {
@@ -42,36 +42,11 @@ const Dashboard = () => {
     },
     {
       id: "menu5",
-      text: "Publication",
+      text: "Notifications",
       component: "",
     },
     {
       id: "menu6",
-      text: "Passwords",
-      component: "",
-    },
-    {
-      id: "menu7",
-      text: "Email",
-      component: "",
-    },
-    {
-      id: "menu8",
-      text: "Signature",
-      component: "",
-    },
-    {
-      id: "menu9",
-      text: "Media",
-      component: "",
-    },
-    {
-      id: "menu10",
-      text: "Messages",
-      component: "",
-    },
-    {
-      id: "menu11",
       text: "Upgrade",
       component: <Upgrade />,
     },
@@ -86,7 +61,7 @@ const Dashboard = () => {
         }}
       ></div>
       <div className="dashboard">
-        <h3>Your Dashboard</h3>
+        <h3>YOUR DASHBOARD</h3>
         <button
           className="harmburger"
           // setting the isNavExpanded variable to the opposite of whatever it is when users click on the button
@@ -124,7 +99,7 @@ const Dashboard = () => {
                       onClick={() => {
                         setCurrentMenu(menu.id);
                         setDashboardBodyContent(menu.component);
-                        window.scrollTo(0, 0);
+                        window.scrollTo(90, 90);
                       }}
                     >
                       <span>{menu.text}</span>
