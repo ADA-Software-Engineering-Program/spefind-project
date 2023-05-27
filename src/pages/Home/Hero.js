@@ -1,18 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
-import microphone from "../../images/microphone.png";
+import microphone from "../../images/microphone-2.png";
+// import microphone from "../../images/microphone.png";
 import "../../Components/HomeCSS/Hero.css";
-import { useAuth } from "../../contexts/AuthContext";
 
 function Hero() {
-  // eslint-disable-next-line
-  const { currentUser } = useAuth();
-
   return (
     <div className="heroContainer">
       <div className="heroText">
-        <p className="speakers">Communicators and event organizers:</p>
+        <p className="speakers">Connecting Events, Amplifying Voices.</p>
         <h2 className="heroTextHeading">
           genius comes in all <span className="heroColor">colours</span>
         </h2>
@@ -26,8 +23,8 @@ function Hero() {
 
         <div>
           <Link to="/signup" className="getBtn">
-            Get Started
-            <BsArrowRight style={{ width: "auto" }} />
+            Start for Free
+            <BsArrowRight />
           </Link>
         </div>
       </div>
