@@ -14,7 +14,7 @@ import Upgrade from "./components/Upgrade/Upgrade";
 
 const Dashboard = () => {
   const [dashboardBodyContent, setDashboardBodyContent] = useState(
-    <PersonalDetails />
+    <ViewProfile />
   );
   const [isNavExpanded, setIsNavExpanded] = useState(true);
 
@@ -23,13 +23,13 @@ const Dashboard = () => {
   const sideBarTitleAndComponent = [
     {
       id: "menu1",
-      text: "Personal Details",
-      component: <PersonalDetails />,
+      text: "View Profile",
+      component: <ViewProfile />,
     },
     {
       id: "menu2",
-      text: "View Profile",
-      component: <ViewProfile />,
+      text: "Edit Profile",
+      component: <PersonalDetails />,
     },
     {
       id: "menu3",

@@ -60,7 +60,7 @@
   font-size: 16px;
   line-height: 22px;
 }
-.aboutTextContainer p p {
+.aboutTextContainer p span {
   font-weight: 600;
   color: #948d8d;
   text-decoration: underline;

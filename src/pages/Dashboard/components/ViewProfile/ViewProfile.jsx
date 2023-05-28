@@ -25,7 +25,7 @@ const ViewProfile = () => {
             product demos for clients, new hires, and independent contractors.
             Prepare concepts for new clients who use commercial spots to market
             their brands.
-            <p>show more</p>
+            <span> show more</span>
           </p>
           <div className="speakerRating">
             <span>

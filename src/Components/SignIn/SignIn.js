@@ -10,8 +10,6 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const isInfoFilled = !!sessionStorage.getItem("userId");
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -28,7 +26,6 @@ const SignIn = () => {
       console.log(data);
       if (response.ok) {
         sessionStorage.setItem("token", data.token);
-        // Redirect to home page or dashboard
         toast.success(`${data.message},`, {
           duration: 4000,
           position: "top-center",
@@ -47,10 +44,10 @@ const SignIn = () => {
         setLoading(false);
         throw new Error();
       }
-      if (data.data.userRole === "speaker" && isInfoFilled) {
+      if (data.data.isProfileCreated === true) {
         window.location.href = "/dashboard";
       }
-      if (data.data.userRole === "speaker") {
+      if (data.data.isProfileCreated === false) {
         window.location.href = "/create-profile";
       }
       if (data.data.userRole === "organizer") {
