@@ -9,6 +9,7 @@ import { HiOutlineLogout } from "react-icons/hi";
 import Logout from "../../Components/Logout/Logout";
 
 import PersonalDetails from "./components/PersonalDetails/PersonalDetails";
+import ViewProfile from "./components/ViewProfile/ViewProfile";
 import Upgrade from "./components/Upgrade/Upgrade";
 
 const Dashboard = () => {
@@ -28,7 +29,7 @@ const Dashboard = () => {
     {
       id: "menu2",
       text: "View Profile",
-      component: "",
+      component: <ViewProfile />,
     },
     {
       id: "menu3",
