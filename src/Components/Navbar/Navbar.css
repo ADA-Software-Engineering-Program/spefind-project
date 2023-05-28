@@ -35,9 +35,10 @@
   font-weight: 600;
   font-size: 1.1rem;
   margin: auto;
-  color: var(--grey);
+  color: #111010;
   text-align: center;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .nav-link.active {
@@ -88,7 +89,6 @@
 }
 @media only screen and (min-width: 992px) {
   .nav-link {
-    color: var(--grey);
     text-align: unset;
     margin: 0rem 0.6rem;
   }
