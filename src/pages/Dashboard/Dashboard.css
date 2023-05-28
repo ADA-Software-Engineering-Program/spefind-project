@@ -76,9 +76,6 @@
   cursor: pointer;
   background-color: var(--whiteColor);
 }
-.dahsboardBody {
-  padding: 3rem;
-}
 .logout {
   background: #359e4c !important;
   border-radius: 20px;
@@ -94,6 +91,11 @@
 .logoutIcon {
   font-size: 2rem;
   color: #eae1e1;
+}
+.dahsboardBody{
+  background-image: url(./assets/bgDashboard.png);
+  background-position: center;
+  background-size: cover;
 }
 @media only screen and (max-width: 900px) {
   .harmburger {
@@ -119,9 +121,6 @@
   }
   .sidebar {
     display: none;
-  }
-  .dahsboardBody {
-    padding: 0.5rem;
   }
   .sidebarMobile {
     display: block;

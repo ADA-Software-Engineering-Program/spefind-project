@@ -1,0 +1,107 @@
+.coverBanner {
+  height: 100%;
+  position: relative;
+}
+.coverBanner img {
+  width: 100%;
+}
+.speakerDetails {
+  position: absolute;
+  top: 50px;
+  left: 10%;
+  padding: 2rem auto auto 4rem;
+}
+.speakerDetails h4 {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 45px;
+  color: #ffffff;
+}
+.speakerDetails p {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 25px;
+  color: #948d8d;
+}
+.about {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+}
+.imgContainer,
+.aboutTextContainer {
+  padding: 2rem;
+}
+.imgContainer img {
+  width: 100%;
+}
+.imgContainer button {
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  color: #e3502f;
+  text-decoration: underline;
+  border: none;
+  margin: 2rem auto;
+}
+
+.aboutTextContainer h5 {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 29.6px;
+  line-height: 36px;
+}
+.aboutTextContainer p {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+.aboutTextContainer p span {
+  font-weight: 600;
+  color: #948d8d;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.speakerRating {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.speakerRating span {
+  display: flex;
+  gap: 1rem;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  color: #e3502f;
+}
+.speakerRating span p {
+  color: #948d8d;
+}
+@media only screen and (max-width: 676px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+  .speakerDetails h4 {
+    font-size: 2rem;
+    line-height: 35px;
+  }
+  .speakerDetails p {
+    font-size: 1rem;
+    line-height: 20px;
+  }
+  .imgContainer {
+    display: grid;
+  }
+  .imgContainer img {
+    width: 70%;
+    margin: auto;
+  }
+  .imgContainer,
+  .aboutTextContainer {
+    padding: 0.5rem;
+  }
+}
