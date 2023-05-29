@@ -60,7 +60,7 @@ const Header = ({ backgroundColor }) => {
               </Nav.Link>
               <Nav.Link
                 href="./"
-                className={splitLocation[1] === "contact" ? "active" : ""}
+                className={splitLocation[1] === "works" ? "active" : ""}
               >
                 How it works
               </Nav.Link>
