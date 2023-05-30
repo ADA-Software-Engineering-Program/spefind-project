@@ -1,0 +1,10 @@
+.availability {
+  margin: 3rem;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .availability {
+    margin: 0.5rem;
+  }
+}

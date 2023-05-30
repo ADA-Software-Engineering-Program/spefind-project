@@ -11,10 +11,12 @@ import Logout from "../../Components/Logout/Logout";
 import PersonalDetails from "./components/PersonalDetails/PersonalDetails";
 import ViewProfile from "./components/ViewProfile/ViewProfile";
 import Upgrade from "./components/Upgrade/Upgrade";
+import Field from "./components/Field/Field";
+import Availability from "./components/Availability/Availability";
 
 const Dashboard = () => {
   const [dashboardBodyContent, setDashboardBodyContent] = useState(
-    <ViewProfile />
+    <PersonalDetails />
   );
   const [isNavExpanded, setIsNavExpanded] = useState(true);
 
@@ -23,18 +25,18 @@ const Dashboard = () => {
   const sideBarTitleAndComponent = [
     {
       id: "menu1",
-      text: "View Profile",
-      component: <ViewProfile />,
+      text: "Personal Details",
+      component: <PersonalDetails />,
     },
     {
       id: "menu2",
-      text: "Edit Profile",
-      component: <PersonalDetails />,
+      text: "Field",
+      component: <Field />,
     },
     {
       id: "menu3",
       text: "Availability & Fees",
-      component: "",
+      component: <Availability />,
     },
     {
       id: "menu4",
@@ -50,6 +52,11 @@ const Dashboard = () => {
       id: "menu6",
       text: "Upgrade",
       component: <Upgrade />,
+    },
+    {
+      id: "menu7",
+      text: "View Profile",
+      component: <ViewProfile />,
     },
   ];
 
