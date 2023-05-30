@@ -1,6 +1,7 @@
 import "./ViewProfile.css";
 import coverBanner from "../../assets/coverBanner.svg";
 import userImg from "../../assets/userImg.svg";
+import event from "../../assets/event.png";
 
 const ViewProfile = () => {
   return (
@@ -41,6 +42,20 @@ const ViewProfile = () => {
               100% <p>Professional</p>
             </span>
           </div>
+        </div>
+      </div>
+      <h4>PAST EVENTS</h4>
+      <div className="eventsContainer">
+        <div className="pastEventsCointainer">
+          <div className="singleEvents">
+            <img src={event} alt="past event" />
+            <div className="eventDetails">
+              <h6>TEDx</h6>
+              <p>May 17, 2022</p>
+              <p>Lagos, Nigeria</p>
+            </div>
+          </div>
+          <button>View Details</button>
         </div>
       </div>
     </div>

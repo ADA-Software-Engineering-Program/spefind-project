@@ -45,6 +45,7 @@ const Availability = () => {
           <span className="check-checkbox-button"></span>Workshop (3+ hour
           event)
         </label>
+        <button>+ Edit Event</button>
       </div>
     </div>
   );
