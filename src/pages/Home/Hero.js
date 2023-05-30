@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
-import microphone from "../../images/microphone-2.png";
+import microphone from "../../images/microphone-21.jpg";
 // import microphone from "../../images/microphone.png";
 import "../../Components/HomeCSS/Hero.css";
 

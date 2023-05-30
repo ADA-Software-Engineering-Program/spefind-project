@@ -1,12 +1,12 @@
 import React from "react";
+import "./Navbar.css";
 import { useLocation } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Logo from "../../images/Spefind-logo.png";
-import Logo2 from "../../images/spelogo-white.png";
+import LogoBlack from "../../images/Spefind-logo.png";
+import LogoWhite from "../../images/spelogo-white.png";
 import { BsArrowRight } from "react-icons/bs";
-import "./Navbar.css";
 import Logout from "../Logout/Logout";
 
 const Header = ({ backgroundColor }) => {
@@ -31,7 +31,7 @@ const Header = ({ backgroundColor }) => {
         <Container>
           <div className="d-flex align-items-center" style={{ width: "100%" }}>
             <Navbar.Brand href="/">
-              <img src={Logo} alt="logo" className="headerLogo" />
+              <img src={LogoBlack} alt="logo" className="headerLogo" />
             </Navbar.Brand>
             <Navbar.Toggle
               className="nav-toggle"
@@ -91,7 +91,7 @@ const Header = ({ backgroundColor }) => {
         <Container>
           <div className="d-flex align-items-center w-100">
             <Navbar.Brand href="/">
-              <img src={Logo2} alt="logo" className="headerLogo" />
+              <img src={LogoWhite} alt="logo" className="headerLogo" />
             </Navbar.Brand>
             <Navbar.Toggle
               className="nav-toggle"
@@ -100,12 +100,6 @@ const Header = ({ backgroundColor }) => {
           </div>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="nav-gap">
-              <Nav.Link
-                href="/"
-                className={splitLocation[1] === "" ? "active" : ""}
-              >
-                Home
-              </Nav.Link>
               <Nav.Link
                 href="./about"
                 className={splitLocation[1] === "about" ? "active" : ""}
@@ -116,19 +110,19 @@ const Header = ({ backgroundColor }) => {
                 href="./explore"
                 className={splitLocation[1] === "explore" ? "active" : ""}
               >
-                Explore
+                Communicators
               </Nav.Link>
               <Nav.Link
-                href="./blog"
-                className={splitLocation[1] === "blog" ? "active" : ""}
+                href="./"
+                className={splitLocation[1] === "organizers" ? "active" : ""}
               >
-                Blog
+                Organizers
               </Nav.Link>
               <Nav.Link
-                href="./contact"
-                className={splitLocation[1] === "contact" ? "active" : ""}
+                href="./"
+                className={splitLocation[1] === "works" ? "active" : ""}
               >
-                Contact
+                How it works
               </Nav.Link>
               {isAuthenticated ? (
                 <Logout classes="logout">
