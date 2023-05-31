@@ -1,0 +1,20 @@
+.accountPreferences {
+  margin: 3rem;
+}
+.editEvent {
+  background: #ffffff;
+  border: 2px solid #948a8a;
+  border-radius: 3.63285px;
+  font-weight: 700;
+  font-size: 14.5314px;
+  line-height: 18px;
+  color: #948a8a;
+  padding: 0.5rem;
+  margin: 1rem 0rem;
+}
+
+@media only screen and (max-width: 900px) {
+  .accountPreferences {
+    margin: 0.5rem;
+  }
+}
