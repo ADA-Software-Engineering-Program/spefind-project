@@ -221,6 +221,9 @@
   .editProfilePicture {
     grid-template-columns: 1fr 1fr;
   }
+  .coverBannerAndProfilePicture {
+    grid-template-columns: 1fr;
+  }
   .btnWrapper {
     grid-template-rows: 3rem 3rem 3rem;
   }

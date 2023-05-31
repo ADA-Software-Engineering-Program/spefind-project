@@ -13,6 +13,7 @@ import ViewProfile from "./components/ViewProfile/ViewProfile";
 import Upgrade from "./components/Upgrade/Upgrade";
 import Field from "./components/Field/Field";
 import Availability from "./components/Availability/Availability";
+import AccountPreferences from "./components/AccountPreferences/AccountPreferences";
 
 const Dashboard = () => {
   const [dashboardBodyContent, setDashboardBodyContent] = useState(
@@ -41,7 +42,7 @@ const Dashboard = () => {
     {
       id: "menu4",
       text: "Account Preferences",
-      component: "",
+      component: <AccountPreferences />,
     },
     {
       id: "menu5",

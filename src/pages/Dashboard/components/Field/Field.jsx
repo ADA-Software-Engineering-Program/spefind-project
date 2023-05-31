@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Field.css";
 
 const Field = () => {
-  const [enableInput, setEnableInput] = useState(false);
+  const [enableInput, setEnableInput] = useState(true);
   const [showOtherStates, setShowOtherStates] = useState(false);
 
   return (
@@ -62,7 +62,7 @@ const Field = () => {
         <div>
           <label htmlFor="language">Language</label>
         </div>
-        <div className="languageContainer">
+        <div className="">
           <input
             type="checkbox"
             aria-label="english"
@@ -74,6 +74,8 @@ const Field = () => {
           <label htmlFor="english" className="check-label">
             <span className="check-checkbox-button"></span>English
           </label>
+        </div>
+        <div className="">
           <input
             type="button"
             aria-label="other"
@@ -103,6 +105,7 @@ const Field = () => {
             }
           />
         </div>
+
         <div className="editContainer">
           <button type="submit" className="saveBtn">
             SAVE

@@ -23,3 +23,6 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
 }
+input:disabled {
+  background-color: rgb(233, 226, 226);
+}

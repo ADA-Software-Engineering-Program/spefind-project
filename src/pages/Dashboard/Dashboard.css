@@ -4,7 +4,6 @@
   grid-template-rows: 4rem 1fr;
 }
 .dashboard h3 {
-  font-family: "Montserrat";
   font-weight: 600;
   font-size: 30px;
   line-height: 81px;
@@ -81,7 +80,6 @@
   border-radius: 20px;
   padding: 0.4rem 0.8rem;
   border: none;
-  font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
@@ -92,7 +90,7 @@
   font-size: 2rem;
   color: #eae1e1;
 }
-.dahsboardBody{
+.dahsboardBody {
   background-image: url(./assets/bgDashboard.png);
   background-position: center;
   background-size: cover;
