@@ -94,7 +94,7 @@
   flex-direction: column;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  margin: auto 1rem;
+  /* margin: auto 1rem; */
 }
 
 .footerNav a {
@@ -102,8 +102,7 @@
 }
 
 .footerLogo {
-  width: 6.5rem;
-  height: 6rem;
+  max-width: 160px;
 }
 
 .socialMedia {

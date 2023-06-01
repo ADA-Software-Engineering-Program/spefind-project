@@ -1,13 +1,12 @@
 import React from "react";
-import Zainab from "../../images/Zainab.png";
-import Mide from "../../images/Mide.png";
-import Tayo from "../../images/Tayo.png";
-import Seki from "../../images/Seki.png";
-import Sina from "../../images/Sina.png";
-import Bola from "../../images/Bola.png";
+import Zainab from "../../../images/Zainab.png";
+import Mide from "../../../images/Mide.png";
+import Tayo from "../../../images/Tayo.png";
+import Seki from "../../../images/Seki.png";
+import Sina from "../../../images/Sina.png";
+import Bola from "../../../images/Bola.png";
 import FeaturedSpeakersCard from "./FeaturedSpeakersCard";
 import "./FeaturedSpeakersCard.css";
-import { CgSearch } from "react-icons/cg";
 import Slider from "react-slick";
 
 function SampleNextArrow(props) {
@@ -92,14 +91,6 @@ function SpeakersCard() {
 
   return (
     <div className="text-center featCard px-lg-5 px-md-4 px-3">
-      <div>
-        <input
-          type="text"
-          placeholder="Search for speaker..."
-          className="featInput"
-        />
-        <CgSearch className="search" />
-      </div>
       <h3 className="header fw-bolder">
         Top overall featured <span className="heroColor">communicators</span>
       </h3>

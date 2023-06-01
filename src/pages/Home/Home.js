@@ -1,9 +1,9 @@
 import AppLayout from "../../../src/layout/AppLayout";
-import Hero from "./Hero";
-import FeaturedReview from "./FeaturedReview";
-import SpeakersCard from "../../Components/FeaturedSpeakersCard/SpeakersCard";
-import FindSpeakers from "./FindSpeakers";
-import JoinSite from "./JoinSite";
+import Hero from "./Hero/Hero";
+import FeaturedReview from "./FeaturedReview/FeaturedReview";
+import SpeakersCard from "./FeaturedSpeakersCard/SpeakersCard";
+import FindSpeakers from "./FindSpeakers/FindSpeakers";
+import JoinSite from "./Join/JoinSite";
 
 const Home = () => {
   return (

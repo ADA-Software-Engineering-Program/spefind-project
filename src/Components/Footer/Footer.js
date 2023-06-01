@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import footerLogo2 from "../../images/spelogo-white.png";
+import footerLogo2 from "../../images/spefind-logo-white.png";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import "./Footer.css";
 import toast from "react-hot-toast";
@@ -121,7 +121,7 @@ function Footer() {
               disabled={!formIsValid && !loading}
               onClick={emailSubscriptionHandler}
             >
-              {loading ? "Submiting..." : "Submit"}
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </div>
           {emailInputHasError && !enteredEmailIsValid && (
@@ -130,7 +130,7 @@ function Footer() {
         </form>
       </div>
 
-      <div className="footerNav">
+      <div className="footerNav mx-auto w-75">
         <div className="col-12 col-md-4 text-start">
           <h6 className="fw-bold text-white">NAVIGATION</h6>
           <ul className="list-unstyled">
@@ -221,8 +221,8 @@ function Footer() {
       </div>
 
       <div className="copySection mt-5  px-3 px-md-5">
-        <div>
-          <img src={footerLogo2} alt="logo" className="footerLogo" />
+        <div className="footerLogo">
+          <img src={footerLogo2} alt="logo" className="w-100" />
         </div>
         <div className="mt-3 mt-md-0">
           <p className="text-white copyRight">

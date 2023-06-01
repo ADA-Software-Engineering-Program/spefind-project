@@ -2,14 +2,14 @@ import React from "react";
 import ReviewCard from "./ReviewCard";
 import Slider from "react-slick";
 // style files
-import "../../Components/HomeCSS/ReviewCard.css";
+import "./ReviewCard.css";
 // images
-import Gold from "../../images/Gold.png";
-import Ola from "../../images/Ola.png";
-import Tife from "../../images/Tife.png";
-import Peace from "../../images/Peace.png";
-import Tobe from "../../images/Tobe.png";
-import Sola from "../../images/Sola.png";
+import Gold from "../../../images/Gold.png";
+import Ola from "../../../images/Ola.png";
+import Tife from "../../../images/Tife.png";
+import Peace from "../../../images/Peace.png";
+import Tobe from "../../../images/Tobe.png";
+import Sola from "../../../images/Sola.png";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
