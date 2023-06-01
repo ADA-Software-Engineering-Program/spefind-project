@@ -5,8 +5,8 @@ const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
     "education",
     "jobTitle",
     "yearsOfPractice",
-    "jobDescription",
-    "position",
+    // "jobDescription",
+    // "position",
     "language",
   ];
 
@@ -54,7 +54,7 @@ const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
     <div>
       <div className="profile-group">
         <label className="profile-label" htmlFor="speakerField">
-          YOUR MAIN TOPICS*{" "}
+          CHOOSE YOUR MAIN FIELD*
         </label>
         <select
           className="profile-input"
@@ -82,7 +82,7 @@ const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
 
       <div className="profile-group">
         <label className="profile-label" htmlFor="speakerSubField">
-          EXPERTISE TAGS*
+          SUBFIELD*
         </label>
         <input
           type="text"
@@ -99,7 +99,7 @@ const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
 
       <div className="profile-group">
         <label className="profile-label" htmlFor="education">
-          EDUCATION*
+          QUALIFICATION*
         </label>
         <input
           type="text"
@@ -115,7 +115,7 @@ const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
       </div>
 
       <div className="profile-group">
-        <label className="profile-label">CURRENT POSITION*</label>
+        <label className="profile-label">CURRENT CAREER/JOB*</label>
         <div className="profile-field">
           <div>
             <label className="profile-label-field" htmlFor="jobTitle">
@@ -152,7 +152,7 @@ const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
               </div>
             ) : null}
           </div>
-          <div>
+          {/* <div>
             <label className="profile-label-field" htmlFor="jobDescription">
               Job Description
             </label>
@@ -186,7 +186,7 @@ const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
             {formik.touched.position && formik.errors.position ? (
               <div className="profile-error">{formik.errors.position}</div>
             ) : null}
-          </div>
+          </div> */}
         </div>
       </div>
 
