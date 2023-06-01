@@ -4,8 +4,8 @@ import { useLocation } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import LogoBlack from "../../images/Spefind-logo.png";
-import LogoWhite from "../../images/spelogo-white.png";
+import LogoBlack from "../../images/spefind-logo-orange.png";
+import LogoWhite from "../../images/spefind-logo-white.png";
 import { BsArrowRight } from "react-icons/bs";
 import Logout from "../Logout/Logout";
 
@@ -16,22 +16,22 @@ const Header = ({ backgroundColor }) => {
 
   const splitLocation = pathname.split("/");
 
-  //check if user is logged in or not
+  // check if user is logged in or not
   const isAuthenticated = !!sessionStorage.getItem("token");
 
   return (
     <>
       <Navbar
-        expand="md"
-        className="navbar-main d-none d-md-flex"
+        expand="lg"
+        className="navbar-main d-none d-lg-flex"
         style={{
           backgroundColor: backgroundColor ? backgroundColor : "transparent",
         }}
       >
         <Container>
-          <div className="d-flex align-items-center" style={{ width: "100%" }}>
-            <Navbar.Brand href="/">
-              <img src={LogoBlack} alt="logo" className="headerLogo" />
+          <div className="d-flex align-items-center w-100">
+            <Navbar.Brand href="/" className="headerLogo">
+              <img src={LogoBlack} alt="logo" className="w-100" />
             </Navbar.Brand>
             <Navbar.Toggle
               className="nav-toggle"
@@ -84,8 +84,8 @@ const Header = ({ backgroundColor }) => {
       </Navbar>
 
       <Navbar
-        expand="md"
-        className="navbar-main-1 d-md-none d-flex"
+        expand="lg"
+        className="navbar-main-1 d-lg-none d-flex py-4"
         variant="dark"
       >
         <Container>

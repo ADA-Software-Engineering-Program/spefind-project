@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoutes from "./Router/Protected";
 import Home from "./pages/Home/Home";
-import About from "../src/Components/Aboutpage/About";
+import About from "../src/pages/About/About";
 import Explore from "./pages/Explore/Explore";
 import Blog from "./pages/Blog/Blog";
 import Contact from "./pages/Contact/Contact";
@@ -22,8 +22,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
   function isLoggedIn() {
-    const isAuthenticated =
-      !!sessionStorage.getItem("token");
+    const isAuthenticated = !!sessionStorage.getItem("token");
     return isAuthenticated;
   }
 
