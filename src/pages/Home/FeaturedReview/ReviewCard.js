@@ -1,6 +1,6 @@
 import React from "react";
 import { HiStar } from "react-icons/hi";
-import "../../Components/HomeCSS/ReviewCard.css";
+import "./ReviewCard.css";
 
 const ReviewCard = ({ profilePic, speakerName, occupation, review }) => {
   return (

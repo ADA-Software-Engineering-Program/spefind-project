@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
-import microphone from "../../images/microphone-21.jpg";
+import microphone from "../../../images/microphone-21.jpg";
 // import microphone from "../../images/microphone.png";
-import "../../Components/HomeCSS/Hero.css";
+import "./Hero.css";
 
 function Hero() {
   return (
@@ -22,7 +22,7 @@ function Hero() {
         </p>
 
         <div>
-          <Link to="/signup" className="getBtn">
+          <Link to="/signup" className="getBtn d-flex align-items-center">
             Start for Free
             <BsArrowRight />
           </Link>

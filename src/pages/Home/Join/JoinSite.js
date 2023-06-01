@@ -1,5 +1,5 @@
 import React from "react";
-import "../../Components/HomeCSS/JoinSite.css";
+import "./JoinSite.css";
 import JoinCard from "./JoinCard";
 
 const details = [

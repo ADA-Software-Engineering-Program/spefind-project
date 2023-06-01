@@ -1,4 +1,4 @@
-import "../../Components/HomeCSS/FindSpeakers.css";
+import "./FindSpeakers.css";
 
 export default function FindSpeakers() {
   return (
