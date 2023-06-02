@@ -1,14 +1,7 @@
 .findSection {
   margin-top: -3rem;
   background-color: var(--bg);
-  -webkit-clip-path: polygon(
-    0% 0%,
-    50% 7%,
-    100% 0%,
-    100% 100%,
-    50% 93%,
-    0% 100%
-  );
+  -webkit-clip-path: polygon(0% 0%, 50% 7%, 100% 0%, 100% 100%, 50% 93%, 0% 100%);
   clip-path: polygon(0% 0%, 50% 7%, 100% 0%, 100% 100%, 50% 93%, 0% 100%);
   padding-top: 5rem;
   padding-bottom: 5rem;

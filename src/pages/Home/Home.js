@@ -1,9 +1,9 @@
-import AppLayout from "../../../src/layout/AppLayout";
-import Hero from "./Hero/Hero";
-import FeaturedReview from "./FeaturedReview/FeaturedReview";
-import SpeakersCard from "./FeaturedSpeakersCard/SpeakersCard";
-import FindSpeakers from "./FindSpeakers/FindSpeakers";
-import JoinSite from "./Join/JoinSite";
+import AppLayout from "../../../src/layout/AppLayout"
+import Hero from "./Hero/Hero"
+import FeaturedReview from "./FeaturedReview/FeaturedReview"
+import SpeakersCard from "./FeaturedSpeakersCard/SpeakersCard"
+import FindSpeakers from "./FindSpeakers/FindSpeakers"
+import JoinSite from "./Join/JoinSite"
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
       <JoinSite />
       <FeaturedReview />
     </AppLayout>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

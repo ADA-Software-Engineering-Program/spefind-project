@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const Personal = ({ nextStep, formik, userData }) => {
   const formValues = [
@@ -12,58 +12,58 @@ const Personal = ({ nextStep, formik, userData }) => {
     "date",
     "location",
     "numberOfAttendees",
-    "field",
-  ];
+    "field"
+  ]
 
   const handleNext = (e) => {
-    e.preventDefault();
-    const errorField = [];
-    const emptyField = [];
+    e.preventDefault()
+    const errorField = []
+    const emptyField = []
 
     // set the fields to touched
     formValues.forEach((value) => {
-      formik.setFieldTouched(value, true);
-    });
+      formik.setFieldTouched(value, true)
+    })
 
     formValues.forEach((value) => {
       if (!formik.values[value]) {
-        emptyField.push(value);
+        emptyField.push(value)
       } else {
-        const index = emptyField.indexOf(value);
+        const index = emptyField.indexOf(value)
         if (index > -1) {
           // only splice array when item is found
-          errorField.splice(index, 1);
+          errorField.splice(index, 1)
           // 2nd parameter means remove one item only
         }
       }
 
       if (formik.errors[value]) {
-        errorField.push(value);
+        errorField.push(value)
       } else {
-        const index = errorField.indexOf(value);
+        const index = errorField.indexOf(value)
         if (index > -1) {
-          errorField.splice(index, 1);
+          errorField.splice(index, 1)
         }
       }
-    });
+    })
 
     if (errorField.length === 0 && emptyField.length === 5) {
-      nextStep();
+      nextStep()
     }
-  };
+  }
 
   return (
     <div>
-      <div className="profile-group">
-        <label className="profile-label">NAME*</label>
-        <div className="profile-field">
+      <div className='profile-group'>
+        <label className='profile-label'>NAME*</label>
+        <div className='profile-field'>
           <div>
             <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              className="profile-input"
-              placeholder="First Name"
+              type='text'
+              name='firstName'
+              id='firstName'
+              className='profile-input'
+              placeholder='First Name'
               disabled
               readOnly={true}
               defaultValue={userData.firstName}
@@ -72,11 +72,11 @@ const Personal = ({ nextStep, formik, userData }) => {
 
           <div>
             <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              className="profile-input"
-              placeholder="Last Name"
+              type='text'
+              name='lastName'
+              id='lastName'
+              className='profile-input'
+              placeholder='Last Name'
               disabled
               readOnly={true}
               defaultValue={userData.lastName}
@@ -85,215 +85,186 @@ const Personal = ({ nextStep, formik, userData }) => {
         </div>
       </div>
 
-      <div className="profile-group">
-        <label className="profile-label">GENDER*</label>
-        <div className="check-cont" {...formik.getFieldProps("gender")}>
+      <div className='profile-group'>
+        <label className='profile-label'>GENDER*</label>
+        <div className='check-cont' {...formik.getFieldProps("gender")}>
           <div>
             <input
-              type="radio"
-              name="gender"
-              className="check-input"
-              value="male"
-              id="male"
+              type='radio'
+              name='gender'
+              className='check-input'
+              value='male'
+              id='male'
               defaultChecked={formik.values.gender === "male" ? true : false}
             />
-            <label className="check-label" htmlFor="male">
-              <span className="check-radio-button"></span>Male
+            <label className='check-label' htmlFor='male'>
+              <span className='check-radio-button'></span>Male
             </label>
           </div>
 
           <div>
             <input
-              type="radio"
-              name="gender"
-              className="check-input"
-              value="female"
-              id="female"
+              type='radio'
+              name='gender'
+              className='check-input'
+              value='female'
+              id='female'
               defaultChecked={formik.values.gender === "female" ? true : false}
             />
-            <label className="check-label" htmlFor="female">
-              <span className="check-radio-button"></span>Female
+            <label className='check-label' htmlFor='female'>
+              <span className='check-radio-button'></span>Female
             </label>
           </div>
 
           <div>
             <input
-              type="radio"
-              name="gender"
-              className="check-input"
-              value="others"
-              id="others"
+              type='radio'
+              name='gender'
+              className='check-input'
+              value='others'
+              id='others'
               defaultChecked={formik.values.gender === "others" ? true : false}
             />
-            <label className="check-label" htmlFor="others">
-              <span className="check-radio-button"></span>Others
+            <label className='check-label' htmlFor='others'>
+              <span className='check-radio-button'></span>Others
             </label>
           </div>
-          {formik.touched.gender && formik.errors.gender ? (
-            <div className="profile-error">{formik.errors.gender}</div>
-          ) : null}
+          {formik.touched.gender && formik.errors.gender ? <div className='profile-error'>{formik.errors.gender}</div> : null}
         </div>
       </div>
 
-      <div className="profile-group">
-        <label className="profile-label">COUNTRY & CITY* </label>
-        <div className="profile-field">
+      <div className='profile-group'>
+        <label className='profile-label'>COUNTRY & CITY* </label>
+        <div className='profile-field'>
           <div>
             <input
-              type="text"
-              name="country"
-              id="country"
-              className="profile-input"
-              placeholder="Type Country"
+              type='text'
+              name='country'
+              id='country'
+              className='profile-input'
+              placeholder='Type Country'
               required
               {...formik.getFieldProps("country")}
             />
-            {formik.touched.country && formik.errors.country ? (
-              <div className="profile-error">{formik.errors.country}</div>
-            ) : null}
+            {formik.touched.country && formik.errors.country ? <div className='profile-error'>{formik.errors.country}</div> : null}
           </div>
 
           <div>
             <input
-              type="text"
-              name="city"
-              id="city"
-              className="profile-input"
-              placeholder="Type City"
+              type='text'
+              name='city'
+              id='city'
+              className='profile-input'
+              placeholder='Type City'
               required
               {...formik.getFieldProps("city")}
             />
-            {formik.touched.city && formik.errors.city ? (
-              <div className="profile-error">{formik.errors.city}</div>
-            ) : null}
+            {formik.touched.city && formik.errors.city ? <div className='profile-error'>{formik.errors.city}</div> : null}
           </div>
         </div>
       </div>
 
-      <div className="profile-group">
-        <label className="profile-label" htmlFor="biography">
+      <div className='profile-group'>
+        <label className='profile-label' htmlFor='biography'>
           BIOGRAPHY*
         </label>
         <textarea
-          name="biography"
-          id="biography"
-          className="profile-textarea"
-          cols="30"
-          rows="5"
-          placeholder="Type here"
+          name='biography'
+          id='biography'
+          className='profile-textarea'
+          cols='30'
+          rows='5'
+          placeholder='Type here'
           style={{ resize: "none" }}
           required
           {...formik.getFieldProps("biography")}
         ></textarea>
-        {formik.touched.biography && formik.errors.biography ? (
-          <div className="profile-error">{formik.errors.biography}</div>
-        ) : null}
+        {formik.touched.biography && formik.errors.biography ? <div className='profile-error'>{formik.errors.biography}</div> : null}
       </div>
 
-      <div className="profile-group">
-        <label className="profile-label">PAST EVENTS*</label>
-        <div className="profile-field">
+      <div className='profile-group'>
+        <label className='profile-label'>PAST EVENTS*</label>
+        <div className='profile-field'>
           <div>
-            <label className="profile-label-field" htmlFor="titleOfEvent">
+            <label className='profile-label-field' htmlFor='titleOfEvent'>
               Name of Event
             </label>
             <input
-              type="text"
-              name="titleOfEvent"
-              id="titleOfEvent"
-              className="profile-input"
-              placeholder="Type here"
+              type='text'
+              name='titleOfEvent'
+              id='titleOfEvent'
+              className='profile-input'
+              placeholder='Type here'
               {...formik.getFieldProps("titleOfEvent")}
             />
             {formik.touched.titleOfEvent && formik.errors.titleOfEvent ? (
-              <div className="profile-error">{formik.errors.titleOfEvent}</div>
+              <div className='profile-error'>{formik.errors.titleOfEvent}</div>
             ) : null}
           </div>
 
           <div>
-            <label className="profile-label-field" htmlFor="date">
+            <label className='profile-label-field' htmlFor='date'>
               Date of Event
             </label>
-            <input
-              type="date"
-              name="date"
-              id="date"
-              className="profile-input"
-              placeholder="Type here"
-              {...formik.getFieldProps("date")}
-            />
-            {formik.touched.date && formik.errors.date ? (
-              <div className="profile-error">{formik.errors.date}</div>
-            ) : null}
+            <input type='date' name='date' id='date' className='profile-input' placeholder='Type here' {...formik.getFieldProps("date")} />
+            {formik.touched.date && formik.errors.date ? <div className='profile-error'>{formik.errors.date}</div> : null}
           </div>
 
           <div>
-            <label className="profile-label-field" htmlFor="location">
+            <label className='profile-label-field' htmlFor='location'>
               Location of Event
             </label>
             <input
-              type="text"
-              name="location"
-              id="location"
-              className="profile-input"
-              placeholder="Type here"
+              type='text'
+              name='location'
+              id='location'
+              className='profile-input'
+              placeholder='Type here'
               {...formik.getFieldProps("location")}
             />
-            {formik.touched.location && formik.errors.location ? (
-              <div className="profile-error">{formik.errors.location}</div>
-            ) : null}
+            {formik.touched.location && formik.errors.location ? <div className='profile-error'>{formik.errors.location}</div> : null}
           </div>
 
           <div>
-            <label className="profile-label-field" htmlFor="numberOfAttendees">
+            <label className='profile-label-field' htmlFor='numberOfAttendees'>
               Event of How Many People?
             </label>
             <input
-              type="number"
-              name="numberOfAttendees"
-              id="numberOfAttendees"
-              className="profile-input"
-              placeholder="Type here"
+              type='number'
+              name='numberOfAttendees'
+              id='numberOfAttendees'
+              className='profile-input'
+              placeholder='Type here'
               {...formik.getFieldProps("numberOfAttendees")}
             />
-            {formik.touched.numberOfAttendees &&
-            formik.errors.numberOfAttendees ? (
-              <div className="profile-error">
-                {formik.errors.numberOfAttendees}
-              </div>
+            {formik.touched.numberOfAttendees && formik.errors.numberOfAttendees ? (
+              <div className='profile-error'>{formik.errors.numberOfAttendees}</div>
             ) : null}
           </div>
 
           <div>
-            <label className="profile-label-field" htmlFor="field">
+            <label className='profile-label-field' htmlFor='field'>
               Which field did you speak for?
             </label>
             <input
-              type="text"
-              name="field"
-              id="field"
-              className="profile-input"
-              placeholder="Type here"
+              type='text'
+              name='field'
+              id='field'
+              className='profile-input'
+              placeholder='Type here'
               {...formik.getFieldProps("field")}
             />
-            {formik.touched.field && formik.errors.field ? (
-              <div className="profile-error">{formik.errors.field}</div>
-            ) : null}
+            {formik.touched.field && formik.errors.field ? <div className='profile-error'>{formik.errors.field}</div> : null}
           </div>
         </div>
       </div>
-      <div className="btn-box">
-        <button
-          type="button"
-          className="submitBtn submitBtn--grey"
-          onClick={handleNext}
-          style={{ marginLeft: "auto" }}
-        >
+      <div className='btn-box'>
+        <button type='button' className='submitBtn submitBtn--grey' onClick={handleNext} style={{ marginLeft: "auto" }}>
           Next
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Personal;
+export default Personal

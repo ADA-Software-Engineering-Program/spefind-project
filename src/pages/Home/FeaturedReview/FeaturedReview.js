@@ -1,18 +1,18 @@
-import React from "react";
-import ReviewCard from "./ReviewCard";
-import Slider from "react-slick";
+import React from "react"
+import ReviewCard from "./ReviewCard"
+import Slider from "react-slick"
 // style files
-import "./ReviewCard.css";
+import "./ReviewCard.css"
 // images
-import Gold from "../../../images/Gold.png";
-import Ola from "../../../images/Ola.png";
-import Tife from "../../../images/Tife.png";
-import Peace from "../../../images/Peace.png";
-import Tobe from "../../../images/Tobe.png";
-import Sola from "../../../images/Sola.png";
+import Gold from "../../../images/Gold.png"
+import Ola from "../../../images/Ola.png"
+import Tife from "../../../images/Tife.png"
+import Peace from "../../../images/Peace.png"
+import Tobe from "../../../images/Tobe.png"
+import Sola from "../../../images/Sola.png"
 
 function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
+  const { className, style, onClick } = props
   return (
     <div
       className={className}
@@ -21,15 +21,15 @@ function SampleNextArrow(props) {
         display: "block",
         color: "red",
         background: "green",
-        borderRadius: "50%",
+        borderRadius: "50%"
       }}
       onClick={onClick}
     />
-  );
+  )
 }
 
 function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
+  const { className, style, onClick } = props
   return (
     <div
       className={className}
@@ -37,11 +37,11 @@ function SamplePrevArrow(props) {
         ...style,
         display: "block",
         background: "green",
-        borderRadius: "50%",
+        borderRadius: "50%"
       }}
       onClick={onClick}
     />
-  );
+  )
 }
 
 const speakers = [
@@ -51,22 +51,21 @@ const speakers = [
     speakerName: "Omorinwale Gold",
     occupation: "Abey Event Planning",
     review:
-      "This has been such an important website for me. Finding quality public speakers can be quite difficult. But with this website, I just simply browse till I find the best fit for me",
+      "This has been such an important website for me. Finding quality public speakers can be quite difficult. But with this website, I just simply browse till I find the best fit for me"
   },
   {
     id: 2,
     profilePic: Ola,
     speakerName: "Ola Silver",
     occupation: "Lerd Events",
-    review:
-      "I love how you can browse through different categories on on website. Super time efficient!",
+    review: "I love how you can browse through different categories on on website. Super time efficient!"
   },
   {
     id: 3,
     profilePic: Tife,
     speakerName: "Chike Tife",
     occupation: "Lerd Events",
-    review: "I love this website so much!!!!",
+    review: "I love this website so much!!!!"
   },
   {
     id: 4,
@@ -74,24 +73,23 @@ const speakers = [
     speakerName: "Ojukwu Peace",
     occupation: "Abey Event Planning",
     review:
-      "This has been such an important website for me. Finding quality public speakers can be quite difficult. But with this website, I just simply browse till I find the best fit for me",
+      "This has been such an important website for me. Finding quality public speakers can be quite difficult. But with this website, I just simply browse till I find the best fit for me"
   },
   {
     id: 5,
     profilePic: Tobe,
     speakerName: "Tobi Tobe",
     occupation: "Lerd Events",
-    review:
-      "I love how you can browse through different categories on on website. Super time efficient!",
+    review: "I love how you can browse through different categories on on website. Super time efficient!"
   },
   {
     id: 6,
     profilePic: Sola,
     speakerName: "Adesina Sola",
     occupation: "Lerd Events",
-    review: "I love this website so much!!!!",
-  },
-];
+    review: "I love this website so much!!!!"
+  }
+]
 
 function FeaturedReview() {
   const settings = {
@@ -104,14 +102,14 @@ function FeaturedReview() {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-  };
+    prevArrow: <SamplePrevArrow />
+  }
 
   return (
-    <div className="text-center reviewSection px-lg-5 px-md-4 px-3">
-      <h3 className="header fw-bolder pt-5">Featured reviews</h3>
+    <div className='text-center reviewSection px-lg-5 px-md-4 px-3'>
+      <h3 className='header fw-bolder pt-5'>Featured reviews</h3>
 
-      <div className="review-box d-md-grid d-none">
+      <div className='review-box d-md-grid d-none'>
         {speakers.map((slide, key) => {
           return (
             <ReviewCard
@@ -121,12 +119,12 @@ function FeaturedReview() {
               review={slide.review}
               key={key}
             />
-          );
+          )
         })}
       </div>
 
-      <div className="slick my-5 d-md-none d-block">
-        <Slider {...settings} className="slick-box">
+      <div className='slick my-5 d-md-none d-block'>
+        <Slider {...settings} className='slick-box'>
           {speakers.map((slide, key) => {
             return (
               <ReviewCard
@@ -136,12 +134,12 @@ function FeaturedReview() {
                 review={slide.review}
                 key={key}
               />
-            );
+            )
           })}
         </Slider>
       </div>
     </div>
-  );
+  )
 }
 
-export default FeaturedReview;
+export default FeaturedReview
