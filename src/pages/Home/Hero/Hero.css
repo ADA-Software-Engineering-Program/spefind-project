@@ -1,7 +1,7 @@
 .heroContainer {
   display: flex;
   flex-direction: column-reverse;
-  /* padding: 0rem 0 3rem; */
+  padding: 0rem 0 3rem;
   background-color: rgba(227, 80, 47, 0.1);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);

@@ -10,11 +10,13 @@
   background-color: var(--orange);
 }
 
-.navbar-main-1 .nav-link {
+.navbar-main-1 .nav-link,
+.navbar-main-2 .nav-link {
   color: var(--white);
 }
 
-.navbar-main-1 .nav-link.active {
+.navbar-main-1 .nav-link.active,
+.navbar-main-2 .nav-link.active {
   color: #000000 !important;
 }
 
@@ -88,16 +90,16 @@
   .headerLogo {
     max-width: 180px;
   }
-
-  #logBtn {
-    background-color: var(--orange);
-    color: var(--white);
-  }
 }
 
 @media only screen and (min-width: 992px) {
   .nav-link {
     text-align: unset;
     margin: 0rem 0.6rem;
+  }
+
+  #logBtn {
+    background-color: var(--orange);
+    color: var(--white);
   }
 }
