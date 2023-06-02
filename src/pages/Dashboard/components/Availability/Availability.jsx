@@ -90,7 +90,11 @@ const Availability = () => {
             <span className="check-checkbox-button"></span>School
           </label>
         </div>
-        <button type="button" className={styles.editEvent}>
+        <button
+          type="button"
+          className={styles.editEvent}
+          disabled={enableInput}
+        >
           + Edit/Add
         </button>
       </div>
