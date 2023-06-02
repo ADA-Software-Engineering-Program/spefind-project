@@ -24,25 +24,25 @@ const validate = (values) => {
     errors.biography = "Please fill out this field"
   }
 
-  if (!values.titleOfEvent) {
-    errors.titleOfEvent = "Please fill out this field"
-  }
+  // if (!values.titleOfEvent) {
+  //   errors.titleOfEvent = "Please fill out this field";
+  // }
 
-  if (!values.date) {
-    errors.date = "Please select a date"
-  }
+  // if (!values.date) {
+  //   errors.date = "Please select a date";
+  // }
 
-  if (!values.location) {
-    errors.location = "Please fill out this field"
-  }
+  // if (!values.location) {
+  //   errors.location = "Please fill out this field";
+  // }
 
-  if (!values.numberOfAttendees) {
-    errors.numberOfAttendees = "Please fill out this field"
-  }
+  // if (!values.numberOfAttendees) {
+  //   errors.numberOfAttendees = "Please fill out this field";
+  // }
 
-  if (!values.field) {
-    errors.field = "Please fill out this field"
-  }
+  // if (!values.field) {
+  //   errors.field = "Please fill out this field";
+  // }
 
   if (!values.speakerField) {
     errors.speakerField = "Please fill out this field"

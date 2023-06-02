@@ -1,5 +1,6 @@
 .formContainer {
   margin: 3rem;
+  position: relative;
 }
 .editContainer {
   display: flex;
@@ -206,6 +207,25 @@
   border: none;
   padding: 1rem 2rem;
 }
+.addEventContainerModalOverlay {
+  position: absolute;
+  top: 0;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: #e3502f;
+  opacity: 0.8;
+  z-index: 899;
+  overflow-y: scroll;
+  padding-bottom: 3rem;
+}
+.addEventContainer {
+  position: absolute;
+  width: 70%;
+  left:15%;
+  bottom: 0rem;
+  z-index: 901;
+}
 @media only screen and (max-width: 900px) {
   .formContainer {
     margin: 0.5rem;
@@ -225,6 +245,20 @@
     grid-template-columns: 1fr;
   }
   .btnWrapper {
-    grid-template-rows: 3rem 3rem 3rem;
+    grid-template-rows: 3rem 3rem;
+    place-content: center;
+  }
+  .events {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .pastEventsCointainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .delete {
+    margin: auto;
   }
 }

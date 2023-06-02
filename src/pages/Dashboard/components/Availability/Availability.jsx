@@ -73,13 +73,19 @@ const Availability = () => {
             <span className='check-checkbox-button'></span>School
           </label>
         </div>
+        <div className=''>
+          <input type='checkbox' aria-label='School' id='School' name='School' className='check-checkbox' disabled={enableInput} />
+          <label htmlFor='School' className='check-label'>
+            <span className='check-checkbox-button'></span>School
+          </label>
+        </div>
         <button type='button' className={styles.editEvent}>
           + Edit/Add
         </button>
       </div>
 
       <div>
-        <label htmlFor='availableTo'>Availabe To</label>
+        <label htmlFor='availableTo'>Available To</label>
         <div className=''>
           <input type='checkbox' aria-label='Lagos' id='Lagos' name='Lagos' className='check-checkbox' disabled={enableInput} />
           <label htmlFor='Lagos' className='check-label'>
