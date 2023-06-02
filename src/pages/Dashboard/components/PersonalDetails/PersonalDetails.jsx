@@ -157,9 +157,17 @@ const PersonalDetails = () => {
               <p>Lagos, Nigeria</p>
             </div>
           </div>
-          <button>+ Edit Event</button>
+          <button
+            type="button"
+            onClick={() => {
+              setAddNewEvent(!addNewEvent);
+            }}
+          >
+            + Edit Event
+          </button>
           <AiFillDelete className="delete" />
         </div>
+        <hr />
         <div className="pastEventsCointainer">
           <div className="events">
             <img src={event} alt="past event" />
@@ -169,9 +177,17 @@ const PersonalDetails = () => {
               <p>Lagos, Nigeria</p>
             </div>
           </div>
-          <button>+ Edit Event</button>
+          <button
+            type="button"
+            onClick={() => {
+              setAddNewEvent(!addNewEvent);
+            }}
+          >
+            + Edit Event
+          </button>
           <AiFillDelete className="delete" />
         </div>
+        <hr />
         <div className="pastEventsCointainer">
           <div className="events">
             <img src={event} alt="past event" />
@@ -181,9 +197,17 @@ const PersonalDetails = () => {
               <p>Lagos, Nigeria</p>
             </div>
           </div>
-          <button>+ Edit Event</button>
+          <button
+            type="button"
+            onClick={() => {
+              setAddNewEvent(!addNewEvent);
+            }}
+          >
+            + Edit Event
+          </button>
           <AiFillDelete className="delete" />
         </div>
+        <hr />
         <div className="pastEventsCointainer">
           <div className="events">
             <img src={event} alt="past event" />
@@ -193,105 +217,132 @@ const PersonalDetails = () => {
               <p>Lagos, Nigeria</p>
             </div>
           </div>
-          <button>+ Edit Event</button>
+          <button
+            type="button"
+            onClick={() => {
+              setAddNewEvent(!addNewEvent);
+            }}
+          >
+            + Edit Event
+          </button>
           <AiFillDelete className="delete" />
         </div>
+        <hr />
         {addNewEvent && (
-          <div className="profile-group">
-            <label className="profile-label">PAST EVENTS*</label>
-            <div className="profile-field">
-              <div>
-                <label className="profile-label-field" htmlFor="titleOfEvent">
-                  Name of Event
-                </label>
-                <input
-                  type="text"
-                  name="titleOfEvent"
-                  id="titleOfEvent"
-                  className="profile-input"
-                  placeholder="Type here"
-                  // {...formik.getFieldProps("titleOfEvent")}
-                />
-                {/* {formik.touched.titleOfEvent && formik.errors.titleOfEvent ? (
+          <>
+            <div
+              className="addEventContainerModalOverlay"
+              onClick={() => {
+                setAddNewEvent(!addNewEvent);
+              }}
+            ></div>
+
+            <div className="addEventContainer">
+              <label className="profile-label">ADD EVENTS*</label>
+              <div className="profile-field">
+                <div>
+                  <label className="profile-label-field" htmlFor="titleOfEvent">
+                    Name of Event
+                  </label>
+                  <input
+                    type="text"
+                    name="titleOfEvent"
+                    id="titleOfEvent"
+                    className="profile-input"
+                    placeholder="Type here"
+                    // {...formik.getFieldProps("titleOfEvent")}
+                  />
+                  {/* {formik.touched.titleOfEvent && formik.errors.titleOfEvent ? (
               <div className="profile-error">{formik.errors.titleOfEvent}</div>
             ) : null} */}
-              </div>
+                </div>
 
-              <div>
-                <label className="profile-label-field" htmlFor="date">
-                  Date of Event
-                </label>
-                <input
-                  type="date"
-                  name="date"
-                  id="date"
-                  className="profile-input"
-                  placeholder="Type here"
-                  // {...formik.getFieldProps("date")}
-                />
-                {/* {formik.touched.date && formik.errors.date ? (
+                <div>
+                  <label className="profile-label-field" htmlFor="date">
+                    Date of Event
+                  </label>
+                  <input
+                    type="date"
+                    name="date"
+                    id="date"
+                    className="profile-input"
+                    placeholder="Type here"
+                    // {...formik.getFieldProps("date")}
+                  />
+                  {/* {formik.touched.date && formik.errors.date ? (
               <div className="profile-error">{formik.errors.date}</div>
             ) : null} */}
-              </div>
+                </div>
 
-              <div>
-                <label className="profile-label-field" htmlFor="location">
-                  Location of Event
-                </label>
-                <input
-                  type="text"
-                  name="location"
-                  id="location"
-                  className="profile-input"
-                  placeholder="Type here"
-                  // {...formik.getFieldProps("location")}
-                />
-                {/* {formik.touched.location && formik.errors.location ? (
+                <div>
+                  <label className="profile-label-field" htmlFor="location">
+                    Location of Event
+                  </label>
+                  <input
+                    type="text"
+                    name="location"
+                    id="location"
+                    className="profile-input"
+                    placeholder="Type here"
+                    // {...formik.getFieldProps("location")}
+                  />
+                  {/* {formik.touched.location && formik.errors.location ? (
               <div className="profile-error">{formik.errors.location}</div>
             ) : null} */}
-              </div>
+                </div>
 
-              <div>
-                <label
-                  className="profile-label-field"
-                  htmlFor="numberOfAttendees"
-                >
-                  Event of How Many People?
-                </label>
-                <input
-                  type="number"
-                  name="numberOfAttendees"
-                  id="numberOfAttendees"
-                  className="profile-input"
-                  placeholder="Type here"
-                  // {...formik.getFieldProps("numberOfAttendees")}
-                />
-                {/* {formik.touched.numberOfAttendees &&
+                <div>
+                  <label
+                    className="profile-label-field"
+                    htmlFor="numberOfAttendees"
+                  >
+                    Event of How Many People?
+                  </label>
+                  <input
+                    type="number"
+                    name="numberOfAttendees"
+                    id="numberOfAttendees"
+                    className="profile-input"
+                    placeholder="Type here"
+                    // {...formik.getFieldProps("numberOfAttendees")}
+                  />
+                  {/* {formik.touched.numberOfAttendees &&
             formik.errors.numberOfAttendees ? (
               <div className="profile-error">
                 {formik.errors.numberOfAttendees}
               </div>
             ) : null} */}
-              </div>
+                </div>
 
-              <div>
-                <label className="profile-label-field" htmlFor="field">
-                  Which field did you speak for?
-                </label>
-                <input
-                  type="text"
-                  name="field"
-                  id="field"
-                  className="profile-input"
-                  placeholder="Type here"
-                  // {...formik.getFieldProps("field")}
-                />
-                {/* {formik.touched.field && formik.errors.field ? (
+                <div>
+                  <label className="profile-label-field" htmlFor="field">
+                    Which field did you speak for?
+                  </label>
+                  <input
+                    type="text"
+                    name="field"
+                    id="field"
+                    className="profile-input"
+                    placeholder="Type here"
+                    // {...formik.getFieldProps("field")}
+                  />
+                  {/* {formik.touched.field && formik.errors.field ? (
               <div className="profile-error">{formik.errors.field}</div>
             ) : null} */}
+                </div>
               </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setAddNewEvent(!addNewEvent);
+                }}
+                className="edit"
+                style={{ margin: "1rem auto" }}
+              >
+                Done
+              </button>
             </div>
-          </div>
+          </>
         )}
         <div className="saveAndEdit">
           <button
