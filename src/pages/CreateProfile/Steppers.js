@@ -1,6 +1,7 @@
 import React, { useState, useImperativeHandle, forwardRef } from "react"
 import { Stepper, Step } from "react-form-stepper"
 
+// eslint-disable-next-line react/display-name
 const Steppers = forwardRef((props, ref) => {
   // eslint-disable-next-line
   const [progress, setProgress] = useState(0)
@@ -32,7 +33,7 @@ const Steppers = forwardRef((props, ref) => {
       >
         <Step label='PERSONAL DETAILS' className='tunde' />
         <Step label='FIELD' />
-        <Step label='AVAILABILTY & FEES' />
+        <Step label='AVAILABILITY & FEES' />
         <Step label='ACCOUNT PREFERENCES' />
       </Stepper>
     </div>

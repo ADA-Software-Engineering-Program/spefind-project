@@ -1,4 +1,5 @@
 import { useState } from "react"
+
 const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
   const [showOtherStates, setShowOtherStates] = useState(false)
 

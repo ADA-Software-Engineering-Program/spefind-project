@@ -19,18 +19,9 @@ import { BiEnvelope } from "react-icons/bi"
 import { AiOutlineCheckCircle } from "react-icons/ai"
 import { FaAngleLeft, FaAngleRight, FaAngleDown } from "react-icons/fa"
 import { BsDot } from "react-icons/bs"
-import { Link, useNavigate } from "react-router-dom"
-import { useAuth } from "../../contexts/AuthContext"
-import { useEffect, useState } from "react"
-import { doc, getDoc } from "firebase/firestore"
-import { db } from "../../firebase/firebase"
-import toast from "react-hot-toast"
+import { Link } from "react-router-dom"
 
 const Explore = () => {
-  const { currentUser } = useAuth()
-  const navigate = useNavigate()
-  const [data, setData] = useState([])
-
   // useEffect(() => {
   //     const fetchData = async () => {
   //         const docRef = await doc(db, "speakers", currentUser.uid);

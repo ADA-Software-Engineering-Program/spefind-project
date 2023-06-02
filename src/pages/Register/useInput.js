@@ -12,6 +12,7 @@ const useInput = (validateValue) => {
     // console.log(event);
   }
 
+  // eslint-disable-next-line no-unused-vars
   const inputBlurHandler = (event) => {
     setIsTouched(true)
   }

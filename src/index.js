@@ -8,16 +8,13 @@ import "slick-carousel/slick/slick-theme.css"
 import "./index.css"
 import App from "./App"
 import { Toaster } from "react-hot-toast"
-import AuthProvider from "./contexts/AuthContext"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>
-    <AuthProvider>
-      <BrowserRouter>
-        <App />
-        <Toaster />
-      </BrowserRouter>
-    </AuthProvider>
+    <BrowserRouter>
+      <App />
+      <Toaster />
+    </BrowserRouter>
   </React.StrictMode>
 )

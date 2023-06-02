@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import styles from "./Logout.module.css"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
@@ -7,7 +8,7 @@ const Logout = ({ children, classes }) => {
   const logoutHandler = () => {
     sessionStorage.removeItem("token")
     navigate("/login")
-    toast.success(`Log out succesful!`, {
+    toast.success(`Log out successful!`, {
       duration: 4000,
       position: "top-center",
 
@@ -23,6 +24,11 @@ const Logout = ({ children, classes }) => {
       {children}
     </button>
   )
+}
+
+Logout.propTypes = {
+  children: PropTypes.node,
+  classes: PropTypes.string
 }
 
 export default Logout
