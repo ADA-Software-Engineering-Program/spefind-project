@@ -103,6 +103,7 @@
 
 .footerLogo {
   max-width: 160px;
+  margin: 0 auto;
 }
 
 .socialMedia {
@@ -177,6 +178,10 @@ p.copyRight {
   .copySection {
     flex-direction: row;
     gap: 40px;
+  }
+
+  .footerLogo {
+    margin: unset;
   }
 
   .icon {
