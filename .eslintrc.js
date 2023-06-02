@@ -30,6 +30,6 @@ module.exports = {
     "react/no-irregular-whitespace": 0,
     "react/no-unescaped-entities": 0,
     "no-unused-vars": ["warn", { vars: "all", args: "after-used", ignoreRestSiblings: false }],
-    "prettier/prettier": ["error", {}, { usePrettierrc: true }]
+    "prettier/prettier": ["error", { endOfLine: "auto" }]
   }
 }
