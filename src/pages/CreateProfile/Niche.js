@@ -7,149 +7,136 @@ const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
     "yearsOfPractice",
     // "jobDescription",
     // "position",
-    "language",
-  ];
+    "language"
+  ]
 
   const handleNext = (e) => {
-    e.preventDefault();
-    const errorField = [];
-    const emptyField = [];
+    e.preventDefault()
+    const errorField = []
+    const emptyField = []
 
     // set the fields to touched
     formValues.forEach((value) => {
-      formik.setFieldTouched(value, true);
-    });
+      formik.setFieldTouched(value, true)
+    })
 
     formValues.forEach((value) => {
       if (!formik.values[value]) {
-        emptyField.push(value);
+        emptyField.push(value)
       } else {
-        const index = emptyField.indexOf(value);
+        const index = emptyField.indexOf(value)
         if (index > -1) {
-          errorField.splice(index, 1);
+          errorField.splice(index, 1)
         }
       }
 
       if (formik.errors[value]) {
-        errorField.push(value);
+        errorField.push(value)
       } else {
-        const index = errorField.indexOf(value);
+        const index = errorField.indexOf(value)
         if (index > -1) {
-          errorField.splice(index, 1);
+          errorField.splice(index, 1)
         }
       }
-    });
+    })
 
     if (errorField.length === 0 && emptyField.length === 0) {
-      nextStep();
+      nextStep()
     }
-  };
+  }
 
   const handlePrev = (e) => {
-    e.preventDefault();
-    prevStep();
-  };
+    e.preventDefault()
+    prevStep()
+  }
 
   return (
     <div>
-      <div className="profile-group">
-        <label className="profile-label" htmlFor="speakerField">
+      <div className='profile-group'>
+        <label className='profile-label' htmlFor='speakerField'>
           CHOOSE YOUR MAIN FIELD*
         </label>
-        <select
-          className="profile-input"
-          {...formik.getFieldProps("speakerField")}
-        >
+        <select className='profile-input' {...formik.getFieldProps("speakerField")}>
           <option value={""} disabled defaultValue={""}>
             i.e family, leadership, technology
           </option>
           {optionFields.fieldOptions.map((option) => {
             return (
-              <option
-                key={option._id}
-                value={option.field}
-                className="profile-input"
-              >
+              <option key={option._id} value={option.field} className='profile-input'>
                 {option.field}
               </option>
-            );
+            )
           })}
         </select>
         {formik.touched.speakerField && formik.errors.speakerField ? (
-          <div className="profile-error">{formik.errors.speakerField}</div>
+          <div className='profile-error'>{formik.errors.speakerField}</div>
         ) : null}
       </div>
 
-      <div className="profile-group">
-        <label className="profile-label" htmlFor="speakerSubField">
+      <div className='profile-group'>
+        <label className='profile-label' htmlFor='speakerSubField'>
           SUBFIELD*
         </label>
         <input
-          type="text"
-          name="speakerSubField"
-          id="speakerSubField"
-          className="profile-input"
-          placeholder="i.e under technology as your main topic, your expertise tag is coding"
+          type='text'
+          name='speakerSubField'
+          id='speakerSubField'
+          className='profile-input'
+          placeholder='i.e under technology as your main topic, your expertise tag is coding'
           {...formik.getFieldProps("speakerSubField")}
         />
         {formik.touched.speakerSubField && formik.errors.speakerSubField ? (
-          <div className="profile-error">{formik.errors.speakerSubField}</div>
+          <div className='profile-error'>{formik.errors.speakerSubField}</div>
         ) : null}
       </div>
 
-      <div className="profile-group">
-        <label className="profile-label" htmlFor="education">
+      <div className='profile-group'>
+        <label className='profile-label' htmlFor='education'>
           QUALIFICATION*
         </label>
         <input
-          type="text"
-          name="education"
-          id="education"
-          className="profile-input"
-          placeholder="i.e school, field of study, year duration"
+          type='text'
+          name='education'
+          id='education'
+          className='profile-input'
+          placeholder='i.e school, field of study, year duration'
           {...formik.getFieldProps("education")}
         />
-        {formik.touched.education && formik.errors.education ? (
-          <div className="profile-error">{formik.errors.education}</div>
-        ) : null}
+        {formik.touched.education && formik.errors.education ? <div className='profile-error'>{formik.errors.education}</div> : null}
       </div>
 
-      <div className="profile-group">
-        <label className="profile-label">CURRENT CAREER/JOB*</label>
-        <div className="profile-field">
+      <div className='profile-group'>
+        <label className='profile-label'>CURRENT CAREER/JOB*</label>
+        <div className='profile-field'>
           <div>
-            <label className="profile-label-field" htmlFor="jobTitle">
+            <label className='profile-label-field' htmlFor='jobTitle'>
               Job Name
             </label>
             <input
-              type="text"
-              name="jobTitle"
-              id="jobTitle"
-              className="profile-input"
-              placeholder="Type here"
+              type='text'
+              name='jobTitle'
+              id='jobTitle'
+              className='profile-input'
+              placeholder='Type here'
               {...formik.getFieldProps("jobTitle")}
             />
-            {formik.touched.jobTitle && formik.errors.jobTitle ? (
-              <div className="profile-error">{formik.errors.jobTitle}</div>
-            ) : null}
+            {formik.touched.jobTitle && formik.errors.jobTitle ? <div className='profile-error'>{formik.errors.jobTitle}</div> : null}
           </div>
 
           <div>
-            <label className="profile-label-field" htmlFor="yearsOfPractice">
+            <label className='profile-label-field' htmlFor='yearsOfPractice'>
               Years of Practice
             </label>
             <input
-              type="number"
-              name="yearsOfPractice"
-              id="yearsOfPractice"
-              className="profile-input"
-              placeholder="Type here"
+              type='number'
+              name='yearsOfPractice'
+              id='yearsOfPractice'
+              className='profile-input'
+              placeholder='Type here'
               {...formik.getFieldProps("yearsOfPractice")}
             />
             {formik.touched.yearsOfPractice && formik.errors.yearsOfPractice ? (
-              <div className="profile-error">
-                {formik.errors.yearsOfPractice}
-              </div>
+              <div className='profile-error'>{formik.errors.yearsOfPractice}</div>
             ) : null}
           </div>
           {/* <div>
@@ -190,41 +177,31 @@ const Niche = ({ nextStep, prevStep, formik, optionFields }) => {
         </div>
       </div>
 
-      <div className="profile-group">
-        <label className="profile-label" htmlFor="language">
+      <div className='profile-group'>
+        <label className='profile-label' htmlFor='language'>
           LANGUAGE*
         </label>
         <input
-          type="text"
-          name="language"
-          id="language"
-          className="profile-input"
-          placeholder="English"
+          type='text'
+          name='language'
+          id='language'
+          className='profile-input'
+          placeholder='English'
           {...formik.getFieldProps("language")}
         />
-        {formik.touched.language && formik.errors.language ? (
-          <div className="profile-error">{formik.errors.language}</div>
-        ) : null}
+        {formik.touched.language && formik.errors.language ? <div className='profile-error'>{formik.errors.language}</div> : null}
       </div>
 
-      <div className="btn-box">
-        <button
-          type="button"
-          className="submitBtn submitBtn--grey"
-          onClick={handlePrev}
-        >
+      <div className='btn-box'>
+        <button type='button' className='submitBtn submitBtn--grey' onClick={handlePrev}>
           Back to Personal Details
         </button>
-        <button
-          type="button"
-          className="submitBtn submitBtn--grey"
-          onClick={handleNext}
-        >
+        <button type='button' className='submitBtn submitBtn--grey' onClick={handleNext}>
           Next
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Niche;
+export default Niche

@@ -1,5 +1,5 @@
-import Footer from "../Components/Footer/Footer";
-import Navbar from "../Components/Navbar/Navbar";
+import Footer from "../Components/Footer/Footer"
+import Navbar from "../Components/Navbar/Navbar"
 
 export default function AppLayout({ children, backgroundColor }) {
   return (
@@ -8,5 +8,5 @@ export default function AppLayout({ children, backgroundColor }) {
       {children}
       <Footer />
     </div>
-  );
+  )
 }
