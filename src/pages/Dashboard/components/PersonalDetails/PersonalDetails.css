@@ -222,7 +222,7 @@
 .addEventContainer {
   position: absolute;
   width: 70%;
-  left:15%;
+  left: 15%;
   bottom: 0rem;
   z-index: 901;
 }

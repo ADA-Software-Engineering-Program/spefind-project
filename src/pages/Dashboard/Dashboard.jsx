@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import AppLayout from "../../layout/AppLayout"
 import "./Dashboard.css"
 
@@ -15,17 +15,75 @@ import Field from "./components/Field/Field"
 import Availability from "./components/Availability/Availability"
 import AccountPreferences from "./components/AccountPreferences/AccountPreferences"
 
+import { API_LINK } from "../../utils/api"
+
 const Dashboard = () => {
-  const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails />)
+  const [fetchedUserData, setFetchedUserData] = useState({
+    // personal
+    firstName: "",
+    lastName: "",
+    gender: "",
+    country: "",
+    city: "",
+    biography: "",
+    titleOfEvent: "",
+    date: "",
+    location: "",
+    numberOfAttendees: "",
+    field: "",
+    // eventPictures: "",
+
+    // niche
+    speakerField: "",
+    speakerSubField: "",
+    education: "",
+    jobTitle: "",
+    yearsOfPractice: "",
+    jobDescription: "",
+    position: "",
+    language: "",
+
+    // availability
+    eventType: [],
+    availableTo: [],
+    pricing: "",
+    isVolunteer: "",
+
+    // isVisible
+    isVisible: ""
+  })
+  const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails userData={fetchedUserData} />)
   const [isNavExpanded, setIsNavExpanded] = useState(true)
-
   const [currentMenu, setCurrentMenu] = useState("menu1")
-
+  const fetchUserData = async () => {
+    try {
+      const token = sessionStorage.getItem("token")
+      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+      const userData = await getUserData.json()
+      console.log(userData)
+      setFetchedUserData((prevData) => ({
+        ...prevData,
+        firstName: userData?.user?.firstName,
+        lastName: userData?.user?.lastName,
+        country: userData?.user?.country,
+        city: userData?.user?.city
+      }))
+      console.log(userData?.user?.city)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const sideBarTitleAndComponent = [
     {
       id: "menu1",
       text: "Personal Details",
-      component: <PersonalDetails />
+      component: <PersonalDetails userData={fetchedUserData} />
     },
     {
       id: "menu2",
@@ -58,6 +116,10 @@ const Dashboard = () => {
       component: <ViewProfile />
     }
   ]
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
 
   return (
     <AppLayout>

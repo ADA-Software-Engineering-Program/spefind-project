@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import "./PersonalDetails.css"
 import userImg from "../../assets/userImg.png"
@@ -6,7 +6,7 @@ import coverBanner from "../../assets/coverBanner.png"
 import { AiFillDelete } from "react-icons/ai"
 import event from "../../assets/event.png"
 
-const PersonalDetails = () => {
+const PersonalDetails = (userData) => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
 
@@ -14,6 +14,9 @@ const PersonalDetails = () => {
     e.preventDefault()
     console.log(e.target)
   }
+  useEffect(() => {
+    console.log(userData)
+  }, [])
 
   return (
     <div className='formContainer'>
@@ -94,7 +97,14 @@ const PersonalDetails = () => {
           <label htmlFor='country_or_city'>Country & City</label>
         </div>
         <div className='inputsWrapper'>
-          <input aria-label='country' placeholder='Type Country' id='country' className='input' disabled={enableInput} />
+          <input
+            aria-label='country'
+            placeholder='Type Country'
+            id='country'
+            className='input'
+            disabled={enableInput}
+            value={userData.country}
+          />
           <input aria-label='country' placeholder='Type City' id='country' className='input' disabled={enableInput} />
         </div>
         <div>
