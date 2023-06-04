@@ -52,9 +52,6 @@ const Dashboard = () => {
     // isVisible
     isVisible: ""
   })
-  const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails userData={fetchedUserData} />)
-  const [isNavExpanded, setIsNavExpanded] = useState(true)
-  const [currentMenu, setCurrentMenu] = useState("menu1")
   const fetchUserData = async () => {
     try {
       const token = sessionStorage.getItem("token")
@@ -79,6 +76,14 @@ const Dashboard = () => {
       console.log(error)
     }
   }
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
+  const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails userData={fetchedUserData} />)
+  const [isNavExpanded, setIsNavExpanded] = useState(true)
+  const [currentMenu, setCurrentMenu] = useState("menu1")
+
   const sideBarTitleAndComponent = [
     {
       id: "menu1",
@@ -116,11 +121,6 @@ const Dashboard = () => {
       component: <ViewProfile />
     }
   ]
-
-  useEffect(() => {
-    fetchUserData()
-  }, [])
-
   return (
     <AppLayout>
       <div
@@ -176,7 +176,10 @@ const Dashboard = () => {
               <HiOutlineLogout className='logoutIcon' />
             </Logout>
           </div>
-          <div className='dahsboardBody'>{dashboardBodyContent}</div>
+          <div className='dahsboardBody'>
+            <input type='text' value={fetchUserData.firstName} />
+            {dashboardBodyContent}
+          </div>
         </div>
       </div>
     </AppLayout>
