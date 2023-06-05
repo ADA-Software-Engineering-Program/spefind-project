@@ -1,22 +1,51 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useLayoutEffect, useMemo } from "react"
 
 import "./PersonalDetails.css"
 import userImg from "../../assets/userImg.png"
 import coverBanner from "../../assets/coverBanner.png"
 import { AiFillDelete } from "react-icons/ai"
 import event from "../../assets/event.png"
+// import { API_LINK } from "../../../../utils/api"
 
-const PersonalDetails = (userData) => {
+import { fetchUserData } from "../../getUser"
+import { fetchedUserData } from "../../getUser"
+
+const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
+
+  // const [fetchedUserData, setFetchedUserData] = useState({})
+  // const fetchUserData = async () => {
+  //   try {
+  //     const token = sessionStorage.getItem("token")
+  //     const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     })
+  //     const userData = await getUserData.json()
+  //     console.log(userData)
+  //     setFetchedUserData(userData.user)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+  useMemo(() => {
+    fetchUserData()
+    console.log(fetchedUserData)
+  }, [])
+
+  // useLayoutEffect(() => {
+  //   fetchUserData()
+  //   console.log(fetchedUserData)
+  // }, [])
 
   const onFinish = (e) => {
     e.preventDefault()
     console.log(e.target)
   }
-  useEffect(() => {
-    console.log(userData)
-  }, [])
 
   return (
     <div className='formContainer'>
@@ -43,7 +72,16 @@ const PersonalDetails = (userData) => {
           <label htmlFor='gender'>Gender</label>
         </div>
         <div className='genderWrapper'>
-          <input id='male' type='radio' aria-label='male' className='newInput' value={"male"} name={"gender"} disabled={enableInput} />
+          <input
+            id='male'
+            type='radio'
+            aria-label='male'
+            className='newInput'
+            value={"male"}
+            checked={fetchedUserData.gender === "male"}
+            name={"gender"}
+            disabled={enableInput}
+          />
           <label htmlFor='male'>Male</label>
         </div>
         <div className='genderWrapper'>
@@ -51,6 +89,7 @@ const PersonalDetails = (userData) => {
             id='female'
             type='radio'
             aria-label='female'
+            checked={fetchedUserData.gender === "female"}
             className='newInput'
             value={"female"}
             name={"gender"}
@@ -63,6 +102,7 @@ const PersonalDetails = (userData) => {
             id='others'
             type='radio'
             aria-label='others'
+            checked={fetchedUserData.gender === "others"}
             className='newInput'
             value={"others"}
             name={"gender"}
@@ -103,14 +143,27 @@ const PersonalDetails = (userData) => {
             id='country'
             className='input'
             disabled={enableInput}
-            value={userData.country}
+            defaultValue={fetchedUserData.country}
           />
-          <input aria-label='country' placeholder='Type City' id='country' className='input' disabled={enableInput} />
+          <input
+            aria-label='country'
+            placeholder='Type City'
+            id='country'
+            className='input'
+            disabled={enableInput}
+            defaultValue={fetchedUserData.city}
+          />
         </div>
         <div>
           <label htmlFor='biography'>Biography</label>
         </div>
-        <textarea placeholder='Type here' className='textArea' id='biography' disabled={enableInput}></textarea>
+        <textarea
+          placeholder='Type here'
+          className='textArea'
+          id='biography'
+          disabled={enableInput}
+          defaultValue={fetchedUserData.biography}
+        ></textarea>
         <div>
           <label htmlFor='pastevents'>Past Events</label>
         </div>

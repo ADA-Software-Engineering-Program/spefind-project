@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import AppLayout from "../../layout/AppLayout"
 import "./Dashboard.css"
 
@@ -15,72 +15,8 @@ import Field from "./components/Field/Field"
 import Availability from "./components/Availability/Availability"
 import AccountPreferences from "./components/AccountPreferences/AccountPreferences"
 
-import { API_LINK } from "../../utils/api"
-
 const Dashboard = () => {
-  const [fetchedUserData, setFetchedUserData] = useState({
-    // personal
-    firstName: "",
-    lastName: "",
-    gender: "",
-    country: "",
-    city: "",
-    biography: "",
-    titleOfEvent: "",
-    date: "",
-    location: "",
-    numberOfAttendees: "",
-    field: "",
-    // eventPictures: "",
-
-    // niche
-    speakerField: "",
-    speakerSubField: "",
-    education: "",
-    jobTitle: "",
-    yearsOfPractice: "",
-    jobDescription: "",
-    position: "",
-    language: "",
-
-    // availability
-    eventType: [],
-    availableTo: [],
-    pricing: "",
-    isVolunteer: "",
-
-    // isVisible
-    isVisible: ""
-  })
-  const fetchUserData = async () => {
-    try {
-      const token = sessionStorage.getItem("token")
-      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      })
-      const userData = await getUserData.json()
-      console.log(userData)
-      setFetchedUserData((prevData) => ({
-        ...prevData,
-        firstName: userData?.user?.firstName,
-        lastName: userData?.user?.lastName,
-        country: userData?.user?.country,
-        city: userData?.user?.city
-      }))
-      console.log(userData?.user?.city)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  useEffect(() => {
-    fetchUserData()
-  }, [])
-
-  const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails userData={fetchedUserData} />)
+  const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails />)
   const [isNavExpanded, setIsNavExpanded] = useState(true)
   const [currentMenu, setCurrentMenu] = useState("menu1")
 
@@ -88,7 +24,7 @@ const Dashboard = () => {
     {
       id: "menu1",
       text: "Personal Details",
-      component: <PersonalDetails userData={fetchedUserData} />
+      component: <PersonalDetails />
     },
     {
       id: "menu2",
@@ -176,10 +112,7 @@ const Dashboard = () => {
               <HiOutlineLogout className='logoutIcon' />
             </Logout>
           </div>
-          <div className='dahsboardBody'>
-            <input type='text' value={fetchUserData.firstName} />
-            {dashboardBodyContent}
-          </div>
+          <div className='dahsboardBody'>{dashboardBodyContent}</div>
         </div>
       </div>
     </AppLayout>
