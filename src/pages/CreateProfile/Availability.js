@@ -44,7 +44,7 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
     e.preventDefault()
     prevStep()
   }
-
+  console.log(formik.values.availableTo)
   return (
     <div>
       <div className='profile-group'>
@@ -81,22 +81,22 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
       <div className='profile-group'>
         <label className='profile-label'>AVAILABLE TO*</label>
         <div className='check-cont' {...formik.getFieldProps("availableTo")}>
-          {fetchData.availableToStates.map((state) => {
+          {/* {fetchData.availableToStates.map((state) => {
             return (
               <div key={state._id}>
                 <input
                   type='checkbox'
                   name='availableTo'
                   className='check-checkbox'
-                  value={state._id}
+                  value={state.state}
                   id={state.state}
-                  defaultChecked={
-                    formik.values.availableTo.find((value) => {
-                      return value === state._id
-                    })
-                      ? true
-                      : false
-                  }
+                  // defaultChecked={
+                  //   formik.values.availableTo.find((value) => {
+                  //     return value === state._id
+                  //   })
+                  //     ? true
+                  //     : false
+                  // }
                 />
                 <label className='check-label' htmlFor={state.state}>
                   <span className='check-checkbox-button'></span>
@@ -104,7 +104,27 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
                 </label>
               </div>
             )
-          })}
+          })} */}
+          <div>
+            <input
+              type='checkbox'
+              name='availableTo'
+              className='check-checkbox'
+              // value={state.state}
+              // id={state.state}
+              // defaultChecked={
+              //   formik.values.availableTo.find((value) => {
+              //     return value === state._id
+              //   })
+              //     ? true
+              //     : false
+              // }
+            />
+            <label className='check-label' htmlFor='avai'>
+              <span className='check-checkbox-button'></span>
+              state
+            </label>
+          </div>
           <input
             type='checkbox'
             className='check-checkbox'
@@ -120,10 +140,10 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
 
           <input
             type='text'
-            name='availableT'
+            name='availableTo'
             placeholder='Type country here'
             className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
-            // value={""}
+            value={[...formik.values.availableTo, ""]}
             // id={"otherStates"}
           />
         </div>

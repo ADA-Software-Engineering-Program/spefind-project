@@ -197,42 +197,42 @@ const CreateProfile = () => {
         isVolunteer: formik.values.isVolunteer,
         isVisible: formik.values.isVisible
       }
+      console.log(transformedData)
+      // const token = sessionStorage.getItem("token")
+      // const saveUserData = await fetch(`${API_LINK}/api/profile/setup`, {
+      //   method: "PUT",
+      //   body: JSON.stringify(transformedData),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: `Bearer ${token}`,
+      //     redirect: "follow"
+      //   }
+      // })
+      // const data = await saveUserData.json()
+      // console.log(data)
 
-      const token = sessionStorage.getItem("token")
-      const saveUserData = await fetch(`${API_LINK}/api/profile/setup`, {
-        method: "PUT",
-        body: JSON.stringify(transformedData),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-          redirect: "follow"
-        }
-      })
-      const data = await saveUserData.json()
-      console.log(data)
+      // if (saveUserData.ok) {
+      //   toast.success(`${data.message}`, {
+      //     duration: 4000,
+      //     position: "top-center",
 
-      if (saveUserData.ok) {
-        toast.success(`${data.message}`, {
-          duration: 4000,
-          position: "top-center",
+      //     // Styling
+      //     style: { fontSize: "13px", border: "2px solid green" },
+      //     className: ""
+      //   })
+      //   sessionStorage.setItem("userId", data.user._id)
+      //   // navigate("/dashboard")
+      //   window.scrollTo(0, 0)
+      // }
 
-          // Styling
-          style: { fontSize: "13px", border: "2px solid green" },
-          className: ""
-        })
-        sessionStorage.setItem("userId", data.user._id)
-        navigate("/dashboard")
-        window.scrollTo(0, 0)
-      }
-
-      if (!saveUserData) {
-        setError("Please cross check your details and try again")
-        throw new Error(error)
-      }
-      if (!saveUserData.ok) {
-        setError("Your session might have expired, please try to log in again!")
-        throw new Error(error)
-      }
+      // if (!saveUserData) {
+      //   setError("Please cross check your details and try again")
+      //   throw new Error(error)
+      // }
+      // if (!saveUserData.ok) {
+      //   setError("Your session might have expired, please try to log in again!")
+      //   throw new Error(error)
+      // }
     } catch (error) {
       console.log(error)
       toast.error(`${error}`, {

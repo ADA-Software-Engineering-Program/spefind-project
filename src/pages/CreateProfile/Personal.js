@@ -47,7 +47,7 @@ const Personal = ({ nextStep, formik, userData }) => {
       }
     })
 
-    if (errorField.length === 0 && emptyField.length === 5) {
+    if (errorField.length === 0 && emptyField.length <= 5) {
       nextStep()
     }
   }
