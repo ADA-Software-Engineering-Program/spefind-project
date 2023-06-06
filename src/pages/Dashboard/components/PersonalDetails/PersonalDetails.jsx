@@ -25,7 +25,6 @@ const PersonalDetails = () => {
         }
       })
       const userData = await getUserData.json()
-      console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
         toast.error(`${userData?.msg} Please login again!`, {
           duration: 4000,
@@ -35,7 +34,7 @@ const PersonalDetails = () => {
           className: ""
         })
       }
-      console.log(userData)
+      // console.log(userData)
       setFetchedUserData(userData.user)
     } catch (error) {
       console.log(error)
@@ -80,13 +79,15 @@ const PersonalDetails = () => {
             id='male'
             type='radio'
             aria-label='male'
-            className='newInput'
+            className='check-checkbox'
             value={"male"}
             checked={fetchedUserData?.gender === "male"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='male'>Male</label>
+          <label htmlFor='male' className='check-label'>
+            <span className='check-checkbox-button'></span>Male
+          </label>
         </div>
         <div className='genderWrapper'>
           <input
@@ -94,12 +95,14 @@ const PersonalDetails = () => {
             type='radio'
             aria-label='female'
             checked={fetchedUserData?.gender === "female"}
-            className='newInput'
+            className='check-checkbox'
             value={"female"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='female'>Female</label>
+          <label htmlFor='female' className='check-label'>
+            <span className='check-checkbox-button'></span>Female
+          </label>
         </div>
         <div className='genderWrapper'>
           <input
@@ -107,12 +110,14 @@ const PersonalDetails = () => {
             type='radio'
             aria-label='others'
             checked={fetchedUserData?.gender === "others"}
-            className='newInput'
+            className='check-checkbox'
             value={"others"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='others'>Others</label>
+          <label htmlFor='others' className='check-label'>
+            <span className='check-checkbox-button'></span>Others
+          </label>
         </div>
         <div>
           <label htmlFor='coverBanner'>Cover Banner and Profile Picture</label>
