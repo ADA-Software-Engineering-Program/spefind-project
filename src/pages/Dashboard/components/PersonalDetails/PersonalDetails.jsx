@@ -1,14 +1,49 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 
 import "./PersonalDetails.css"
 import userImg from "../../assets/userImg.png"
 import coverBanner from "../../assets/coverBanner.png"
 import { AiFillDelete } from "react-icons/ai"
 import event from "../../assets/event.png"
+import { API_LINK } from "../../../../utils/api"
+import toast from "react-hot-toast"
 
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
+
+  const [fetchedUserData, setFetchedUserData] = useState({})
+
+  const fetchUserHandler = useCallback(async () => {
+    try {
+      const token = sessionStorage.getItem("token")
+      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+      const userData = await getUserData.json()
+      if (!getUserData.ok || !getUserData) {
+        toast.error(`${userData?.msg} Please login again!`, {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px" },
+          className: ""
+        })
+      }
+      // console.log(userData)
+      setFetchedUserData(userData.user)
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchUserHandler()
+  }, [fetchUserHandler])
 
   const onFinish = (e) => {
     e.preventDefault()
@@ -40,32 +75,49 @@ const PersonalDetails = () => {
           <label htmlFor='gender'>Gender</label>
         </div>
         <div className='genderWrapper'>
-          <input id='male' type='radio' aria-label='male' className='newInput' value={"male"} name={"gender"} disabled={enableInput} />
-          <label htmlFor='male'>Male</label>
+          <input
+            id='male'
+            type='radio'
+            aria-label='male'
+            className='check-checkbox'
+            value={"male"}
+            checked={fetchedUserData?.gender === "male"}
+            name={"gender"}
+            disabled={enableInput}
+          />
+          <label htmlFor='male' className='check-label'>
+            <span className='check-checkbox-button'></span>Male
+          </label>
         </div>
         <div className='genderWrapper'>
           <input
             id='female'
             type='radio'
             aria-label='female'
-            className='newInput'
+            checked={fetchedUserData?.gender === "female"}
+            className='check-checkbox'
             value={"female"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='female'>Female</label>
+          <label htmlFor='female' className='check-label'>
+            <span className='check-checkbox-button'></span>Female
+          </label>
         </div>
         <div className='genderWrapper'>
           <input
             id='others'
             type='radio'
             aria-label='others'
-            className='newInput'
+            checked={fetchedUserData?.gender === "others"}
+            className='check-checkbox'
             value={"others"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='others'>Others</label>
+          <label htmlFor='others' className='check-label'>
+            <span className='check-checkbox-button'></span>Others
+          </label>
         </div>
         <div>
           <label htmlFor='coverBanner'>Cover Banner and Profile Picture</label>
@@ -94,13 +146,33 @@ const PersonalDetails = () => {
           <label htmlFor='country_or_city'>Country & City</label>
         </div>
         <div className='inputsWrapper'>
-          <input aria-label='country' placeholder='Type Country' id='country' className='input' disabled={enableInput} />
-          <input aria-label='country' placeholder='Type City' id='country' className='input' disabled={enableInput} />
+          <input
+            aria-label='country'
+            placeholder='Type Country'
+            id='country'
+            className='input'
+            disabled={enableInput}
+            defaultValue={fetchedUserData?.country}
+          />
+          <input
+            aria-label='country'
+            placeholder='Type City'
+            id='country'
+            className='input'
+            disabled={enableInput}
+            defaultValue={fetchedUserData?.city}
+          />
         </div>
         <div>
           <label htmlFor='biography'>Biography</label>
         </div>
-        <textarea placeholder='Type here' className='textArea' id='biography' disabled={enableInput}></textarea>
+        <textarea
+          placeholder='Type here'
+          className='textArea'
+          id='biography'
+          disabled={enableInput}
+          defaultValue={fetchedUserData?.biography}
+        ></textarea>
         <div>
           <label htmlFor='pastevents'>Past Events</label>
         </div>

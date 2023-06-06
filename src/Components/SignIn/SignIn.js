@@ -57,7 +57,7 @@ const SignIn = () => {
     } catch (error) {
       setLoading(false)
 
-      toast.error(`Please cross check your details and try again`, {
+      toast.error(`Something went wrong !`, {
         duration: 4000,
         position: "top-center",
 
