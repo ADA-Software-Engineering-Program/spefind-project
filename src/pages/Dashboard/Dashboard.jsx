@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import AppLayout from "../../layout/AppLayout"
 import "./Dashboard.css"
 
@@ -15,7 +15,32 @@ import Field from "./components/Field/Field"
 import Availability from "./components/Availability/Availability"
 import AccountPreferences from "./components/AccountPreferences/AccountPreferences"
 
+// import { API_LINK } from "../../utils/api"
+
 const Dashboard = () => {
+  // const [fetchedUserData, setFetchedUserData] = useState({})
+  // const fetchUserHandler = useCallback(async () => {
+  //   try {
+  //     const token = sessionStorage.getItem("token")
+  //     const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     })
+  //     const userData = await getUserData.json()
+  //     console.log(userData)
+  //     setFetchedUserData(userData.user)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }, [])
+
+  // useEffect(() => {
+  //   fetchUserHandler()
+  // }, [fetchUserHandler])
+
   const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails />)
   const [isNavExpanded, setIsNavExpanded] = useState(true)
   const [currentMenu, setCurrentMenu] = useState("menu1")

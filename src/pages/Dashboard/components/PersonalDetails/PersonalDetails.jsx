@@ -1,46 +1,50 @@
-import React, { useState, useLayoutEffect, useMemo } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 
 import "./PersonalDetails.css"
 import userImg from "../../assets/userImg.png"
 import coverBanner from "../../assets/coverBanner.png"
 import { AiFillDelete } from "react-icons/ai"
 import event from "../../assets/event.png"
-// import { API_LINK } from "../../../../utils/api"
-
-import { fetchUserData } from "../../getUser"
-import { fetchedUserData } from "../../getUser"
+import { API_LINK } from "../../../../utils/api"
+import toast from "react-hot-toast"
 
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
 
-  // const [fetchedUserData, setFetchedUserData] = useState({})
-  // const fetchUserData = async () => {
-  //   try {
-  //     const token = sessionStorage.getItem("token")
-  //     const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`
-  //       }
-  //     })
-  //     const userData = await getUserData.json()
-  //     console.log(userData)
-  //     setFetchedUserData(userData.user)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-  useMemo(() => {
-    fetchUserData()
-    console.log(fetchedUserData)
+  const [fetchedUserData, setFetchedUserData] = useState({})
+
+  const fetchUserHandler = useCallback(async () => {
+    try {
+      const token = sessionStorage.getItem("token")
+      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+      const userData = await getUserData.json()
+      console.log(getUserData)
+      if (!getUserData.ok || !getUserData) {
+        toast.error(`${userData?.msg} Please login again!`, {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px" },
+          className: ""
+        })
+      }
+      console.log(userData)
+      setFetchedUserData(userData.user)
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
 
-  // useLayoutEffect(() => {
-  //   fetchUserData()
-  //   console.log(fetchedUserData)
-  // }, [])
+  useEffect(() => {
+    fetchUserHandler()
+  }, [fetchUserHandler])
 
   const onFinish = (e) => {
     e.preventDefault()
@@ -78,7 +82,7 @@ const PersonalDetails = () => {
             aria-label='male'
             className='newInput'
             value={"male"}
-            checked={fetchedUserData.gender === "male"}
+            checked={fetchedUserData?.gender === "male"}
             name={"gender"}
             disabled={enableInput}
           />
@@ -89,7 +93,7 @@ const PersonalDetails = () => {
             id='female'
             type='radio'
             aria-label='female'
-            checked={fetchedUserData.gender === "female"}
+            checked={fetchedUserData?.gender === "female"}
             className='newInput'
             value={"female"}
             name={"gender"}
@@ -102,7 +106,7 @@ const PersonalDetails = () => {
             id='others'
             type='radio'
             aria-label='others'
-            checked={fetchedUserData.gender === "others"}
+            checked={fetchedUserData?.gender === "others"}
             className='newInput'
             value={"others"}
             name={"gender"}
@@ -143,7 +147,7 @@ const PersonalDetails = () => {
             id='country'
             className='input'
             disabled={enableInput}
-            defaultValue={fetchedUserData.country}
+            defaultValue={fetchedUserData?.country}
           />
           <input
             aria-label='country'
@@ -151,7 +155,7 @@ const PersonalDetails = () => {
             id='country'
             className='input'
             disabled={enableInput}
-            defaultValue={fetchedUserData.city}
+            defaultValue={fetchedUserData?.city}
           />
         </div>
         <div>
@@ -162,7 +166,7 @@ const PersonalDetails = () => {
           className='textArea'
           id='biography'
           disabled={enableInput}
-          defaultValue={fetchedUserData.biography}
+          defaultValue={fetchedUserData?.biography}
         ></textarea>
         <div>
           <label htmlFor='pastevents'>Past Events</label>
