@@ -25,6 +25,7 @@ const PersonalDetails = () => {
         }
       })
       const userData = await getUserData.json()
+      console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
         toast.error(`${userData?.msg} Please login again!`, {
           duration: 4000,
@@ -34,7 +35,7 @@ const PersonalDetails = () => {
           className: ""
         })
       }
-      // console.log(userData)
+      console.log(userData)
       setFetchedUserData(userData.user)
     } catch (error) {
       console.log(error)
@@ -68,8 +69,22 @@ const PersonalDetails = () => {
           <label htmlFor='name'>Name</label>
         </div>
         <div className='inputsWrapper'>
-          <input aria-label='first name' placeholder='First Name' id='firstName' className='input' disabled={enableInput} />
-          <input aria-label='last name' placeholder='Last Name' id='lastName' className='input' disabled={enableInput} />
+          <input
+            aria-label='first name'
+            placeholder='First Name'
+            id='firstName'
+            className='input'
+            disabled={enableInput}
+            defaultValue={fetchedUserData?.firstName}
+          />
+          <input
+            aria-label='last name'
+            placeholder='Last Name'
+            id='lastName'
+            className='input'
+            disabled={enableInput}
+            defaultValue={fetchedUserData?.lastName}
+          />
         </div>
         <div>
           <label htmlFor='gender'>Gender</label>
@@ -79,15 +94,13 @@ const PersonalDetails = () => {
             id='male'
             type='radio'
             aria-label='male'
-            className='check-checkbox'
+            className='newInput'
             value={"male"}
             checked={fetchedUserData?.gender === "male"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='male' className='check-label'>
-            <span className='check-checkbox-button'></span>Male
-          </label>
+          <label htmlFor='male'>Male</label>
         </div>
         <div className='genderWrapper'>
           <input
@@ -95,14 +108,12 @@ const PersonalDetails = () => {
             type='radio'
             aria-label='female'
             checked={fetchedUserData?.gender === "female"}
-            className='check-checkbox'
+            className='newInput'
             value={"female"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='female' className='check-label'>
-            <span className='check-checkbox-button'></span>Female
-          </label>
+          <label htmlFor='female'>Female</label>
         </div>
         <div className='genderWrapper'>
           <input
@@ -110,14 +121,12 @@ const PersonalDetails = () => {
             type='radio'
             aria-label='others'
             checked={fetchedUserData?.gender === "others"}
-            className='check-checkbox'
+            className='newInput'
             value={"others"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='others' className='check-label'>
-            <span className='check-checkbox-button'></span>Others
-          </label>
+          <label htmlFor='others'>Others</label>
         </div>
         <div>
           <label htmlFor='coverBanner'>Cover Banner and Profile Picture</label>
