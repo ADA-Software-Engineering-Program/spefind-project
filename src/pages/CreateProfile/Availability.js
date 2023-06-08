@@ -2,9 +2,15 @@ import { useState } from "react"
 
 const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
   const [showOtherStates, setShowOtherStates] = useState(false)
+  const [otherStateValue, setOtherStateValue] = useState("")
+  const [availableToData, setAvailableToData] = useState(formik.values.availableTo)
 
   const formValues = ["eventType", "availableTo", "pricing", "isVolunteer"]
 
+  function getOtherStateInputValue(e) {
+    setOtherStateValue(e.target.value)
+    setAvailableToData([...formik.values.availableTo, otherStateValue])
+  }
   const handleNext = (e) => {
     e.preventDefault()
     const errorField = []
@@ -45,6 +51,7 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
     prevStep()
   }
   console.log(formik.values.availableTo)
+  console.log(availableToData)
   return (
     <div>
       <div className='profile-group'>
@@ -106,23 +113,45 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
             )
           })} */}
           <div>
-            <input
-              type='checkbox'
-              name='availableTo'
-              className='check-checkbox'
-              // value={state.state}
-              // id={state.state}
-              // defaultChecked={
-              //   formik.values.availableTo.find((value) => {
-              //     return value === state._id
-              //   })
-              //     ? true
-              //     : false
-              // }
-            />
-            <label className='check-label' htmlFor='avai'>
+            <input type='checkbox' name='availableTo' className='check-checkbox' id='ghana' value={"ghana"} />
+            <label className='check-label' htmlFor='ghana'>
               <span className='check-checkbox-button'></span>
-              state
+              Ghana
+            </label>
+          </div>
+          <div>
+            <input type='checkbox' name='availableTo' className='check-checkbox' id='somalia' value={"somalia"} />
+            <label className='check-label' htmlFor='somalia'>
+              <span className='check-checkbox-button'></span>
+              Somalia
+            </label>
+          </div>
+          <div>
+            <input type='checkbox' name='availableTo' className='check-checkbox' id='southAfrica' value={"south africa"} />
+            <label className='check-label' htmlFor='southAfrica'>
+              <span className='check-checkbox-button'></span>
+              South Africa
+            </label>
+          </div>
+          <div>
+            <input type='checkbox' name='availableTo' className='check-checkbox' id='turkey' value={"turkey"} />
+            <label className='check-label' htmlFor='turkey'>
+              <span className='check-checkbox-button'></span>
+              Turkey
+            </label>
+          </div>
+          <div>
+            <input type='checkbox' name='availableTo' className='check-checkbox' id='egypt' value={"egypt"} />
+            <label className='check-label' htmlFor='egypt'>
+              <span className='check-checkbox-button'></span>
+              Egypt
+            </label>
+          </div>
+          <div>
+            <input type='checkbox' name='availableTo' className='check-checkbox' id='nigeria' value={"nigeria"} />
+            <label className='check-label' htmlFor='nigeria'>
+              <span className='check-checkbox-button'></span>
+              Nigeria
             </label>
           </div>
           <input
@@ -143,8 +172,8 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
             name='availableTo'
             placeholder='Type country here'
             className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
-            value={[...formik.values.availableTo, ""]}
-            // id={"otherStates"}
+            value={otherStateValue}
+            onChange={getOtherStateInputValue}
           />
         </div>
         {formik.touched.availableTo && formik.errors.availableTo ? <div className='profile-error'>{formik.errors.availableTo}</div> : null}

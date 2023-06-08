@@ -100,6 +100,7 @@ const CreateProfile = () => {
         firstName: userData?.user?.firstName,
         lastName: userData?.user?.lastName
       }))
+      // getEventTypeData,getAvailableToData,getPriceData,getSpeakerFieldOption,getUserData
     } catch (error) {
       console.log(error)
     }
@@ -108,8 +109,6 @@ const CreateProfile = () => {
   const formik = useFormik({
     initialValues: {
       // personal
-      // firstName: "",
-      // lastName: "",
       gender: "",
       country: "",
       city: "",
@@ -119,7 +118,6 @@ const CreateProfile = () => {
       location: "",
       numberOfAttendees: "",
       field: "",
-      // eventPictures: "",
 
       // niche
       speakerField: "",
