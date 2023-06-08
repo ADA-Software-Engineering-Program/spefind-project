@@ -197,7 +197,7 @@ const CreateProfile = () => {
         isVolunteer: formik.values.isVolunteer,
         isVisible: formik.values.isVisible
       }
-
+      console.log(transformedData)
       const token = sessionStorage.getItem("token")
       const saveUserData = await fetch(`${API_LINK}/api/profile/setup`, {
         method: "PUT",
@@ -221,7 +221,7 @@ const CreateProfile = () => {
           className: ""
         })
         sessionStorage.setItem("userId", data.user._id)
-        navigate("/dashboard")
+        // navigate("/dashboard")
         window.scrollTo(0, 0)
       }
 
