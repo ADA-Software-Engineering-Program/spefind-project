@@ -94,13 +94,16 @@ const PersonalDetails = () => {
             id='male'
             type='radio'
             aria-label='male'
-            className='newInput'
+            className='check-checkbox'
             value={"male"}
             checked={fetchedUserData?.gender === "male"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='male'>Male</label>
+          <label className='check-label' htmlFor='male'>
+            <span className='check-checkbox-button'></span>
+            Male
+          </label>
         </div>
         <div className='genderWrapper'>
           <input
@@ -108,12 +111,15 @@ const PersonalDetails = () => {
             type='radio'
             aria-label='female'
             checked={fetchedUserData?.gender === "female"}
-            className='newInput'
+            className='check-checkbox'
             value={"female"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='female'>Female</label>
+          <label className='check-label' htmlFor='female'>
+            <span className='check-checkbox-button'></span>
+            Female
+          </label>
         </div>
         <div className='genderWrapper'>
           <input
@@ -121,12 +127,15 @@ const PersonalDetails = () => {
             type='radio'
             aria-label='others'
             checked={fetchedUserData?.gender === "others"}
-            className='newInput'
+            className='check-checkbox'
             value={"others"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='others'>Others</label>
+          <label className='check-label' htmlFor='others'>
+            <span className='check-checkbox-button'></span>
+            Others
+          </label>
         </div>
         <div>
           <label htmlFor='coverBanner'>Cover Banner and Profile Picture</label>
@@ -281,88 +290,35 @@ const PersonalDetails = () => {
                   <label className='profile-label-field' htmlFor='titleOfEvent'>
                     Name of Event
                   </label>
-                  <input
-                    type='text'
-                    name='titleOfEvent'
-                    id='titleOfEvent'
-                    className='profile-input'
-                    placeholder='Type here'
-                    // {...formik.getFieldProps("titleOfEvent")}
-                  />
-                  {/* {formik.touched.titleOfEvent && formik.errors.titleOfEvent ? (
-              <div className="profile-error">{formik.errors.titleOfEvent}</div>
-            ) : null} */}
+                  <input type='text' name='titleOfEvent' id='titleOfEvent' className='profile-input' placeholder='Type here' />
                 </div>
 
                 <div>
                   <label className='profile-label-field' htmlFor='date'>
                     Date of Event
                   </label>
-                  <input
-                    type='date'
-                    name='date'
-                    id='date'
-                    className='profile-input'
-                    placeholder='Type here'
-                    // {...formik.getFieldProps("date")}
-                  />
-                  {/* {formik.touched.date && formik.errors.date ? (
-              <div className="profile-error">{formik.errors.date}</div>
-            ) : null} */}
+                  <input type='date' name='date' id='date' className='profile-input' placeholder='Type here' />
                 </div>
 
                 <div>
                   <label className='profile-label-field' htmlFor='location'>
                     Location of Event
                   </label>
-                  <input
-                    type='text'
-                    name='location'
-                    id='location'
-                    className='profile-input'
-                    placeholder='Type here'
-                    // {...formik.getFieldProps("location")}
-                  />
-                  {/* {formik.touched.location && formik.errors.location ? (
-              <div className="profile-error">{formik.errors.location}</div>
-            ) : null} */}
+                  <input type='text' name='location' id='location' className='profile-input' placeholder='Type here' />
                 </div>
 
                 <div>
                   <label className='profile-label-field' htmlFor='numberOfAttendees'>
                     Event of How Many People?
                   </label>
-                  <input
-                    type='number'
-                    name='numberOfAttendees'
-                    id='numberOfAttendees'
-                    className='profile-input'
-                    placeholder='Type here'
-                    // {...formik.getFieldProps("numberOfAttendees")}
-                  />
-                  {/* {formik.touched.numberOfAttendees &&
-            formik.errors.numberOfAttendees ? (
-              <div className="profile-error">
-                {formik.errors.numberOfAttendees}
-              </div>
-            ) : null} */}
+                  <input type='number' name='numberOfAttendees' id='numberOfAttendees' className='profile-input' placeholder='Type here' />
                 </div>
 
                 <div>
                   <label className='profile-label-field' htmlFor='field'>
                     Which field did you speak for?
                   </label>
-                  <input
-                    type='text'
-                    name='field'
-                    id='field'
-                    className='profile-input'
-                    placeholder='Type here'
-                    // {...formik.getFieldProps("field")}
-                  />
-                  {/* {formik.touched.field && formik.errors.field ? (
-              <div className="profile-error">{formik.errors.field}</div>
-            ) : null} */}
+                  <input type='text' name='field' id='field' className='profile-input' placeholder='Type here' />
                 </div>
               </div>
               <button

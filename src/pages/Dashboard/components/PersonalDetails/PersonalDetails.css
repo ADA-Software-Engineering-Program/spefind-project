@@ -77,29 +77,6 @@
   font-size: 16px !important;
 }
 
-.newInput {
-  background-color: #ded9d8;
-  width: 1.2rem;
-  height: 1rem;
-  appearance: none;
-  display: grid;
-  place-content: center;
-  margin-top: 1rem;
-  cursor: pointer;
-}
-.newInput:checked {
-  border: 1px solid #e3502f;
-}
-.newInput:checked:after {
-  content: "";
-  border-radius: 0%;
-  padding: 0.2rem;
-  background-color: #e3502f;
-  width: 0.5rem;
-  height: 0.5rem;
-  cursor: pointer;
-}
-
 .coverBannerAndProfilePicture {
   display: grid;
   grid-template-columns: 1fr 1fr;
