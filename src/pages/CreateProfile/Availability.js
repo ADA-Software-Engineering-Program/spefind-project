@@ -81,30 +81,90 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
       <div className='profile-group'>
         <label className='profile-label'>AVAILABLE TO*</label>
         <div className='check-cont' {...formik.getFieldProps("availableTo")}>
-          {fetchData.availableToStates.map((state) => {
-            return (
-              <div key={state._id}>
-                <input
-                  type='checkbox'
-                  name='availableTo'
-                  className='check-checkbox'
-                  value={state._id}
-                  id={state.state}
-                  defaultChecked={
-                    formik.values.availableTo.find((value) => {
-                      return value === state._id
-                    })
-                      ? true
-                      : false
-                  }
-                />
-                <label className='check-label' htmlFor={state.state}>
-                  <span className='check-checkbox-button'></span>
-                  {state.state}
-                </label>
-              </div>
-            )
-          })}
+          <div>
+            <input
+              type='checkbox'
+              name='availableTo'
+              className='check-checkbox'
+              id='ghana'
+              value={"ghana"}
+              defaultChecked={formik.values.availableTo.includes("ghana") ? true : false}
+            />
+            <label className='check-label' htmlFor='ghana'>
+              <span className='check-checkbox-button'></span>
+              Ghana
+            </label>
+          </div>
+          <div>
+            <input
+              type='checkbox'
+              name='availableTo'
+              className='check-checkbox'
+              id='somalia'
+              value={"somalia"}
+              defaultChecked={formik.values.availableTo.includes("somalia") ? true : false}
+            />
+            <label className='check-label' htmlFor='somalia'>
+              <span className='check-checkbox-button'></span>
+              Somalia
+            </label>
+          </div>
+          <div>
+            <input
+              type='checkbox'
+              name='availableTo'
+              className='check-checkbox'
+              id='southAfrica'
+              value={"south africa"}
+              defaultChecked={formik.values.availableTo.includes("south africa") ? true : false}
+            />
+            <label className='check-label' htmlFor='southAfrica'>
+              <span className='check-checkbox-button'></span>
+              South Africa
+            </label>
+          </div>
+          <div>
+            <input
+              type='checkbox'
+              name='availableTo'
+              className='check-checkbox'
+              id='turkey'
+              value={"turkey"}
+              defaultChecked={formik.values.availableTo.includes("somalia") ? true : false}
+            />
+            <label className='check-label' htmlFor='turkey'>
+              <span className='check-checkbox-button'></span>
+              Turkey
+            </label>
+          </div>
+          <div>
+            <input
+              type='checkbox'
+              name='availableTo'
+              className='check-checkbox'
+              id='egypt'
+              value={"egypt"}
+              defaultChecked={formik.values.availableTo.includes("egypt") ? true : false}
+            />
+            <label className='check-label' htmlFor='egypt'>
+              <span className='check-checkbox-button'></span>
+              Egypt
+            </label>
+          </div>
+          <div>
+            <input
+              type='checkbox'
+              name='availableTo'
+              className='check-checkbox'
+              id='nigeria'
+              value={"nigeria"}
+              defaultChecked={formik.values.availableTo.includes("nigeria") ? true : false}
+            />
+            <label className='check-label' htmlFor='nigeria'>
+              <span className='check-checkbox-button'></span>
+              Nigeria
+            </label>
+          </div>
           <input
             type='checkbox'
             className='check-checkbox'
@@ -117,14 +177,14 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
             <span className='check-checkbox-button'></span>
             Other Countries
           </label>
-
+        </div>
+        <div>
           <input
             type='text'
-            name='availableT'
+            name='availableTo'
             placeholder='Type country here'
             className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
-            // value={""}
-            // id={"otherStates"}
+            {...formik.getFieldProps("availableTo[0]")}
           />
         </div>
         {formik.touched.availableTo && formik.errors.availableTo ? <div className='profile-error'>{formik.errors.availableTo}</div> : null}

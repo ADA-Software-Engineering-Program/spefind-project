@@ -25,6 +25,7 @@ const PersonalDetails = () => {
         }
       })
       const userData = await getUserData.json()
+      console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
         toast.error(`${userData?.msg} Please login again!`, {
           duration: 4000,
@@ -34,7 +35,7 @@ const PersonalDetails = () => {
           className: ""
         })
       }
-      // console.log(userData)
+      console.log(userData)
       setFetchedUserData(userData.user)
     } catch (error) {
       console.log(error)
@@ -68,8 +69,22 @@ const PersonalDetails = () => {
           <label htmlFor='name'>Name</label>
         </div>
         <div className='inputsWrapper'>
-          <input aria-label='first name' placeholder='First Name' id='firstName' className='input' disabled={enableInput} />
-          <input aria-label='last name' placeholder='Last Name' id='lastName' className='input' disabled={enableInput} />
+          <input
+            aria-label='first name'
+            placeholder='First Name'
+            id='firstName'
+            className='input'
+            disabled={enableInput}
+            defaultValue={fetchedUserData?.firstName}
+          />
+          <input
+            aria-label='last name'
+            placeholder='Last Name'
+            id='lastName'
+            className='input'
+            disabled={enableInput}
+            defaultValue={fetchedUserData?.lastName}
+          />
         </div>
         <div>
           <label htmlFor='gender'>Gender</label>
@@ -85,8 +100,9 @@ const PersonalDetails = () => {
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='male' className='check-label'>
-            <span className='check-checkbox-button'></span>Male
+          <label className='check-label' htmlFor='male'>
+            <span className='check-checkbox-button'></span>
+            Male
           </label>
         </div>
         <div className='genderWrapper'>
@@ -100,8 +116,9 @@ const PersonalDetails = () => {
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='female' className='check-label'>
-            <span className='check-checkbox-button'></span>Female
+          <label className='check-label' htmlFor='female'>
+            <span className='check-checkbox-button'></span>
+            Female
           </label>
         </div>
         <div className='genderWrapper'>
@@ -115,8 +132,9 @@ const PersonalDetails = () => {
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='others' className='check-label'>
-            <span className='check-checkbox-button'></span>Others
+          <label className='check-label' htmlFor='others'>
+            <span className='check-checkbox-button'></span>
+            Others
           </label>
         </div>
         <div>
@@ -272,88 +290,35 @@ const PersonalDetails = () => {
                   <label className='profile-label-field' htmlFor='titleOfEvent'>
                     Name of Event
                   </label>
-                  <input
-                    type='text'
-                    name='titleOfEvent'
-                    id='titleOfEvent'
-                    className='profile-input'
-                    placeholder='Type here'
-                    // {...formik.getFieldProps("titleOfEvent")}
-                  />
-                  {/* {formik.touched.titleOfEvent && formik.errors.titleOfEvent ? (
-              <div className="profile-error">{formik.errors.titleOfEvent}</div>
-            ) : null} */}
+                  <input type='text' name='titleOfEvent' id='titleOfEvent' className='profile-input' placeholder='Type here' />
                 </div>
 
                 <div>
                   <label className='profile-label-field' htmlFor='date'>
                     Date of Event
                   </label>
-                  <input
-                    type='date'
-                    name='date'
-                    id='date'
-                    className='profile-input'
-                    placeholder='Type here'
-                    // {...formik.getFieldProps("date")}
-                  />
-                  {/* {formik.touched.date && formik.errors.date ? (
-              <div className="profile-error">{formik.errors.date}</div>
-            ) : null} */}
+                  <input type='date' name='date' id='date' className='profile-input' placeholder='Type here' />
                 </div>
 
                 <div>
                   <label className='profile-label-field' htmlFor='location'>
                     Location of Event
                   </label>
-                  <input
-                    type='text'
-                    name='location'
-                    id='location'
-                    className='profile-input'
-                    placeholder='Type here'
-                    // {...formik.getFieldProps("location")}
-                  />
-                  {/* {formik.touched.location && formik.errors.location ? (
-              <div className="profile-error">{formik.errors.location}</div>
-            ) : null} */}
+                  <input type='text' name='location' id='location' className='profile-input' placeholder='Type here' />
                 </div>
 
                 <div>
                   <label className='profile-label-field' htmlFor='numberOfAttendees'>
                     Event of How Many People?
                   </label>
-                  <input
-                    type='number'
-                    name='numberOfAttendees'
-                    id='numberOfAttendees'
-                    className='profile-input'
-                    placeholder='Type here'
-                    // {...formik.getFieldProps("numberOfAttendees")}
-                  />
-                  {/* {formik.touched.numberOfAttendees &&
-            formik.errors.numberOfAttendees ? (
-              <div className="profile-error">
-                {formik.errors.numberOfAttendees}
-              </div>
-            ) : null} */}
+                  <input type='number' name='numberOfAttendees' id='numberOfAttendees' className='profile-input' placeholder='Type here' />
                 </div>
 
                 <div>
                   <label className='profile-label-field' htmlFor='field'>
                     Which field did you speak for?
                   </label>
-                  <input
-                    type='text'
-                    name='field'
-                    id='field'
-                    className='profile-input'
-                    placeholder='Type here'
-                    // {...formik.getFieldProps("field")}
-                  />
-                  {/* {formik.touched.field && formik.errors.field ? (
-              <div className="profile-error">{formik.errors.field}</div>
-            ) : null} */}
+                  <input type='text' name='field' id='field' className='profile-input' placeholder='Type here' />
                 </div>
               </div>
               <button
