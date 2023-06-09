@@ -44,8 +44,6 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
     e.preventDefault()
     prevStep()
   }
-  console.log(formik.values.availableTo)
-  console.log(formik.values.availableTo.includes("somalia"))
 
   return (
     <div>

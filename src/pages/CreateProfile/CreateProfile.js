@@ -221,7 +221,7 @@ const CreateProfile = () => {
           className: ""
         })
         sessionStorage.setItem("userId", data.user._id)
-        // navigate("/dashboard")
+        navigate("/dashboard")
         window.scrollTo(0, 0)
       }
 
