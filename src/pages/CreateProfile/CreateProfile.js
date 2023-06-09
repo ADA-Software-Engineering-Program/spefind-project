@@ -133,7 +133,7 @@ const CreateProfile = () => {
 
       // availability
       eventType: [],
-      availableTo: [],
+      availableTo: [""],
       pricing: "",
       isVolunteer: "",
 
