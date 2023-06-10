@@ -74,7 +74,7 @@ const PersonalDetails = () => {
             placeholder='First Name'
             id='firstName'
             className='input'
-            disabled={enableInput}
+            disabled
             defaultValue={fetchedUserData?.firstName}
           />
           <input
@@ -82,7 +82,7 @@ const PersonalDetails = () => {
             placeholder='Last Name'
             id='lastName'
             className='input'
-            disabled={enableInput}
+            disabled
             defaultValue={fetchedUserData?.lastName}
           />
         </div>
