@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styles from "./Availability.module.css"
+import Button from "../Button/Button"
 
 const Availability = () => {
   const [enableInput, setEnableInput] = useState(true)
@@ -7,15 +8,14 @@ const Availability = () => {
   return (
     <form className={styles.availability}>
       <div className='editContainer'>
-        <button
-          type='button'
+        <Button
+          text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
           className='edit'
+          type='button'
           onClick={() => {
             setEnableInput(!enableInput)
           }}
-        >
-          click to edit your profile
-        </button>
+        />
       </div>
 
       <div>
@@ -143,9 +143,7 @@ const Availability = () => {
       </div>
 
       <div className='editContainer'>
-        <button type='submit' className='saveBtn'>
-          SAVE
-        </button>
+        <Button type='submit' text1='SAVE ' className='saveBtn' />
       </div>
     </form>
   )

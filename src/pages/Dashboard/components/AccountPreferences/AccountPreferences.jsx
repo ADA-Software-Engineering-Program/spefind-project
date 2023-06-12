@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styles from "./AccountPreferences.module.css"
+import Button from "../Button/Button"
 
 const AccountPreferences = () => {
   const [enableInput, setEnableInput] = useState(true)
@@ -7,15 +8,14 @@ const AccountPreferences = () => {
   return (
     <div className={styles.accountPreferences}>
       <div className='editContainer'>
-        <button
-          type='button'
+        <Button
+          text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
           className='edit'
+          type='button'
           onClick={() => {
             setEnableInput(!enableInput)
           }}
-        >
-          click to edit your profile
-        </button>
+        />
       </div>
       <div>
         <label htmlFor='visibility'>Profile Visibility</label>
@@ -34,9 +34,7 @@ const AccountPreferences = () => {
       </div>
 
       <div className='editContainer'>
-        <button type='submit' className='saveBtn'>
-          SAVE
-        </button>
+        <Button type='submit' text1='SAVE ' className='saveBtn' />
       </div>
     </div>
   )
