@@ -124,6 +124,7 @@ const Dashboard = () => {
                       onClick={() => {
                         setCurrentMenu(menu.id)
                         setDashboardBodyContent(menu.component)
+                        // setIsNavExpanded(false)
                         window.scrollTo(90, 90)
                       }}
                     >

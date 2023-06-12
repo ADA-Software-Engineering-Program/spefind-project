@@ -8,13 +8,7 @@
 }
 .edit {
   background: #948d8d;
-  border-radius: 5px;
-  border: none;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
   color: #ffffff;
-  padding: 1rem 2rem;
 }
 .dashboard label {
   margin-top: 1rem;
@@ -174,16 +168,6 @@
   justify-content: space-between;
   align-items: center;
 }
-.saveAndEdit button:last-child {
-  background: #359e4c;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  color: #ffffff;
-  border: none;
-  padding: 1rem 2rem;
-}
 .addEventContainerModalOverlay {
   position: absolute;
   top: 0;
@@ -237,5 +221,8 @@
   }
   .delete {
     margin: auto;
+  }
+  .editProfilePicture {
+    grid-template-columns: 1fr;
   }
 }

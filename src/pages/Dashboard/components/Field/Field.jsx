@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react"
 import "./Field.css"
 import { API_LINK } from "../../../../utils/api"
 import toast from "react-hot-toast"
+import Button from "../Button/Button"
 
 const Field = () => {
   const [enableInput, setEnableInput] = useState(true)
@@ -44,15 +45,14 @@ const Field = () => {
   return (
     <div className='field'>
       <div className='editContainer'>
-        <button
-          type='button'
+        <Button
+          text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
           className='edit'
+          type='button'
           onClick={() => {
             setEnableInput(!enableInput)
           }}
-        >
-          click to edit your profile
-        </button>
+        />
       </div>
       <form>
         <div>
@@ -107,7 +107,7 @@ const Field = () => {
             type='checkbox'
             aria-label={fetchedUserData?.language}
             id={fetchedUserData?.language}
-            checked={fetchedUserData?.language === fetchedUserData.language}
+            checked={fetchedUserData?.language === fetchedUserData?.language}
             name='language'
             className='check-checkbox'
             disabled={enableInput}
@@ -145,9 +145,7 @@ const Field = () => {
         </div>
 
         <div className='editContainer'>
-          <button type='submit' className='saveBtn'>
-            SAVE
-          </button>
+          <Button type='submit' text1='SAVE' className='saveBtn' />
         </div>
       </form>
     </div>

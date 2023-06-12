@@ -7,6 +7,7 @@ import { AiFillDelete } from "react-icons/ai"
 import event from "../../assets/event.png"
 import { API_LINK } from "../../../../utils/api"
 import toast from "react-hot-toast"
+import Button from "../Button/Button"
 
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
@@ -54,15 +55,14 @@ const PersonalDetails = () => {
   return (
     <div className='formContainer'>
       <div className='editContainer'>
-        <button
-          type='button'
+        <Button
+          text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
           className='edit'
+          type='button'
           onClick={() => {
             setEnableInput(!enableInput)
           }}
-        >
-          click to edit your profile
-        </button>
+        />
       </div>
       <form onSubmit={onFinish}>
         <div>
@@ -335,15 +335,15 @@ const PersonalDetails = () => {
           </>
         )}
         <div className='saveAndEdit'>
-          <button
+          <Button
             type='button'
             onClick={() => {
               setAddNewEvent(!addNewEvent)
             }}
-          >
-            + Add New Event
-          </button>
-          <button type='submit'>SAVE</button>
+            text1=' + Add New Event'
+          />
+
+          <Button type='submit' text1='SAVE ' className='saveBtn' />
         </div>
       </form>
     </div>
