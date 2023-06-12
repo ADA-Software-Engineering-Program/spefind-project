@@ -1,44 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState } from "react"
 import styles from "./Availability.module.css"
-import { API_LINK } from "../../../../utils/api"
-import toast from "react-hot-toast"
 
 const Availability = () => {
   const [enableInput, setEnableInput] = useState(true)
-
-  const [fetchedUserData, setFetchedUserData] = useState({})
-
-  const fetchUserHandler = useCallback(async () => {
-    try {
-      const token = sessionStorage.getItem("token")
-      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      })
-      const userData = await getUserData.json()
-      console.log(getUserData)
-      if (!getUserData.ok || !getUserData) {
-        toast.error(`${userData?.msg} Please login again!`, {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-      }
-      console.log(userData)
-      setFetchedUserData(userData.user)
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
-
-  useEffect(() => {
-    fetchUserHandler()
-  }, [fetchUserHandler])
 
   return (
     <form className={styles.availability}>
