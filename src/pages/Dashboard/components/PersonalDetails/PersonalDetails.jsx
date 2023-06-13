@@ -8,14 +8,17 @@ import event from "../../assets/event.png"
 import { API_LINK } from "../../../../utils/api"
 import toast from "react-hot-toast"
 import Button from "../Button/Button"
+import Loader from "../../../../Components/Loader/Loader"
 
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const [fetchedUserData, setFetchedUserData] = useState({})
 
   const fetchUserHandler = useCallback(async () => {
+    setLoading(true)
     try {
       const token = sessionStorage.getItem("token")
       const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
@@ -28,6 +31,7 @@ const PersonalDetails = () => {
       const userData = await getUserData.json()
       console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
+        setLoading(false)
         toast.error(`${userData?.msg} Please login again!`, {
           duration: 4000,
           position: "top-center",
@@ -38,8 +42,10 @@ const PersonalDetails = () => {
       }
       console.log(userData)
       setFetchedUserData(userData.user)
+      setLoading(false)
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   }, [])
 
@@ -54,6 +60,7 @@ const PersonalDetails = () => {
 
   return (
     <div className='formContainer'>
+      {loading && <Loader />}
       <div className='editContainer'>
         <Button
           text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
@@ -321,16 +328,15 @@ const PersonalDetails = () => {
                   <input type='text' name='field' id='field' className='profile-input' placeholder='Type here' />
                 </div>
               </div>
-              <button
+              <Button
                 type='button'
                 onClick={() => {
                   setAddNewEvent(!addNewEvent)
                 }}
                 className='edit'
                 style={{ margin: "1rem auto" }}
-              >
-                Done
-              </button>
+                text1='Done'
+              ></Button>
             </div>
           </>
         )}

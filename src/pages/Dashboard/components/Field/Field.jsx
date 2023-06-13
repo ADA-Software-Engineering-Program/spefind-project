@@ -3,14 +3,17 @@ import "./Field.css"
 import { API_LINK } from "../../../../utils/api"
 import toast from "react-hot-toast"
 import Button from "../Button/Button"
+import Loader from "../../../../Components/Loader/Loader"
 
 const Field = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [showOtherStates, setShowOtherStates] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const [fetchedUserData, setFetchedUserData] = useState({})
 
   const fetchUserHandler = useCallback(async () => {
+    setLoading(true)
     try {
       const token = sessionStorage.getItem("token")
       const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
@@ -23,6 +26,7 @@ const Field = () => {
       const userData = await getUserData.json()
       console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
+        setLoading(false)
         toast.error(`${userData?.msg} Please login again!`, {
           duration: 4000,
           position: "top-center",
@@ -33,7 +37,9 @@ const Field = () => {
       }
       console.log(userData)
       setFetchedUserData(userData.user)
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       console.log(error)
     }
   }, [])
@@ -44,6 +50,7 @@ const Field = () => {
 
   return (
     <div className='field'>
+      {loading && <Loader />}
       <div className='editContainer'>
         <Button
           text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}

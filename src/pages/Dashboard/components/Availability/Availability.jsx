@@ -4,6 +4,7 @@ import Button from "../Button/Button"
 
 const Availability = () => {
   const [enableInput, setEnableInput] = useState(true)
+  const [showOtherStates, setShowOtherStates] = useState(false)
 
   return (
     <form className={styles.availability}>
@@ -73,15 +74,23 @@ const Availability = () => {
             <span className='check-checkbox-button'></span>School
           </label>
         </div>
-        <div className=''>
-          <input type='checkbox' aria-label='School' id='School' name='School' className='check-checkbox' disabled={enableInput} />
-          <label htmlFor='School' className='check-label'>
-            <span className='check-checkbox-button'></span>School
-          </label>
-        </div>
-        <button type='button' className={styles.editEvent}>
-          + Edit/Add
+        <button
+          type='button'
+          className={styles.editEvent}
+          onClick={() => {
+            setShowOtherStates(!showOtherStates)
+          }}
+          disabled={enableInput}
+        >
+          Add New
         </button>
+        <input
+          type='text'
+          name='newEvent'
+          id='newEvent'
+          placeholder='Type new event here'
+          className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
+        />
       </div>
 
       <div>
@@ -98,9 +107,24 @@ const Availability = () => {
             <span className='check-checkbox-button'></span>Ogun
           </label>
         </div>
-        <button type='button' className={styles.editEvent}>
-          + Edit/Add
+        <button
+          type='button'
+          className={styles.editEvent}
+          onClick={() => {
+            setShowOtherStates(!showOtherStates)
+          }}
+          disabled={enableInput}
+        >
+          Add New
         </button>
+        <input
+          type='text'
+          name='availableTo'
+          id='availableTo'
+          placeholder='Type new place here'
+          className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
+          disabled={enableInput}
+        />
       </div>
 
       <div>
@@ -118,9 +142,24 @@ const Availability = () => {
             <span className='check-checkbox-button'></span>Ask For Pricing
           </label>
         </div>
-        <button type='button' className={styles.editEvent}>
-          + Edit/Add
+        <button
+          type='button'
+          className={styles.editEvent}
+          onClick={() => {
+            setShowOtherStates(!showOtherStates)
+          }}
+          disabled={enableInput}
+        >
+          Add New
         </button>
+        <input
+          type='text'
+          name='pricing'
+          id='pricing'
+          placeholder='Type new price here'
+          disabled={enableInput}
+          className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
+        />
       </div>
 
       <div>
@@ -137,9 +176,6 @@ const Availability = () => {
             <span className='check-checkbox-button'></span>No
           </label>
         </div>
-        <button type='button' className={styles.editEvent}>
-          + Edit/Add
-        </button>
       </div>
 
       <div className='editContainer'>
