@@ -2,6 +2,11 @@ import { useState } from "react"
 
 const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
   const [showOtherStates, setShowOtherStates] = useState(false)
+  const [otherstate, setOtherstate] = useState("")
+
+  const otherStateSetter = (e) => {
+    setOtherstate(e.target.value)
+  }
 
   const formValues = ["eventType", "availableTo", "pricing", "isVolunteer"]
 
@@ -183,6 +188,8 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
             type='text'
             name='availableTo'
             placeholder='Type country here'
+            value={otherstate}
+            onChange={otherStateSetter}
             className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
             {...formik.getFieldProps("availableTo[0]")}
           />
