@@ -132,10 +132,10 @@ function Register() {
         }
       })
       setLoading(true)
-      console.log(saveUserData)
+      // console.log(saveUserData)
 
       const data = await saveUserData.json()
-      console.log(data)
+      // console.log(data)
 
       if (saveUserData.ok) {
         sessionStorage.setItem("token", data.token)

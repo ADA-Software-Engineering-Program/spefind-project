@@ -196,7 +196,7 @@ const Availability = () => {
             name='volunteer'
             className='check-checkbox'
             disabled={enableInput}
-            checked={fetchedUserData?.isVolunteer === "yes"}
+            defaultChecked={fetchedUserData?.isVolunteer === "yes"}
           />
           <label htmlFor='volunteerYes' className='check-label'>
             <span className='check-checkbox-button'></span>Yes
@@ -210,7 +210,7 @@ const Availability = () => {
             name='volunteer'
             className='check-checkbox'
             disabled={enableInput}
-            checked={fetchedUserData?.isVolunteer === "no"}
+            defaultChecked={fetchedUserData?.isVolunteer === "no"}
           />
           <label htmlFor='volunteerNo' className='check-label'>
             <span className='check-checkbox-button'></span>No
