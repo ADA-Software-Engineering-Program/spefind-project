@@ -2,6 +2,11 @@ import { useState } from "react"
 
 const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
   const [showOtherStates, setShowOtherStates] = useState(false)
+  const [otherstate, setOtherstate] = useState("")
+
+  const otherStateSetter = (e) => {
+    setOtherstate(e.target.value)
+  }
 
   const formValues = ["eventType", "availableTo", "pricing", "isVolunteer"]
 
@@ -57,17 +62,17 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
                   type='checkbox'
                   name='eventType'
                   className='check-checkbox'
-                  value={event._id}
-                  id={event.eventType}
+                  value={event.eventType}
+                  id={event._id}
                   defaultChecked={
                     formik.values.eventType.find((value) => {
-                      return value === event._id
+                      return value === event.eventType
                     })
                       ? true
                       : false
                   }
                 />
-                <label className='check-label' htmlFor={event.eventType}>
+                <label className='check-label' htmlFor={event._id}>
                   <span className='check-checkbox-button'></span>
                   {event.eventType}
                 </label>
@@ -86,8 +91,22 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
               type='checkbox'
               name='availableTo'
               className='check-checkbox'
+              id='nigeria'
+              value={"Nigeria"}
+              defaultChecked={formik.values.availableTo.includes("nigeria") ? true : false}
+            />
+            <label className='check-label' htmlFor='nigeria'>
+              <span className='check-checkbox-button'></span>
+              Nigeria
+            </label>
+          </div>
+          <div>
+            <input
+              type='checkbox'
+              name='availableTo'
+              className='check-checkbox'
               id='ghana'
-              value={"ghana"}
+              value={"Ghana"}
               defaultChecked={formik.values.availableTo.includes("ghana") ? true : false}
             />
             <label className='check-label' htmlFor='ghana'>
@@ -101,7 +120,7 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
               name='availableTo'
               className='check-checkbox'
               id='somalia'
-              value={"somalia"}
+              value={"Somalia"}
               defaultChecked={formik.values.availableTo.includes("somalia") ? true : false}
             />
             <label className='check-label' htmlFor='somalia'>
@@ -115,7 +134,7 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
               name='availableTo'
               className='check-checkbox'
               id='southAfrica'
-              value={"south africa"}
+              value={"South Africa"}
               defaultChecked={formik.values.availableTo.includes("south africa") ? true : false}
             />
             <label className='check-label' htmlFor='southAfrica'>
@@ -129,7 +148,7 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
               name='availableTo'
               className='check-checkbox'
               id='turkey'
-              value={"turkey"}
+              value={"Turkey"}
               defaultChecked={formik.values.availableTo.includes("somalia") ? true : false}
             />
             <label className='check-label' htmlFor='turkey'>
@@ -143,26 +162,12 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
               name='availableTo'
               className='check-checkbox'
               id='egypt'
-              value={"egypt"}
+              value={"Egypt"}
               defaultChecked={formik.values.availableTo.includes("egypt") ? true : false}
             />
             <label className='check-label' htmlFor='egypt'>
               <span className='check-checkbox-button'></span>
               Egypt
-            </label>
-          </div>
-          <div>
-            <input
-              type='checkbox'
-              name='availableTo'
-              className='check-checkbox'
-              id='nigeria'
-              value={"nigeria"}
-              defaultChecked={formik.values.availableTo.includes("nigeria") ? true : false}
-            />
-            <label className='check-label' htmlFor='nigeria'>
-              <span className='check-checkbox-button'></span>
-              Nigeria
             </label>
           </div>
           <input
@@ -172,6 +177,7 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
               setShowOtherStates(!showOtherStates)
             }}
             id={"otherStates"}
+            defaultChecked={formik.values.availableTo.includes(otherstate) ? true : false}
           />
           <label className='check-label' htmlFor={"otherStates"}>
             <span className='check-checkbox-button'></span>
@@ -183,6 +189,8 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
             type='text'
             name='availableTo'
             placeholder='Type country here'
+            value={otherstate}
+            onChange={otherStateSetter}
             className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
             {...formik.getFieldProps("availableTo[0]")}
           />
@@ -193,28 +201,22 @@ const Availability = ({ nextStep, prevStep, formik, fetchData }) => {
       <div className='profile-group'>
         <label className='profile-label'>FEE*</label>
         <div className='check-cont' {...formik.getFieldProps("pricing")}>
-          <input
-            type='radio'
-            className='check-input'
-            id={"askForPrice"}
-            name='pricing'
-            // value={prices._id}
-          />
+          <input type='radio' className='check-input' id={"askForPrice"} name='pricing' value={"ask for pricing"} />
           <label className='check-label' htmlFor={"askForPrice"}>
             <span className='check-radio-button'></span> Ask for Pricing
           </label>
-          {fetchData.price.map((prices) => {
+          {fetchData.price?.map((prices) => {
             return (
               <div key={prices._id}>
                 <input
                   type='radio'
                   name='pricing'
                   className='check-input'
-                  value={prices._id}
-                  id={prices.pricing}
-                  defaultChecked={formik.values.pricing === prices._id ? true : false}
+                  value={prices.pricing}
+                  id={prices._id}
+                  defaultChecked={formik.values.pricing === prices.pricing ? true : false}
                 />
-                <label className='check-label' htmlFor={prices.pricing}>
+                <label className='check-label' htmlFor={prices._id}>
                   <span className='check-radio-button'></span> {prices.pricing}
                 </label>
               </div>

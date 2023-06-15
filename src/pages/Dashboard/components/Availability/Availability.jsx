@@ -1,13 +1,58 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import styles from "./Availability.module.css"
 import Button from "../Button/Button"
+import { API_LINK } from "../../../../utils/api"
+import toast from "react-hot-toast"
+import Loader from "../../../../Components/Loader/Loader"
 
 const Availability = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [showOtherStates, setShowOtherStates] = useState(false)
 
+  const [loading, setLoading] = useState(false)
+
+  const [fetchedUserData, setFetchedUserData] = useState({})
+
+  const fetchUserHandler = useCallback(async () => {
+    setLoading(true)
+    try {
+      const token = sessionStorage.getItem("token")
+      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+      const userData = await getUserData.json()
+      console.log(getUserData)
+      if (!getUserData.ok || !getUserData) {
+        setLoading(false)
+        toast.error(`${userData?.msg} Please login again!`, {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px" },
+          className: ""
+        })
+      }
+      console.log(userData)
+      setFetchedUserData(userData.user)
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchUserHandler()
+  }, [fetchUserHandler])
+
   return (
     <form className={styles.availability}>
+      {loading && <Loader />}
+
       <div className='editContainer'>
         <Button
           text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
@@ -21,59 +66,27 @@ const Availability = () => {
 
       <div>
         <label htmlFor='eventType'>Types of events you're interested in</label>
-        <div className=''>
-          <input
-            type='checkbox'
-            aria-label='Conference (Full-day
-          Event)'
-            id='Conference(FulldayEvent)'
-            name='Conference (Full-day
-          Event)'
-            className='check-checkbox'
-            disabled={enableInput}
-          />
-          <label htmlFor='Conference(FulldayEvent)' className='check-label'>
-            <span className='check-checkbox-button'></span>Conference (Full-day Event)
-          </label>
-        </div>
-        <div className=''>
-          <input
-            type='checkbox'
-            aria-label='Ogun'
-            id='Workshop(3+hourevent)'
-            name='Workshop (3+ hour event)'
-            className='check-checkbox'
-            disabled={enableInput}
-          />
-          <label htmlFor='Workshop(3+hourevent)' className='check-label'>
-            <span className='check-checkbox-button'></span>Workshop (3+ hour event)
-          </label>
-        </div>
-        <div className=''>
-          <input type='checkbox' aria-label='Moderator' id='Moderator' name='Moderator' className='check-checkbox' disabled={enableInput} />
-          <label htmlFor='Moderator' className='check-label'>
-            <span className='check-checkbox-button'></span>Moderator
-          </label>
-        </div>
-        <div className=''>
-          <input
-            type='checkbox'
-            aria-label='Webinar (virtual event)'
-            id='Webinar(virtual event)'
-            name='Webinar(virtual event)'
-            className='check-checkbox'
-            disabled={enableInput}
-          />
-          <label htmlFor='Webinar(virtual event)' className='check-label'>
-            <span className='check-checkbox-button'></span>Webinar (virtual event)
-          </label>
-        </div>
-        <div className=''>
-          <input type='checkbox' aria-label='School' id='School' name='School' className='check-checkbox' disabled={enableInput} />
-          <label htmlFor='School' className='check-label'>
-            <span className='check-checkbox-button'></span>School
-          </label>
-        </div>
+        {fetchedUserData?.eventType?.map((event) => {
+          return (
+            <>
+              <div className=''>
+                <input
+                  type='checkbox'
+                  aria-label={event}
+                  id={event}
+                  name={event}
+                  className='check-checkbox'
+                  disabled={enableInput}
+                  defaultChecked={event === event}
+                />
+                <label htmlFor={event} className='check-label'>
+                  <span className='check-checkbox-button'></span>
+                  {event.charAt(0).toUpperCase() + event.slice(1)}
+                </label>
+              </div>
+            </>
+          )
+        })}
         <button
           type='button'
           className={styles.editEvent}
@@ -95,18 +108,27 @@ const Availability = () => {
 
       <div>
         <label htmlFor='availableTo'>Available To</label>
-        <div className=''>
-          <input type='checkbox' aria-label='Lagos' id='Lagos' name='Lagos' className='check-checkbox' disabled={enableInput} />
-          <label htmlFor='Lagos' className='check-label'>
-            <span className='check-checkbox-button'></span>Lagos
-          </label>
-        </div>
-        <div className=''>
-          <input type='checkbox' aria-label='Ogun' id='Ogun' name='Ogun' className='check-checkbox' disabled={enableInput} />
-          <label htmlFor='Ogun' className='check-label'>
-            <span className='check-checkbox-button'></span>Ogun
-          </label>
-        </div>
+        {fetchedUserData?.availableTo?.map((availability) => {
+          return (
+            <>
+              <div className=''>
+                <input
+                  type='checkbox'
+                  aria-label={availability}
+                  id={availability}
+                  name={availability}
+                  className='check-checkbox'
+                  disabled={enableInput}
+                  defaultChecked={availability === availability}
+                />
+                <label htmlFor={availability} className='check-label'>
+                  <span className='check-checkbox-button'></span>
+                  {availability.charAt(0).toUpperCase() + availability.slice(1)}
+                </label>
+              </div>
+            </>
+          )
+        })}
         <button
           type='button'
           className={styles.editEvent}
@@ -132,14 +154,16 @@ const Availability = () => {
         <div className=''>
           <input
             type='checkbox'
-            aria-label='ask for pricing'
-            id='askForPricing'
-            name='askForPricing'
+            aria-label={fetchedUserData?.pricing}
+            id={fetchedUserData?.pricing}
+            name='pricing'
             className='check-checkbox'
+            checked={fetchedUserData?.pricing === fetchedUserData?.pricing}
             disabled={enableInput}
           />
-          <label htmlFor='askForPricing' className='check-label'>
-            <span className='check-checkbox-button'></span>Ask For Pricing
+          <label htmlFor={fetchedUserData?.pricing} className='check-label'>
+            <span className='check-checkbox-button'></span>
+            {fetchedUserData?.pricing}
           </label>
         </div>
         <button
@@ -165,13 +189,29 @@ const Availability = () => {
       <div>
         <label htmlFor='volunteer'>Would you love to volunteer?</label>
         <div className=''>
-          <input type='radio' aria-label='volunteer' id='volunteerYes' name='volunteer' className='check-checkbox' disabled={enableInput} />
+          <input
+            type='radio'
+            aria-label='volunteer'
+            id='volunteerYes'
+            name='volunteer'
+            className='check-checkbox'
+            disabled={enableInput}
+            defaultChecked={fetchedUserData?.isVolunteer === "yes"}
+          />
           <label htmlFor='volunteerYes' className='check-label'>
             <span className='check-checkbox-button'></span>Yes
           </label>
         </div>
         <div className=''>
-          <input type='radio' aria-label='volunteer' id='volunteerNo' name='volunteer' className='check-checkbox' disabled={enableInput} />
+          <input
+            type='radio'
+            aria-label='volunteer'
+            id='volunteerNo'
+            name='volunteer'
+            className='check-checkbox'
+            disabled={enableInput}
+            defaultChecked={fetchedUserData?.isVolunteer === "no"}
+          />
           <label htmlFor='volunteerNo' className='check-label'>
             <span className='check-checkbox-button'></span>No
           </label>
@@ -186,3 +226,57 @@ const Availability = () => {
 }
 
 export default Availability
+
+// <div className=''>
+//   <input
+//     type='checkbox'
+//     aria-label='Conference (Full-day
+//   Event)'
+//     id='Conference(FulldayEvent)'
+//     name='Conference (Full-day
+//   Event)'
+//     className='check-checkbox'
+//     disabled={enableInput}
+//   />
+//   <label htmlFor='Conference(FulldayEvent)' className='check-label'>
+//     <span className='check-checkbox-button'></span>Conference (Full-day Event)
+//   </label>
+// </div>
+// <div className=''>
+//   <input
+//     type='checkbox'
+//     aria-label='Ogun'
+//     id='Workshop(3+hourevent)'
+//     name='Workshop (3+ hour event)'
+//     className='check-checkbox'
+//     disabled={enableInput}
+//   />
+//   <label htmlFor='Workshop(3+hourevent)' className='check-label'>
+//     <span className='check-checkbox-button'></span>Workshop (3+ hour event)
+//   </label>
+// </div>
+// <div className=''>
+//   <input type='checkbox' aria-label='Moderator' id='Moderator' name='Moderator' className='check-checkbox' disabled={enableInput} />
+//   <label htmlFor='Moderator' className='check-label'>
+//     <span className='check-checkbox-button'></span>Moderator
+//   </label>
+// </div>
+// <div className=''>
+//   <input
+//     type='checkbox'
+//     aria-label='Webinar (virtual event)'
+//     id='Webinar(virtual event)'
+//     name='Webinar(virtual event)'
+//     className='check-checkbox'
+//     disabled={enableInput}
+//   />
+//   <label htmlFor='Webinar(virtual event)' className='check-label'>
+//     <span className='check-checkbox-button'></span>Webinar (virtual event)
+//   </label>
+// </div>
+// <div className=''>
+//   <input type='checkbox' aria-label='School' id='School' name='School' className='check-checkbox' disabled={enableInput} />
+//   <label htmlFor='School' className='check-label'>
+//     <span className='check-checkbox-button'></span>School
+//   </label>
+// </div>
