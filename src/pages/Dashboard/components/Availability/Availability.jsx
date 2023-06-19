@@ -158,7 +158,7 @@ const Availability = () => {
             id={fetchedUserData?.pricing}
             name='pricing'
             className='check-checkbox'
-            checked={fetchedUserData?.pricing === fetchedUserData?.pricing}
+            defaultChecked={fetchedUserData?.pricing === fetchedUserData?.pricing}
             disabled={enableInput}
           />
           <label htmlFor={fetchedUserData?.pricing} className='check-label'>
@@ -196,7 +196,7 @@ const Availability = () => {
             name='volunteer'
             className='check-checkbox'
             disabled={enableInput}
-            defaultChecked={fetchedUserData?.isVolunteer === "yes"}
+            defaultChecked={fetchedUserData?.isVolunteer == "yes"}
           />
           <label htmlFor='volunteerYes' className='check-label'>
             <span className='check-checkbox-button'></span>Yes
@@ -210,7 +210,7 @@ const Availability = () => {
             name='volunteer'
             className='check-checkbox'
             disabled={enableInput}
-            defaultChecked={fetchedUserData?.isVolunteer === "no"}
+            defaultChecked={fetchedUserData?.isVolunteer == "no"}
           />
           <label htmlFor='volunteerNo' className='check-label'>
             <span className='check-checkbox-button'></span>No

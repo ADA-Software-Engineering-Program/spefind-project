@@ -4,7 +4,6 @@ import "./PersonalDetails.css"
 import userImg from "../../assets/userImg.png"
 import coverBanner from "../../assets/coverBanner.png"
 import { AiFillDelete } from "react-icons/ai"
-import event from "../../assets/event.png"
 import { API_LINK } from "../../../../utils/api"
 import toast from "react-hot-toast"
 import Button from "../Button/Button"
@@ -201,86 +200,31 @@ const PersonalDetails = () => {
         <div>
           <label htmlFor='pastevents'>Past Events</label>
         </div>
-        <div className='pastEventsCointainer'>
-          <div className='events'>
-            <img src={event} alt='past event' />
-            <div className='eventDetails'>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
+
+        {fetchedUserData?.pastEvents?.map((event) => {
+          return (
+            <div className='pastEventsCointainer' key={Math.floor(Math.random() * 150)}>
+              <div className='events'>
+                <img src={event} alt='past event' />
+                <div className='eventDetails'>
+                  <h6>{event.titleOfEvent}</h6>
+                  <p>{event.date}</p>
+                  <p>{event.location}</p>
+                </div>
+              </div>
+              <button
+                type='button'
+                onClick={() => {
+                  setAddNewEvent(!addNewEvent)
+                }}
+              >
+                + Edit Event
+              </button>
+              <AiFillDelete className='delete' />
+              <hr />
             </div>
-          </div>
-          <button
-            type='button'
-            onClick={() => {
-              setAddNewEvent(!addNewEvent)
-            }}
-          >
-            + Edit Event
-          </button>
-          <AiFillDelete className='delete' />
-        </div>
-        <hr />
-        <div className='pastEventsCointainer'>
-          <div className='events'>
-            <img src={event} alt='past event' />
-            <div className='eventDetails'>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button
-            type='button'
-            onClick={() => {
-              setAddNewEvent(!addNewEvent)
-            }}
-          >
-            + Edit Event
-          </button>
-          <AiFillDelete className='delete' />
-        </div>
-        <hr />
-        <div className='pastEventsCointainer'>
-          <div className='events'>
-            <img src={event} alt='past event' />
-            <div className='eventDetails'>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button
-            type='button'
-            onClick={() => {
-              setAddNewEvent(!addNewEvent)
-            }}
-          >
-            + Edit Event
-          </button>
-          <AiFillDelete className='delete' />
-        </div>
-        <hr />
-        <div className='pastEventsCointainer'>
-          <div className='events'>
-            <img src={event} alt='past event' />
-            <div className='eventDetails'>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button
-            type='button'
-            onClick={() => {
-              setAddNewEvent(!addNewEvent)
-            }}
-          >
-            + Edit Event
-          </button>
-          <AiFillDelete className='delete' />
-        </div>
-        <hr />
+          )
+        })}
         {addNewEvent && (
           <>
             <div
