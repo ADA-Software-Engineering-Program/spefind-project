@@ -1,16 +1,61 @@
+import React, { useCallback, useEffect, useState } from "react"
 import "./ViewProfile.module.css"
 import coverBanner from "../../assets/coverBanner.svg"
 import userImg from "../../assets/userImg.svg"
-import event from "../../assets/event.png"
 import styles from "./ViewProfile.module.css"
 
+import toast from "react-hot-toast"
+
+import { API_LINK } from "../../../../utils/api"
+import Loader from "../../../../Components/Loader/Loader"
 const ViewProfile = () => {
+  const [loading, setLoading] = useState(false)
+
+  const [fetchedUserData, setFetchedUserData] = useState({})
+
+  const fetchUserHandler = useCallback(async () => {
+    setLoading(true)
+    try {
+      const token = sessionStorage.getItem("token")
+      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+      const userData = await getUserData.json()
+      // console.log(getUserData)
+      if (!getUserData.ok || !getUserData) {
+        setLoading(false)
+        toast.error(`${userData?.msg} Please login again!`, {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px" },
+          className: ""
+        })
+      }
+      // console.log(userData)
+      setFetchedUserData(userData.user)
+      setLoading(false)
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchUserHandler()
+  }, [fetchUserHandler])
+
   return (
     <div className={styles.coverBanner}>
+      {loading && <Loader />}
       <img src={coverBanner} alt='cover banner of the speaker' />
       <div className={styles.speakerDetails}>
-        <h4>Hi! I’m Titilayo</h4>
-        <p>Media speaker</p>
+        <h4>Hi! I’m {fetchedUserData?.firstName}</h4>
+        <p>{fetchedUserData?.job?.title}</p>
       </div>
       <div className={styles.about}>
         <div className={styles.imgContainer}>
@@ -19,13 +64,7 @@ const ViewProfile = () => {
         </div>
         <div className={styles.aboutTextContainer}>
           <h5>ABOUT ME</h5>
-          <p>
-            A Lagos State resident in charge of drafting over 10 statements per mount and speaking with radio and television media about the
-            clients' ongoing or forthcoming events organize and arrange more than 20 speaking appearances. Conduct Training in product usage
-            and product demos for clients, new hires, and independent contractors. Prepare concepts for new clients who use commercial spots
-            to market their brands.
-            <span> show more</span>
-          </p>
+          <p>{fetchedUserData?.biography}</p>
           <div className={styles.speakerRating}>
             <span>
               100% <p>Jobs Completed</p>
@@ -44,72 +83,21 @@ const ViewProfile = () => {
       </div>
       <h4 className={styles.pasteventsHeading}>PAST EVENTS</h4>
       <div className={styles.pastEventsContainer}>
-        <div>
-          <div className={styles.singleEvents}>
-            <img src={event} alt='past event' />
-            <div className={styles.eventDetails}>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
+        {fetchedUserData?.pastEvents?.map((event) => {
+          return (
+            <div key={Math.floor(Math.random() * 22)}>
+              <div className={styles.singleEvents}>
+                <img src={event} alt='past event image' />
+                <div className={styles.eventDetails}>
+                  <h6>{event.titleOfEvent}</h6>
+                  <p>{event.date}</p>
+                  <p>{event.location}</p>
+                </div>
+              </div>
+              <button>View Details</button>
             </div>
-          </div>
-          <button>View Details</button>
-        </div>
-        <div>
-          <div className={styles.singleEvents}>
-            <img src={event} alt='past event' />
-            <div className={styles.eventDetails}>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button>View Details</button>
-        </div>
-        <div>
-          <div className={styles.singleEvents}>
-            <img src={event} alt='past event' />
-            <div className={styles.eventDetails}>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button>View Details</button>
-        </div>
-        <div>
-          <div className={styles.singleEvents}>
-            <img src={event} alt='past event' />
-            <div className={styles.eventDetails}>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button>View Details</button>
-        </div>
-        <div>
-          <div className={styles.singleEvents}>
-            <img src={event} alt='past event' />
-            <div className={styles.eventDetails}>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button>View Details</button>
-        </div>
-        <div>
-          <div className={styles.singleEvents}>
-            <img src={event} alt='past event' />
-            <div className={styles.eventDetails}>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button>View Details</button>
-        </div>
+          )
+        })}
       </div>
     </div>
   )

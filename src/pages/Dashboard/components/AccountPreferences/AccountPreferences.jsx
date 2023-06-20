@@ -23,7 +23,7 @@ const AccountPreferences = () => {
         }
       })
       const userData = await getUserData.json()
-      console.log(getUserData)
+      // console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
         setLoading(false)
         toast.error(`${userData?.msg} Please login again!`, {
@@ -34,7 +34,7 @@ const AccountPreferences = () => {
           className: ""
         })
       }
-      console.log(userData)
+      // console.log(userData)
       setFetchedUserData(userData.user)
       setLoading(false)
     } catch (error) {
@@ -69,7 +69,7 @@ const AccountPreferences = () => {
             id='visibleYes'
             name='visibility'
             className='check-checkbox'
-            defaultChecked={fetchedUserData?.isVisible === "public"}
+            checked={fetchedUserData?.isVisible === "public"}
             disabled={enableInput}
           />
           <label htmlFor='visibleYes' className='check-label'>
@@ -83,7 +83,7 @@ const AccountPreferences = () => {
             id='visibleNo'
             name='visibility'
             className='check-checkbox'
-            defaultChecked={fetchedUserData?.isVisible === "private"}
+            checked={fetchedUserData?.isVisible === "private"}
             disabled={enableInput}
           />
           <label htmlFor='visibleNo' className='check-label'>
