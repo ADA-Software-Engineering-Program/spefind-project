@@ -28,7 +28,7 @@ const PersonalDetails = () => {
         }
       })
       const userData = await getUserData.json()
-      console.log(getUserData)
+      // console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
         setLoading(false)
         toast.error(`${userData?.msg} Please login again!`, {
@@ -39,7 +39,7 @@ const PersonalDetails = () => {
           className: ""
         })
       }
-      console.log(userData)
+      // console.log(userData)
       setFetchedUserData(userData.user)
       setLoading(false)
     } catch (error) {
@@ -203,9 +203,9 @@ const PersonalDetails = () => {
 
         {fetchedUserData?.pastEvents?.map((event) => {
           return (
-            <div className='pastEventsCointainer' key={Math.floor(Math.random() * 150)}>
+            <div className='pastEventsCointainer' key={event.id}>
               <div className='events'>
-                <img src={event} alt='past event' />
+                <img src={event} alt='past event image' />
                 <div className='eventDetails'>
                   <h6>{event.titleOfEvent}</h6>
                   <p>{event.date}</p>

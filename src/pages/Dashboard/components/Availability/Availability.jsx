@@ -25,7 +25,7 @@ const Availability = () => {
         }
       })
       const userData = await getUserData.json()
-      console.log(getUserData)
+      // console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
         setLoading(false)
         toast.error(`${userData?.msg} Please login again!`, {
@@ -36,7 +36,7 @@ const Availability = () => {
           className: ""
         })
       }
-      console.log(userData)
+      // console.log(userData)
       setFetchedUserData(userData.user)
       setLoading(false)
     } catch (error) {
@@ -111,7 +111,7 @@ const Availability = () => {
         {fetchedUserData?.availableTo?.map((availability) => {
           return (
             <>
-              <div className=''>
+              <div className='' key={availability._id}>
                 <input
                   type='checkbox'
                   aria-label={availability}
@@ -196,7 +196,7 @@ const Availability = () => {
             name='volunteer'
             className='check-checkbox'
             disabled={enableInput}
-            defaultChecked={fetchedUserData?.isVolunteer == "yes"}
+            checked={fetchedUserData?.isVolunteer === "yes"}
           />
           <label htmlFor='volunteerYes' className='check-label'>
             <span className='check-checkbox-button'></span>Yes
@@ -210,7 +210,7 @@ const Availability = () => {
             name='volunteer'
             className='check-checkbox'
             disabled={enableInput}
-            defaultChecked={fetchedUserData?.isVolunteer == "no"}
+            checked={fetchedUserData?.isVolunteer === "no"}
           />
           <label htmlFor='volunteerNo' className='check-label'>
             <span className='check-checkbox-button'></span>No

@@ -24,7 +24,7 @@ const Field = () => {
         }
       })
       const userData = await getUserData.json()
-      console.log(getUserData)
+      // console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
         setLoading(false)
         toast.error(`${userData?.msg} Please login again!`, {
@@ -35,7 +35,7 @@ const Field = () => {
           className: ""
         })
       }
-      console.log(userData)
+      // console.log(userData)
       setFetchedUserData(userData.user)
       setLoading(false)
     } catch (error) {
