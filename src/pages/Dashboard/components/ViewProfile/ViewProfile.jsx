@@ -83,9 +83,9 @@ const ViewProfile = () => {
       </div>
       <h4 className={styles.pasteventsHeading}>PAST EVENTS</h4>
       <div className={styles.pastEventsContainer}>
-        {fetchedUserData?.pastEvents?.map((event) => {
+        {fetchedUserData?.pastEvents?.map((event, index) => {
           return (
-            <div key={Math.floor(Math.random() * 22)}>
+            <div key={index}>
               <div className={styles.singleEvents}>
                 <img src={event} alt='past event image' />
                 <div className={styles.eventDetails}>

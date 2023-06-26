@@ -108,10 +108,10 @@ const Availability = () => {
 
       <div>
         <label htmlFor='availableTo'>Available To</label>
-        {fetchedUserData?.availableTo?.map((availability) => {
+        {fetchedUserData?.availableTo?.map((availability, index) => {
           return (
             <>
-              <div className='' key={availability._id}>
+              <div className='' key={index}>
                 <input
                   type='checkbox'
                   aria-label={availability}

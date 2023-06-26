@@ -201,9 +201,9 @@ const PersonalDetails = () => {
           <label htmlFor='pastevents'>Past Events</label>
         </div>
 
-        {fetchedUserData?.pastEvents?.map((event) => {
+        {fetchedUserData?.pastEvents?.map((event, index) => {
           return (
-            <div className='pastEventsCointainer' key={event.id}>
+            <div className='pastEventsCointainer' key={index}>
               <div className='events'>
                 <img src={event} alt='past event image' />
                 <div className='eventDetails'>

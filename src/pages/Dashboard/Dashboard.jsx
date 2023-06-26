@@ -135,11 +135,11 @@ const Dashboard = () => {
                 <p className='userCareer'>{fetchedUserData?.userRole?.charAt(0).toUpperCase() + fetchedUserData?.userRole?.slice(1)}</p>
               </div>
               <ul className='userMenu'>
-                {sideBarTitleAndComponent.map((menu) => {
+                {sideBarTitleAndComponent.map((menu, index) => {
                   return (
                     <li
                       className={currentMenu === menu.id ? "span-select" : ""}
-                      key={menu.id}
+                      key={index}
                       onClick={() => {
                         setCurrentMenu(menu.id)
                         setDashboardBodyContent(menu.component)
