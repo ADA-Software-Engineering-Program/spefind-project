@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 const ProtectedRoutes = ({ isLoggedIn, children }) => {
   if (!isLoggedIn) {
-    return <Navigate to='/login' replace />
+    return <Navigate to='/login' replace={true} />
   }
   return children
 }

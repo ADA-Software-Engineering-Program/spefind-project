@@ -1,53 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react"
 import "./ViewProfile.module.css"
 import coverBanner from "../../assets/coverBanner.svg"
 import userImg from "../../assets/userImg.svg"
 import styles from "./ViewProfile.module.css"
-
-import toast from "react-hot-toast"
-
-import { API_LINK } from "../../../../utils/api"
 import Loader from "../../../../Components/Loader/Loader"
+import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
+
 const ViewProfile = () => {
-  const [loading, setLoading] = useState(false)
-
-  const [fetchedUserData, setFetchedUserData] = useState({})
-
-  const fetchUserHandler = useCallback(async () => {
-    setLoading(true)
-    try {
-      const token = sessionStorage.getItem("token")
-      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      })
-      const userData = await getUserData.json()
-      // console.log(getUserData)
-      if (!getUserData.ok || !getUserData) {
-        setLoading(false)
-        toast.error(`${userData?.msg} Please login again!`, {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-      }
-      // console.log(userData)
-      setFetchedUserData(userData.user)
-      setLoading(false)
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    fetchUserHandler()
-  }, [fetchUserHandler])
+  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
 
   return (
     <div className={styles.coverBanner}>
@@ -83,9 +42,9 @@ const ViewProfile = () => {
       </div>
       <h4 className={styles.pasteventsHeading}>PAST EVENTS</h4>
       <div className={styles.pastEventsContainer}>
-        {fetchedUserData?.pastEvents?.map((event) => {
+        {fetchedUserData?.pastEvents?.map((event, index) => {
           return (
-            <div key={Math.floor(Math.random() * 22)}>
+            <div key={index}>
               <div className={styles.singleEvents}>
                 <img src={event} alt='past event image' />
                 <div className={styles.eventDetails}>

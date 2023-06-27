@@ -1,56 +1,19 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState } from "react"
 
 import "./PersonalDetails.css"
 import userImg from "../../assets/userImg.png"
 import coverBanner from "../../assets/coverBanner.png"
 import { AiFillDelete } from "react-icons/ai"
-import { API_LINK } from "../../../../utils/api"
-import toast from "react-hot-toast"
 import Button from "../Button/Button"
 import Loader from "../../../../Components/Loader/Loader"
+import EditAddEvent from "./EditAddEvent"
+import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
-  const [loading, setLoading] = useState(false)
 
-  const [fetchedUserData, setFetchedUserData] = useState({})
-
-  const fetchUserHandler = useCallback(async () => {
-    setLoading(true)
-    try {
-      const token = sessionStorage.getItem("token")
-      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      })
-      const userData = await getUserData.json()
-      // console.log(getUserData)
-      if (!getUserData.ok || !getUserData) {
-        setLoading(false)
-        toast.error(`${userData?.msg} Please login again!`, {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-      }
-      // console.log(userData)
-      setFetchedUserData(userData.user)
-      setLoading(false)
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    fetchUserHandler()
-  }, [fetchUserHandler])
+  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`, "GET")
 
   const onFinish = (e) => {
     e.preventDefault()
@@ -201,9 +164,9 @@ const PersonalDetails = () => {
           <label htmlFor='pastevents'>Past Events</label>
         </div>
 
-        {fetchedUserData?.pastEvents?.map((event) => {
+        {fetchedUserData?.pastEvents?.map((event, index) => {
           return (
-            <div className='pastEventsCointainer' key={event.id}>
+            <div className='pastEventsCointainer' key={index}>
               <div className='events'>
                 <img src={event} alt='past event image' />
                 <div className='eventDetails'>
@@ -225,65 +188,7 @@ const PersonalDetails = () => {
             </div>
           )
         })}
-        {addNewEvent && (
-          <>
-            <div
-              className='addEventContainerModalOverlay'
-              onClick={() => {
-                setAddNewEvent(!addNewEvent)
-              }}
-            ></div>
-
-            <div className='addEventContainer'>
-              <label className='profile-label'>ADD EVENTS*</label>
-              <div className='profile-field'>
-                <div>
-                  <label className='profile-label-field' htmlFor='titleOfEvent'>
-                    Name of Event
-                  </label>
-                  <input type='text' name='titleOfEvent' id='titleOfEvent' className='profile-input' placeholder='Type here' />
-                </div>
-
-                <div>
-                  <label className='profile-label-field' htmlFor='date'>
-                    Date of Event
-                  </label>
-                  <input type='date' name='date' id='date' className='profile-input' placeholder='Type here' />
-                </div>
-
-                <div>
-                  <label className='profile-label-field' htmlFor='location'>
-                    Location of Event
-                  </label>
-                  <input type='text' name='location' id='location' className='profile-input' placeholder='Type here' />
-                </div>
-
-                <div>
-                  <label className='profile-label-field' htmlFor='numberOfAttendees'>
-                    Event of How Many People?
-                  </label>
-                  <input type='number' name='numberOfAttendees' id='numberOfAttendees' className='profile-input' placeholder='Type here' />
-                </div>
-
-                <div>
-                  <label className='profile-label-field' htmlFor='field'>
-                    Which field did you speak for?
-                  </label>
-                  <input type='text' name='field' id='field' className='profile-input' placeholder='Type here' />
-                </div>
-              </div>
-              <Button
-                type='button'
-                onClick={() => {
-                  setAddNewEvent(!addNewEvent)
-                }}
-                className='edit'
-                style={{ margin: "1rem auto" }}
-                text1='Done'
-              ></Button>
-            </div>
-          </>
-        )}
+        {addNewEvent && <EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={fetchedUserData} />}
         <div className='saveAndEdit'>
           <Button
             type='button'
