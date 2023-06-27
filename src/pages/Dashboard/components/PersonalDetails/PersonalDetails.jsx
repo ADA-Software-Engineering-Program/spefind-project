@@ -13,7 +13,7 @@ const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
 
-  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
+  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`, "GET")
 
   const onFinish = (e) => {
     e.preventDefault()

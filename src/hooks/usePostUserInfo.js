@@ -1,19 +1,19 @@
-import { useEffect, useCallback } from "react"
 import { API_LINK } from "../utils/api"
 import { toast } from "react-hot-toast"
 import { useState } from "react"
 
-const useFetchUserInfo = (link) => {
+const useFetchUserInfo = (link, method) => {
   const [loading, setLoading] = useState(false)
 
-  const [fetchedUserData, setFetchedUserData] = useState({})
+  const [response, setResponse] = useState({})
 
-  const fetchUserHandler = useCallback(async () => {
+  const fetchUserHandler = async () => {
     setLoading(true)
+    //api/profile/user
     try {
       const token = sessionStorage.getItem("token")
       const getUserData = await fetch(`${API_LINK}/${link}`, {
-        method: "GET",
+        method: method,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
@@ -32,18 +32,15 @@ const useFetchUserInfo = (link) => {
         })
       }
       // console.log(userData)
-      setFetchedUserData(userData.user)
+      setResponse(userData.user)
       setLoading(false)
     } catch (error) {
       console.log(error)
       setLoading(false)
     }
-  }, [])
-
-  useEffect(() => {
-    fetchUserHandler()
-  }, [fetchUserHandler])
-  return { loading, fetchedUserData }
+  }
+  fetchUserHandler()
+  return { loading, response }
 }
 
 export default useFetchUserInfo
