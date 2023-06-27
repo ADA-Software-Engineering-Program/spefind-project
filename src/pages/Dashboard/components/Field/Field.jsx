@@ -1,52 +1,14 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState } from "react"
 import "./Field.css"
-import { API_LINK } from "../../../../utils/api"
-import toast from "react-hot-toast"
 import Button from "../Button/Button"
 import Loader from "../../../../Components/Loader/Loader"
+import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 
 const Field = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [showOtherStates, setShowOtherStates] = useState(false)
-  const [loading, setLoading] = useState(false)
 
-  const [fetchedUserData, setFetchedUserData] = useState({})
-
-  const fetchUserHandler = useCallback(async () => {
-    setLoading(true)
-    try {
-      const token = sessionStorage.getItem("token")
-      const getUserData = await fetch(`${API_LINK}/api/profile/user`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      })
-      const userData = await getUserData.json()
-      // console.log(getUserData)
-      if (!getUserData.ok || !getUserData) {
-        setLoading(false)
-        toast.error(`${userData?.msg} Please login again!`, {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-      }
-      // console.log(userData)
-      setFetchedUserData(userData.user)
-      setLoading(false)
-    } catch (error) {
-      setLoading(false)
-      console.log(error)
-    }
-  }, [])
-
-  useEffect(() => {
-    fetchUserHandler()
-  }, [fetchUserHandler])
+  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
 
   return (
     <div className='field'>
