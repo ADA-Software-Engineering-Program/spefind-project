@@ -6,13 +6,14 @@ import coverBanner from "../../assets/coverBanner.png"
 import { AiFillDelete } from "react-icons/ai"
 import Button from "../Button/Button"
 import Loader from "../../../../Components/Loader/Loader"
-import EditAddEvent from "./EditAddEvent"
+import EditEvent from "./EditEvent"
+import AddNewEvent from "./AddNewEvent"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
-  const [eventComponent, setEventComponent] = useState(<EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} />)
+  const [newEventComponent, setNewEventComponent] = useState(false)
 
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
 
@@ -20,7 +21,7 @@ const PersonalDetails = () => {
     e.preventDefault()
     console.log(e.target)
   }
-  // console.log(fetchedUserData)
+  console.log(fetchedUserData)
   return (
     <div className='formContainer'>
       {loading && <Loader />}
@@ -180,9 +181,6 @@ const PersonalDetails = () => {
                 type='button'
                 onClick={() => {
                   setAddNewEvent(!addNewEvent)
-                  // setEventComponent(
-                  //   <EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={fetchedUserData} id={event._id} />
-                  // )
                 }}
               >
                 + Edit Event
@@ -190,18 +188,18 @@ const PersonalDetails = () => {
               <AiFillDelete className='delete' />
               <hr />
               {/* {addNewEvent && eventComponent} */}
-              {addNewEvent && <EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={fetchedUserData} id={event._id} />}
+              {addNewEvent && <EditEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={fetchedUserData} id={event._id} />}
             </div>
           )
         })}
+
+        {newEventComponent && <AddNewEvent showModal={newEventComponent} setShowModal={setNewEventComponent} />}
 
         <div className='saveAndEdit'>
           <Button
             type='button'
             onClick={() => {
-              setAddNewEvent(!addNewEvent)
-              // return <EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={{}} />
-              // setEventComponent(<EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={{}} id={""} />)
+              setNewEventComponent(!newEventComponent)
             }}
             text1=' + Add New Event'
           />

@@ -23,7 +23,7 @@ const useFetchUserInfo = (link) => {
       // console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
         setLoading(false)
-        toast.error(`${userData?.msg} Something Went Wrong!`, {
+        toast.error(`${userData?.msg || userData?.message}` || " Something Went Wrong!", {
           duration: 4000,
           position: "top-center",
           // Styling

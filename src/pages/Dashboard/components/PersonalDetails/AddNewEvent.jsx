@@ -1,37 +1,33 @@
-// import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
-import Loader from "../../../../Components/Loader/Loader"
+import React from "react"
 import Button from "../Button/Button"
-import { API_LINK } from "../../../../utils/api"
 import { useState } from "react"
+import useGatherInputFields from "../../../../hooks/useGatherInputFields"
+import Loader from "../../../../Components/Loader/Loader"
+import { API_LINK } from "../../../../utils/api"
 import { toast } from "react-hot-toast"
-import { useNavigate } from "react-router-dom"
 
-const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
-  const navigate = useNavigate()
-  const [eventData, setEventData] = useState(data?.pastEvents[0])
+const AddNewEvent = ({ showModal, setShowModal }) => {
+  const [newEventData, setNewEventData] = useState({})
   const [loading, setLoading] = useState(false)
-  const setEventInputs = (value, key) => {
-    setEventData((prev) => {
-      return { ...prev, [key]: value }
-    })
-  }
-  const editEventDetailUpdateHandler = async () => {
-    // console.log(JSON.stringify(eventData))
+  const { setEventInputs } = useGatherInputFields(setNewEventData)
+
+  const saveNewEvent = async () => {
     setLoading(true)
     try {
       const token = sessionStorage.getItem("token")
-      const updateEventData = await fetch(`${API_LINK}/api/profile/event/edit/${id}`, {
-        method: "PATCH",
+      const getEventData = await fetch(`${API_LINK}/api/profile/event/add`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(eventData)
+        body: JSON.stringify(newEventData)
       })
-      const response = await updateEventData.json()
-      if (!updateEventData.ok || !updateEventData) {
+      const eventData = await getEventData.json()
+      // console.log(getEventData)
+      if (!getEventData.ok || !getEventData) {
         setLoading(false)
-        toast.error(`${response?.message} Something Went Wrong!`, {
+        toast.error(`${eventData?.msg || eventData?.message}` || "Something Went Wrong!", {
           duration: 4000,
           position: "top-center",
           // Styling
@@ -39,29 +35,26 @@ const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
           className: ""
         })
       }
-
-      if (updateEventData.ok) {
+      if (getEventData.ok) {
         setLoading(false)
-        toast.success(`${response.message}`, {
+        toast.success(`${eventData.message || eventData.msg}`, {
           duration: 4000,
           position: "top-center",
           // Styling
           style: { fontSize: "13px", border: "2px solid green" },
           className: ""
         })
+        setLoading(false)
+        setNewEventData({})
         setShowModal(!showModal)
-        navigate("/dashboard")
         window.scrollTo(0, 0)
       }
-      setLoading(false)
-      //   console.log(response)
+      //   console.log(eventData)
     } catch (error) {
-      setLoading(false)
       console.log(error)
+      setLoading(false)
     }
-    console.log(eventData.image)
   }
-  //   console.log(eventData.image)
   return (
     <>
       <div
@@ -72,7 +65,8 @@ const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
       ></div>
       <div className='addEventContainer'>
         {loading && <Loader />}
-        <label className='profile-label'>ADD EVENTS*</label>
+
+        <label className='profile-label'>ADD NEW EVENTS*</label>
         <div className='profile-field'>
           <div>
             <label className='profile-label-field' htmlFor='titleOfEvent'>
@@ -84,7 +78,6 @@ const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
               id='titleOfEvent'
               className='profile-input'
               placeholder='Type here'
-              defaultValue={data?.pastEvents[0]?.titleOfEvent}
               onChange={(e) => setEventInputs(e.target.value, "titleOfEvent")}
             />
           </div>
@@ -99,7 +92,6 @@ const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
               id='date'
               className='profile-input'
               placeholder='Type here'
-              defaultValue={data?.pastEvents[0]?.date}
               onChange={(e) => setEventInputs(e.target.value, "date")}
             />
           </div>
@@ -114,7 +106,6 @@ const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
               id='location'
               className='profile-input'
               placeholder='Type here'
-              defaultValue={data?.pastEvents[0]?.location}
               onChange={(e) => setEventInputs(e.target.value, "location")}
             />
           </div>
@@ -129,7 +120,6 @@ const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
               id='numberOfAttendees'
               className='profile-input'
               placeholder='Type here'
-              defaultValue={data?.pastEvents[0]?.numberOfAttendees}
               onChange={(e) => setEventInputs(e.target.value, "numberOfAttendees")}
             />
           </div>
@@ -144,7 +134,6 @@ const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
               id='field'
               className='profile-input'
               placeholder='Type here'
-              defaultValue={data?.pastEvents[0]?.field}
               onChange={(e) => setEventInputs(e.target.value, "field")}
             />
           </div>
@@ -164,17 +153,16 @@ const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
         </div>
         <Button
           type='button'
-          onClick={() => {
-            // setShowModal(!showModal)
-            editEventDetailUpdateHandler()
-          }}
           className='edit'
           style={{ margin: "1rem auto" }}
-          text1='Done'
+          text1='Add Event'
+          onClick={() => {
+            saveNewEvent()
+          }}
         ></Button>
       </div>
     </>
   )
 }
 
-export default EditAddEvent
+export default AddNewEvent

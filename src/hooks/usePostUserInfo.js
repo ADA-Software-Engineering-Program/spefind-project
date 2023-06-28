@@ -2,14 +2,13 @@ import { API_LINK } from "../utils/api"
 import { toast } from "react-hot-toast"
 import { useState } from "react"
 
-const useFetchUserInfo = (link, method) => {
+const useFetchUserInfo = (link, method, body) => {
   const [loading, setLoading] = useState(false)
 
   const [response, setResponse] = useState({})
 
   const fetchUserHandler = async () => {
     setLoading(true)
-    //api/profile/user
     try {
       const token = sessionStorage.getItem("token")
       const getUserData = await fetch(`${API_LINK}/${link}`, {
@@ -17,7 +16,8 @@ const useFetchUserInfo = (link, method) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
-        }
+        },
+        body: JSON.stringify(body)
       })
       const userData = await getUserData.json()
       // console.log(getUserData)
