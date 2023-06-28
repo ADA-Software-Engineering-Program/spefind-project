@@ -6,9 +6,7 @@ import { useState } from "react"
 import { toast } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 
-const EditAddEvent = ({ showModal, setShowModal, data }) => {
-  //   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
-  //   console.log(data.pastEvents[0]?._id)
+const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
   const navigate = useNavigate()
   const [eventData, setEventData] = useState(data?.pastEvents[0])
   const [loading, setLoading] = useState(false)
@@ -22,7 +20,7 @@ const EditAddEvent = ({ showModal, setShowModal, data }) => {
     setLoading(true)
     try {
       const token = sessionStorage.getItem("token")
-      const updateEventData = await fetch(`${API_LINK}/api/profile/event/edit/${data.pastEvents[0]?._id}`, {
+      const updateEventData = await fetch(`${API_LINK}/api/profile/event/edit/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -71,10 +69,9 @@ const EditAddEvent = ({ showModal, setShowModal, data }) => {
         onClick={() => {
           setShowModal(!showModal)
         }}
-      >
-        {loading && <Loader />}
-      </div>
+      ></div>
       <div className='addEventContainer'>
+        {loading && <Loader />}
         <label className='profile-label'>ADD EVENTS*</label>
         <div className='profile-field'>
           <div>

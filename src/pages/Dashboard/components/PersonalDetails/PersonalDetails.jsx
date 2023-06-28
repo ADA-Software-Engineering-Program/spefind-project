@@ -12,14 +12,15 @@ import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
+  const [eventComponent, setEventComponent] = useState(<EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} />)
 
-  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`, "GET")
+  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
 
   const onFinish = (e) => {
     e.preventDefault()
     console.log(e.target)
   }
-
+  // console.log(fetchedUserData)
   return (
     <div className='formContainer'>
       {loading && <Loader />}
@@ -179,21 +180,28 @@ const PersonalDetails = () => {
                 type='button'
                 onClick={() => {
                   setAddNewEvent(!addNewEvent)
+                  // setEventComponent(
+                  //   <EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={fetchedUserData} id={event._id} />
+                  // )
                 }}
               >
                 + Edit Event
               </button>
               <AiFillDelete className='delete' />
               <hr />
+              {/* {addNewEvent && eventComponent} */}
+              {addNewEvent && <EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={fetchedUserData} id={event._id} />}
             </div>
           )
         })}
-        {addNewEvent && <EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={fetchedUserData} />}
+
         <div className='saveAndEdit'>
           <Button
             type='button'
             onClick={() => {
               setAddNewEvent(!addNewEvent)
+              // return <EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={{}} />
+              // setEventComponent(<EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={{}} id={""} />)
             }}
             text1=' + Add New Event'
           />
