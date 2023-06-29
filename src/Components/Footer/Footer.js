@@ -88,10 +88,10 @@ function Footer() {
   return (
     <section className='text-center justify-content-center footer'>
       <div className='btns p-5'>
-        <Link to='' className='btn btn-md eventBtn'>
+        <Link to={"/"} className='btn btn-md eventBtn'>
           Event Organizer
         </Link>
-        <Link to='' className='btn btn-md eventBtn eventBtn1'>
+        <Link to={"/"} className='btn btn-md eventBtn eventBtn1'>
           Speaker
         </Link>
       </div>
@@ -130,27 +130,27 @@ function Footer() {
               </a>
             </li>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <a href={"/about"} className='text-decoration-none text-white'>
                 About
               </a>
             </li>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <a href={"/explore"} className='text-decoration-none text-white'>
                 Explore
               </a>
             </li>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <a href={"/blog"} className='text-decoration-none text-white'>
                 Blog
               </a>
             </li>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <a href={"/contact"} className='text-decoration-none text-white'>
                 Contact
               </a>
             </li>
             <li>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <a href={"/login"} className='text-decoration-none text-white'>
                 Login
               </a>
             </li>
