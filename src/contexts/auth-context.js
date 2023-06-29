@@ -1,8 +1,10 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 
 const AuthContext = React.createContext({
   token: "",
   isLoggedIn: false,
+  // eslint-disable-next-line no-unused-vars
   login: (token) => {},
   logout: () => {}
 })
@@ -28,4 +30,9 @@ export const AuthContextProvider = (props) => {
   }
   return <AuthContext.Provider value={contextValue}>{props.children}</AuthContext.Provider>
 }
+
+AuthContextProvider.propTypes = {
+  children: PropTypes.node
+}
+
 export default AuthContext

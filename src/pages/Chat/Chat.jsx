@@ -14,6 +14,7 @@ import { Picker } from "emoji-mart"
 // import "emoji-mart/css/emoji-mart.css";
 
 const Chat = () => {
+  // eslint-disable-next-line no-unused-vars
   const [showEmojis, setShowEmojis] = useState(false)
   return (
     <>

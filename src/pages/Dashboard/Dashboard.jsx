@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import AppLayout from "../../layout/AppLayout"
 import "./Dashboard.css"
 
@@ -14,11 +14,15 @@ import Upgrade from "./components/Upgrade/Upgrade"
 import Field from "./components/Field/Field"
 import Availability from "./components/Availability/Availability"
 import AccountPreferences from "./components/AccountPreferences/AccountPreferences"
+import useFetchUserInfo from "../../hooks/useFetchUserInfo"
 
 const Dashboard = () => {
+  // eslint-disable-next-line no-unused-vars
+
+  const { fetchedUserData } = useFetchUserInfo(`api/profile/user`)
+
   const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails />)
   const [isNavExpanded, setIsNavExpanded] = useState(true)
-
   const [currentMenu, setCurrentMenu] = useState("menu1")
 
   const sideBarTitleAndComponent = [
@@ -58,7 +62,6 @@ const Dashboard = () => {
       component: <ViewProfile />
     }
   ]
-
   return (
     <AppLayout>
       <div
@@ -89,18 +92,19 @@ const Dashboard = () => {
             <div>
               <div className='userProfile'>
                 <img src={userImg} alt='user profile' />
-                <p className='username'>Titilayo</p>
-                <p className='userCareer'>Career Speaker</p>
+                <p className='username'>{fetchedUserData?.firstName}</p>
+                <p className='userCareer'>{fetchedUserData?.userRole?.charAt(0).toUpperCase() + fetchedUserData?.userRole?.slice(1)}</p>
               </div>
               <ul className='userMenu'>
-                {sideBarTitleAndComponent.map((menu) => {
+                {sideBarTitleAndComponent.map((menu, index) => {
                   return (
                     <li
                       className={currentMenu === menu.id ? "span-select" : ""}
-                      key={menu.id}
+                      key={index}
                       onClick={() => {
                         setCurrentMenu(menu.id)
                         setDashboardBodyContent(menu.component)
+                        // setIsNavExpanded(false)
                         window.scrollTo(90, 90)
                       }}
                     >

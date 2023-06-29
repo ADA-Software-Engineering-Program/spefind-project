@@ -1,7 +1,7 @@
 import React from "react"
 import "./SpeakerProfile.css"
 
-const SpeakEvents = ({ eventPics, title, date, venue }) => {
+const SpeakEvents = ({ eventPics }) => {
   return (
     <div className='text-start'>
       <picture>

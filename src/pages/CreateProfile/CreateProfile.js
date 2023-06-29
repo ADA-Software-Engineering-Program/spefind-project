@@ -11,6 +11,7 @@ import Visibility from "./Visibility"
 import Steppers from "./Steppers"
 import validate from "./Validate"
 import { API_LINK } from "../../utils/api"
+import Loader from "../../Components/Loader/Loader"
 
 const CreateProfile = () => {
   const navigate = useNavigate()
@@ -25,8 +26,10 @@ const CreateProfile = () => {
     firstName: "",
     lastName: ""
   })
+  const [loading, setLoading] = useState(false)
 
   const dataFetch = async () => {
+    setLoading(true)
     try {
       const getEventTypeData = await fetch(`${API_LINK}/api/event/type/all`, {
         method: "GET",
@@ -100,6 +103,18 @@ const CreateProfile = () => {
         firstName: userData?.user?.firstName,
         lastName: userData?.user?.lastName
       }))
+      if (!getUserData.ok || !getSpeakerFieldOption.ok || !getPriceData.ok || !getAvailableToData.ok) {
+        setLoading(false)
+        toast.error("Token expired, please log in again", {
+          duration: 4000,
+          position: "top-center",
+
+          // Styling
+          style: { fontSize: "13px" },
+          className: ""
+        })
+      }
+      setLoading(false)
     } catch (error) {
       console.log(error)
     }
@@ -133,7 +148,7 @@ const CreateProfile = () => {
 
       // availability
       eventType: [],
-      availableTo: [],
+      availableTo: [""],
       pricing: "",
       isVolunteer: "",
 
@@ -166,6 +181,7 @@ const CreateProfile = () => {
 
   const submit = async () => {
     formik.handleSubmit()
+    setLoading(true)
     try {
       const transformedData = {
         gender: formik.values.gender,
@@ -197,7 +213,7 @@ const CreateProfile = () => {
         isVolunteer: formik.values.isVolunteer,
         isVisible: formik.values.isVisible
       }
-
+      console.log(transformedData)
       const token = sessionStorage.getItem("token")
       const saveUserData = await fetch(`${API_LINK}/api/profile/setup`, {
         method: "PUT",
@@ -209,9 +225,13 @@ const CreateProfile = () => {
         }
       })
       const data = await saveUserData.json()
-      console.log(data)
+      setLoading(false)
+
+      // console.log(data)
 
       if (saveUserData.ok) {
+        setLoading(false)
+
         toast.success(`${data.message}`, {
           duration: 4000,
           position: "top-center",
@@ -226,10 +246,13 @@ const CreateProfile = () => {
       }
 
       if (!saveUserData) {
+        setLoading(false)
         setError("Please cross check your details and try again")
         throw new Error(error)
       }
       if (!saveUserData.ok) {
+        setLoading(false)
+
         setError("Your session might have expired, please try to log in again!")
         throw new Error(error)
       }
@@ -255,7 +278,7 @@ const CreateProfile = () => {
           <h1>Create Your Profile</h1>
           <p>All data are automatically saved. You can come back later any time.</p>
         </div>
-
+        {loading && <Loader />}
         <div className='form-container'>
           <form className='profile-form'>
             <div className='profile-steppers'>

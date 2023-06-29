@@ -4,11 +4,16 @@ import "./PersonalDetails.css"
 import userImg from "../../assets/userImg.png"
 import coverBanner from "../../assets/coverBanner.png"
 import { AiFillDelete } from "react-icons/ai"
-import event from "../../assets/event.png"
+import Button from "../Button/Button"
+import Loader from "../../../../Components/Loader/Loader"
+import EditAddEvent from "./EditAddEvent"
+import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
+
+  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`, "GET")
 
   const onFinish = (e) => {
     e.preventDefault()
@@ -17,55 +22,89 @@ const PersonalDetails = () => {
 
   return (
     <div className='formContainer'>
+      {loading && <Loader />}
       <div className='editContainer'>
-        <button
-          type='button'
+        <Button
+          text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
           className='edit'
+          type='button'
           onClick={() => {
             setEnableInput(!enableInput)
           }}
-        >
-          click to edit your profile
-        </button>
+        />
       </div>
       <form onSubmit={onFinish}>
         <div>
           <label htmlFor='name'>Name</label>
         </div>
         <div className='inputsWrapper'>
-          <input aria-label='first name' placeholder='First Name' id='firstName' className='input' disabled={enableInput} />
-          <input aria-label='last name' placeholder='Last Name' id='lastName' className='input' disabled={enableInput} />
+          <input
+            aria-label='first name'
+            placeholder='First Name'
+            id='firstName'
+            className='input'
+            disabled
+            defaultValue={fetchedUserData?.firstName}
+          />
+          <input
+            aria-label='last name'
+            placeholder='Last Name'
+            id='lastName'
+            className='input'
+            disabled
+            defaultValue={fetchedUserData?.lastName}
+          />
         </div>
         <div>
           <label htmlFor='gender'>Gender</label>
         </div>
         <div className='genderWrapper'>
-          <input id='male' type='radio' aria-label='male' className='newInput' value={"male"} name={"gender"} disabled={enableInput} />
-          <label htmlFor='male'>Male</label>
+          <input
+            id='male'
+            type='radio'
+            aria-label='male'
+            className='check-checkbox'
+            value={"male"}
+            checked={fetchedUserData?.gender === "male"}
+            name={"gender"}
+            disabled={enableInput}
+          />
+          <label className='check-label' htmlFor='male'>
+            <span className='check-checkbox-button'></span>
+            Male
+          </label>
         </div>
         <div className='genderWrapper'>
           <input
             id='female'
             type='radio'
             aria-label='female'
-            className='newInput'
+            checked={fetchedUserData?.gender === "female"}
+            className='check-checkbox'
             value={"female"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='female'>Female</label>
+          <label className='check-label' htmlFor='female'>
+            <span className='check-checkbox-button'></span>
+            Female
+          </label>
         </div>
         <div className='genderWrapper'>
           <input
             id='others'
             type='radio'
             aria-label='others'
-            className='newInput'
+            checked={fetchedUserData?.gender === "others"}
+            className='check-checkbox'
             value={"others"}
             name={"gender"}
             disabled={enableInput}
           />
-          <label htmlFor='others'>Others</label>
+          <label className='check-label' htmlFor='others'>
+            <span className='check-checkbox-button'></span>
+            Others
+          </label>
         </div>
         <div>
           <label htmlFor='coverBanner'>Cover Banner and Profile Picture</label>
@@ -94,168 +133,72 @@ const PersonalDetails = () => {
           <label htmlFor='country_or_city'>Country & City</label>
         </div>
         <div className='inputsWrapper'>
-          <input aria-label='country' placeholder='Type Country' id='country' className='input' disabled={enableInput} />
-          <input aria-label='country' placeholder='Type City' id='country' className='input' disabled={enableInput} />
+          <input
+            aria-label='country'
+            placeholder='Type Country'
+            id='country'
+            className='input'
+            disabled={enableInput}
+            defaultValue={fetchedUserData?.country}
+          />
+          <input
+            aria-label='country'
+            placeholder='Type City'
+            id='country'
+            className='input'
+            disabled={enableInput}
+            defaultValue={fetchedUserData?.city}
+          />
         </div>
         <div>
           <label htmlFor='biography'>Biography</label>
         </div>
-        <textarea placeholder='Type here' className='textArea' id='biography' disabled={enableInput}></textarea>
+        <textarea
+          placeholder='Type here'
+          className='textArea'
+          id='biography'
+          disabled={enableInput}
+          defaultValue={fetchedUserData?.biography}
+        ></textarea>
         <div>
           <label htmlFor='pastevents'>Past Events</label>
         </div>
-        <div className='pastEventsCointainer'>
-          <div className='events'>
-            <img src={event} alt='past event' />
-            <div className='eventDetails'>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button>+ Edit Event</button>
-          <AiFillDelete className='delete' />
-        </div>
-        <div className='pastEventsCointainer'>
-          <div className='events'>
-            <img src={event} alt='past event' />
-            <div className='eventDetails'>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button>+ Edit Event</button>
-          <AiFillDelete className='delete' />
-        </div>
-        <div className='pastEventsCointainer'>
-          <div className='events'>
-            <img src={event} alt='past event' />
-            <div className='eventDetails'>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button>+ Edit Event</button>
-          <AiFillDelete className='delete' />
-        </div>
-        <div className='pastEventsCointainer'>
-          <div className='events'>
-            <img src={event} alt='past event' />
-            <div className='eventDetails'>
-              <h6>TEDx</h6>
-              <p>May 17, 2022</p>
-              <p>Lagos, Nigeria</p>
-            </div>
-          </div>
-          <button>+ Edit Event</button>
-          <AiFillDelete className='delete' />
-        </div>
-        {addNewEvent && (
-          <div className='profile-group'>
-            <label className='profile-label'>PAST EVENTS*</label>
-            <div className='profile-field'>
-              <div>
-                <label className='profile-label-field' htmlFor='titleOfEvent'>
-                  Name of Event
-                </label>
-                <input
-                  type='text'
-                  name='titleOfEvent'
-                  id='titleOfEvent'
-                  className='profile-input'
-                  placeholder='Type here'
-                  // {...formik.getFieldProps("titleOfEvent")}
-                />
-                {/* {formik.touched.titleOfEvent && formik.errors.titleOfEvent ? (
-              <div className="profile-error">{formik.errors.titleOfEvent}</div>
-            ) : null} */}
-              </div>
 
-              <div>
-                <label className='profile-label-field' htmlFor='date'>
-                  Date of Event
-                </label>
-                <input
-                  type='date'
-                  name='date'
-                  id='date'
-                  className='profile-input'
-                  placeholder='Type here'
-                  // {...formik.getFieldProps("date")}
-                />
-                {/* {formik.touched.date && formik.errors.date ? (
-              <div className="profile-error">{formik.errors.date}</div>
-            ) : null} */}
+        {fetchedUserData?.pastEvents?.map((event, index) => {
+          return (
+            <div className='pastEventsCointainer' key={index}>
+              <div className='events'>
+                <img src={event} alt='past event image' />
+                <div className='eventDetails'>
+                  <h6>{event.titleOfEvent}</h6>
+                  <p>{event.date}</p>
+                  <p>{event.location}</p>
+                </div>
               </div>
-
-              <div>
-                <label className='profile-label-field' htmlFor='location'>
-                  Location of Event
-                </label>
-                <input
-                  type='text'
-                  name='location'
-                  id='location'
-                  className='profile-input'
-                  placeholder='Type here'
-                  // {...formik.getFieldProps("location")}
-                />
-                {/* {formik.touched.location && formik.errors.location ? (
-              <div className="profile-error">{formik.errors.location}</div>
-            ) : null} */}
-              </div>
-
-              <div>
-                <label className='profile-label-field' htmlFor='numberOfAttendees'>
-                  Event of How Many People?
-                </label>
-                <input
-                  type='number'
-                  name='numberOfAttendees'
-                  id='numberOfAttendees'
-                  className='profile-input'
-                  placeholder='Type here'
-                  // {...formik.getFieldProps("numberOfAttendees")}
-                />
-                {/* {formik.touched.numberOfAttendees &&
-            formik.errors.numberOfAttendees ? (
-              <div className="profile-error">
-                {formik.errors.numberOfAttendees}
-              </div>
-            ) : null} */}
-              </div>
-
-              <div>
-                <label className='profile-label-field' htmlFor='field'>
-                  Which field did you speak for?
-                </label>
-                <input
-                  type='text'
-                  name='field'
-                  id='field'
-                  className='profile-input'
-                  placeholder='Type here'
-                  // {...formik.getFieldProps("field")}
-                />
-                {/* {formik.touched.field && formik.errors.field ? (
-              <div className="profile-error">{formik.errors.field}</div>
-            ) : null} */}
-              </div>
+              <button
+                type='button'
+                onClick={() => {
+                  setAddNewEvent(!addNewEvent)
+                }}
+              >
+                + Edit Event
+              </button>
+              <AiFillDelete className='delete' />
+              <hr />
             </div>
-          </div>
-        )}
+          )
+        })}
+        {addNewEvent && <EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={fetchedUserData} />}
         <div className='saveAndEdit'>
-          <button
+          <Button
             type='button'
             onClick={() => {
               setAddNewEvent(!addNewEvent)
             }}
-          >
-            + Add New Event
-          </button>
-          <button type='submit'>SAVE</button>
+            text1=' + Add New Event'
+          />
+
+          <Button type='submit' text1='SAVE ' className='saveBtn' />
         </div>
       </form>
     </div>

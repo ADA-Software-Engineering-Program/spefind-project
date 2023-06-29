@@ -9,7 +9,6 @@ import Logo from "./logo new 1 2.png"
 import { FcGoogle } from "react-icons/fc"
 import { FaFacebookF, FaTwitter } from "react-icons/fa"
 import toast from "react-hot-toast"
-import { useAuth } from "../../contexts/AuthContext"
 
 import useInput from "../../hooks/useInput"
 import styles from "./Register.module.css"
@@ -18,12 +17,11 @@ import { API_LINK } from "../../utils/api"
 function EventRegister() {
   const navigate = useNavigate()
 
-  const { googleSignIn } = useAuth()
   const [loading, setLoading] = useState(false)
 
   const handleGoogleSignUp = async () => {
     try {
-      await googleSignIn()
+      // await googleSignIn()
       toast.success("Registration Successful, Please complete your registration", {
         duration: 4000,
         position: "top-center",

@@ -1,7 +1,7 @@
 .dashboard {
   padding: 0rem;
-  display: grid;
-  grid-template-rows: 4rem 1fr;
+  /* display: grid;
+  grid-template-rows: 4rem 1fr;*/
 }
 .dashboard h3 {
   font-weight: 600;
@@ -115,7 +115,7 @@
     z-index: 899;
   }
   .dashboardContainer {
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
   }
   .sidebar {
     display: none;
@@ -150,5 +150,8 @@
 @media only screen and (max-width: 400px) {
   .sidebarMobile {
     width: 75%;
+  }
+  .dahsboardBody {
+    width: 100%;
   }
 }

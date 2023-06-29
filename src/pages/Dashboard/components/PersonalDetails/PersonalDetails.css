@@ -1,5 +1,6 @@
 .formContainer {
   margin: 3rem;
+  position: relative;
 }
 .editContainer {
   display: flex;
@@ -7,13 +8,7 @@
 }
 .edit {
   background: #948d8d;
-  border-radius: 5px;
-  border: none;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
   color: #ffffff;
-  padding: 1rem 2rem;
 }
 .dashboard label {
   margin-top: 1rem;
@@ -60,7 +55,6 @@
   border: 1px solid #ded9d8;
   border-radius: 7px;
   padding: 0.5rem;
-  color: rgba(0, 0, 0, 0.5);
   font-weight: 400;
   font-size: 15px;
   outline: none;
@@ -74,29 +68,6 @@
 .genderWrapper label {
   cursor: pointer;
   font-size: 16px !important;
-}
-
-.newInput {
-  background-color: #ded9d8;
-  width: 1.2rem;
-  height: 1rem;
-  appearance: none;
-  display: grid;
-  place-content: center;
-  margin-top: 1rem;
-  cursor: pointer;
-}
-.newInput:checked {
-  border: 1px solid #e3502f;
-}
-.newInput:checked:after {
-  content: "";
-  border-radius: 0%;
-  padding: 0.2rem;
-  background-color: #e3502f;
-  width: 0.5rem;
-  height: 0.5rem;
-  cursor: pointer;
 }
 
 .coverBannerAndProfilePicture {
@@ -196,19 +167,36 @@
   justify-content: space-between;
   align-items: center;
 }
-.saveAndEdit button:last-child {
-  background: #359e4c;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  color: #ffffff;
-  border: none;
-  padding: 1rem 2rem;
+.addEventContainerModalOverlay {
+  position: absolute;
+  top: 0;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: #fffcfc;
+  opacity: 0.8;
+  z-index: 899;
+  overflow-y: scroll;
+  padding-bottom: 3rem;
+  cursor: pointer;
+}
+.addEventContainer {
+  position: absolute;
+  width: 80%;
+  left: auto;
+  bottom: 0rem;
+  z-index: 901;
+  padding: 2rem;
+  border: 1px solid #e3502f;
+  border-radius: 40px;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.79);
 }
 @media only screen and (max-width: 900px) {
   .formContainer {
     margin: 0.5rem;
+  }
+  .addEventContainer {
+    width: 100%;
   }
 }
 @media only screen and (max-width: 676px) {
@@ -225,6 +213,23 @@
     grid-template-columns: 1fr;
   }
   .btnWrapper {
-    grid-template-rows: 3rem 3rem 3rem;
+    grid-template-rows: 3rem 3rem;
+    place-content: center;
+  }
+  .events {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .pastEventsCointainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .delete {
+    margin: auto;
+  }
+  .editProfilePicture {
+    grid-template-columns: 1fr;
   }
 }

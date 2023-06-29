@@ -54,8 +54,8 @@ const FAQ = () => {
     <div className='FAQ'>
       <h1>SPEFIND FAQs</h1>
       <div className='accordion'>
-        {data.map((item, i) => (
-          <div className='item'>
+        {data.map((item, i, key) => (
+          <div className='item' key={key}>
             <div className='title' onClick={() => toggle(i)}>
               <h2>{item.question}</h2>
               <span className='more'>{selected === i ? <GrSubtract /> : <GrAdd />}</span>

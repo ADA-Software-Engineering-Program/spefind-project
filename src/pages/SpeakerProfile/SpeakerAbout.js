@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Titilayo from "../../images/Titlayo.png"
+// import Titilayo from "../../images/Titilayo.png"
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import "./SpeakerProfile.css"
@@ -10,6 +10,7 @@ import Event4 from "../../images/SpokenEvent4.png"
 import SpeakEvents from "./SpeakEvents"
 
 export default function SpeakerAbout({ data }) {
+  // eslint-disable-next-line no-unused-vars
   const [events] = useState([
     {
       id: 1,

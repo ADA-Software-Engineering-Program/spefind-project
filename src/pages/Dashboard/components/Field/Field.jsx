@@ -1,47 +1,89 @@
 import React, { useState } from "react"
 import "./Field.css"
+import Button from "../Button/Button"
+import Loader from "../../../../Components/Loader/Loader"
+import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 
 const Field = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [showOtherStates, setShowOtherStates] = useState(false)
 
+  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
+
   return (
     <div className='field'>
+      {loading && <Loader />}
       <div className='editContainer'>
-        <button
-          type='button'
+        <Button
+          text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
           className='edit'
+          type='button'
           onClick={() => {
             setEnableInput(!enableInput)
           }}
-        >
-          click to edit your profile
-        </button>
+        />
       </div>
       <form>
         <div>
           <label htmlFor='mainField'>Your main field</label>
         </div>
-        <input aria-label='mainField' placeholder='Main Field' id='mainField' className='input' disabled={enableInput} />
+        <input
+          aria-label='mainField'
+          placeholder='Main Field'
+          id='mainField'
+          className='input'
+          disabled={enableInput}
+          defaultValue={fetchedUserData?.field}
+        />
         <div>
           <label htmlFor='subfield'>Subfield</label>
         </div>
-        <input aria-label='subfield' placeholder='Subfield' id='subfield' className='input' disabled={enableInput} />
+        <input
+          aria-label='subfield'
+          placeholder='Subfield'
+          id='subfield'
+          className='input'
+          disabled={enableInput}
+          defaultValue={fetchedUserData?.subField}
+        />
         <div>
           <label htmlFor='education'>Education</label>
         </div>
-        <input aria-label='education' placeholder='Education' id='education' className='input' disabled={enableInput} />
+        <input
+          aria-label='education'
+          placeholder='Education'
+          id='education'
+          className='input'
+          disabled={enableInput}
+          defaultValue={fetchedUserData?.education}
+        />
         <div>
           <label htmlFor='career'>Current Career/Job</label>
         </div>
-        <input aria-label='career' placeholder='Current Career/Job' id='career' className='input' disabled={enableInput} />
+        <input
+          aria-label='career'
+          placeholder='Current Career/Job'
+          id='career'
+          className='input'
+          disabled={enableInput}
+          defaultValue={fetchedUserData?.job?.title}
+        />
         <div>
           <label htmlFor='language'>Language</label>
         </div>
         <div className=''>
-          <input type='checkbox' aria-label='english' id='english' name='language' className='check-checkbox' disabled={enableInput} />
-          <label htmlFor='english' className='check-label'>
-            <span className='check-checkbox-button'></span>English
+          <input
+            type='checkbox'
+            aria-label={fetchedUserData?.language}
+            id={fetchedUserData?.language}
+            checked={fetchedUserData?.language === fetchedUserData?.language}
+            name='language'
+            className='check-checkbox'
+            disabled={enableInput}
+          />
+          <label htmlFor={fetchedUserData?.language} className='check-label'>
+            <span className='check-checkbox-button'></span>
+            {fetchedUserData?.language}
           </label>
         </div>
         <div className=''>
@@ -72,9 +114,7 @@ const Field = () => {
         </div>
 
         <div className='editContainer'>
-          <button type='submit' className='saveBtn'>
-            SAVE
-          </button>
+          <Button type='submit' text1='SAVE' className='saveBtn' />
         </div>
       </form>
     </div>

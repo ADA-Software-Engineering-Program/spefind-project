@@ -8,6 +8,7 @@ import LogoBlack from "../../images/spefind-logo-orange.png"
 import LogoWhite from "../../images/spefind-logo-white.png"
 import { BsArrowRight } from "react-icons/bs"
 import Logout from "../Logout/Logout"
+import PropTypes from "prop-types"
 
 const Header = ({ backgroundColor }) => {
   const location = useLocation()
@@ -102,6 +103,10 @@ const Header = ({ backgroundColor }) => {
       </Navbar>
     </>
   )
+}
+
+Header.propTypes = {
+  backgroundColor: PropTypes.string
 }
 
 export default Header

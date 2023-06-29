@@ -16,7 +16,7 @@ function Hero() {
         <p className='heroTextSubHeading'>
           Find the perfect communicator for your next event from our pool of diverse and highly curated selection of communicators, ranging
           from motivational speakers to niche-specific speakers, thought leaders, and performing artists. No matter your industry or the
-          uniqueness of your event, we've got someone for you.
+          uniqueness of your event, we&apos;ve got someone for you.
         </p>
 
         <div>

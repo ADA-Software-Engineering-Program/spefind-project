@@ -8,7 +8,7 @@ import LogoWhite from "../../images/spefind-logo-white.png"
 import { BsArrowRight } from "react-icons/bs"
 import Logout from "../Logout/Logout"
 
-const Header = ({ backgroundColor }) => {
+const Header = () => {
   const location = useLocation()
 
   const { pathname } = location

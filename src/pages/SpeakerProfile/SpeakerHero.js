@@ -7,7 +7,7 @@ export default function SpeakerHero({ data }) {
   return (
     <div className='speakHeroBG'>
       <section className='speakHeroContent'>
-        <h1 className='speakHeroTitle'>Hi! I'm {data?.firstName}</h1>
+        <h1 className='speakHeroTitle'>Hi! I&apos;m {data?.firstName}</h1>
         <p className='speakHerop'>Media Speaker</p>
         <div className='d-flex'>
           <div className='speakHeronumb'>50</div>
