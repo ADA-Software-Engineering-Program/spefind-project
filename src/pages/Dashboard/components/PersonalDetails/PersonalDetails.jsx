@@ -9,6 +9,7 @@ import Loader from "../../../../Components/Loader/Loader"
 import EditEvent from "./EditEvent"
 import AddNewEvent from "./AddNewEvent"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
+import { API_LINK } from "../../../../utils/api"
 
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
@@ -21,7 +22,27 @@ const PersonalDetails = () => {
     e.preventDefault()
     console.log(e.target)
   }
-  console.log(fetchedUserData)
+  const handleImageUpload = (e) => {
+    let formdata = new FormData()
+    formdata.append("banner-cover", e.target.files[0], "Screenshot (8).png")
+    const token = sessionStorage.getItem("token")
+
+    let requestOptions = {
+      method: "PUT",
+      body: formdata,
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    }
+
+    fetch(`${API_LINK}/api/profile/cover/banner`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error))
+  }
+  // console.log(fetchedUserData)
   return (
     <div className='formContainer'>
       {loading && <Loader />}
@@ -115,7 +136,15 @@ const PersonalDetails = () => {
         <div className='coverBannerAndProfilePicture'>
           <div className='coverBannerContainer'>
             <img src={coverBanner} alt=' cover banner of the speaker' />
-            <input type='file' name='selectFile' id='coverBanner' aria-label='cover banner' className='selectFile' disabled={enableInput} />
+            <input
+              type='file'
+              name='selectFile'
+              id='coverBanner'
+              aria-label='cover banner'
+              className='selectFile'
+              disabled={enableInput}
+              onChange={handleImageUpload}
+            />
           </div>
 
           <div className='editProfilePicture'>

@@ -49,8 +49,8 @@ const EditAddEvent = ({ showModal, setShowModal, data, id }) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
-        // body: JSON.stringify(eventData)
-        body: formData
+        body: JSON.stringify(eventData)
+        // body: formData
       })
       const response = await updateEventData.json()
       if (!updateEventData.ok || !updateEventData) {
