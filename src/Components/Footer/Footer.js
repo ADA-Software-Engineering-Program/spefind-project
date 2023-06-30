@@ -176,12 +176,12 @@ function Footer() {
           <h6 className='fw-bold text-white'>TALK TO US</h6>
           <ul className='list-unstyled'>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <a href={"mailto:infospefind@gmail.com"} className='text-decoration-none text-white'>
                 infospefind@gmail.com
               </a>
             </li>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <a href={"tel:+2347059592726"} className='text-decoration-none text-white'>
                 +2347059592726
               </a>
             </li>
@@ -191,19 +191,24 @@ function Footer() {
               </a>
             </li>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <a href={"https://www.facebook.com/profile.php?id=100091891911041"} className='text-decoration-none text-white'>
                 Facebook
               </a>
             </li>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <a href={"https://www.linkedin.com/company/spefind/"} className='text-decoration-none text-white'>
                 {" "}
                 Linkedin
               </a>
             </li>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <a href={"https://twitter.com/SpefindHq"} className='text-decoration-none text-white'>
                 Twitter{" "}
+              </a>
+            </li>
+            <li className='mb-2'>
+              <a href={"https://www.instagram.com/spefindhq/"} className='text-decoration-none text-white'>
+                Instagram{" "}
               </a>
             </li>
           </ul>
