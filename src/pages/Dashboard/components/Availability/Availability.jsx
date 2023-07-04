@@ -29,8 +29,8 @@ const Availability = () => {
         <label htmlFor='eventType'>Types of events you're interested in</label>
         {fetchedUserData?.eventType?.map((event, index) => {
           return (
-            <>
-              <div className='' key={index}>
+            <div key={index}>
+              <div className=''>
                 <input
                   type='checkbox'
                   aria-label={event}
@@ -45,7 +45,7 @@ const Availability = () => {
                   {event.charAt(0).toUpperCase() + event.slice(1)}
                 </label>
               </div>
-            </>
+            </div>
           )
         })}
         <button
@@ -71,8 +71,8 @@ const Availability = () => {
         <label htmlFor='availableTo'>Available To</label>
         {fetchedUserData?.availableTo?.map((availability, index) => {
           return (
-            <>
-              <div className='' key={index}>
+            <div key={index}>
+              <div className=''>
                 <input
                   type='checkbox'
                   aria-label={availability}
@@ -87,7 +87,7 @@ const Availability = () => {
                   {availability.charAt(0).toUpperCase() + availability.slice(1)}
                 </label>
               </div>
-            </>
+            </div>
           )
         })}
         <button

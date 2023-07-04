@@ -6,20 +6,93 @@ import coverBanner from "../../assets/coverBanner.png"
 import { AiFillDelete } from "react-icons/ai"
 import Button from "../Button/Button"
 import Loader from "../../../../Components/Loader/Loader"
-import EditAddEvent from "./EditAddEvent"
+import EditEvent from "./EditEvent"
+import AddNewEvent from "./AddNewEvent"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
+import { API_LINK } from "../../../../utils/api"
+import { toast } from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
+  const [newEventComponent, setNewEventComponent] = useState(false)
+  const [selectedEventIndex, setSelectedEventIndex] = useState(null)
 
-  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`, "GET")
+  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
 
   const onFinish = (e) => {
     e.preventDefault()
     console.log(e.target)
   }
+  const handleImageUpload = (e) => {
+    let formdata = new FormData()
+    formdata.append("banner-cover", e.target.files[0])
+    const token = sessionStorage.getItem("token")
 
+    let requestOptions = {
+      method: "PUT",
+      body: formdata,
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    }
+
+    fetch(`${API_LINK}/api/profile/cover/banner`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error))
+  }
+  const navigate = useNavigate()
+
+  const deleteEventHandler = async (e) => {
+    const id = e.target.getAttribute("data-key-info")
+    console.log(id)
+    // setLoading(true)
+    try {
+      const token = sessionStorage.getItem("token")
+      const deleteEventData = await fetch(`${API_LINK}/api/profile/event/delete?eventId=${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log(deleteEventData)
+      const response = await deleteEventData.json()
+      console.log(response)
+      if (!deleteEventData.ok || !deleteEventData) {
+        // setLoading(false)
+        toast.error(`${response?.message || response?.msg},` || "Something Went Wrong!", {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px" },
+          className: ""
+        })
+      }
+
+      if (deleteEventData.ok) {
+        // setLoading(false)
+        toast.success(`${response.message || response.msg}, please refresh the page to see your changes`, {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px", border: "2px solid green" },
+          className: ""
+        })
+        navigate("/dashboard")
+        window.scrollTo(0, 0)
+      }
+      // setLoading(false)
+      //   console.log(response)
+    } catch (error) {
+      // setLoading(false)
+      console.log(error)
+    }
+  }
   return (
     <div className='formContainer'>
       {loading && <Loader />}
@@ -33,6 +106,7 @@ const PersonalDetails = () => {
           }}
         />
       </div>
+      {/* <Confirmation /> */}
       <form onSubmit={onFinish}>
         <div>
           <label htmlFor='name'>Name</label>
@@ -113,7 +187,15 @@ const PersonalDetails = () => {
         <div className='coverBannerAndProfilePicture'>
           <div className='coverBannerContainer'>
             <img src={coverBanner} alt=' cover banner of the speaker' />
-            <input type='file' name='selectFile' id='coverBanner' aria-label='cover banner' className='selectFile' disabled={enableInput} />
+            <input
+              type='file'
+              name='selectFile'
+              id='coverBanner'
+              aria-label='cover banner'
+              className='selectFile'
+              disabled={enableInput}
+              onChange={handleImageUpload}
+            />
           </div>
 
           <div className='editProfilePicture'>
@@ -164,11 +246,11 @@ const PersonalDetails = () => {
           <label htmlFor='pastevents'>Past Events</label>
         </div>
 
-        {fetchedUserData?.pastEvents?.map((event, index) => {
-          return (
+        {/* {fetchedUserData?.pastEvents?.lenght > 0 ? (
+          fetchedUserData?.pastEvents?.map((event, index) => (
             <div className='pastEventsCointainer' key={index}>
               <div className='events'>
-                <img src={event} alt='past event image' />
+                <img src={event.eventPhoto} alt='past event image' />
                 <div className='eventDetails'>
                   <h6>{event.titleOfEvent}</h6>
                   <p>{event.date}</p>
@@ -178,22 +260,60 @@ const PersonalDetails = () => {
               <button
                 type='button'
                 onClick={() => {
+                  setSelectedEventIndex(index)
                   setAddNewEvent(!addNewEvent)
                 }}
               >
                 + Edit Event
               </button>
-              <AiFillDelete className='delete' />
+              <AiFillDelete className='delete' data-key-info={event._id} onClick={deleteEventHandler}></AiFillDelete>
               <hr />
             </div>
-          )
-        })}
-        {addNewEvent && <EditAddEvent showModal={addNewEvent} setShowModal={setAddNewEvent} data={fetchedUserData} />}
+          ))
+        ) : (
+          <p>No Past Events Found!</p>
+        )} */}
+        {fetchedUserData?.pastEvents?.map((event, index) => (
+          <div className='pastEventsCointainer' key={index}>
+            <div className='events'>
+              <img src={event.eventPhoto} alt='past event image' />
+              <div className='eventDetails'>
+                <h6>{event.titleOfEvent}</h6>
+                <p>{event.date}</p>
+                <p>{event.location}</p>
+              </div>
+            </div>
+            <button
+              type='button'
+              onClick={() => {
+                setSelectedEventIndex(index)
+                setAddNewEvent(!addNewEvent)
+              }}
+            >
+              + Edit Event
+            </button>
+            <AiFillDelete className='delete' data-key-info={event._id} onClick={deleteEventHandler}></AiFillDelete>
+            <hr />
+          </div>
+        ))}
+
+        {addNewEvent && (
+          <EditEvent
+            showModal={addNewEvent}
+            setShowModal={setAddNewEvent}
+            data={fetchedUserData}
+            id={fetchedUserData?.pastEvents[selectedEventIndex]?._id}
+            index={selectedEventIndex}
+          />
+        )}
+
+        {newEventComponent && <AddNewEvent showModal={newEventComponent} setShowModal={setNewEventComponent} />}
+
         <div className='saveAndEdit'>
           <Button
             type='button'
             onClick={() => {
-              setAddNewEvent(!addNewEvent)
+              setNewEventComponent(!newEventComponent)
             }}
             text1=' + Add New Event'
           />

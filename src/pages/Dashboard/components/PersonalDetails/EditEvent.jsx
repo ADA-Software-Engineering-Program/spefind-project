@@ -1,4 +1,3 @@
-// import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 import Loader from "../../../../Components/Loader/Loader"
 import Button from "../Button/Button"
 import { API_LINK } from "../../../../utils/api"
@@ -6,34 +5,61 @@ import { useState } from "react"
 import { toast } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 
-const EditAddEvent = ({ showModal, setShowModal, data }) => {
-  //   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
-  //   console.log(data.pastEvents[0]?._id)
+const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
   const navigate = useNavigate()
-  const [eventData, setEventData] = useState(data?.pastEvents[0])
+
+  const [eventData, setEventData] = useState(data?.pastEvents[index])
   const [loading, setLoading] = useState(false)
+
+  // console.log(index)
+  // console.log(id)
   const setEventInputs = (value, key) => {
-    setEventData((prev) => {
-      return { ...prev, [key]: value }
-    })
+    if (key === "eventPhoto") {
+      setEventData((prev) => ({
+        ...prev,
+        [key]: value,
+        eventPhoto: value // Save the file name for display or other purposes
+      }))
+    } else {
+      setEventData((prev) => ({
+        ...prev,
+        [key]: value
+      }))
+    }
   }
+  // console.log(data?.pastEvents[position]._id)
   const editEventDetailUpdateHandler = async () => {
-    // console.log(JSON.stringify(eventData))
     setLoading(true)
     try {
+      const formData = new FormData()
+      formData.append("titleOfEvent", eventData.titleOfEvent)
+      formData.append("date", eventData.date)
+      formData.append("location", eventData.location)
+      formData.append("numberOfAttendees", eventData.numberOfAttendees)
+      formData.append("field", eventData.field)
+      // formData.append("eventPhoto", eventData.eventPhoto)
+
+      // console.log(eventData.eventPhoto)
+      // for (let pair of formData.entries()) {
+      //   console.log(pair[0], pair[1])
+      // }
+      console.log(eventData)
       const token = sessionStorage.getItem("token")
-      const updateEventData = await fetch(`${API_LINK}/api/profile/event/edit/${data.pastEvents[0]?._id}`, {
+      const updateEventData = await fetch(`${API_LINK}/api/profile/event/edit/${id}`, {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json",
+          // "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(eventData)
+        body: formData
+        // body: JSON.stringify(eventData)
       })
+      // console.log(updateEventData)
       const response = await updateEventData.json()
+      console.log(response)
       if (!updateEventData.ok || !updateEventData) {
         setLoading(false)
-        toast.error(`${response?.message} Something Went Wrong!`, {
+        toast.error(`${response?.message || response?.msg}` || "Something Went Wrong!", {
           duration: 4000,
           position: "top-center",
           // Styling
@@ -44,7 +70,7 @@ const EditAddEvent = ({ showModal, setShowModal, data }) => {
 
       if (updateEventData.ok) {
         setLoading(false)
-        toast.success(`${response.message}`, {
+        toast.success(`${response.message || response.msg}, please refresh the page to see your changes`, {
           duration: 4000,
           position: "top-center",
           // Styling
@@ -61,9 +87,8 @@ const EditAddEvent = ({ showModal, setShowModal, data }) => {
       setLoading(false)
       console.log(error)
     }
-    console.log(eventData.image)
   }
-  //   console.log(eventData.image)
+
   return (
     <>
       <div
@@ -71,11 +96,10 @@ const EditAddEvent = ({ showModal, setShowModal, data }) => {
         onClick={() => {
           setShowModal(!showModal)
         }}
-      >
-        {loading && <Loader />}
-      </div>
+      ></div>
       <div className='addEventContainer'>
-        <label className='profile-label'>ADD EVENTS*</label>
+        {loading && <Loader />}
+        <label className='profile-label'>EDIT PREVIOUS EVENTS*</label>
         <div className='profile-field'>
           <div>
             <label className='profile-label-field' htmlFor='titleOfEvent'>
@@ -87,7 +111,7 @@ const EditAddEvent = ({ showModal, setShowModal, data }) => {
               id='titleOfEvent'
               className='profile-input'
               placeholder='Type here'
-              defaultValue={data?.pastEvents[0]?.titleOfEvent}
+              defaultValue={data?.pastEvents[index]?.titleOfEvent}
               onChange={(e) => setEventInputs(e.target.value, "titleOfEvent")}
             />
           </div>
@@ -102,7 +126,7 @@ const EditAddEvent = ({ showModal, setShowModal, data }) => {
               id='date'
               className='profile-input'
               placeholder='Type here'
-              defaultValue={data?.pastEvents[0]?.date}
+              defaultValue={data?.pastEvents[index]?.date}
               onChange={(e) => setEventInputs(e.target.value, "date")}
             />
           </div>
@@ -117,7 +141,7 @@ const EditAddEvent = ({ showModal, setShowModal, data }) => {
               id='location'
               className='profile-input'
               placeholder='Type here'
-              defaultValue={data?.pastEvents[0]?.location}
+              defaultValue={data?.pastEvents[index]?.location}
               onChange={(e) => setEventInputs(e.target.value, "location")}
             />
           </div>
@@ -132,7 +156,7 @@ const EditAddEvent = ({ showModal, setShowModal, data }) => {
               id='numberOfAttendees'
               className='profile-input'
               placeholder='Type here'
-              defaultValue={data?.pastEvents[0]?.numberOfAttendees}
+              defaultValue={data?.pastEvents[index]?.numberOfAttendees}
               onChange={(e) => setEventInputs(e.target.value, "numberOfAttendees")}
             />
           </div>
@@ -147,21 +171,21 @@ const EditAddEvent = ({ showModal, setShowModal, data }) => {
               id='field'
               className='profile-input'
               placeholder='Type here'
-              defaultValue={data?.pastEvents[0]?.field}
+              defaultValue={data?.pastEvents[index]?.field}
               onChange={(e) => setEventInputs(e.target.value, "field")}
             />
           </div>
 
           <div>
-            <label className='profile-label-field' htmlFor='image'>
+            <label className='profile-label-field' htmlFor='eventPhoto'>
               Event Image
             </label>
             <input
               type='file'
-              name='image'
-              id='image'
+              name='eventPhoto'
+              id='eventPhoto'
               className='profile-input'
-              onChange={(e) => setEventInputs(e.target.files[0], "image")}
+              onChange={(e) => setEventInputs(e.target.files[0], "eventPhoto")}
             />
           </div>
         </div>
