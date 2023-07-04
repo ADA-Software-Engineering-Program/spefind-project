@@ -14,18 +14,28 @@ const AddNewEvent = ({ showModal, setShowModal }) => {
   const saveNewEvent = async () => {
     setLoading(true)
     try {
+      const formData = new FormData()
+      formData.append("titleOfEvent", newEventData.titleOfEvent)
+      formData.append("date", newEventData.date)
+      formData.append("location", newEventData.location)
+      formData.append("numberOfAttendees", newEventData.numberOfAttendees)
+      formData.append("field", newEventData.field)
+      // formData.append("eventPhoto", newEventData.eventPhoto)
+
+      // for (let pair of formData.entries()) {
+      //   console.log(pair[0], pair[1])
+      // }
       const token = sessionStorage.getItem("token")
-      const getEventData = await fetch(`${API_LINK}/api/profile/event/add`, {
+      const saveEventData = await fetch(`${API_LINK}/api/profile/event/add`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(newEventData)
+        body: formData
       })
-      const eventData = await getEventData.json()
-      // console.log(getEventData)
-      if (!getEventData.ok || !getEventData) {
+      const eventData = await saveEventData.json()
+      // console.log(saveEventData)
+      if (!saveEventData.ok || !saveEventData) {
         setLoading(false)
         toast.error(`${eventData?.msg || eventData?.message}` || "Something Went Wrong!", {
           duration: 4000,
@@ -35,9 +45,9 @@ const AddNewEvent = ({ showModal, setShowModal }) => {
           className: ""
         })
       }
-      if (getEventData.ok) {
+      if (saveEventData.ok) {
         setLoading(false)
-        toast.success(`${eventData.message || eventData.msg}`, {
+        toast.success(`${eventData.message || eventData.msg}, please refresh the page to see your changes`, {
           duration: 4000,
           position: "top-center",
           // Styling
@@ -49,7 +59,7 @@ const AddNewEvent = ({ showModal, setShowModal }) => {
         setShowModal(!showModal)
         window.scrollTo(0, 0)
       }
-      //   console.log(eventData)
+      // console.log(eventData)
     } catch (error) {
       console.log(error)
       setLoading(false)
@@ -139,15 +149,15 @@ const AddNewEvent = ({ showModal, setShowModal }) => {
           </div>
 
           <div>
-            <label className='profile-label-field' htmlFor='image'>
+            <label className='profile-label-field' htmlFor='eventPhoto'>
               Event Image
             </label>
             <input
               type='file'
-              name='image'
-              id='image'
+              name='eventPhoto'
+              id='eventPhoto'
               className='profile-input'
-              onChange={(e) => setEventInputs(e.target.files[0], "image")}
+              onChange={(e) => setEventInputs(e.target.files[0], "eventPhoto")}
             />
           </div>
         </div>

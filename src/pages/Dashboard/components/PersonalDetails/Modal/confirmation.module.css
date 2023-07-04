@@ -1,0 +1,10 @@
+.modalBg {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-color: #fffbfa;
+  opacity: 0.8;
+  z-index: 900;
+}
