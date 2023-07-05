@@ -4,15 +4,15 @@ import { API_LINK } from "../../../../utils/api"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
+import Confirmation from "./Modal/Confirmation"
 
 const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
   const navigate = useNavigate()
 
   const [eventData, setEventData] = useState(data?.pastEvents[index])
   const [loading, setLoading] = useState(false)
+  const [isConfirmed, setIsConfirmed] = useState(false)
 
-  // console.log(index)
-  // console.log(id)
   const setEventInputs = (value, key) => {
     if (key === "eventPhoto") {
       setEventData((prev) => ({
@@ -43,7 +43,7 @@ const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
       // for (let pair of formData.entries()) {
       //   console.log(pair[0], pair[1])
       // }
-      console.log(eventData)
+      // console.log(eventData)
       const token = sessionStorage.getItem("token")
       const updateEventData = await fetch(`${API_LINK}/api/profile/event/edit/${id}`, {
         method: "PATCH",
@@ -56,7 +56,7 @@ const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
       })
       // console.log(updateEventData)
       const response = await updateEventData.json()
-      console.log(response)
+      // console.log(response)
       if (!updateEventData.ok || !updateEventData) {
         setLoading(false)
         toast.error(`${response?.message || response?.msg}` || "Something Went Wrong!", {
@@ -99,6 +99,15 @@ const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
       ></div>
       <div className='addEventContainer'>
         {loading && <Loader />}
+        {isConfirmed && (
+          <Confirmation
+            message={"Are you sure you want to perform this action?"}
+            yesHandler={editEventDetailUpdateHandler}
+            noHandler={() => {
+              setIsConfirmed(!isConfirmed)
+            }}
+          />
+        )}
         <label className='profile-label'>EDIT PREVIOUS EVENTS*</label>
         <div className='profile-field'>
           <div>
@@ -193,7 +202,8 @@ const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
           type='button'
           onClick={() => {
             // setShowModal(!showModal)
-            editEventDetailUpdateHandler()
+            setIsConfirmed(true)
+            // editEventDetailUpdateHandler()
           }}
           className='edit'
           style={{ margin: "1rem auto" }}

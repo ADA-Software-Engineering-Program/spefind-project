@@ -6,7 +6,7 @@
   position: absolute;
   background-color: #fffbfa;
   opacity: 0.8;
-  z-index: 900;
+  z-index: 901;
 }
 .loader {
   border: 15px solid white;

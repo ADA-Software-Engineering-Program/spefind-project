@@ -5,6 +5,29 @@
   place-content: center;
   position: absolute;
   background-color: #fffbfa;
-  opacity: 0.8;
+  opacity: 0.9;
   z-index: 900;
+}
+.confirmationBox {
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+}
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.btnContainer button {
+  width: 6rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.btnContainer button:first-child {
+  background-color: red;
+}
+.btnContainer button:last-child {
+  background-color: green;
 }
