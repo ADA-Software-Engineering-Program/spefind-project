@@ -12,12 +12,16 @@ import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 import { API_LINK } from "../../../../utils/api"
 import { toast } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
+import Confirmation from "./Modal/Confirmation"
 
 const PersonalDetails = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
   const [newEventComponent, setNewEventComponent] = useState(false)
   const [selectedEventIndex, setSelectedEventIndex] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isConfirmed, setIsConfirmed] = useState(false)
+  const [eventId, setEventId] = useState("")
 
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
 
@@ -47,24 +51,22 @@ const PersonalDetails = () => {
   }
   const navigate = useNavigate()
 
-  const deleteEventHandler = async (e) => {
-    const id = e.target.getAttribute("data-key-info")
-    console.log(id)
-    // setLoading(true)
+  const deleteEventHandler = async () => {
+    setIsLoading(true)
     try {
       const token = sessionStorage.getItem("token")
-      const deleteEventData = await fetch(`${API_LINK}/api/profile/event/delete?eventId=${id}`, {
+      const deleteEventData = await fetch(`${API_LINK}/api/profile/event/delete?eventId=${eventId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         }
       })
-      console.log(deleteEventData)
+      // console.log(deleteEventData)
       const response = await deleteEventData.json()
-      console.log(response)
+      // console.log(response)
       if (!deleteEventData.ok || !deleteEventData) {
-        // setLoading(false)
+        setIsLoading(false)
         toast.error(`${response?.message || response?.msg},` || "Something Went Wrong!", {
           duration: 4000,
           position: "top-center",
@@ -75,7 +77,7 @@ const PersonalDetails = () => {
       }
 
       if (deleteEventData.ok) {
-        // setLoading(false)
+        setIsLoading(false)
         toast.success(`${response.message || response.msg}, please refresh the page to see your changes`, {
           duration: 4000,
           position: "top-center",
@@ -86,16 +88,26 @@ const PersonalDetails = () => {
         navigate("/dashboard")
         window.scrollTo(0, 0)
       }
-      // setLoading(false)
+      setIsLoading(false)
+      setIsConfirmed(!isConfirmed)
       //   console.log(response)
     } catch (error) {
-      // setLoading(false)
+      setIsLoading(false)
       console.log(error)
     }
   }
   return (
     <div className='formContainer'>
-      {loading && <Loader />}
+      {(loading || isLoading) && <Loader />}
+      {isConfirmed && (
+        <Confirmation
+          message={"Are you sure you want to delete this event ?"}
+          yesHandler={deleteEventHandler}
+          noHandler={() => {
+            setIsConfirmed(!isConfirmed)
+          }}
+        />
+      )}
       <div className='editContainer'>
         <Button
           text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
@@ -246,7 +258,7 @@ const PersonalDetails = () => {
           <label htmlFor='pastevents'>Past Events</label>
         </div>
 
-        {/* {fetchedUserData?.pastEvents?.lenght > 0 ? (
+        {fetchedUserData?.pastEvents?.length > 0 ? (
           fetchedUserData?.pastEvents?.map((event, index) => (
             <div className='pastEventsCointainer' key={index}>
               <div className='events'>
@@ -266,36 +278,20 @@ const PersonalDetails = () => {
               >
                 + Edit Event
               </button>
-              <AiFillDelete className='delete' data-key-info={event._id} onClick={deleteEventHandler}></AiFillDelete>
+              <AiFillDelete
+                className='delete'
+                // data-key-info={event._id}
+                onClick={() => {
+                  setIsConfirmed(!isConfirmed)
+                  setEventId(event._id)
+                }}
+              ></AiFillDelete>
               <hr />
             </div>
           ))
         ) : (
-          <p>No Past Events Found!</p>
-        )} */}
-        {fetchedUserData?.pastEvents?.map((event, index) => (
-          <div className='pastEventsCointainer' key={index}>
-            <div className='events'>
-              <img src={event.eventPhoto} alt='past event image' />
-              <div className='eventDetails'>
-                <h6>{event.titleOfEvent}</h6>
-                <p>{event.date}</p>
-                <p>{event.location}</p>
-              </div>
-            </div>
-            <button
-              type='button'
-              onClick={() => {
-                setSelectedEventIndex(index)
-                setAddNewEvent(!addNewEvent)
-              }}
-            >
-              + Edit Event
-            </button>
-            <AiFillDelete className='delete' data-key-info={event._id} onClick={deleteEventHandler}></AiFillDelete>
-            <hr />
-          </div>
-        ))}
+          <p>No Past Events Found! Click the Add New Event Button to add an event</p>
+        )}
 
         {addNewEvent && (
           <EditEvent

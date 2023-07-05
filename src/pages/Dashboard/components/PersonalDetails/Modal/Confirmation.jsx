@@ -1,11 +1,18 @@
 import React from "react"
 import styles from "./confirmation.module.css"
-const Confirmation = () => {
+const Confirmation = ({ yesHandler, noHandler, message }) => {
   return (
     <div className={styles.modalBg}>
       <div className={styles.confirmationBox}>
-        <button type='button'>NO</button>
-        <button type='button'>YES</button>
+        <p>{message}</p>
+        <div className={styles.btnContainer}>
+          <button type='button' onClick={noHandler}>
+            NO
+          </button>
+          <button type='button' onClick={yesHandler}>
+            YES
+          </button>
+        </div>
       </div>
     </div>
   )
