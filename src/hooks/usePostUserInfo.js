@@ -5,7 +5,7 @@ import { useState } from "react"
 const useFetchUserInfo = (link, method, body) => {
   const [loading, setLoading] = useState(false)
 
-  const [response, setResponse] = useState({})
+  const [response, setResponse] = useState(null)
 
   const fetchUserHandler = async () => {
     setLoading(true)
@@ -39,8 +39,9 @@ const useFetchUserInfo = (link, method, body) => {
       setLoading(false)
     }
   }
-  fetchUserHandler()
-  return { loading, response }
+  // fetchUserHandler()
+  // console.log(response)
+  return { loading, fetchUserHandler, response }
 }
 
 export default useFetchUserInfo
