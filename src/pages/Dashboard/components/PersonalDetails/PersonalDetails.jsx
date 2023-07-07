@@ -12,8 +12,6 @@ import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 import usePostUserInfo from "../../../../hooks/usePostUserInfo"
 import useGatherInputFields from "../../../../hooks/useGatherInputFields"
 import { API_LINK } from "../../../../utils/api"
-import { toast } from "react-hot-toast"
-import { useNavigate } from "react-router-dom"
 import Confirmation from "./Modal/Confirmation"
 
 const PersonalDetails = () => {
@@ -21,20 +19,18 @@ const PersonalDetails = () => {
   const [addNewEvent, setAddNewEvent] = useState(false)
   const [newEventComponent, setNewEventComponent] = useState(false)
   const [selectedEventIndex, setSelectedEventIndex] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [eventId, setEventId] = useState("")
   const [inputDatas, setInputDatas] = useState()
 
-  const { fetchUserHandler } = usePostUserInfo(`api/profile/setup`, "PUT", inputDatas)
-  // console.log(inputDatas)
+  const { apiCallHandler: editUserDataHandler, loading: editDataIsLoading } = usePostUserInfo(`api/profile/setup`, "PUT", inputDatas)
+  const { apiCallHandler: deleteEventHandler, loading: deleteDataIsLoading } = usePostUserInfo(
+    `api/profile/event/delete?eventId=${eventId}`,
+    "DELETE"
+  )
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
   const { setEventInputs } = useGatherInputFields(setInputDatas)
 
-  const onFinish = (e) => {
-    e.preventDefault()
-    console.log(e.target)
-  }
   const handleImageUpload = (e) => {
     let formdata = new FormData()
     formdata.append("banner-cover", e.target.files[0])
@@ -55,60 +51,17 @@ const PersonalDetails = () => {
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error))
   }
-  const navigate = useNavigate()
 
-  const deleteEventHandler = async () => {
-    setIsLoading(true)
-    try {
-      const token = sessionStorage.getItem("token")
-      const deleteEventData = await fetch(`${API_LINK}/api/profile/event/delete?eventId=${eventId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      })
-      // console.log(deleteEventData)
-      const response = await deleteEventData.json()
-      // console.log(response)
-      if (!deleteEventData.ok || !deleteEventData) {
-        setIsLoading(false)
-        toast.error(`${response?.message || response?.msg},` || "Something Went Wrong!", {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-      }
-
-      if (deleteEventData.ok) {
-        setIsLoading(false)
-        toast.success(`${response.message || response.msg}, please refresh the page to see your changes`, {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px", border: "2px solid green" },
-          className: ""
-        })
-        navigate("/dashboard")
-        window.scrollTo(0, 0)
-      }
-      setIsLoading(false)
-      setIsConfirmed(!isConfirmed)
-      //   console.log(response)
-    } catch (error) {
-      setIsLoading(false)
-      console.log(error)
-    }
-  }
   return (
     <div className='formContainer'>
-      {(loading || isLoading) && <Loader />}
+      {(loading || editDataIsLoading || deleteDataIsLoading) && <Loader />}
       {isConfirmed && (
         <Confirmation
           message={"Are you sure you want to delete this event ?"}
-          yesHandler={deleteEventHandler}
+          yesHandler={() => {
+            deleteEventHandler()
+            setIsConfirmed(!isConfirmed)
+          }}
           noHandler={() => {
             setIsConfirmed(!isConfirmed)
           }}
@@ -124,7 +77,7 @@ const PersonalDetails = () => {
           }}
         />
       </div> */}
-      <form onSubmit={onFinish}>
+      <form>
         <div>
           <label htmlFor='name'>Name</label>
         </div>
@@ -158,6 +111,7 @@ const PersonalDetails = () => {
             value={"male"}
             checked={fetchedUserData?.gender === "male"}
             name={"gender"}
+            readOnly
           />
           <label className='check-label' htmlFor='male'>
             <span className='check-checkbox-button'></span>
@@ -173,6 +127,7 @@ const PersonalDetails = () => {
             className='check-checkbox'
             value={"female"}
             name={"gender"}
+            readOnly
           />
           <label className='check-label' htmlFor='female'>
             <span className='check-checkbox-button'></span>
@@ -188,6 +143,7 @@ const PersonalDetails = () => {
             className='check-checkbox'
             value={"others"}
             name={"gender"}
+            readOnly
           />
           <label className='check-label' htmlFor='others'>
             <span className='check-checkbox-button'></span>
@@ -310,7 +266,7 @@ const PersonalDetails = () => {
             text1=' + Add New Event'
           />
 
-          <Button type='submit' text1='SAVE ' className='saveBtn' onClick={fetchUserHandler} />
+          <Button type='button' text1='SAVE ' className='saveBtn' onClick={editUserDataHandler} />
         </div>
 
         {addNewEvent && (

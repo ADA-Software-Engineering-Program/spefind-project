@@ -1,13 +1,14 @@
 import { API_LINK } from "../utils/api"
 import { toast } from "react-hot-toast"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-const useFetchUserInfo = (link, method, body) => {
+const useFetchUserInfo = (link, method, body, navigateTo) => {
   const [loading, setLoading] = useState(false)
 
-  const [response, setResponse] = useState(null)
+  const navigate = useNavigate()
 
-  const fetchUserHandler = async () => {
+  const apiCallHandler = async () => {
     setLoading(true)
     try {
       const token = sessionStorage.getItem("token")
@@ -23,7 +24,7 @@ const useFetchUserInfo = (link, method, body) => {
       // console.log(getUserData)
       if (!getUserData.ok || !getUserData) {
         setLoading(false)
-        toast.error(`${userData?.msg} Something Went Wrong!`, {
+        toast.error(`${userData?.message || userData?.msg},` || "Something Went Wrong!", {
           duration: 4000,
           position: "top-center",
           // Styling
@@ -31,17 +32,28 @@ const useFetchUserInfo = (link, method, body) => {
           className: ""
         })
       }
+
+      if (getUserData.ok) {
+        setLoading(false)
+        toast.success(`${userData.message || userData.msg}, please refresh the page to see your changes`, {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px", border: "2px solid green" },
+          className: ""
+        })
+        navigate(navigateTo)
+        window.scrollTo(0, 0)
+      }
       // console.log(userData)
-      setResponse(userData.user)
       setLoading(false)
     } catch (error) {
       console.log(error)
       setLoading(false)
     }
   }
-  // fetchUserHandler()
-  // console.log(response)
-  return { loading, fetchUserHandler, response }
+  // apiCallHandler()
+  return { loading, apiCallHandler }
 }
 
 export default useFetchUserInfo
