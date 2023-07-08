@@ -22,6 +22,7 @@ const PersonalDetails = () => {
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [eventId, setEventId] = useState("")
   const [inputDatas, setInputDatas] = useState()
+  const [imageIsUploadLoading, setImageIsUploadLoading] = useState(false)
 
   const { apiCallHandler: editUserDataHandler, loading: editDataIsLoading } = usePostUserInfo(`api/profile/setup`, "PUT", inputDatas)
   const { apiCallHandler: deleteEventHandler, loading: deleteDataIsLoading } = usePostUserInfo(
@@ -31,30 +32,33 @@ const PersonalDetails = () => {
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
   const { setEventInputs } = useGatherInputFields(setInputDatas)
 
-  const handleImageUpload = (e) => {
-    let formdata = new FormData()
-    formdata.append("banner-cover", e.target.files[0])
-    const token = sessionStorage.getItem("token")
+  const handleImageUpload = async (e) => {
+    try {
+      setImageIsUploadLoading(true)
+      let formdata = new FormData()
+      formdata.append("banner-cover", e.target.files[0])
 
-    let requestOptions = {
-      method: "PUT",
-      body: formdata,
-      redirect: "follow",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      }
+      const token = sessionStorage.getItem("token")
+      const response = await fetch(`${API_LINK}/api/profile/cover/banner`, {
+        method: "PUT",
+        body: formdata,
+        redirect: "follow",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      const data = await response.json()
+      setImageIsUploadLoading(false)
+      console.log(data)
+    } catch (error) {
+      setImageIsUploadLoading(false)
+      console.log(error)
     }
-
-    fetch(`${API_LINK}/api/profile/cover/banner`, requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error))
   }
 
   return (
     <div className='formContainer'>
-      {(loading || editDataIsLoading || deleteDataIsLoading) && <Loader />}
+      {(loading || editDataIsLoading || deleteDataIsLoading || imageIsUploadLoading) && <Loader />}
       {isConfirmed && (
         <Confirmation
           message={"Are you sure you want to delete this event ?"}
@@ -156,15 +160,17 @@ const PersonalDetails = () => {
 
         <div className='coverBannerAndProfilePicture'>
           <div className='coverBannerContainer'>
-            <img src={coverBanner} alt=' cover banner of the speaker' />
-            <input
-              type='file'
-              name='selectFile'
-              id='coverBanner'
-              aria-label='cover banner'
-              className='selectFile'
-              onChange={handleImageUpload}
-            />
+            <div className=''>
+              <img src={fetchedUserData?.coverBanner ? fetchedUserData?.coverBanner : coverBanner} alt=' cover banner of the speaker' />
+              <input
+                type='file'
+                name='selectFile'
+                id='coverBanner'
+                aria-label='cover banner'
+                className='selectFile'
+                onChange={handleImageUpload}
+              />
+            </div>
           </div>
 
           <div className='editProfilePicture'>
@@ -227,7 +233,9 @@ const PersonalDetails = () => {
           fetchedUserData?.pastEvents?.map((event, index) => (
             <div className='pastEventsCointainer' key={index}>
               <div className='events'>
-                <img src={event.eventPhoto} alt='past event image' />
+                <div className=''>
+                  <img src={event.eventPhoto} alt='past event image' />
+                </div>
                 <div className='eventDetails'>
                   <h6>{event.titleOfEvent}</h6>
                   <p>{event.date}</p>

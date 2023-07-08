@@ -1,93 +1,22 @@
 import Loader from "../../../../Components/Loader/Loader"
 import Button from "../Button/Button"
-import { API_LINK } from "../../../../utils/api"
 import { useState } from "react"
-import { toast } from "react-hot-toast"
-import { useNavigate } from "react-router-dom"
+
 import Confirmation from "./Modal/Confirmation"
+import usePOstDataWithFormData from "../../../../hooks/usePOstDataWithFormData"
+import useGatherInputFields from "../../../../hooks/useGatherInputFields"
 
 const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
-  const navigate = useNavigate()
-
   const [eventData, setEventData] = useState(data?.pastEvents[index])
-  const [loading, setLoading] = useState(false)
   const [isConfirmed, setIsConfirmed] = useState(false)
 
-  const setEventInputs = (value, key) => {
-    if (key === "eventPhoto") {
-      setEventData((prev) => ({
-        ...prev,
-        [key]: value,
-        eventPhoto: value // Save the file name for display or other purposes
-      }))
-    } else {
-      setEventData((prev) => ({
-        ...prev,
-        [key]: value
-      }))
-    }
-  }
-  // console.log(data?.pastEvents[position]._id)
-  const editEventDetailUpdateHandler = async () => {
-    setLoading(true)
-    try {
-      const formData = new FormData()
-      formData.append("titleOfEvent", eventData.titleOfEvent)
-      formData.append("date", eventData.date)
-      formData.append("location", eventData.location)
-      formData.append("numberOfAttendees", eventData.numberOfAttendees)
-      formData.append("field", eventData.field)
-      // formData.append("eventPhoto", eventData.eventPhoto)
-
-      // console.log(eventData.eventPhoto)
-      // for (let pair of formData.entries()) {
-      //   console.log(pair[0], pair[1])
-      // }
-      // console.log(eventData)
-      const token = sessionStorage.getItem("token")
-      const updateEventData = await fetch(`${API_LINK}/api/profile/event/edit/${id}`, {
-        method: "PATCH",
-        headers: {
-          // "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-        body: formData
-        // body: JSON.stringify(eventData)
-      })
-      // console.log(updateEventData)
-      const response = await updateEventData.json()
-      // console.log(response)
-      if (!updateEventData.ok || !updateEventData) {
-        setLoading(false)
-        toast.error(`${response?.message || response?.msg}` || "Something Went Wrong!", {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-      }
-
-      if (updateEventData.ok) {
-        setLoading(false)
-        toast.success(`${response.message || response.msg}, please refresh the page to see your changes`, {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px", border: "2px solid green" },
-          className: ""
-        })
-        setShowModal(!showModal)
-        navigate("/dashboard")
-        window.scrollTo(0, 0)
-      }
-      setLoading(false)
-      //   console.log(response)
-    } catch (error) {
-      setLoading(false)
-      console.log(error)
-    }
-  }
+  const { setEventInputs } = useGatherInputFields(setEventData)
+  const { loading: isLoading, saveFormData: editEventDetailUpdateHandler } = usePOstDataWithFormData(
+    eventData,
+    `api/profile/event/edit/${id}`,
+    "PATCH",
+    "/dashboard"
+  )
 
   return (
     <>
@@ -98,7 +27,7 @@ const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
         }}
       ></div>
       <div className='addEventContainer'>
-        {loading && <Loader />}
+        {isLoading && <Loader />}
         {isConfirmed && (
           <Confirmation
             message={"Are you sure you want to perform this action?"}
@@ -201,9 +130,7 @@ const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
         <Button
           type='button'
           onClick={() => {
-            // setShowModal(!showModal)
             setIsConfirmed(true)
-            // editEventDetailUpdateHandler()
           }}
           className='edit'
           style={{ margin: "1rem auto" }}

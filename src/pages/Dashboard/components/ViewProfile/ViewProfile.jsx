@@ -11,7 +11,7 @@ const ViewProfile = () => {
   return (
     <div className={styles.coverBanner}>
       {loading && <Loader />}
-      <img src={coverBanner} alt='cover banner of the speaker' />
+      <img src={fetchedUserData?.coverBanner ? fetchedUserData?.coverBanner : coverBanner} alt='cover banner of the speaker' />
       <div className={styles.speakerDetails}>
         <h4>Hi! I’m {fetchedUserData?.firstName}</h4>
         <p>{fetchedUserData?.job?.title}</p>
@@ -46,7 +46,7 @@ const ViewProfile = () => {
           return (
             <div key={index}>
               <div className={styles.singleEvents}>
-                <img src={event} alt='past event image' />
+                <img src={event.eventPhoto} alt='past event image' />
                 <div className={styles.eventDetails}>
                   <h6>{event.titleOfEvent}</h6>
                   <p>{event.date}</p>

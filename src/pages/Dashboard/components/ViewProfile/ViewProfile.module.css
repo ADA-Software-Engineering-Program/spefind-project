@@ -33,6 +33,9 @@
 }
 .imgContainer img {
   width: 100%;
+  height: 10rem;
+  aspect-ratio: 3/2;
+  object-fit: contain;
 }
 .imgContainer button {
   background-color: transparent;
@@ -87,7 +90,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 2rem;
-  gap: 2rem;
+  gap: 1rem;
 }
 .singleEvents {
   display: flex;
@@ -96,6 +99,9 @@
 }
 .singleEvents img {
   width: 100%;
+  height: 10rem;
+  aspect-ratio: 3/2;
+  object-fit: contain;
 }
 .eventDetails h6 {
   font-weight: 500;

@@ -73,12 +73,15 @@
 .coverBannerAndProfilePicture {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
 }
 .coverBannerContainer {
   position: relative;
 }
 .coverBannerContainer img {
   position: relative;
+  width: 100%;
+  height: 10rem;
 }
 
 .selectFile {
@@ -97,7 +100,7 @@
   place-content: center;
   cursor: pointer;
   position: absolute;
-  left: 11.7rem;
+  right: 0;
   bottom: 1.9rem;
 }
 
@@ -122,14 +125,24 @@
 }
 .pastEventsCointainer {
   display: grid;
-  grid-template-columns: 1fr 8rem 5%;
+  grid-template-columns: 2fr 8rem 5%;
+  grid-template-rows: 1fr;
   justify-content: space-between;
-  gap: 2rem;
+  align-items: center;
+  gap: 1rem;
   margin: 1rem 0rem;
 }
 .events {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
   gap: 1rem;
+}
+.events img {
+  width: 100%;
+  height: 10rem;
+  aspect-ratio: 3/2;
+  object-fit: contain;
 }
 .eventDetails h6 {
   font-weight: 500;
@@ -200,6 +213,10 @@
   }
 }
 @media only screen and (max-width: 676px) {
+  .pastEventsCointainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
   .inputsWrapper {
     flex-direction: column;
   }
@@ -217,15 +234,14 @@
     place-content: center;
   }
   .events {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 0.2rem;
+  }
+  .eventDetails {
+    text-align: center;
   }
 }
 @media only screen and (max-width: 500px) {
-  .pastEventsCointainer {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
   .delete {
     margin: auto;
   }
