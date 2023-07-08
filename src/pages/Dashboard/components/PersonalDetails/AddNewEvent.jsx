@@ -2,68 +2,16 @@ import React from "react"
 import Button from "../Button/Button"
 import { useState } from "react"
 import useGatherInputFields from "../../../../hooks/useGatherInputFields"
+import usePOstDataWithFormData from "../../../../hooks/usePOstDataWithFormData"
 import Loader from "../../../../Components/Loader/Loader"
-import { API_LINK } from "../../../../utils/api"
-import { toast } from "react-hot-toast"
 
 const AddNewEvent = ({ showModal, setShowModal }) => {
   const [newEventData, setNewEventData] = useState({})
-  const [loading, setLoading] = useState(false)
   const { setEventInputs } = useGatherInputFields(setNewEventData)
+  const { loading: isLoading, saveFormData } = usePOstDataWithFormData(newEventData, `api/profile/event/add`, "POST", "/dashboard")
 
   const saveNewEvent = async () => {
-    setLoading(true)
-    try {
-      const formData = new FormData()
-      formData.append("titleOfEvent", newEventData.titleOfEvent)
-      formData.append("date", newEventData.date)
-      formData.append("location", newEventData.location)
-      formData.append("numberOfAttendees", newEventData.numberOfAttendees)
-      formData.append("field", newEventData.field)
-      // formData.append("eventPhoto", newEventData.eventPhoto)
-
-      // for (let pair of formData.entries()) {
-      //   console.log(pair[0], pair[1])
-      // }
-      const token = sessionStorage.getItem("token")
-      const saveEventData = await fetch(`${API_LINK}/api/profile/event/add`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        body: formData
-      })
-      const eventData = await saveEventData.json()
-      // console.log(saveEventData)
-      if (!saveEventData.ok || !saveEventData) {
-        setLoading(false)
-        toast.error(`${eventData?.msg || eventData?.message}` || "Something Went Wrong!", {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-      }
-      if (saveEventData.ok) {
-        setLoading(false)
-        toast.success(`${eventData.message || eventData.msg}, please refresh the page to see your changes`, {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px", border: "2px solid green" },
-          className: ""
-        })
-        setLoading(false)
-        setNewEventData({})
-        setShowModal(!showModal)
-        window.scrollTo(0, 0)
-      }
-      // console.log(eventData)
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
-    }
+    saveFormData()
   }
   return (
     <>
@@ -74,7 +22,7 @@ const AddNewEvent = ({ showModal, setShowModal }) => {
         }}
       ></div>
       <div className='addEventContainer'>
-        {loading && <Loader />}
+        {isLoading && <Loader />}
 
         <label className='profile-label'>ADD NEW EVENTS*</label>
         <div className='profile-field'>

@@ -6,6 +6,7 @@
   position: absolute;
   background-color: #fffbfa;
   opacity: 0.9;
+  left: 0;
   z-index: 900;
 }
 .confirmationBox {
