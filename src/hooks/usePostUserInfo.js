@@ -50,6 +50,13 @@ const useFetchUserInfo = (link, method, body, navigateTo) => {
     } catch (error) {
       console.log(error)
       setLoading(false)
+      toast.error(" Something Went Wrong! Please try again", {
+        duration: 4000,
+        position: "top-center",
+        // Styling
+        style: { fontSize: "13px" },
+        className: ""
+      })
     }
   }
   // apiCallHandler()
