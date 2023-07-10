@@ -4,6 +4,7 @@
 }
 .coverBanner img {
   width: 100%;
+  height: 20rem;
 }
 .speakerDetails {
   position: absolute;

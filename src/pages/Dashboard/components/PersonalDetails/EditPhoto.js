@@ -3,26 +3,16 @@ import { API_LINK } from "../utils/api"
 import { toast } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 
-const usePOstDataWithFormData = (data, link, method, navigateTo) => {
+const useEditPhoto = (data, link, method, navigateTo) => {
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
-  const saveFormData = async (imgFile) => {
+  const saveImageHandler = async (imgFile) => {
     setLoading(true)
     try {
       const formData = new FormData()
+      if (imgFile) formData.append("bannerCover", data.bannerCover)
 
-      if (data) {
-        if (data.titleOfEvent) formData.append("titleOfEvent", data.titleOfEvent)
-        if (data.date) formData.append("date", data.date)
-        if (data.location) formData.append("location", data.location)
-        if (data.numberOfAttendees) formData.append("numberOfAttendees", data.numberOfAttendees)
-        if (data.field) formData.append("field", data.field)
-        if (data.eventPhoto) formData.append("eventPhoto", data.eventPhoto)
-      }
-      if (imgFile) {
-        formData.append("bannerCover", imgFile)
-      }
       const token = sessionStorage.getItem("token")
       const saveData = await fetch(`${API_LINK}/${link}`, {
         method: method,
@@ -69,7 +59,7 @@ const usePOstDataWithFormData = (data, link, method, navigateTo) => {
       })
     }
   }
-  return { loading, saveFormData }
+  return { loading, saveImageHandler }
 }
 
-export default usePOstDataWithFormData
+export default useEditPhoto

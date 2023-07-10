@@ -73,7 +73,7 @@
   width: 40px;
   padding: 0.5rem;
   cursor: pointer;
-  background-color: var(--whiteColor);
+  background-color: #e3502f;
 }
 .logout {
   background: #359e4c !important;
@@ -103,6 +103,7 @@
     text-align: right;
     position: absolute;
     left: -0.5rem;
+    top: 8.5rem;
   }
   .overlay {
     position: fixed;

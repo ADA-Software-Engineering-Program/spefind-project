@@ -11,8 +11,10 @@ import AddNewEvent from "./AddNewEvent"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 import usePostUserInfo from "../../../../hooks/usePostUserInfo"
 import useGatherInputFields from "../../../../hooks/useGatherInputFields"
+// import usePOstDataWithFormData from "../../../../hooks/usePOstDataWithFormData"
 import { API_LINK } from "../../../../utils/api"
 import Confirmation from "./Modal/Confirmation"
+import { toast } from "react-hot-toast"
 
 const PersonalDetails = () => {
   // const [enableInput, setEnableInput] = useState(true)
@@ -23,6 +25,7 @@ const PersonalDetails = () => {
   const [eventId, setEventId] = useState("")
   const [inputDatas, setInputDatas] = useState()
   const [imageIsUploadLoading, setImageIsUploadLoading] = useState(false)
+  // const [imagefile, setImageFile] = useState(null)
 
   const { apiCallHandler: editUserDataHandler, loading: editDataIsLoading } = usePostUserInfo(`api/profile/setup`, "PUT", inputDatas)
   const { apiCallHandler: deleteEventHandler, loading: deleteDataIsLoading } = usePostUserInfo(
@@ -32,11 +35,20 @@ const PersonalDetails = () => {
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
   const { setEventInputs } = useGatherInputFields(setInputDatas)
 
+  // const { loading: isLoading, saveFormData } = usePOstDataWithFormData(null, `api/profile/event/cover/banner`, "PUT", "/dashboard")
+  // const handleImageUpload = (e) => {
+  //   const file = e.target.files[0]
+  //   console.log(file)
+  //   if (file) {
+  //     saveFormData(file)
+  //   }
+  // }
+
   const handleImageUpload = async (e) => {
     try {
       setImageIsUploadLoading(true)
       let formdata = new FormData()
-      formdata.append("banner-cover", e.target.files[0])
+      formdata.append("bannerCover", e.target.files[0])
 
       const token = sessionStorage.getItem("token")
       const response = await fetch(`${API_LINK}/api/profile/cover/banner`, {
@@ -48,29 +60,59 @@ const PersonalDetails = () => {
         }
       })
       const data = await response.json()
-      setImageIsUploadLoading(false)
-      console.log(data)
+      if (!response.ok || !response) {
+        setImageIsUploadLoading(false)
+        toast.error(`${data?.msg || data?.message}` || "Something Went Wrong!", {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px" },
+          className: ""
+        })
+      }
+      if (response.ok) {
+        setImageIsUploadLoading(false)
+        toast.success(`${data?.msg || data?.message}` || " please refresh the page to see your changes", {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px" },
+          className: ""
+        })
+        setImageIsUploadLoading(false)
+        window.scrollTo(0, 0)
+      }
+      // console.log(data)
     } catch (error) {
       setImageIsUploadLoading(false)
+      toast.error("Something Went Wrong!", {
+        duration: 4000,
+        position: "top-center",
+        // Styling
+        style: { fontSize: "13px" },
+        className: ""
+      })
       console.log(error)
     }
+  }
+  const confirmBoxShowHandler = (message, yesHandler, noHandler) => {
+    return <Confirmation message={message} yesHandler={yesHandler} noHandler={noHandler} />
   }
 
   return (
     <div className='formContainer'>
       {(loading || editDataIsLoading || deleteDataIsLoading || imageIsUploadLoading) && <Loader />}
-      {isConfirmed && (
-        <Confirmation
-          message={"Are you sure you want to delete this event ?"}
-          yesHandler={() => {
+      {isConfirmed &&
+        confirmBoxShowHandler(
+          "Are you sure you want to delete this event ?",
+          () => {
             deleteEventHandler()
             setIsConfirmed(!isConfirmed)
-          }}
-          noHandler={() => {
+          },
+          () => {
             setIsConfirmed(!isConfirmed)
-          }}
-        />
-      )}
+          }
+        )}
       {/* <div className='editContainer'>
         <Button
           text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
@@ -164,9 +206,10 @@ const PersonalDetails = () => {
               <img src={fetchedUserData?.coverBanner ? fetchedUserData?.coverBanner : coverBanner} alt=' cover banner of the speaker' />
               <input
                 type='file'
-                name='selectFile'
+                name='coverBanner'
                 id='coverBanner'
                 aria-label='cover banner'
+                accept='image/*'
                 className='selectFile'
                 onChange={handleImageUpload}
               />
