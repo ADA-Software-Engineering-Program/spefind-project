@@ -17,7 +17,10 @@ const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
     "PATCH",
     "/dashboard"
   )
-
+  const editEventDataHandler = () => {
+    editEventDetailUpdateHandler()
+    setShowModal(!showModal)
+  }
   return (
     <>
       <div
@@ -31,7 +34,7 @@ const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
         {isConfirmed && (
           <Confirmation
             message={"Are you sure you want to perform this action?"}
-            yesHandler={editEventDetailUpdateHandler}
+            yesHandler={editEventDataHandler}
             noHandler={() => {
               setIsConfirmed(!isConfirmed)
             }}
@@ -118,6 +121,7 @@ const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
             <label className='profile-label-field' htmlFor='eventPhoto'>
               Event Image
             </label>
+            <img style={{ width: "4rem", height: "2rem" }} src={data?.pastEvents[index]?.eventPhoto} alt='event' />
             <input
               type='file'
               name='eventPhoto'

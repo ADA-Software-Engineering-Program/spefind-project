@@ -44,14 +44,12 @@ const ViewProfile = () => {
       <div className={styles.pastEventsContainer}>
         {fetchedUserData?.pastEvents?.map((event, index) => {
           return (
-            <div key={index}>
-              <div className={styles.singleEvents}>
-                <img src={event.eventPhoto} alt='past event image' />
-                <div className={styles.eventDetails}>
-                  <h6>{event.titleOfEvent}</h6>
-                  <p>{event.date}</p>
-                  <p>{event.location}</p>
-                </div>
+            <div className={styles.singleEvents} key={index}>
+              <img src={event.eventPhoto} alt='past event image' />
+              <div className={styles.eventDetails}>
+                <h6>{event.titleOfEvent}</h6>
+                <p>{event.date}</p>
+                <p>{event.location}</p>
               </div>
               <button>View Details</button>
             </div>

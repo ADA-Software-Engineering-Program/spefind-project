@@ -90,19 +90,30 @@
 .pastEventsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+  align-items: stretch;
   margin: 2rem;
   gap: 1rem;
 }
 .singleEvents {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 1rem;
+  text-align: center;
+  height: max-content;
 }
 .singleEvents img {
   width: 100%;
   height: 10rem;
   aspect-ratio: 3/2;
   object-fit: contain;
+}
+.eventDetails {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .eventDetails h6 {
   font-weight: 500;
