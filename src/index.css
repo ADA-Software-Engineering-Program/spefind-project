@@ -17,11 +17,16 @@
 }
 
 body {
-  margin: 0;
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
+  background-color: #f8f4f4;
+}
+.app {
+  margin: 0 auto;
+  max-width: 1440px;
+  background-color: var(--white);
 }
 input:disabled,
 textarea:disabled,

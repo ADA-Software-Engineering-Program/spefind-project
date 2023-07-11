@@ -174,7 +174,7 @@ const CreateProfile = () => {
   }
 
   useEffect(() => {
-    const isInfoFilled = !!sessionStorage.getItem("userId")
+    const isInfoFilled = !!sessionStorage.getItem("token" || "userId")
     isInfoFilled && navigate("/dashboard")
     dataFetch()
   }, [navigate])
