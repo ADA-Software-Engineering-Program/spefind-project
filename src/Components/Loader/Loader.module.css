@@ -2,7 +2,8 @@
   height: 100%;
   width: 100%;
   display: grid;
-  place-content: center;
+  /* place-content: center; */
+  justify-content: center;
   position: absolute;
   background-color: #fffbfa;
   opacity: 0.8;
@@ -14,6 +15,8 @@
   height: 80px;
   width: 80px;
   border-radius: 50%;
+  position: relative;
+  top: 2rem;
   animation: loader 1s infinite linear;
 }
 @keyframes loader {

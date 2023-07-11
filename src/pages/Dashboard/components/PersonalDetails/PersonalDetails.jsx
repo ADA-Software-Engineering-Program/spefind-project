@@ -35,6 +35,10 @@ const PersonalDetails = () => {
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
   const { setEventInputs } = useGatherInputFields(setInputDatas)
 
+  const editUserData = () => {
+    console.log(inputDatas)
+    editUserDataHandler()
+  }
   // const { loading: isLoading, saveFormData } = usePOstDataWithFormData(null, `api/profile/event/cover/banner`, "PUT", "/dashboard")
   // const handleImageUpload = (e) => {
   //   const file = e.target.files[0]
@@ -317,7 +321,7 @@ const PersonalDetails = () => {
             text1=' + Add New Event'
           />
 
-          <Button type='button' text1='SAVE ' className='saveBtn' onClick={editUserDataHandler} />
+          <Button type='button' text1='SAVE ' className='saveBtn' onClick={editUserData} />
         </div>
 
         {addNewEvent && (

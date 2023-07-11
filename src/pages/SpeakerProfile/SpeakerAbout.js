@@ -52,9 +52,9 @@ export default function SpeakerAbout({ data }) {
           <div className='speakAboutContent '>
             <h3>ABOUT ME.</h3>
             <p>{data?.bio}</p>
-            <a href='/' className='aboutRightA'>
+            <Link to='/' className='aboutRightA'>
               Show more
-            </a>
+            </Link>
           </div>
           <div className='row percent mt-lg-4 mt-2 ps-lg-0 ps-2'>
             <p className='col-md-6'>

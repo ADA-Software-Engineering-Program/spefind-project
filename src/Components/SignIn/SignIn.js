@@ -2,13 +2,18 @@ import { useState } from "react"
 import "./SignIn.css"
 import toast from "react-hot-toast"
 import Header from "../Navbar/Navbar"
-
+import { useDispatch } from "react-redux"
+import { authActions } from "../../store/auth-slice"
 import { API_LINK } from "../../utils/api"
+import { Link, useNavigate } from "react-router-dom"
 
 const SignIn = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -23,7 +28,7 @@ const SignIn = () => {
         }
       })
       const data = await response.json()
-      console.log(data)
+      // console.log(data)
       if (response.ok) {
         sessionStorage.setItem("token", data.token)
         toast.success(`${data.message},`, {
@@ -34,6 +39,7 @@ const SignIn = () => {
           style: { fontSize: "13px" },
           className: ""
         })
+        dispatch(authActions.setIsLoggedIn())
         setLoading(false)
       }
       if (!response) {
@@ -45,13 +51,13 @@ const SignIn = () => {
         throw new Error()
       }
       if (data.data.isProfileCreated === true) {
-        window.location.href = "/dashboard"
+        navigate("/dashboard")
       }
       if (data.data.isProfileCreated === false) {
-        window.location.href = "/create-profile"
+        navigate("/create-profile")
       }
       if (data.data.userRole === "organizer") {
-        window.location.href = "/explore"
+        navigate("/explore")
       }
       setLoading(false)
     } catch (error) {
@@ -119,7 +125,7 @@ const SignIn = () => {
       </form>
 
       <p className='new'>
-        New here? <a href='/register'> Sign up</a>{" "}
+        New here? <Link to='/register'> Sign up</Link>
       </p>
     </div>
   )

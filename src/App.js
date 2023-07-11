@@ -27,47 +27,49 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/about' element={<About />} />
-      <Route
-        path='/explore'
-        element={
-          <ProtectedRoutes isLoggedIn={isLoggedIn()}>
-            <Explore />
-          </ProtectedRoutes>
-        }
-      />
-      <Route path='/blog' element={<Blog />} />
-      <Route path='/contact' element={<Contact />} />
-      <Route path='/login' element={<SignIn />} />
-      <Route path='/signup' element={<SignUp />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/event-register' element={<EventRegister />} />
-      <Route
-        path='/create-profile'
-        element={
-          <ProtectedRoutes isLoggedIn={isLoggedIn()}>
-            <CreateProfile />
-          </ProtectedRoutes>
-        }
-      />
-      <Route path='/speaker-profile' element={<SpeakerProfile />} />
-      <Route path='/book-me' element={<Bookme />} />
-      <Route path='/chat' element={<Chat />} />
-      <Route path='/faq' element={<FAQ />} />
-      <Route path='/oops' element={<Oops />} />
-      <Route path='/congratulation' element={<Congratulation />} />
-      <Route path='/congratulation2' element={<Congratulation2 />} />
-      <Route
-        path='/dashboard'
-        element={
-          // <ProtectedRoutes isLoggedIn={isLoggedIn()}>
-          <Dashboard />
-          // </ProtectedRoutes>
-        }
-      />
-    </Routes>
+    <div className='app'>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route
+          path='/explore'
+          element={
+            <ProtectedRoutes isLoggedIn={isLoggedIn()}>
+              <Explore />
+            </ProtectedRoutes>
+          }
+        />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/login' element={<SignIn />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/event-register' element={<EventRegister />} />
+        <Route
+          path='/create-profile'
+          element={
+            <ProtectedRoutes isLoggedIn={isLoggedIn()}>
+              <CreateProfile />
+            </ProtectedRoutes>
+          }
+        />
+        <Route path='/speaker-profile' element={<SpeakerProfile />} />
+        <Route path='/book-me' element={<Bookme />} />
+        <Route path='/chat' element={<Chat />} />
+        <Route path='/faq' element={<FAQ />} />
+        <Route path='/oops' element={<Oops />} />
+        <Route path='/congratulation' element={<Congratulation />} />
+        <Route path='/congratulation2' element={<Congratulation2 />} />
+        <Route
+          path='/dashboard'
+          element={
+            // <ProtectedRoutes isLoggedIn={isLoggedIn()}>
+            <Dashboard />
+            // </ProtectedRoutes>
+          }
+        />
+      </Routes>
+    </div>
   )
 }
 

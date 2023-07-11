@@ -8,6 +8,7 @@ import Coletta from "../../images/Coletta.png"
 import Nengi from "../../images/Nengi.png"
 // import teamprofile from "../../images/teamprofile.png";
 import Ourvalue from "./Ourvalue"
+import { Link } from "react-router-dom"
 // import data from "./Valuedata"
 // import rectangle from '../../images/Rectangle.png';
 
@@ -131,9 +132,9 @@ export default function About() {
                 Udoka is an electrical electronics engineer transitioned into a product manager. She is passionate about technology, with
                 the intention to leverage technology to solve problems and deliver value to individuals and organizations.
               </p>
-              <a href='https://www.linkedin.com/in/udoka-etus-product-manager/' className='teamlink'>
+              <Link to='https://www.linkedin.com/in/udoka-etus-product-manager/' className='teamlink'>
                 LinkedIn Profile
-              </a>
+              </Link>
             </div>
 
             <div className='col-md-6 text-center mt-5'>
@@ -145,9 +146,9 @@ export default function About() {
                 solutions to problems with the aid of user centered designs. She has a free & open minded approach to design. Aisha is also
                 one of SPEFIND’s co-founders.
               </p>
-              <a href='https://www.linkedin.com/in/aisha-rabiu-42462118b/' className='teamlink'>
+              <Link to='https://www.linkedin.com/in/aisha-rabiu-42462118b/' className='teamlink'>
                 LinkedIn Profile
-              </a>
+              </Link>
             </div>
 
             <div className='col-md-6 text-center mt-5'>
@@ -158,9 +159,9 @@ export default function About() {
                 Coletta Ezeagba is a Tech. Enthusiast. She's an Author, Product Designer, Software Engineer and Cofounder of SPEFIND . She's
                 very passionate about designing and developing digital products that makes people's life easy.
               </p>
-              <a href='https://www.linkedin.com/in/coletta-ezeagba-a86a63147/' className='teamlink'>
+              <Link to='https://www.linkedin.com/in/coletta-ezeagba-a86a63147/' className='teamlink'>
                 LinkedIn Profile
-              </a>
+              </Link>
             </div>
 
             <div className='col-md-6 text-center mt-5'>
@@ -171,9 +172,9 @@ export default function About() {
                 Nengi is a creative data analyst with expertise in Excel, Power BI, SQL and Python. I enjoy extracting hidden insights from
                 data and building dynamic analytics solutions that help businesses grow.
               </p>
-              <a href='https://www.linkedin.com/in/nengi-aberenika/' className='teamlink'>
+              <Link to='https://www.linkedin.com/in/nengi-aberenika/' className='teamlink'>
                 LinkedIn Profile
-              </a>
+              </Link>
             </div>
 
             {/* <div className="col-lg-4 text-center mt-5">

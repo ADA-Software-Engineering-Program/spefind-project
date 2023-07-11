@@ -117,37 +117,37 @@ const Blog = () => {
           </div>
           <Nav variant='tabs' defaultActiveKey='#first' className='justify-content-between align-items-center'>
             <Nav.Item>
-              <Nav.Link href='#first' className='blogLink'>
+              <Nav.Link as={Link} to='#first' className='blogLink'>
                 All
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href='#Health' className='blogLink'>
+              <Nav.Link as={Link} to='#Health' className='blogLink'>
                 Health
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href='#Lifestyle' className='blogLink'>
+              <Nav.Link as={Link} to='#Lifestyle' className='blogLink'>
                 Lifestyle
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href='#Technology' className='blogLink'>
+              <Nav.Link as={Link} to='#Technology' className='blogLink'>
                 Technology
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href='#Leadership' className='blogLink'>
+              <Nav.Link as={Link} to='#Leadership' className='blogLink'>
                 Leadership
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href='#Finance' className='blogLink'>
+              <Nav.Link as={Link} to='#Finance' className='blogLink'>
                 Finance
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href='#Art' className='blogLink'>
+              <Nav.Link as={Link} to='#Art' className='blogLink'>
                 Art
               </Nav.Link>
             </Nav.Item>
@@ -189,37 +189,37 @@ const Blog = () => {
                 <MdKeyboardArrowLeft />
               </Link>
               <Nav.Item>
-                <Nav.Link href='#first' className='blogLink'>
+                <Nav.Link as={Link} to='#first' className='blogLink'>
                   1
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='#Health' className='blogLink'>
+                <Nav.Link as={Link} to='#Health' className='blogLink'>
                   2
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='#Lifestyle' className='blogLink'>
+                <Nav.Link as={Link} to='#Lifestyle' className='blogLink'>
                   3
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='#Technology' className='blogLink'>
+                <Nav.Link as={Link} to='#Technology' className='blogLink'>
                   4
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='#Leadership' className='blogLink'>
+                <Nav.Link as={Link} to='#Leadership' className='blogLink'>
                   5
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='#Finance' className='blogLink'>
+                <Nav.Link as={Link} to='#Finance' className='blogLink'>
                   6
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='#Art' className='blogLink'>
+                <Nav.Link as={Link} to='#Art' className='blogLink'>
                   7
                 </Nav.Link>
               </Nav.Item>

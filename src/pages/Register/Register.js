@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import "./Register.css"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import Logo from "./logo new 1 2.png"
 import { FcGoogle } from "react-icons/fc"
@@ -293,7 +293,7 @@ function Register() {
             </div>
 
             <p className='acct'>
-              Already have an account? <a href='/login'>Sign in</a>
+              Already have an account? <Link to='/login'>Sign in</Link>
             </p>
           </form>
         </div>
