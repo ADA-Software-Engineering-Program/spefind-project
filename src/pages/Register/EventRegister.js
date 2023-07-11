@@ -8,6 +8,7 @@ import AppLayout from "../../layout/AppLayout"
 import Logo from "./logo new 1 2.png"
 import { FcGoogle } from "react-icons/fc"
 import { FaFacebookF, FaTwitter } from "react-icons/fa"
+import { Link } from "react-router-dom"
 import toast from "react-hot-toast"
 
 import useInput from "../../hooks/useInput"
@@ -293,7 +294,7 @@ function EventRegister() {
             </div>
 
             <p className='acct'>
-              Already have an account? <a href='/login'>Sign in</a>
+              Already have an account? <Link to='/login'>Sign in</Link>
             </p>
           </form>
         </div>

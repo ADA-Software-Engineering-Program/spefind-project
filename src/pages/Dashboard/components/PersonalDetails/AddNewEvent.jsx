@@ -100,6 +100,7 @@ const AddNewEvent = ({ showModal, setShowModal }) => {
             <label className='profile-label-field' htmlFor='eventPhoto'>
               Event Image
             </label>
+            <p>jpg,png and jpeg images only</p>
             <input
               type='file'
               name='eventPhoto'

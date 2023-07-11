@@ -122,6 +122,7 @@ const EditAddEvent = ({ showModal, setShowModal, data, id, index }) => {
               Event Image
             </label>
             <img style={{ width: "4rem", height: "2rem" }} src={data?.pastEvents[index]?.eventPhoto} alt='event' />
+            <p>jpg,png and jpeg images only</p>
             <input
               type='file'
               name='eventPhoto'

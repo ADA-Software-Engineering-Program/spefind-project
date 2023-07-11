@@ -28,7 +28,7 @@ const SignIn = () => {
         }
       })
       const data = await response.json()
-      console.log(data)
+      // console.log(data)
       if (response.ok) {
         sessionStorage.setItem("token", data.token)
         toast.success(`${data.message},`, {
@@ -51,15 +51,12 @@ const SignIn = () => {
         throw new Error()
       }
       if (data.data.isProfileCreated === true) {
-        // window.location.href = "/dashboard"
         navigate("/dashboard")
       }
       if (data.data.isProfileCreated === false) {
-        // window.location.href = "/create-profile"
         navigate("/create-profile")
       }
       if (data.data.userRole === "organizer") {
-        // window.location.href = "/explore"
         navigate("/explore")
       }
       setLoading(false)

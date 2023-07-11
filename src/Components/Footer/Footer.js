@@ -191,24 +191,27 @@ function Footer() {
               </Link>
             </li>
             <li className='mb-2'>
-              <Link to={"https://www.facebook.com/profile.php?id=100091891911041"} className='text-decoration-none text-white'>
+              <Link
+                to={"https://www.facebook.com/profile.php?id=100091891911041"}
+                target='_blank'
+                className='text-decoration-none text-white'
+              >
                 Facebook
               </Link>
             </li>
             <li className='mb-2'>
-              <Link to={"https://www.linkedin.com/company/spefind/"} className='text-decoration-none text-white'>
-                {" "}
+              <Link to={"https://www.linkedin.com/company/spefind/"} target='_blank' className='text-decoration-none text-white'>
                 Linkedin
               </Link>
             </li>
             <li className='mb-2'>
-              <Link to={"https://twitter.com/SpefindHq"} className='text-decoration-none text-white'>
-                Twitter{" "}
+              <Link to={"https://twitter.com/SpefindHq"} target='_blank' className='text-decoration-none text-white'>
+                Twitter
               </Link>
             </li>
             <li className='mb-2'>
-              <Link to={"https://www.instagram.com/spefindhq/"} className='text-decoration-none text-white'>
-                Instagram{" "}
+              <Link to={"https://www.instagram.com/spefindhq/"} target='_blank' className='text-decoration-none text-white'>
+                Instagram
               </Link>
             </li>
           </ul>
@@ -224,13 +227,23 @@ function Footer() {
         </div>
         <div className='socialMedia mt-3 mt-md-0'>
           <div className='icon'>
-            <FaFacebookF className='social' />
+            <Link
+              to={"https://www.facebook.com/profile.php?id=100091891911041"}
+              target='_blank'
+              className='text-decoration-none text-white'
+            >
+              <FaFacebookF className='social' />
+            </Link>
           </div>
           <div className='icon'>
-            <FaLinkedinIn className='social' />
+            <Link to={"https://www.linkedin.com/company/spefind/"} target='_blank' className='text-decoration-none text-white'>
+              <FaLinkedinIn className='social' />
+            </Link>
           </div>
           <div className='icon'>
-            <FaTwitter className='social' />
+            <Link to={"https://twitter.com/SpefindHq"} target='_blank' className='text-decoration-none text-white'>
+              <FaTwitter className='social' />
+            </Link>
           </div>
         </div>
       </div>
