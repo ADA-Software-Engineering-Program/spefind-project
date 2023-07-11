@@ -9,6 +9,8 @@ import LogoWhite from "../../images/spefind-logo-white.png"
 import { BsArrowRight } from "react-icons/bs"
 import Logout from "../Logout/Logout"
 import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const Header = ({ backgroundColor }) => {
   const location = useLocation()
@@ -18,8 +20,7 @@ const Header = ({ backgroundColor }) => {
   const splitLocation = pathname.split("/")
 
   // check if user is logged in or not
-  const isAuthenticated = !!sessionStorage.getItem("token")
-
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
   return (
     <>
       <Navbar
@@ -31,31 +32,38 @@ const Header = ({ backgroundColor }) => {
       >
         <Container>
           <div className='d-flex align-items-center w-100'>
-            <Navbar.Brand href='/' className='headerLogo'>
+            <Navbar.Brand as={Link} to='/' className='headerLogo'>
               <img src={LogoBlack} alt='logo' className='w-100' />
             </Navbar.Brand>
             <Navbar.Toggle className='nav-toggle' aria-controls='basic-navbar-nav' />
           </div>
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='nav-gap'>
-              <Nav.Link href='./about' className={splitLocation[1] === "about" ? "active" : ""}>
+              <Nav.Link as={Link} to='/about' className={splitLocation[1] === "about" ? "active" : ""}>
                 About
               </Nav.Link>
-              <Nav.Link href='./explore' className={splitLocation[1] === "explore" ? "active" : ""}>
+              <Nav.Link as={Link} to='/explore' className={splitLocation[1] === "explore" ? "active" : ""}>
                 Communicators
               </Nav.Link>
-              <Nav.Link href='./' className={splitLocation[1] === "organizers" ? "active" : ""}>
+              <Nav.Link as={Link} to='/' className={splitLocation[1] === "organizers" ? "active" : ""}>
                 Organizers
               </Nav.Link>
-              <Nav.Link href='./' className={splitLocation[1] === "works" ? "active" : ""}>
+              <Nav.Link as={Link} to='/' className={splitLocation[1] === "works" ? "active" : ""}>
                 How it works
               </Nav.Link>
               {isAuthenticated ? (
-                <Logout classes='logout'>
-                  <BsArrowRight className='arrow' />
-                </Logout>
+                splitLocation[1] === "dashboard" ? (
+                  <Logout classes='logout'>
+                    <BsArrowRight className='arrow' />
+                  </Logout>
+                ) : (
+                  <Nav.Link as={Link} to='/dashboard' className={splitLocation[1] === "dashboard" ? "active" : ""}>
+                    Dashboard
+                    <BsArrowRight className='arrow' />
+                  </Nav.Link>
+                )
               ) : (
-                <Nav.Link href='./login' className={splitLocation[1] === "login" ? "active" : ""} id='logBtn'>
+                <Nav.Link as={Link} to='/login' className={splitLocation[1] === "login" ? "active" : ""} id='logBtn'>
                   Login
                   <BsArrowRight className='arrow' />
                 </Nav.Link>
@@ -68,31 +76,32 @@ const Header = ({ backgroundColor }) => {
       <Navbar expand='lg' className='navbar-main-1 d-lg-none d-flex py-4' variant='dark'>
         <Container>
           <div className='d-flex align-items-center w-100'>
-            <Navbar.Brand href='/'>
+            <Navbar.Brand as={Link} to='/'>
               <img src={LogoWhite} alt='logo' className='headerLogo' />
             </Navbar.Brand>
             <Navbar.Toggle className='nav-toggle' aria-controls='basic-navbar-nav' />
           </div>
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='nav-gap'>
-              <Nav.Link href='./about' className={splitLocation[1] === "about" ? "active" : ""}>
+              <Nav.Link as={Link} to='/about' className={splitLocation[1] === "about" ? "active" : ""}>
                 About
               </Nav.Link>
-              <Nav.Link href='./explore' className={splitLocation[1] === "explore" ? "active" : ""}>
+              <Nav.Link as={Link} to='/explore' className={splitLocation[1] === "explore" ? "active" : ""}>
                 Communicators
               </Nav.Link>
-              <Nav.Link href='./' className={splitLocation[1] === "organizers" ? "active" : ""}>
+              <Nav.Link as={Link} to='/' className={splitLocation[1] === "organizers" ? "active" : ""}>
                 Organizers
               </Nav.Link>
-              <Nav.Link href='./' className={splitLocation[1] === "works" ? "active" : ""}>
+              <Nav.Link as={Link} to='/' className={splitLocation[1] === "works" ? "active" : ""}>
                 How it works
               </Nav.Link>
               {isAuthenticated ? (
-                <Logout classes='logout'>
+                <Nav.Link as={Link} to='/dashboard' className={splitLocation[1] === "dashboard" ? "active" : ""}>
+                  Dashboard
                   <BsArrowRight className='arrow' />
-                </Logout>
+                </Nav.Link>
               ) : (
-                <Nav.Link href='./login' className={splitLocation[1] === "login" ? "active" : ""} id='logBtn'>
+                <Nav.Link as={Link} to='/login' className={splitLocation[1] === "login" ? "active" : ""} id='logBtn'>
                   Login
                   <BsArrowRight className='arrow' />
                 </Nav.Link>

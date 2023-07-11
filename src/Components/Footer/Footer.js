@@ -125,34 +125,34 @@ function Footer() {
           <h6 className='fw-bold text-white'>NAVIGATION</h6>
           <ul className='list-unstyled'>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <Link to={"/"} className='text-decoration-none text-white'>
                 Home
-              </a>
+              </Link>
             </li>
             <li className='mb-2'>
-              <a href={"/about"} className='text-decoration-none text-white'>
+              <Link to={"/about"} className='text-decoration-none text-white'>
                 About
-              </a>
+              </Link>
             </li>
             <li className='mb-2'>
-              <a href={"/explore"} className='text-decoration-none text-white'>
+              <Link to={"/explore"} className='text-decoration-none text-white'>
                 Explore
-              </a>
+              </Link>
             </li>
             <li className='mb-2'>
-              <a href={"/blog"} className='text-decoration-none text-white'>
+              <Link to={"/blog"} className='text-decoration-none text-white'>
                 Blog
-              </a>
+              </Link>
             </li>
             <li className='mb-2'>
-              <a href={"/contact"} className='text-decoration-none text-white'>
+              <Link to={"/contact"} className='text-decoration-none text-white'>
                 Contact
-              </a>
+              </Link>
             </li>
             <li>
-              <a href={"/login"} className='text-decoration-none text-white'>
+              <Link to={"/login"} className='text-decoration-none text-white'>
                 Login
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -160,14 +160,14 @@ function Footer() {
           <h6 className='fw-bold text-white'>LEGAL</h6>
           <ul className='list-unstyled'>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <Link to={"/"} className='text-decoration-none text-white'>
                 Privacy & Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <Link to={"/"} className='text-decoration-none text-white'>
                 Terms of service
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -176,40 +176,40 @@ function Footer() {
           <h6 className='fw-bold text-white'>TALK TO US</h6>
           <ul className='list-unstyled'>
             <li className='mb-2'>
-              <a href={"mailto:infospefind@gmail.com"} className='text-decoration-none text-white'>
+              <Link to={"mailto:infospefind@gmail.com"} className='text-decoration-none text-white'>
                 infospefind@gmail.com
-              </a>
+              </Link>
             </li>
             <li className='mb-2'>
-              <a href={"tel:+2347059592726"} className='text-decoration-none text-white'>
+              <Link to={"tel:+2347059592726"} className='text-decoration-none text-white'>
                 +2347059592726
-              </a>
+              </Link>
             </li>
             <li className='mb-2'>
-              <a href={"/"} className='text-decoration-none text-white'>
+              <Link to={"/"} className='text-decoration-none text-white'>
                 Contact Us
-              </a>
+              </Link>
             </li>
             <li className='mb-2'>
-              <a href={"https://www.facebook.com/profile.php?id=100091891911041"} className='text-decoration-none text-white'>
+              <Link to={"https://www.facebook.com/profile.php?id=100091891911041"} className='text-decoration-none text-white'>
                 Facebook
-              </a>
+              </Link>
             </li>
             <li className='mb-2'>
-              <a href={"https://www.linkedin.com/company/spefind/"} className='text-decoration-none text-white'>
+              <Link to={"https://www.linkedin.com/company/spefind/"} className='text-decoration-none text-white'>
                 {" "}
                 Linkedin
-              </a>
+              </Link>
             </li>
             <li className='mb-2'>
-              <a href={"https://twitter.com/SpefindHq"} className='text-decoration-none text-white'>
+              <Link to={"https://twitter.com/SpefindHq"} className='text-decoration-none text-white'>
                 Twitter{" "}
-              </a>
+              </Link>
             </li>
             <li className='mb-2'>
-              <a href={"https://www.instagram.com/spefindhq/"} className='text-decoration-none text-white'>
+              <Link to={"https://www.instagram.com/spefindhq/"} className='text-decoration-none text-white'>
                 Instagram{" "}
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

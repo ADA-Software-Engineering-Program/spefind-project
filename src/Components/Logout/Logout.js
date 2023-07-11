@@ -2,11 +2,16 @@ import PropTypes from "prop-types"
 import styles from "./Logout.module.css"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
+import { useDispatch } from "react-redux"
+import { authActions } from "../../store/auth-slice"
 
 const Logout = ({ children, classes }) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const logoutHandler = () => {
     sessionStorage.removeItem("token")
+    dispatch(authActions.setIsLoggedOut())
     navigate("/login")
     toast.success(`Log out successful!`, {
       duration: 4000,
