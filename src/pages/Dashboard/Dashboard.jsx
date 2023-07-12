@@ -63,7 +63,8 @@ const Dashboard = () => {
     }
   ]
   return (
-    <AppLayout>
+    // background color needs to be changed as it is in the design, design needs to be adjusted so as to follow the new logo
+    <AppLayout backgroundColor={"rgba(227, 80, 47, 0.1)"}>
       <div
         className={isNavExpanded ? "" : "overlay"}
         onClick={() => {
