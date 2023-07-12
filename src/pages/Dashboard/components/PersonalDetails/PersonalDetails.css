@@ -86,6 +86,7 @@
 
 .selectFile {
   visibility: hidden;
+  width: 100%;
 }
 .selectFile::before {
   content: "Change ";
