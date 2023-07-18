@@ -51,13 +51,13 @@ const SignIn = () => {
         throw new Error()
       }
       if (data.data.isProfileCreated === true) {
-        navigate("/dashboard")
+        navigate("/dashboard", { state: null, replace: true })
       }
       if (data.data.isProfileCreated === false) {
-        navigate("/create-profile")
+        navigate("/create-profile", { state: null, replace: true })
       }
       if (data.data.userRole === "organizer") {
-        navigate("/explore")
+        navigate("/explore", { state: null, replace: true })
       }
       setLoading(false)
     } catch (error) {
