@@ -1,4 +1,6 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { toast } from "react-hot-toast"
 import AppLayout from "../../layout/AppLayout"
 import "./Dashboard.css"
 
@@ -18,8 +20,21 @@ import useFetchUserInfo from "../../hooks/useFetchUserInfo"
 
 const Dashboard = () => {
   // eslint-disable-next-line no-unused-vars
-
+  const navigate = useNavigate()
   const { fetchedUserData } = useFetchUserInfo(`api/profile/user`)
+  useEffect(() => {
+    if (fetchedUserData.isProfileCreated === false) {
+      navigate("/create-profile", { state: null, replace: true })
+      toast.success(" Please complete your registration", {
+        duration: 4000,
+        position: "top-center",
+
+        // Styling
+        style: { fontSize: "13px" },
+        className: ""
+      })
+    }
+  }, [])
 
   const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails />)
   const [isNavExpanded, setIsNavExpanded] = useState(true)

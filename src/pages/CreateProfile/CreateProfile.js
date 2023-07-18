@@ -174,7 +174,7 @@ const CreateProfile = () => {
   }
 
   useEffect(() => {
-    const isInfoFilled = !!sessionStorage.getItem("token" || "userId")
+    const isInfoFilled = !!sessionStorage.getItem("userId")
     isInfoFilled && navigate("/dashboard")
     dataFetch()
   }, [navigate])
@@ -213,7 +213,7 @@ const CreateProfile = () => {
         isVolunteer: formik.values.isVolunteer,
         isVisible: formik.values.isVisible
       }
-      console.log(transformedData)
+      // console.log(transformedData)
       const token = sessionStorage.getItem("token")
       const saveUserData = await fetch(`${API_LINK}/api/profile/setup`, {
         method: "PUT",
