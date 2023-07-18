@@ -12,9 +12,12 @@ import Steppers from "./Steppers"
 import validate from "./Validate"
 import { API_LINK } from "../../utils/api"
 import Loader from "../../Components/Loader/Loader"
+import { useDispatch } from "react-redux"
+import { authActions } from "../../store/auth-slice"
 
 const CreateProfile = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [step, setStep] = useState(0)
   const [error, setError] = useState("")
@@ -174,7 +177,7 @@ const CreateProfile = () => {
   }
 
   useEffect(() => {
-    const isInfoFilled = !!sessionStorage.getItem("token" || "userId")
+    const isInfoFilled = !!sessionStorage.getItem("userId")
     isInfoFilled && navigate("/dashboard")
     dataFetch()
   }, [navigate])
@@ -213,7 +216,7 @@ const CreateProfile = () => {
         isVolunteer: formik.values.isVolunteer,
         isVisible: formik.values.isVisible
       }
-      console.log(transformedData)
+      // console.log(transformedData)
       const token = sessionStorage.getItem("token")
       const saveUserData = await fetch(`${API_LINK}/api/profile/setup`, {
         method: "PUT",
@@ -240,6 +243,7 @@ const CreateProfile = () => {
           style: { fontSize: "13px", border: "2px solid green" },
           className: ""
         })
+        dispatch(authActions.setIsLoggedIn())
         sessionStorage.setItem("userId", data.user._id)
         navigate("/dashboard")
         window.scrollTo(0, 0)

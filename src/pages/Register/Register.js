@@ -150,7 +150,7 @@ function Register() {
           style: { fontSize: "13px" },
           className: ""
         })
-        navigate("/create-profile")
+        navigate("/create-profile", { state: null, replace: true })
       }
 
       if (!saveUserData.ok) {
