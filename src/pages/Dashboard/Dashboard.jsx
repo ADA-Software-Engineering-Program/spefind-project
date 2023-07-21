@@ -23,9 +23,9 @@ const Dashboard = () => {
   const navigate = useNavigate()
   const { fetchedUserData } = useFetchUserInfo(`api/profile/user`)
   useEffect(() => {
-    if (fetchedUserData.isProfileCreated === false) {
+    if (fetchedUserData?.isProfileCreated === false) {
       navigate("/create-profile", { state: null, replace: true })
-      toast.success(" Please complete your registration", {
+      toast.error(" Please create your profile", {
         duration: 4000,
         position: "top-center",
 
@@ -34,7 +34,7 @@ const Dashboard = () => {
         className: ""
       })
     }
-  }, [])
+  }, [fetchedUserData])
 
   const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails />)
   const [isNavExpanded, setIsNavExpanded] = useState(true)

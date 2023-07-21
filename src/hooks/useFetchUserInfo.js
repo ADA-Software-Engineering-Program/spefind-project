@@ -31,7 +31,7 @@ const useFetchUserInfo = (link) => {
           className: ""
         })
       }
-      console.log(userData)
+      // console.log(userData)
       setFetchedUserData(userData.user)
       setLoading(false)
     } catch (error) {

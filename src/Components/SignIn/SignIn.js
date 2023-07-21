@@ -17,7 +17,6 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     try {
       setLoading(true)
       const response = await fetch(` ${API_LINK}/api/auth/login`, {
@@ -39,6 +38,8 @@ const SignIn = () => {
           style: { fontSize: "13px" },
           className: ""
         })
+        data.data.isProfileCreated === true && navigate("/dashboard", { state: null, replace: true })
+        data.data.isProfileCreated === false && navigate("/create-profile", { state: null, replace: true })
         dispatch(authActions.setIsLoggedIn())
         setLoading(false)
       }
@@ -49,15 +50,6 @@ const SignIn = () => {
       if (!response.ok) {
         setLoading(false)
         throw new Error()
-      }
-      if (data.data.isProfileCreated === true) {
-        navigate("/dashboard", { state: null, replace: true })
-      }
-      if (data.data.isProfileCreated === false) {
-        navigate("/create-profile", { state: null, replace: true })
-      }
-      if (data.data.userRole === "organizer") {
-        navigate("/explore", { state: null, replace: true })
       }
       setLoading(false)
     } catch (error) {
@@ -78,7 +70,7 @@ const SignIn = () => {
       <Header />
       <h1 className='miss mt-5 mt-md-4'>We missed you!</h1>
 
-      <form className='SignInForm' onSubmit={handleSubmit}>
+      <form className='SignInForm'>
         <label htmlFor='email' className='logLabel'>
           Email Address
         </label>
@@ -119,7 +111,7 @@ const SignIn = () => {
           <p className='fw-semibold'>Forgot Password? </p>
         </div>
 
-        <button className='btn btnSign' type='submit' disabled={loading}>
+        <button className='btn btnSign' type='submit' disabled={loading} onClick={handleSubmit}>
           {loading ? "Signing In..." : "Submit"}
         </button>
       </form>
