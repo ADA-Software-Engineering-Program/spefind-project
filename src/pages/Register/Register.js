@@ -12,10 +12,12 @@ import styles from "./Register.module.css"
 
 import AppLayout from "../../layout/AppLayout"
 import { API_LINK } from "../../utils/api"
+import { useDispatch } from "react-redux"
+import { authActions } from "../../store/auth-slice"
 
 function Register() {
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
 
   const handleGoogleSignUp = async () => {
@@ -151,6 +153,7 @@ function Register() {
           className: ""
         })
         navigate("/create-profile", { state: null, replace: true })
+        dispatch(authActions.setIsLoggedIn())
       }
 
       if (!saveUserData.ok) {
@@ -191,7 +194,7 @@ function Register() {
             <img src={Logo} alt='spefind logo' className='w-100' />
           </div>
 
-          <form className='JoinForm' onSubmit={signUpSubmitHandler}>
+          <form className='JoinForm'>
             <div className='w-100 mb-4' style={{ display: "flex", gap: "1rem" }}>
               <div>
                 <label className='labelForm'>First Name</label>
@@ -279,7 +282,7 @@ function Register() {
             </div>
 
             <div className='w-100 mb-4'>
-              <button className=' btn btnSign-up' type='submit' disabled={!formIsValid && !loading}>
+              <button className=' btn btnSign-up' type='submit' disabled={!formIsValid && !loading} onClick={signUpSubmitHandler}>
                 {loading ? "Signing up..." : "Sign up"}
               </button>
             </div>

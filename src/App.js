@@ -68,6 +68,14 @@ function App() {
             // </ProtectedRoutes>
           }
         />
+        <Route
+          path='*'
+          element={
+            // <ProtectedRoutes isLoggedIn={isLoggedIn()}>
+            <div>This page can not be found</div>
+            // </ProtectedRoutes>
+          }
+        />
       </Routes>
     </div>
   )

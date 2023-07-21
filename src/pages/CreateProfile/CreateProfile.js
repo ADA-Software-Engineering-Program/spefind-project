@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState, useRef, useCallback } from "react"
 import "./CreateProfile.css"
 import AppLayout from "../../layout/AppLayout"
 import { useNavigate } from "react-router-dom"
@@ -27,11 +27,12 @@ const CreateProfile = () => {
     price: [],
     fieldOptions: [],
     firstName: "",
-    lastName: ""
+    lastName: "",
+    isProfileCreated: null
   })
   const [loading, setLoading] = useState(false)
 
-  const dataFetch = async () => {
+  const dataFetch = useCallback(async () => {
     setLoading(true)
     try {
       const getEventTypeData = await fetch(`${API_LINK}/api/event/type/all`, {
@@ -100,11 +101,12 @@ const CreateProfile = () => {
       })
       // console.log(getUserData);
       const userData = await getUserData.json()
-      // console.log(userData.user);
+      // console.log(userData.user)
       setNeededData((prevData) => ({
         ...prevData,
         firstName: userData?.user?.firstName,
-        lastName: userData?.user?.lastName
+        lastName: userData?.user?.lastName,
+        isProfileCreated: userData?.user?.isProfileCreated
       }))
       if (!getUserData.ok || !getSpeakerFieldOption.ok || !getPriceData.ok || !getAvailableToData.ok) {
         setLoading(false)
@@ -121,7 +123,7 @@ const CreateProfile = () => {
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [])
 
   const formik = useFormik({
     initialValues: {
@@ -177,10 +179,19 @@ const CreateProfile = () => {
   }
 
   useEffect(() => {
-    const isInfoFilled = !!sessionStorage.getItem("userId")
-    isInfoFilled && navigate("/dashboard")
     dataFetch()
-  }, [navigate])
+    if (neededData?.isProfileCreated === true) {
+      navigate("/dashboard", { state: null, replace: true })
+      toast.success(" Your Profile has been created, You can edit your profile on the dashboard", {
+        duration: 4000,
+        position: "top-center",
+
+        // Styling
+        style: { fontSize: "13px" },
+        className: ""
+      })
+    }
+  }, [neededData.isProfileCreated])
 
   const submit = async () => {
     formik.handleSubmit()
