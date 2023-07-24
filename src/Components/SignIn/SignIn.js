@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import "./SignIn.css"
 import toast from "react-hot-toast"
 import Header from "../Navbar/Navbar"
@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux"
 import { authActions } from "../../store/auth-slice"
 import { API_LINK } from "../../utils/api"
 import { Link, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const SignIn = () => {
   const [email, setEmail] = useState("")
@@ -65,6 +66,12 @@ const SignIn = () => {
       })
     }
   }
+  // check if user is logged in or not
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
+  useEffect(() => {
+    isAuthenticated && navigate("/dashboard")
+  }, [])
+
   return (
     <div className='signInCont'>
       <Header />
