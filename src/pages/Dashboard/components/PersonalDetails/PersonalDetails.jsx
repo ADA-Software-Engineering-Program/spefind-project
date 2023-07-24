@@ -11,7 +11,7 @@ import AddNewEvent from "./AddNewEvent"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 import usePostUserInfo from "../../../../hooks/usePostUserInfo"
 import useGatherInputFields from "../../../../hooks/useGatherInputFields"
-// import usePOstDataWithFormData from "../../../../hooks/usePOstDataWithFormData"
+import usePOstDataWithFormData from "../../../../hooks/usePOstDataWithFormData"
 import { API_LINK } from "../../../../utils/api"
 import Confirmation from "./Modal/Confirmation"
 import { toast } from "react-hot-toast"
@@ -27,7 +27,9 @@ const PersonalDetails = () => {
   const [imageIsUploadLoading, setImageIsUploadLoading] = useState(false)
   // const [imagefile, setImageFile] = useState(null)
 
-  const { apiCallHandler: editUserDataHandler, loading: editDataIsLoading } = usePostUserInfo(`api/profile/setup`, "PUT", inputDatas)
+  // const { apiCallHandler: editUserDataHandler, loading: editDataIsLoading } = usePostUserInfo(`/api/profile/update`, "PUT", inputDatas)
+
+  const { loading: editLoading, saveFormData } = usePOstDataWithFormData(inputDatas, `api/profile/update`, "PUT")
   const { apiCallHandler: deleteEventHandler, loading: deleteDataIsLoading } = usePostUserInfo(
     `api/profile/event/delete?eventId=${eventId}`,
     "DELETE"
@@ -37,7 +39,8 @@ const PersonalDetails = () => {
 
   const editUserData = () => {
     console.log(inputDatas)
-    editUserDataHandler()
+    // editUserDataHandler()
+    saveFormData()
   }
   // const { loading: isLoading, saveFormData } = usePOstDataWithFormData(null, `api/profile/event/cover/banner`, "PUT", "/dashboard")
   // const handleImageUpload = (e) => {
@@ -105,7 +108,7 @@ const PersonalDetails = () => {
 
   return (
     <div className='formContainer'>
-      {(loading || editDataIsLoading || deleteDataIsLoading || imageIsUploadLoading) && <Loader />}
+      {(loading || deleteDataIsLoading || imageIsUploadLoading || editLoading) && <Loader />}
       {isConfirmed &&
         confirmBoxShowHandler(
           "Are you sure you want to delete this event ?",
