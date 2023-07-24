@@ -97,17 +97,6 @@ const Header = ({ backgroundColor }) => {
               <Nav.Link as={Link} to='/' className={splitLocation[1] === "works" ? "active" : ""}>
                 How it works
               </Nav.Link>
-              {/* {isAuthenticated ? (
-                <Nav.Link as={Link} to='/dashboard' className={splitLocation[1] === "dashboard" ? "active" : ""}>
-                  Dashboard
-                  <BsArrowRight className='arrow' />
-                </Nav.Link>
-              ) : (
-                <Nav.Link as={Link} to='/login' className={splitLocation[1] === "login" ? "active" : ""} id='logBtn'>
-                  Login
-                  <BsArrowRight className='arrow' />
-                </Nav.Link>
-              )} */}
               {isAuthenticated && dashboardUrl && (
                 <Logout classes='logout'>
                   <BsArrowRight className='arrow' />
