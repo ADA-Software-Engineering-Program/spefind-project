@@ -48,9 +48,9 @@ function App() {
         <Route
           path='/create-profile'
           element={
-            <ProtectedRoutes isLoggedIn={isLoggedIn()}>
-              <CreateProfile />
-            </ProtectedRoutes>
+            // <ProtectedRoutes isLoggedIn={isLoggedIn()}>
+            <CreateProfile />
+            // </ProtectedRoutes>
           }
         />
         <Route path='/speaker-profile' element={<SpeakerProfile />} />
