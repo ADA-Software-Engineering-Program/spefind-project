@@ -27,8 +27,6 @@ const PersonalDetails = () => {
   const [imageIsUploadLoading, setImageIsUploadLoading] = useState(false)
   // const [imagefile, setImageFile] = useState(null)
 
-  // const { apiCallHandler: editUserDataHandler, loading: editDataIsLoading } = usePostUserInfo(`/api/profile/update`, "PUT", inputDatas)
-
   const { loading: editLoading, saveFormData } = usePOstDataWithFormData(inputDatas, `api/profile/update`, "PUT")
   const { apiCallHandler: deleteEventHandler, loading: deleteDataIsLoading } = usePostUserInfo(
     `api/profile/event/delete?eventId=${eventId}`,
@@ -39,7 +37,6 @@ const PersonalDetails = () => {
 
   const editUserData = () => {
     console.log(inputDatas)
-    // editUserDataHandler()
     saveFormData()
   }
   // const { loading: isLoading, saveFormData } = usePOstDataWithFormData(null, `api/profile/event/cover/banner`, "PUT", "/dashboard")
