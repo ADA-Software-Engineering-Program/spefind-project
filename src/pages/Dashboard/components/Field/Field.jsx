@@ -3,16 +3,25 @@ import "./Field.css"
 import Button from "../Button/Button"
 import Loader from "../../../../Components/Loader/Loader"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
+import usePOstDataWithFormData from "../../../../hooks/usePOstDataWithFormData"
+import useGatherInputFields from "../../../../hooks/useGatherInputFields"
 
 const Field = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [showOtherStates, setShowOtherStates] = useState(false)
+  const [inputDatas, setInputDatas] = useState()
 
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
-
+  const { loading: editLoading, saveFormData } = usePOstDataWithFormData(inputDatas, `api/profile/update`, "PUT")
+  const { setEventInputs } = useGatherInputFields(setInputDatas)
+  const editUserData = (e) => {
+    e.preventDefault()
+    // console.log(inputDatas)
+    saveFormData()
+  }
   return (
     <div className='field'>
-      {loading && <Loader />}
+      {(editLoading || loading) && <Loader />}
       <div className='editContainer'>
         <Button
           text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
@@ -34,6 +43,9 @@ const Field = () => {
           className='input'
           disabled={enableInput}
           defaultValue={fetchedUserData?.field}
+          onChange={(e) => {
+            setEventInputs(e.target.value, "mainField")
+          }}
         />
         <div>
           <label htmlFor='subfield'>Subfield</label>
@@ -45,6 +57,9 @@ const Field = () => {
           className='input'
           disabled={enableInput}
           defaultValue={fetchedUserData?.subField}
+          onChange={(e) => {
+            setEventInputs(e.target.value, "subfield")
+          }}
         />
         <div>
           <label htmlFor='education'>Education</label>
@@ -56,6 +71,9 @@ const Field = () => {
           className='input'
           disabled={enableInput}
           defaultValue={fetchedUserData?.education}
+          onChange={(e) => {
+            setEventInputs(e.target.value, "education")
+          }}
         />
         <div>
           <label htmlFor='career'>Current Career/Job</label>
@@ -67,6 +85,9 @@ const Field = () => {
           className='input'
           disabled={enableInput}
           defaultValue={fetchedUserData?.job?.title}
+          onChange={(e) => {
+            setEventInputs(e.target.value, "career")
+          }}
         />
         <div>
           <label htmlFor='language'>Language</label>
@@ -80,6 +101,9 @@ const Field = () => {
             name='language'
             className='check-checkbox'
             disabled={enableInput}
+            onChange={(e) => {
+              setEventInputs(e.target.value, "language")
+            }}
           />
           <label htmlFor={fetchedUserData?.language} className='check-label'>
             <span className='check-checkbox-button'></span>
@@ -110,11 +134,14 @@ const Field = () => {
             id='language'
             placeholder='Type language here'
             className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
+            onChange={(e) => {
+              setEventInputs(e.target.value, "language")
+            }}
           />
         </div>
 
         <div className='editContainer'>
-          <Button type='submit' text1='SAVE' className='saveBtn' />
+          <Button type='submit' text1='SAVE' className='saveBtn' onClick={editUserData} />
         </div>
       </form>
     </div>

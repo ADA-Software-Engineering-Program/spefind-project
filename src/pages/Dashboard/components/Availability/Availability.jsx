@@ -3,16 +3,25 @@ import styles from "./Availability.module.css"
 import Button from "../Button/Button"
 import Loader from "../../../../Components/Loader/Loader"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
+import usePOstDataWithFormData from "../../../../hooks/usePOstDataWithFormData"
+import useGatherInputFields from "../../../../hooks/useGatherInputFields"
 
 const Availability = () => {
   const [enableInput, setEnableInput] = useState(true)
   const [showOtherStates, setShowOtherStates] = useState(false)
+  const [inputDatas, setInputDatas] = useState()
 
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
-
+  const { loading: editLoading, saveFormData } = usePOstDataWithFormData(inputDatas, `api/profile/update`, "PUT")
+  const { setEventInputs } = useGatherInputFields(setInputDatas)
+  const editUserData = (e) => {
+    e.preventDefault()
+    // console.log(inputDatas)
+    saveFormData()
+  }
   return (
     <form className={styles.availability}>
-      {loading && <Loader />}
+      {(editLoading || loading) && <Loader />}
 
       <div className='editContainer'>
         <Button
@@ -64,6 +73,9 @@ const Availability = () => {
           id='newEvent'
           placeholder='Type new event here'
           className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
+          onChange={(e) => {
+            setEventInputs(e.target.value, "newEvent")
+          }}
         />
       </div>
 
@@ -107,6 +119,9 @@ const Availability = () => {
           placeholder='Type new place here'
           className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
           disabled={enableInput}
+          onChange={(e) => {
+            setEventInputs(e.target.value, "availableTo")
+          }}
         />
       </div>
 
@@ -144,6 +159,9 @@ const Availability = () => {
           placeholder='Type new price here'
           disabled={enableInput}
           className={showOtherStates ? "otherState-input displayBlock" : "otherState-input"}
+          onChange={(e) => {
+            setEventInputs(e.target.value, "pricing")
+          }}
         />
       </div>
 
@@ -180,7 +198,7 @@ const Availability = () => {
       </div>
 
       <div className='editContainer'>
-        <Button type='submit' text1='SAVE ' className='saveBtn' />
+        <Button type='submit' text1='SAVE ' className='saveBtn' onClick={editUserData} />
       </div>
     </form>
   )
