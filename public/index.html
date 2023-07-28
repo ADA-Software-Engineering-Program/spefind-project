@@ -5,37 +5,82 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Connecting communicators to event organizers!"
-    />
+    <meta name="description" content="Connecting communicators to event organizers!" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>SPEFIND</title>
     <script type="application/javascript">
       window.tiledeskSettings = {
-        projectid: "63ff3109ebce98001abfb55b",
-      };
-      (function (d, s, id) {
-        var w = window;
-        var d = document;
+        projectid: "63ff3109ebce98001abfb55b"
+      }
+      ;(function (d, s, id) {
+        var w = window
+        var d = document
         var i = function () {
-          i.c(arguments);
-        };
-        i.q = [];
+          i.c(arguments)
+        }
+        i.q = []
         i.c = function (args) {
-          i.q.push(args);
-        };
-        w.Tiledesk = i;
+          i.q.push(args)
+        }
+        w.Tiledesk = i
         var js,
-          fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.async = true;
-        js.src = "https://widget.tiledesk.com/v5/launch.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, "script", "tiledesk-jssdk");
+          fjs = d.getElementsByTagName(s)[0]
+        if (d.getElementById(id)) return
+        js = d.createElement(s)
+        js.id = id
+        js.async = true
+        js.src = "https://widget.tiledesk.com/v5/launch.js"
+        fjs.parentNode.insertBefore(js, fjs)
+      })(document, "script", "tiledesk-jssdk")
+    </script>
+    <script>
+      (function (apiKey) {
+        ;(function (p, e, n, d, o) {
+          var v, w, x, y, z
+          o = p[d] = p[d] || {}
+          o._q = o._q || []
+          v = ["initialize", "identify", "updateOptions", "pageLoad", "track"]
+          for (w = 0, x = v.length; w < x; ++w)
+            (function (m) {
+              o[m] =
+                o[m] ||
+                function () {
+                  o._q[m === v[0] ? "unshift" : "push"]([m].concat([].slice.call(arguments, 0)))
+                }
+            })(v[w])
+          y = e.createElement(n)
+          y.async = !0
+          y.src = "https://cdn.pendo.io/agent/static/" + apiKey + "/pendo.js"
+          z = e.getElementsByTagName(n)[0]
+          z.parentNode.insertBefore(y, z)
+        })(window, document, "script", "pendo")
+      })("fe7913e7-2ddb-4a00-7cd1-79735293ad32")
+      // console.log(pendo)
+      pendo.initialize({
+          visitor: {
+            id: "VISITOR-UNIQUE-ID" // Required if user is logged in, default creates anonymous ID
+            // email:        // Recommended if using Pendo Feedback, or NPS Email
+            // full_name:    // Recommended if using Pendo Feedback
+            // role:         // Optional
+
+            // You can add any additional visitor level key-values here,
+            // as long as it's not one of the above reserved names.
+          },
+
+          account: {
+            id: "ACCOUNT-UNIQUE-ID" // Required if using Pendo Feedback, default uses the value 'ACCOUNT-UNIQUE-ID'
+            // name:         // Optional
+            // is_paying:    // Recommended if using Pendo Feedback
+            // monthly_value:// Recommended if using Pendo Feedback
+            // planLevel:    // Optional
+            // planPrice:    // Optional
+            // creationDate: // Optional
+
+            // You can add any additional account level key-values here,
+            // as long as it's not one of the above reserved names.
+          }
+        })
     </script>
   </head>
   <body>
