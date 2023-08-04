@@ -7,6 +7,7 @@ import { authActions } from "../../store/auth-slice"
 import { API_LINK } from "../../utils/api"
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
+import mixpanel from "mixpanel-browser"
 
 const SignIn = () => {
   const [email, setEmail] = useState("")
@@ -43,6 +44,14 @@ const SignIn = () => {
         data.data.isProfileCreated === false && navigate("/create-profile", { state: null, replace: true })
         dispatch(authActions.setIsLoggedIn())
         setLoading(false)
+
+        mixpanel.identify(data?.data?.email)
+
+        mixpanel.track("Sign In", {
+          signInTime: "10:00am",
+          userName: data?.data?.email,
+          userRole: data?.data?.userRole
+        })
       }
       if (!response) {
         setLoading(false)
@@ -56,7 +65,7 @@ const SignIn = () => {
     } catch (error) {
       setLoading(false)
 
-      toast.error(`Something went wrong ! Please crosscheck your details and try again`, {
+      toast.error(`Something went wrong ! Please cross check your details and try again`, {
         duration: 5000,
         position: "top-center",
 
@@ -70,6 +79,7 @@ const SignIn = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
   useEffect(() => {
     isAuthenticated && navigate("/dashboard")
+    mixpanel.init("f70c5b20ede9fa1fafe32f3c5c187ce2", { debug: true, track_pageview: true, persistence: "localStorage" })
   }, [])
 
   return (
