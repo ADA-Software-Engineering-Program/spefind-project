@@ -185,7 +185,6 @@ function Register() {
       console.log(error)
     }
   }
-
   return (
     <AppLayout>
       <div className='Bg-img w-100 min-vh-100'>
