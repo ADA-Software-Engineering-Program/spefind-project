@@ -48,9 +48,10 @@ const SignIn = () => {
         mixpanel.identify(data?.data?.email)
 
         mixpanel.track("Sign In", {
-          signInTime: "10:00am",
+          signInTime: new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" }),
           userName: data?.data?.email,
-          userRole: data?.data?.userRole
+          userRole: data?.data?.userRole,
+          isProfileCreated: data?.data?.isProfileCreated
         })
       }
       if (!response) {
@@ -81,7 +82,6 @@ const SignIn = () => {
     isAuthenticated && navigate("/dashboard")
     mixpanel.init("f70c5b20ede9fa1fafe32f3c5c187ce2", { debug: true, track_pageview: true, persistence: "localStorage" })
   }, [])
-
   return (
     <div className='signInCont'>
       <Header />
