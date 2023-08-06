@@ -107,12 +107,15 @@
 
 .editProfilePicture {
   display: grid;
-  grid-template-columns: 1fr 3rem;
+  grid-template-columns: 1fr 5rem;
   gap: 1rem;
   width: max-content;
   place-content: center;
 }
-
+.editProfilePicture img{
+  width: 10rem;
+  height: 8rem;
+}
 .btnWrapper {
   display: grid;
   grid-template-rows: 4rem 4rem;
@@ -123,6 +126,22 @@
   border-radius: 1.5px;
   color: white;
   padding: 0rem 1rem !important;
+}
+.changeProfilePicture {
+  visibility: hidden;
+}
+.changeProfilePicture::before {
+  content: "Change Picture";
+  width: 100%;
+  visibility: visible;
+  background-color: #e3502f;
+  border-radius: 1.5px;
+  color: white;
+  padding: 1rem 1rem 1.5rem !important;
+  display: grid;
+  place-content: center;
+  white-space: break-spaces;
+  cursor: pointer;
 }
 .pastEventsCointainer {
   display: grid;

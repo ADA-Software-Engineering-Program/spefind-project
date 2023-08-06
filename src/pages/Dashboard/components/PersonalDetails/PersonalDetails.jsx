@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { useState } from "react"
 
 import "./PersonalDetails.css"
@@ -11,7 +12,6 @@ import AddNewEvent from "./AddNewEvent"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 import usePostUserInfo from "../../../../hooks/usePostUserInfo"
 import useGatherInputFields from "../../../../hooks/useGatherInputFields"
-import usePOstDataWithFormData from "../../../../hooks/usePOstDataWithFormData"
 import { API_LINK } from "../../../../utils/api"
 import Confirmation from "./Modal/Confirmation"
 import { toast } from "react-hot-toast"
@@ -27,26 +27,13 @@ const PersonalDetails = () => {
   const [imageIsUploadLoading, setImageIsUploadLoading] = useState(false)
   // const [imagefile, setImageFile] = useState(null)
 
-  const { loading: editLoading, saveFormData } = usePOstDataWithFormData(inputDatas, `api/profile/update`, "PUT")
   const { apiCallHandler: deleteEventHandler, loading: deleteDataIsLoading } = usePostUserInfo(
     `api/profile/event/delete?eventId=${eventId}`,
     "DELETE"
   )
+  const { apiCallHandler: editUserDataHandler, loading: editUserDataIsLoading } = usePostUserInfo(`api/profile/update`, "PUT", inputDatas)
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
   const { setEventInputs } = useGatherInputFields(setInputDatas)
-
-  const editUserData = () => {
-    console.log(inputDatas)
-    saveFormData()
-  }
-  // const { loading: isLoading, saveFormData } = usePOstDataWithFormData(null, `api/profile/event/cover/banner`, "PUT", "/dashboard")
-  // const handleImageUpload = (e) => {
-  //   const file = e.target.files[0]
-  //   console.log(file)
-  //   if (file) {
-  //     saveFormData(file)
-  //   }
-  // }
 
   const handleImageUpload = async (e) => {
     try {
@@ -99,13 +86,64 @@ const PersonalDetails = () => {
       console.log(error)
     }
   }
+  const handleProfilePictureImageUpload = async (e) => {
+    try {
+      setImageIsUploadLoading(true)
+      let formdata = new FormData()
+      formdata.append("photo", e.target.files[0])
+
+      const token = sessionStorage.getItem("token")
+      const response = await fetch(`${API_LINK}/api/profile/update`, {
+        method: "PUT",
+        body: formdata,
+        redirect: "follow",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      const data = await response.json()
+      if (!response.ok || !response) {
+        setImageIsUploadLoading(false)
+        toast.error(`${data?.msg || data?.message}` || "Something Went Wrong!", {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px" },
+          className: ""
+        })
+      }
+      if (response.ok) {
+        setImageIsUploadLoading(false)
+        toast.success(`${data?.msg || data?.message}` || " please refresh the page to see your changes", {
+          duration: 4000,
+          position: "top-center",
+          // Styling
+          style: { fontSize: "13px" },
+          className: ""
+        })
+        setImageIsUploadLoading(false)
+        window.scrollTo(0, 0)
+      }
+      // console.log(data)
+    } catch (error) {
+      setImageIsUploadLoading(false)
+      toast.error("Something Went Wrong!", {
+        duration: 4000,
+        position: "top-center",
+        // Styling
+        style: { fontSize: "13px" },
+        className: ""
+      })
+      console.log(error)
+    }
+  }
   const confirmBoxShowHandler = (message, yesHandler, noHandler) => {
     return <Confirmation message={message} yesHandler={yesHandler} noHandler={noHandler} />
   }
 
   return (
     <div className='formContainer'>
-      {(loading || deleteDataIsLoading || imageIsUploadLoading || editLoading) && <Loader />}
+      {(loading || deleteDataIsLoading || imageIsUploadLoading || editUserDataIsLoading) && <Loader />}
       {isConfirmed &&
         confirmBoxShowHandler(
           "Are you sure you want to delete this event ?",
@@ -221,14 +259,19 @@ const PersonalDetails = () => {
           </div>
 
           <div className='editProfilePicture'>
-            <img src={userImg} alt=' profile avatar' />
+            <img src={fetchedUserData?.photo ? fetchedUserData?.photo : userImg} alt=' profile avatar' />
             <div className='btnWrapper'>
               <button type='button' className='btn'>
                 Remove
               </button>
-              <button type='button' className='btn'>
-                Change Picture
-              </button>
+              <input
+                type='file'
+                name='profilePicture'
+                id='profilePicture'
+                arial-label='profile Picture'
+                className='changeProfilePicture'
+                onChange={handleProfilePictureImageUpload}
+              />
             </div>
           </div>
         </div>
@@ -321,7 +364,7 @@ const PersonalDetails = () => {
             text1=' + Add New Event'
           />
 
-          <Button type='button' text1='SAVE ' className='saveBtn' onClick={editUserData} />
+          <Button type='button' text1='SAVE ' className='saveBtn' onClick={editUserDataHandler} />
         </div>
 
         {addNewEvent && (

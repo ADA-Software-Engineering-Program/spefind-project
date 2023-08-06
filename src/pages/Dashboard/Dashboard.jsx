@@ -107,7 +107,7 @@ const Dashboard = () => {
           <div className={isNavExpanded ? "sidebar" : "sidebarMobile"}>
             <div>
               <div className='userProfile'>
-                <img src={userImg} alt='user profile' />
+                <img src={fetchedUserData?.photo ? fetchedUserData?.photo : userImg} alt='user profile' />
                 <p className='username'>{fetchedUserData?.firstName}</p>
                 <p className='userCareer'>{fetchedUserData?.userRole?.charAt(0).toUpperCase() + fetchedUserData?.userRole?.slice(1)}</p>
               </div>
