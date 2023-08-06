@@ -74,6 +74,7 @@
   display: grid;
   grid-template-columns: 50% 1fr;
   gap: 1.5rem;
+  place-items: center;
 }
 .coverBannerContainer {
   position: relative;
@@ -82,6 +83,7 @@
   position: relative;
   width: 100%;
   height: 10rem;
+  border-radius: 20px;
 }
 
 .selectFile {
@@ -109,17 +111,18 @@
   display: grid;
   grid-template-columns: 1fr 5rem;
   gap: 1rem;
-  width: max-content;
   place-content: center;
+  margin-top: -1.5rem;
 }
-.editProfilePicture img{
+.editProfilePicture img {
   width: 10rem;
-  height: 8rem;
+  height: 10;
+  border-radius: 50%;
 }
 .btnWrapper {
   display: grid;
-  grid-template-rows: 4rem 4rem;
-  gap: 0.2rem;
+  grid-template-rows: 2.5rem 4.5rem;
+  gap: 0.5rem;
 }
 .editProfilePicture div .btn {
   background-color: #e3502f;

@@ -18,7 +18,7 @@ const ViewProfile = () => {
       </div>
       <div className={styles.about}>
         <div className={styles.imgContainer}>
-          <img src={userImg} alt=' the speaker ' />
+          <img src={fetchedUserData?.photo ? fetchedUserData?.photo : userImg} alt=' the speaker ' />
           <button>Edit Profile</button>
         </div>
         <div className={styles.aboutTextContainer}>
