@@ -126,7 +126,7 @@ const Field = () => {
           />
 
           <label htmlFor='other' className='check-label'>
-            <span className='check-checkbox-button'></span>Add other languages
+            <span className='check-checkbox-button'></span>Change Language
           </label>
 
           <input
