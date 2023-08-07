@@ -3,7 +3,7 @@ import "./Field.css"
 import Button from "../Button/Button"
 import Loader from "../../../../Components/Loader/Loader"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
-import usePOstDataWithFormData from "../../../../hooks/usePOstDataWithFormData"
+import usePostUserInfo from "../../../../hooks/usePostUserInfo"
 import useGatherInputFields from "../../../../hooks/useGatherInputFields"
 
 const Field = () => {
@@ -12,16 +12,17 @@ const Field = () => {
   const [inputDatas, setInputDatas] = useState()
 
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
-  const { loading: editLoading, saveFormData } = usePOstDataWithFormData(inputDatas, `api/profile/update`, "PUT")
+  const { apiCallHandler: editUserDataHandler, loading: editUserDataIsLoading } = usePostUserInfo(`api/profile/update`, "PUT", inputDatas)
+
   const { setEventInputs } = useGatherInputFields(setInputDatas)
   const editUserData = (e) => {
     e.preventDefault()
-    // console.log(inputDatas)
-    saveFormData()
+    console.log(inputDatas)
+    editUserDataHandler()
   }
   return (
     <div className='field'>
-      {(editLoading || loading) && <Loader />}
+      {(loading || editUserDataIsLoading) && <Loader />}
       <div className='editContainer'>
         <Button
           text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
@@ -141,7 +142,7 @@ const Field = () => {
         </div>
 
         <div className='editContainer'>
-          <Button type='submit' text1='SAVE' className='saveBtn' onClick={editUserData} />
+          <Button type='button' text1='SAVE' className='saveBtn' onClick={editUserData} />
         </div>
       </form>
     </div>
