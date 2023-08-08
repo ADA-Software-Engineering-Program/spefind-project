@@ -19,7 +19,7 @@ const Header = ({ backgroundColor }) => {
   const { pathname } = location
 
   const splitLocation = pathname.split("/")
-  const dashboardUrl = location.pathname === "/dashboard"
+  const dashboardUrl = location.pathname.includes("/dashboard")
   const loginUrl = location.pathname === "/login"
 
   // check if user is logged in or not

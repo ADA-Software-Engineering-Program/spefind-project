@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Outlet, useOutlet, useLocation } from "react-router-dom"
 import { toast } from "react-hot-toast"
 import AppLayout from "../../layout/AppLayout"
 import "./Dashboard.css"
@@ -17,14 +17,17 @@ import Field from "./components/Field/Field"
 import Availability from "./components/Availability/Availability"
 import AccountPreferences from "./components/AccountPreferences/AccountPreferences"
 import useFetchUserInfo from "../../hooks/useFetchUserInfo"
+import { ROUTE_NAMES } from "../../utils/constants"
 
 const Dashboard = () => {
   // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate()
+  const outlet = useOutlet()
+  const location = useLocation()
   const { fetchedUserData } = useFetchUserInfo(`api/profile/user`)
   useEffect(() => {
     if (fetchedUserData?.isProfileCreated === false) {
-      navigate("/create-profile", { state: null, replace: true })
+      navigate(ROUTE_NAMES.CREATE_PROFILE, { state: null, replace: true })
       toast.error(" Please create your profile", {
         duration: 4000,
         position: "top-center",
@@ -36,45 +39,43 @@ const Dashboard = () => {
     }
   }, [fetchedUserData])
 
-  const [dashboardBodyContent, setDashboardBodyContent] = useState(<PersonalDetails />)
   const [isNavExpanded, setIsNavExpanded] = useState(true)
-  const [currentMenu, setCurrentMenu] = useState("menu1")
 
   const sideBarTitleAndComponent = [
     {
-      id: "menu1",
       text: "Personal Details",
-      component: <PersonalDetails />
+      component: <PersonalDetails />,
+      link: ROUTE_NAMES.PERSONAL_DETAILS
     },
     {
-      id: "menu2",
       text: "Field",
-      component: <Field />
+      component: <Field />,
+      link: ROUTE_NAMES.FIELD
     },
     {
-      id: "menu3",
       text: "Availability & Fees",
-      component: <Availability />
+      component: <Availability />,
+      link: ROUTE_NAMES.AVAILABILITY
     },
     {
-      id: "menu4",
       text: "Account Preferences",
-      component: <AccountPreferences />
+      component: <AccountPreferences />,
+      link: ROUTE_NAMES.ACCOUNT_PREFERENCES
     },
     {
-      id: "menu5",
       text: "Notifications",
-      component: ""
+      component: "",
+      link: ""
     },
     {
-      id: "menu6",
       text: "Upgrade",
-      component: <Upgrade />
+      component: <Upgrade />,
+      link: ROUTE_NAMES.UPGRADE
     },
     {
-      id: "menu7",
       text: "View Profile",
-      component: <ViewProfile />
+      component: <ViewProfile />,
+      link: ROUTE_NAMES.VIEW_PROFILE
     }
   ]
   return (
@@ -115,12 +116,10 @@ const Dashboard = () => {
                 {sideBarTitleAndComponent.map((menu, index) => {
                   return (
                     <li
-                      className={currentMenu === menu.id ? "span-select" : ""}
+                      className={location.pathname === menu.link ? "span-select" : ""}
                       key={index}
                       onClick={() => {
-                        setCurrentMenu(menu.id)
-                        setDashboardBodyContent(menu.component)
-                        // setIsNavExpanded(false)
+                        navigate(menu.link)
                         window.scrollTo(90, 90)
                       }}
                     >
@@ -134,7 +133,11 @@ const Dashboard = () => {
               <HiOutlineLogout className='logoutIcon' />
             </Logout>
           </div>
-          <div className='dahsboardBody'>{dashboardBodyContent}</div>
+          <div className='dahsboardBody'>
+            {/* Check if there is an outlet, if there is not, render the personal details component */}
+            {outlet === null && <ViewProfile />}
+            <Outlet />
+          </div>
         </div>
       </div>
     </AppLayout>

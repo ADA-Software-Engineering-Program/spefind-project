@@ -4,6 +4,8 @@ import userImg from "../../assets/userImg.svg"
 import styles from "./ViewProfile.module.css"
 import Loader from "../../../../Components/Loader/Loader"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
+import { Link } from "react-router-dom"
+import { ROUTE_NAMES } from "../../../../utils/constants"
 
 const ViewProfile = () => {
   const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
@@ -19,7 +21,9 @@ const ViewProfile = () => {
       <div className={styles.about}>
         <div className={styles.imgContainer}>
           <img src={fetchedUserData?.photo ? fetchedUserData?.photo : userImg} alt=' the speaker ' />
-          <button>Edit Profile</button>
+          <Link to={ROUTE_NAMES.PERSONAL_DETAILS}>
+            <button onClick={() => window.scrollTo(90, 90)}>Edit Profile</button>
+          </Link>
         </div>
         <div className={styles.aboutTextContainer}>
           <h5>ABOUT ME</h5>

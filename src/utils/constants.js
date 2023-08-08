@@ -17,5 +17,11 @@ export const ROUTE_NAMES = {
   CONGRATULATION: "/congratulation",
   CONGRATULATION2: "/congratulation2",
   DASHBOARD: "/dashboard",
+  PERSONAL_DETAILS: "/dashboard/personal-details",
+  VIEW_PROFILE: "/dashboard/view-profile",
+  UPGRADE: "/dashboard/upgrade",
+  FIELD: "/dashboard/field",
+  AVAILABILITY: "/dashboard/availability",
+  ACCOUNT_PREFERENCES: "/dashboard/account-preferences",
   NOT_FOUND: "*"
 }

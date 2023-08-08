@@ -8,6 +8,7 @@ import { API_LINK } from "../../utils/api"
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import mixpanel from "mixpanel-browser"
+import { ROUTE_NAMES } from "../../utils/constants"
 
 const SignIn = () => {
   const [email, setEmail] = useState("")
@@ -40,8 +41,8 @@ const SignIn = () => {
           style: { fontSize: "13px" },
           className: ""
         })
-        data.data.isProfileCreated === true && navigate("/dashboard", { state: null, replace: true })
-        data.data.isProfileCreated === false && navigate("/create-profile", { state: null, replace: true })
+        data.data.isProfileCreated === true && navigate(ROUTE_NAMES.DASHBOARD, { state: null, replace: true })
+        data.data.isProfileCreated === false && navigate(ROUTE_NAMES.CREATE_PROFILE, { state: null, replace: true })
         dispatch(authActions.setIsLoggedIn())
         setLoading(false)
 

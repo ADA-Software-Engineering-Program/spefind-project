@@ -237,13 +237,14 @@ const PersonalDetails = () => {
         <div className='saveAndEdit'>
           <Button
             type='button'
+            disabled={enableInput}
             onClick={() => {
               setNewEventComponent(!newEventComponent)
             }}
             text1=' + Add New Event'
           />
 
-          <Button type='button' text1='SAVE ' className='saveBtn' onClick={editUserDataHandler} />
+          <Button type='button' text1='SAVE ' className='saveBtn' onClick={editUserDataHandler} disabled={enableInput} />
         </div>
 
         {addNewEvent && (
