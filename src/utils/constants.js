@@ -1,0 +1,21 @@
+export const ROUTE_NAMES = {
+  HOMEPAGE: "/",
+  ABOUT: "/about",
+  EXPLORE: "/explore",
+  BLOG: "/blog",
+  CONTACT: "/contact",
+  LOGIN: "/login",
+  SIGNUP: "/signup",
+  REGISTER: "/register",
+  EVENT_REGISTER: "/event-register",
+  CREATE_PROFILE: "/create-profile",
+  SPEAKER_PROFILE: "/speaker-profile",
+  BOOK_ME: "/booke-me",
+  CHAT: "/chat",
+  FAQ: "/faq",
+  OOPS: "/oops",
+  CONGRATULATION: "/congratulation",
+  CONGRATULATION2: "/congratulation2",
+  DASHBOARD: "/dashboard",
+  NOT_FOUND: "*"
+}

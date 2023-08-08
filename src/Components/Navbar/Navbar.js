@@ -11,6 +11,7 @@ import Logout from "../Logout/Logout"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
+import { ROUTE_NAMES } from "../../utils/constants"
 
 const Header = ({ backgroundColor }) => {
   const location = useLocation()
@@ -34,17 +35,17 @@ const Header = ({ backgroundColor }) => {
       >
         <Container>
           <div className='d-flex align-items-center w-100'>
-            <Navbar.Brand as={Link} to='/' className='headerLogo'>
+            <Navbar.Brand as={Link} to={ROUTE_NAMES.HOMEPAGE} className='headerLogo'>
               <img src={LogoBlack} alt='logo' className='w-100' />
             </Navbar.Brand>
             <Navbar.Toggle className='nav-toggle' aria-controls='basic-navbar-nav' />
           </div>
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='nav-gap'>
-              <Nav.Link as={Link} to='/about' className={splitLocation[1] === "about" ? "active" : ""}>
+              <Nav.Link as={Link} to={ROUTE_NAMES.ABOUT} className={splitLocation[1] === "about" ? "active" : ""}>
                 About
               </Nav.Link>
-              <Nav.Link as={Link} to='/explore' className={splitLocation[1] === "explore" ? "active" : ""}>
+              <Nav.Link as={Link} to={ROUTE_NAMES.EXPLORE} className={splitLocation[1] === "explore" ? "active" : ""}>
                 Communicators
               </Nav.Link>
               <Nav.Link as={Link} to='/' className={splitLocation[1] === "organizers" ? "active" : ""}>
@@ -59,13 +60,13 @@ const Header = ({ backgroundColor }) => {
                 </Logout>
               )}
               {isAuthenticated && !dashboardUrl && (
-                <Nav.Link as={Link} to='/dashboard' className={splitLocation[1] === "dashboard" ? "active" : ""}>
+                <Nav.Link as={Link} to={ROUTE_NAMES.DASHBOARD} className={splitLocation[1] === "dashboard" ? "active" : ""}>
                   Dashboard
                   <BsArrowRight className='arrow' />
                 </Nav.Link>
               )}
               {!isAuthenticated && !loginUrl && (
-                <Nav.Link as={Link} to='/login' className={splitLocation[1] === "login" ? "active" : ""} id='logBtn'>
+                <Nav.Link as={Link} to={ROUTE_NAMES.LOGIN} className={splitLocation[1] === "login" ? "active" : ""} id='logBtn'>
                   Login
                   <BsArrowRight className='arrow' />
                 </Nav.Link>
@@ -78,17 +79,17 @@ const Header = ({ backgroundColor }) => {
       <Navbar expand='lg' className='navbar-main-1 d-lg-none d-flex py-4' variant='dark'>
         <Container>
           <div className='d-flex align-items-center w-100'>
-            <Navbar.Brand as={Link} to='/'>
+            <Navbar.Brand as={Link} to={ROUTE_NAMES.HOMEPAGE}>
               <img src={LogoWhite} alt='logo' className='headerLogo' />
             </Navbar.Brand>
             <Navbar.Toggle className='nav-toggle' aria-controls='basic-navbar-nav' />
           </div>
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='nav-gap'>
-              <Nav.Link as={Link} to='/about' className={splitLocation[1] === "about" ? "active" : ""}>
+              <Nav.Link as={Link} to={ROUTE_NAMES.ABOUT} className={splitLocation[1] === "about" ? "active" : ""}>
                 About
               </Nav.Link>
-              <Nav.Link as={Link} to='/explore' className={splitLocation[1] === "explore" ? "active" : ""}>
+              <Nav.Link as={Link} to={ROUTE_NAMES.EXPLORE} className={splitLocation[1] === "explore" ? "active" : ""}>
                 Communicators
               </Nav.Link>
               <Nav.Link as={Link} to='/' className={splitLocation[1] === "organizers" ? "active" : ""}>
@@ -103,13 +104,13 @@ const Header = ({ backgroundColor }) => {
                 </Logout>
               )}
               {isAuthenticated && !dashboardUrl && (
-                <Nav.Link as={Link} to='/dashboard' className={splitLocation[1] === "dashboard" ? "active" : ""}>
+                <Nav.Link as={Link} to={ROUTE_NAMES.DASHBOARD} className={splitLocation[1] === "dashboard" ? "active" : ""}>
                   Dashboard
                   <BsArrowRight className='arrow' />
                 </Nav.Link>
               )}
               {!isAuthenticated && !loginUrl && (
-                <Nav.Link as={Link} to='/login' className={splitLocation[1] === "login" ? "active" : ""} id='logBtn'>
+                <Nav.Link as={Link} to={ROUTE_NAMES.LOGIN} className={splitLocation[1] === "login" ? "active" : ""} id='logBtn'>
                   Login
                   <BsArrowRight className='arrow' />
                 </Nav.Link>
