@@ -27,8 +27,9 @@
 .userProfile {
   text-align: center;
 }
-.userProfile img{
-  width:100%;
+.userProfile img {
+  width: 80%;
+  border-radius: 50%;
 }
 .userProfile p {
   text-align: center;

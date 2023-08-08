@@ -19,6 +19,13 @@ import Congratulation from "./pages/Congratulation/Congratulation"
 import Congratulation2 from "./pages/Congratulation/Congratulation2"
 import Chat from "./pages/Chat/Chat"
 import Dashboard from "./pages/Dashboard/Dashboard"
+import PersonalDetails from "./pages/Dashboard/components/PersonalDetails/PersonalDetails"
+import ViewProfile from "./pages/Dashboard/components/ViewProfile/ViewProfile"
+import Upgrade from "./pages/Dashboard/components/Upgrade/Upgrade"
+import AccountPreferences from "./pages/Dashboard/components/AccountPreferences/AccountPreferences"
+import Field from "./pages/Dashboard/components/Field/Field"
+import Availability from "./pages/Dashboard/components/Availability/Availability"
+import { ROUTE_NAMES } from "./utils/constants"
 
 function App() {
   function isLoggedIn() {
@@ -29,47 +36,47 @@ function App() {
   return (
     <div className='app'>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
+        <Route path={ROUTE_NAMES.HOMEPAGE} element={<Home />} />
+        <Route path={ROUTE_NAMES.ABOUT} element={<About />} />
         <Route
-          path='/explore'
+          path={ROUTE_NAMES.EXPLORE}
           element={
             <ProtectedRoutes isLoggedIn={isLoggedIn()}>
               <Explore />
             </ProtectedRoutes>
           }
         />
-        <Route path='/blog' element={<Blog />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/login' element={<SignIn />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/event-register' element={<EventRegister />} />
+        <Route path={ROUTE_NAMES.BLOG} element={<Blog />} />
+        <Route path={ROUTE_NAMES.CONTACT} element={<Contact />} />
+        <Route path={ROUTE_NAMES.LOGIN} element={<SignIn />} />
+        <Route path={ROUTE_NAMES.SIGNUP} element={<SignUp />} />
+        <Route path={ROUTE_NAMES.REGISTER} element={<Register />} />
+        <Route path={ROUTE_NAMES.EVENT_REGISTER} element={<EventRegister />} />
         <Route
-          path='/create-profile'
+          path={ROUTE_NAMES.CREATE_PROFILE}
           element={
             // <ProtectedRoutes isLoggedIn={isLoggedIn()}>
             <CreateProfile />
             // </ProtectedRoutes>
           }
         />
-        <Route path='/speaker-profile' element={<SpeakerProfile />} />
-        <Route path='/book-me' element={<Bookme />} />
-        <Route path='/chat' element={<Chat />} />
-        <Route path='/faq' element={<FAQ />} />
-        <Route path='/oops' element={<Oops />} />
-        <Route path='/congratulation' element={<Congratulation />} />
-        <Route path='/congratulation2' element={<Congratulation2 />} />
+        <Route path={ROUTE_NAMES.SPEAKER_PROFILE} element={<SpeakerProfile />} />
+        <Route path={ROUTE_NAMES.BOOK_ME} element={<Bookme />} />
+        <Route path={ROUTE_NAMES.CHAT} element={<Chat />} />
+        <Route path={ROUTE_NAMES.FAQ} element={<FAQ />} />
+        <Route path={ROUTE_NAMES.OOPS} element={<Oops />} />
+        <Route path={ROUTE_NAMES.CONGRATULATION} element={<Congratulation />} />
+        <Route path={ROUTE_NAMES.CONGRATULATION2} element={<Congratulation2 />} />
+        <Route path={ROUTE_NAMES.DASHBOARD} element={<Dashboard />}>
+          <Route path={ROUTE_NAMES.PERSONAL_DETAILS} index element={<PersonalDetails />} />
+          <Route path={ROUTE_NAMES.VIEW_PROFILE} element={<ViewProfile />} />
+          <Route path={ROUTE_NAMES.AVAILABILITY} element={<Availability />} />
+          <Route path={ROUTE_NAMES.UPGRADE} element={<Upgrade />} />
+          <Route path={ROUTE_NAMES.FIELD} element={<Field />} />
+          <Route path={ROUTE_NAMES.ACCOUNT_PREFERENCES} element={<AccountPreferences />} />
+        </Route>
         <Route
-          path='/dashboard'
-          element={
-            // <ProtectedRoutes isLoggedIn={isLoggedIn()}>
-            <Dashboard />
-            // </ProtectedRoutes>
-          }
-        />
-        <Route
-          path='*'
+          path={ROUTE_NAMES.NOT_FOUND}
           element={
             // <ProtectedRoutes isLoggedIn={isLoggedIn()}>
             <div>This page can not be found</div>

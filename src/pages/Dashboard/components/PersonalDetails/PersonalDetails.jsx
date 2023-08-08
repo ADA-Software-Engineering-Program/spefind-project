@@ -12,138 +12,42 @@ import AddNewEvent from "./AddNewEvent"
 import useFetchUserInfo from "../../../../hooks/useFetchUserInfo"
 import usePostUserInfo from "../../../../hooks/usePostUserInfo"
 import useGatherInputFields from "../../../../hooks/useGatherInputFields"
-import { API_LINK } from "../../../../utils/api"
+import useUploadImage from "../../../../hooks/useUploadImage"
 import Confirmation from "./Modal/Confirmation"
-import { toast } from "react-hot-toast"
 
 const PersonalDetails = () => {
-  // const [enableInput, setEnableInput] = useState(true)
+  const [enableInput, setEnableInput] = useState(true)
   const [addNewEvent, setAddNewEvent] = useState(false)
   const [newEventComponent, setNewEventComponent] = useState(false)
   const [selectedEventIndex, setSelectedEventIndex] = useState(null)
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [eventId, setEventId] = useState("")
   const [inputDatas, setInputDatas] = useState()
-  const [imageIsUploadLoading, setImageIsUploadLoading] = useState(false)
-  // const [imagefile, setImageFile] = useState(null)
 
+  const { setEventInputs } = useGatherInputFields(setInputDatas)
+  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
   const { apiCallHandler: deleteEventHandler, loading: deleteDataIsLoading } = usePostUserInfo(
     `api/profile/event/delete?eventId=${eventId}`,
     "DELETE"
   )
   const { apiCallHandler: editUserDataHandler, loading: editUserDataIsLoading } = usePostUserInfo(`api/profile/update`, "PUT", inputDatas)
-  const { loading, fetchedUserData } = useFetchUserInfo(`api/profile/user`)
-  const { setEventInputs } = useGatherInputFields(setInputDatas)
-
-  const handleImageUpload = async (e) => {
-    try {
-      setImageIsUploadLoading(true)
-      let formdata = new FormData()
-      formdata.append("bannerCover", e.target.files[0])
-
-      const token = sessionStorage.getItem("token")
-      const response = await fetch(`${API_LINK}/api/profile/cover/banner`, {
-        method: "PUT",
-        body: formdata,
-        redirect: "follow",
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      const data = await response.json()
-      if (!response.ok || !response) {
-        setImageIsUploadLoading(false)
-        toast.error(`${data?.msg || data?.message}` || "Something Went Wrong!", {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-      }
-      if (response.ok) {
-        setImageIsUploadLoading(false)
-        toast.success(`${data?.msg || data?.message}` || " please refresh the page to see your changes", {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-        setImageIsUploadLoading(false)
-        window.scrollTo(0, 0)
-      }
-      // console.log(data)
-    } catch (error) {
-      setImageIsUploadLoading(false)
-      toast.error("Something Went Wrong!", {
-        duration: 4000,
-        position: "top-center",
-        // Styling
-        style: { fontSize: "13px" },
-        className: ""
-      })
-      console.log(error)
-    }
-  }
-  const handleProfilePictureImageUpload = async (e) => {
-    try {
-      setImageIsUploadLoading(true)
-      let formdata = new FormData()
-      formdata.append("photo", e.target.files[0])
-
-      const token = sessionStorage.getItem("token")
-      const response = await fetch(`${API_LINK}/api/profile/update`, {
-        method: "PUT",
-        body: formdata,
-        redirect: "follow",
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      const data = await response.json()
-      if (!response.ok || !response) {
-        setImageIsUploadLoading(false)
-        toast.error(`${data?.msg || data?.message}` || "Something Went Wrong!", {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-      }
-      if (response.ok) {
-        setImageIsUploadLoading(false)
-        toast.success(`${data?.msg || data?.message}` || " please refresh the page to see your changes", {
-          duration: 4000,
-          position: "top-center",
-          // Styling
-          style: { fontSize: "13px" },
-          className: ""
-        })
-        setImageIsUploadLoading(false)
-        window.scrollTo(0, 0)
-      }
-      // console.log(data)
-    } catch (error) {
-      setImageIsUploadLoading(false)
-      toast.error("Something Went Wrong!", {
-        duration: 4000,
-        position: "top-center",
-        // Styling
-        style: { fontSize: "13px" },
-        className: ""
-      })
-      console.log(error)
-    }
-  }
+  const { uploadImageHandler: handleImageUpload, imageIsUploadLoading: uploadImageIsLoading } = useUploadImage(
+    "bannerCover",
+    "api/profile/cover/banner",
+    "PUT"
+  )
+  const { uploadImageHandler: handleProfilePictureImageUpload, imageIsUploadLoading: profilePictureIsUploading } = useUploadImage(
+    "photo",
+    "api/profile/update",
+    "PUT"
+  )
   const confirmBoxShowHandler = (message, yesHandler, noHandler) => {
     return <Confirmation message={message} yesHandler={yesHandler} noHandler={noHandler} />
   }
 
   return (
     <div className='formContainer'>
-      {(loading || deleteDataIsLoading || imageIsUploadLoading || editUserDataIsLoading) && <Loader />}
+      {(loading || deleteDataIsLoading || editUserDataIsLoading || uploadImageIsLoading || profilePictureIsUploading) && <Loader />}
       {isConfirmed &&
         confirmBoxShowHandler(
           "Are you sure you want to delete this event ?",
@@ -155,7 +59,7 @@ const PersonalDetails = () => {
             setIsConfirmed(!isConfirmed)
           }
         )}
-      {/* <div className='editContainer'>
+      <div className='editContainer'>
         <Button
           text1={enableInput ? "Click to make your profile editable" : "Go ahead and edit the input fields now 😎"}
           className='edit'
@@ -164,7 +68,7 @@ const PersonalDetails = () => {
             setEnableInput(!enableInput)
           }}
         />
-      </div> */}
+      </div>
       <form>
         <div>
           <label htmlFor='name'>Name</label>
@@ -192,50 +96,18 @@ const PersonalDetails = () => {
         </div>
         <div className='genderWrapper'>
           <input
-            id='male'
+            id={fetchedUserData?.gender}
             type='radio'
-            aria-label='male'
+            aria-label={fetchedUserData?.gender}
             className='check-checkbox'
-            value={"male"}
-            checked={fetchedUserData?.gender === "male"}
+            value={fetchedUserData?.gender}
+            checked={fetchedUserData?.gender === fetchedUserData?.gender}
             name={"gender"}
             readOnly
           />
-          <label className='check-label' htmlFor='male'>
+          <label className='check-label' htmlFor={fetchedUserData?.gender}>
             <span className='check-checkbox-button'></span>
-            Male
-          </label>
-        </div>
-        <div className='genderWrapper'>
-          <input
-            id='female'
-            type='radio'
-            aria-label='female'
-            checked={fetchedUserData?.gender === "female"}
-            className='check-checkbox'
-            value={"female"}
-            name={"gender"}
-            readOnly
-          />
-          <label className='check-label' htmlFor='female'>
-            <span className='check-checkbox-button'></span>
-            Female
-          </label>
-        </div>
-        <div className='genderWrapper'>
-          <input
-            id='others'
-            type='radio'
-            aria-label='others'
-            checked={fetchedUserData?.gender === "others"}
-            className='check-checkbox'
-            value={"others"}
-            name={"gender"}
-            readOnly
-          />
-          <label className='check-label' htmlFor='others'>
-            <span className='check-checkbox-button'></span>
-            Others
+            {fetchedUserData?.gender?.charAt(0).toUpperCase() + fetchedUserData?.gender?.slice(1)}
           </label>
         </div>
         <div>
@@ -253,6 +125,7 @@ const PersonalDetails = () => {
                 aria-label='cover banner'
                 accept='image/*'
                 className='selectFile'
+                disabled={enableInput}
                 onChange={handleImageUpload}
               />
             </div>
@@ -268,8 +141,10 @@ const PersonalDetails = () => {
                 type='file'
                 name='profilePicture'
                 id='profilePicture'
+                accept='image/*'
                 arial-label='profile Picture'
                 className='changeProfilePicture'
+                disabled={enableInput}
                 onChange={handleProfilePictureImageUpload}
               />
             </div>
@@ -285,6 +160,7 @@ const PersonalDetails = () => {
             placeholder='Type Country'
             id='country'
             className='input'
+            disabled={enableInput}
             defaultValue={fetchedUserData?.country}
             onChange={(e) => {
               setEventInputs(e.target.value, "country")
@@ -295,6 +171,7 @@ const PersonalDetails = () => {
             placeholder='Type City'
             id='city'
             className='input'
+            disabled={enableInput}
             defaultValue={fetchedUserData?.city}
             onChange={(e) => {
               setEventInputs(e.target.value, "city")
@@ -309,6 +186,7 @@ const PersonalDetails = () => {
           className='textArea'
           id='biography'
           rows={10}
+          disabled={enableInput}
           defaultValue={fetchedUserData?.biography}
           onChange={(e) => {
             setEventInputs(e.target.value, "biography")
@@ -338,6 +216,7 @@ const PersonalDetails = () => {
                   setSelectedEventIndex(index)
                   setAddNewEvent(!addNewEvent)
                 }}
+                disabled={enableInput}
               >
                 + Edit Event
               </button>
@@ -358,13 +237,14 @@ const PersonalDetails = () => {
         <div className='saveAndEdit'>
           <Button
             type='button'
+            disabled={enableInput}
             onClick={() => {
               setNewEventComponent(!newEventComponent)
             }}
             text1=' + Add New Event'
           />
 
-          <Button type='button' text1='SAVE ' className='saveBtn' onClick={editUserDataHandler} />
+          <Button type='button' text1='SAVE ' className='saveBtn' onClick={editUserDataHandler} disabled={enableInput} />
         </div>
 
         {addNewEvent && (
