@@ -10,7 +10,7 @@ export const ROUTE_NAMES = {
   EVENT_REGISTER: "/event-register",
   CREATE_PROFILE: "/create-profile",
   SPEAKER_PROFILE: "/speaker-profile",
-  BOOK_ME: "/booke-me",
+  BOOK_ME: "/book-me",
   CHAT: "/chat",
   FAQ: "/faq",
   OOPS: "/oops",

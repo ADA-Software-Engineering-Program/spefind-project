@@ -1,70 +1,41 @@
-.Welcome {
-  display: flex;
-  font-family: "Montserrat", sans-serif;
-  font-size: 70px;
-  color: var(--orange);
-  justify-content: center;
-}
-.pp {
-  display: flex;
-  font-size: 25px;
-  font-family: "Montserrat", sans-serif;
-  justify-content: center;
+.signup-cont {
+  max-height: 400px;
 }
 
-.btnSignUP {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 70px;
-  margin: 30px;
-  text-align: center;
+.welcome-header {
+  font-size: 70px;
+  color: var(--orange);
 }
-#btnsignup {
+
+.welcome-text {
+  font-size: 30px;
+}
+
+.btn-cont {
+  margin-top: 80px;
+}
+
+.btn-signup {
   text-decoration: none;
   background-color: transparent;
   border: 1px solid var(--grey);
   border-radius: 12px;
   padding: 10px 20px;
-  font-size: 32px;
+  font-size: 30px;
   cursor: pointer;
   color: var(--orange);
 }
 
 @media only screen and (max-width: 768px) {
-  .Welcome {
-    display: flex;
-    font-family: "Montserrat", sans-serif;
+  .welcome-header {
     font-size: 50px;
-    color: var(--orange);
-    justify-content: center;
-    margin-top: 50px;
   }
 
-  .pp {
-    display: flex;
+  .welcome-text {
     font-size: 14px;
-    font-weight: 600;
-    font-family: "Montserrat", sans-serif;
-    justify-content: center;
-    margin-top: 30px;
   }
 
-  .btnSignUP {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-    padding: 30px;
-    margin: 20px;
-    text-align: center;
-  }
-
-  #btnsignup {
-    border: 1px solid var(--grey);
-    border-radius: 12px;
-    padding: 10px 20px;
-    font-size: 28px;
-    cursor: pointer;
+  .btn-signup {
+    font-size: 20px;
   }
 }
