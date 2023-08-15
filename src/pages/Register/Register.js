@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import "./Register.css"
 import { Link, useNavigate } from "react-router-dom"
 
-import Logo from "./logo new 1 2.png"
+import Logo from "../../images/spefind-logo-white.png"
 import { FcGoogle } from "react-icons/fc"
 import { FaFacebookF, FaTwitter } from "react-icons/fa"
 import toast from "react-hot-toast"
@@ -56,7 +56,7 @@ function Register() {
   // eslint-disable-next-line no-useless-escape
   const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   const {
-    value: emailInputvalue,
+    value: emailInputValue,
     isValid: enteredEmailIsValid,
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
@@ -75,7 +75,7 @@ function Register() {
 
   const {
     value: confirmPasswordInputValue,
-    isValid: enteredconfirmPasswordIsValid,
+    isValid: enteredConfirmPasswordIsValid,
     hasError: confirmPasswordInputHasError,
     valueChangeHandler: confirmPasswordChangeHandler,
     inputBlurHandler: confirmPasswordBlurHandler,
@@ -87,7 +87,7 @@ function Register() {
   let formIsValid = false
 
   if (
-    emailInputvalue &&
+    emailInputValue &&
     !emailInputHasError &&
     enteredEmailIsValid &&
     passwordInputValue &&
@@ -95,7 +95,7 @@ function Register() {
     enteredPasswordIsValid &&
     confirmPasswordInputValue &&
     !confirmPasswordInputHasError &&
-    enteredconfirmPasswordIsValid &&
+    enteredConfirmPasswordIsValid &&
     firstNameInputValue &&
     !firstNameInputHasError &&
     enteredFirstNameIsValid &&
@@ -116,7 +116,7 @@ function Register() {
         return
       }
 
-      if (!emailInputvalue && !passwordInputValue && !confirmPasswordInputValue && !firstNameInputValue && !lastNameInputValue) {
+      if (!emailInputValue && !passwordInputValue && !confirmPasswordInputValue && !firstNameInputValue && !lastNameInputValue) {
         setLoading(false)
         return
       }
@@ -126,7 +126,7 @@ function Register() {
         body: JSON.stringify({
           firstName: firstNameInputValue,
           lastName: lastNameInputValue,
-          email: emailInputvalue,
+          email: emailInputValue,
           password: passwordInputValue
         }),
         headers: {
@@ -235,7 +235,7 @@ function Register() {
                 required
                 className={emailInputHasError ? `${styles.invalidInput} regInput mb-0` : "regInput mb-0"}
                 placeholder='Email address'
-                value={emailInputvalue}
+                value={emailInputValue}
                 onChange={emailChangeHandler}
                 onBlur={emailBlurHandler}
               />
@@ -275,7 +275,7 @@ function Register() {
                 onChange={confirmPasswordChangeHandler}
                 onBlur={confirmPasswordBlurHandler}
               />
-              {confirmPasswordInputHasError && !enteredconfirmPasswordIsValid && (
+              {confirmPasswordInputHasError && !enteredConfirmPasswordIsValid && (
                 <p className={styles.errorText}>Passwords do not match !</p>
               )}
             </div>

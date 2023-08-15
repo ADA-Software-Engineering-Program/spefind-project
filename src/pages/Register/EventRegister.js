@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 import AppLayout from "../../layout/AppLayout"
 
-import Logo from "./logo new 1 2.png"
+import Logo from "../../images/spefind-logo-white.png"
 import { FcGoogle } from "react-icons/fc"
 import { FaFacebookF, FaTwitter } from "react-icons/fa"
 import { Link } from "react-router-dom"
@@ -37,25 +37,16 @@ function EventRegister() {
     }
   }
   const {
-    value: firstNameInputValue,
-    isValid: enteredFirstNameIsValid,
-    hasError: firstNameInputHasError,
-    valueChangeHandler: firstNameChangeHandler,
-    inputBlurHandler: firstNameBlurHandler,
-    reset: resetFirstNameInput
+    value: organizationNameInputValue,
+    isValid: enteredOrganizationNameIsValid,
+    hasError: organizationNameInputHasError,
+    valueChangeHandler: organizationNameChangeHandler,
+    inputBlurHandler: organizationNameBlurHandler,
+    reset: resetOrganizationNameInput
   } = useInput((value) => value.length >= 3 && value.trim() !== "")
-  const {
-    value: lastNameInputValue,
-    isValid: enteredLastNameIsValid,
-    hasError: lastNameInputHasError,
-    valueChangeHandler: lastNameChangeHandler,
-    inputBlurHandler: lastNameBlurHandler,
-    reset: resetLastNameInput
-  } = useInput((value) => value.length >= 3 && value.trim() !== "")
-
   const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   const {
-    value: emailInputvalue,
+    value: emailInputValue,
     isValid: enteredEmailIsValid,
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
@@ -74,7 +65,7 @@ function EventRegister() {
 
   const {
     value: confirmPasswordInputValue,
-    isValid: enteredconfirmPasswordIsValid,
+    isValid: enteredConfirmPasswordIsValid,
     hasError: confirmPasswordInputHasError,
     valueChangeHandler: confirmPasswordChangeHandler,
     inputBlurHandler: confirmPasswordBlurHandler,
@@ -86,7 +77,7 @@ function EventRegister() {
   let formIsValid = false
 
   if (
-    emailInputvalue &&
+    emailInputValue &&
     !emailInputHasError &&
     enteredEmailIsValid &&
     passwordInputValue &&
@@ -94,13 +85,10 @@ function EventRegister() {
     enteredPasswordIsValid &&
     confirmPasswordInputValue &&
     !confirmPasswordInputHasError &&
-    enteredconfirmPasswordIsValid &&
-    firstNameInputValue &&
-    !firstNameInputHasError &&
-    enteredFirstNameIsValid &&
-    lastNameInputValue &&
-    !lastNameInputHasError &&
-    enteredLastNameIsValid
+    enteredConfirmPasswordIsValid &&
+    organizationNameInputValue &&
+    !organizationNameInputHasError &&
+    enteredOrganizationNameIsValid
   ) {
     formIsValid = true
   }
@@ -115,7 +103,7 @@ function EventRegister() {
         return
       }
 
-      if (!emailInputvalue && !passwordInputValue && !confirmPasswordInputValue && !firstNameInputValue && !lastNameInputValue) {
+      if (!emailInputValue && !passwordInputValue && !confirmPasswordInputValue && !organizationNameInputValue) {
         setLoading(false)
         return
       }
@@ -123,9 +111,8 @@ function EventRegister() {
       const saveUserData = await fetch(`${API_LINK}/api/auth/organizer/signup`, {
         method: "POST",
         body: JSON.stringify({
-          firstName: firstNameInputValue,
-          lastName: lastNameInputValue,
-          email: emailInputvalue,
+          organizationName: organizationNameInputValue,
+          email: emailInputValue,
           password: passwordInputValue
         }),
         headers: {
@@ -174,8 +161,7 @@ function EventRegister() {
 
         throw new Error()
       }
-      resetFirstNameInput()
-      resetLastNameInput()
+      resetOrganizationNameInput()
       resetEmailInput()
       resetPasswordInput()
       resetConfirmPasswordInput()
@@ -193,37 +179,21 @@ function EventRegister() {
           </div>
 
           <form className='JoinForm' onSubmit={signUpSubmitHandler}>
-            <div className='w-100 mb-4' style={{ display: "flex", gap: "1rem" }}>
-              <div>
-                <label className='labelForm'>First Name</label>
-                <input
-                  type='text'
-                  name='firstName'
-                  required
-                  className={firstNameInputHasError ? `${styles.invalidInput} regInput mb-0` : "regInput mb-0"}
-                  placeholder='Type Here'
-                  value={firstNameInputValue}
-                  onChange={firstNameChangeHandler}
-                  onBlur={firstNameBlurHandler}
-                />
-                {firstNameInputHasError && !enteredFirstNameIsValid && (
-                  <p className={styles.errorText}>Please enter at least 3 letters !</p>
-                )}
-              </div>
-              <div>
-                <label className='labelForm'>Last Name</label>
-                <input
-                  type='text'
-                  name='lastName'
-                  required
-                  className={lastNameInputHasError ? `${styles.invalidInput} regInput mb-0` : "regInput mb-0"}
-                  placeholder='Type here'
-                  value={lastNameInputValue}
-                  onChange={lastNameChangeHandler}
-                  onBlur={lastNameBlurHandler}
-                />
-                {lastNameInputHasError && !enteredLastNameIsValid && <p className={styles.errorText}>Please enter at least 3 letters !</p>}
-              </div>
+            <div className='w-100 mb-4'>
+              <label className='labelForm'>Name of Organization</label>
+              <input
+                type='text'
+                name='organizationName'
+                required
+                className={organizationNameInputHasError ? `${styles.invalidInput} regInput mb-0` : "regInput mb-0"}
+                placeholder='Type here'
+                value={organizationNameInputValue}
+                onChange={organizationNameChangeHandler}
+                onBlur={organizationNameBlurHandler}
+              />
+              {organizationNameInputHasError && !enteredOrganizationNameIsValid && (
+                <p className={styles.errorText}>Please enter a valid email !</p>
+              )}
             </div>
 
             <div className='w-100 mb-4'>
@@ -233,8 +203,8 @@ function EventRegister() {
                 name='email'
                 required
                 className={emailInputHasError ? `${styles.invalidInput} regInput mb-0` : "regInput mb-0"}
-                placeholder='Email address'
-                value={emailInputvalue}
+                placeholder='Type here'
+                value={emailInputValue}
                 onChange={emailChangeHandler}
                 onBlur={emailBlurHandler}
               />
@@ -249,7 +219,7 @@ function EventRegister() {
                 name='password'
                 required
                 className={passwordInputHasError ? `${styles.invalidInput} regInput mb-0` : "regInput mb-0"}
-                placeholder='Password'
+                placeholder='Type here'
                 value={passwordInputValue}
                 onChange={passwordChangeHandler}
                 onBlur={passwordBlurHandler}
@@ -266,7 +236,7 @@ function EventRegister() {
               <label className='labelForm'>Confirm Password</label>
               <input
                 type='password'
-                placeholder='Confirm password'
+                placeholder='Type here'
                 required
                 className={confirmPasswordInputHasError ? `${styles.invalidInput} regInput mb-0` : "regInput mb-0"}
                 name='confirmPassword'
@@ -274,7 +244,7 @@ function EventRegister() {
                 onChange={confirmPasswordChangeHandler}
                 onBlur={confirmPasswordBlurHandler}
               />
-              {confirmPasswordInputHasError && !enteredconfirmPasswordIsValid && (
+              {confirmPasswordInputHasError && !enteredConfirmPasswordIsValid && (
                 <p className={styles.errorText}>Passwords do not match !</p>
               )}
             </div>
