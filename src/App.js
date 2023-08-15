@@ -12,7 +12,7 @@ import Register from "./pages/Register/Register"
 import EventRegister from "./pages/Register/EventRegister"
 import CreateProfile from "./pages/CreateProfile/CreateProfile"
 import SpeakerProfile from "./pages/SpeakerProfile/SpeakerProfile"
-import Bookme from "./pages/BookMe/Bookme.jsx"
+import BookMe from "./pages/BookMe/BookMe.jsx"
 import FAQ from "./pages/FAQ/FAQ"
 import Oops from "./pages/Oops/Oops"
 import Congratulation from "./pages/Congratulation/Congratulation"
@@ -61,7 +61,7 @@ function App() {
           }
         />
         <Route path={ROUTE_NAMES.SPEAKER_PROFILE} element={<SpeakerProfile />} />
-        <Route path={ROUTE_NAMES.BOOK_ME} element={<Bookme />} />
+        <Route path={ROUTE_NAMES.BOOK_ME} element={<BookMe />} />
         <Route path={ROUTE_NAMES.CHAT} element={<Chat />} />
         <Route path={ROUTE_NAMES.FAQ} element={<FAQ />} />
         <Route path={ROUTE_NAMES.OOPS} element={<Oops />} />

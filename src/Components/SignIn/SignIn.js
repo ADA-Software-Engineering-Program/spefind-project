@@ -135,7 +135,7 @@ const SignIn = () => {
       </form>
 
       <p className='new'>
-        New here? <Link to='/register'> Sign up</Link>
+        New here? <Link to='/signup'> Sign up</Link>
       </p>
     </div>
   )
