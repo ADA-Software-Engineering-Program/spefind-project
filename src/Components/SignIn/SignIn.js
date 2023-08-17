@@ -9,15 +9,21 @@ import { Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import mixpanel from "mixpanel-browser"
 import { ROUTE_NAMES } from "../../utils/constants"
+import { AiOutlineEyeInvisible } from "react-icons/ai"
+import { AiOutlineEye } from "react-icons/ai"
 
 const SignIn = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [loading, setLoading] = useState(false)
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(true)
+  const [loading, setLoading] = useState(false)
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -108,16 +114,30 @@ const SignIn = () => {
           Password
         </label>
         <br />
-        <input
-          id='password'
-          className='inputForm'
-          type='password'
-          required={true}
-          autoComplete='current-password'
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder='Type here'
-        />
-        <br />
+        <div className='position-relative cursor-pointer'>
+          <input
+            id='password'
+            className='inputForm'
+            type={showPassword ? "password" : "text"}
+            required={true}
+            autoComplete='current-password'
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder='Type here'
+          />
+          {showPassword ? (
+            <AiOutlineEye
+              className='position-absolute'
+              style={{ top: "2rem", right: "2rem", cursor: "pointer" }}
+              onClick={togglePasswordVisibility}
+            />
+          ) : (
+            <AiOutlineEyeInvisible
+              className='position-absolute'
+              style={{ top: "2rem", right: "2rem", cursor: "pointer" }}
+              onClick={togglePasswordVisibility}
+            />
+          )}
+        </div>
         <div className='forgot'>
           <div className='d-flex align-items-center gap-2'>
             <input type='checkbox' name='loggedIn' id='loggedIn' className='check-keep' />
