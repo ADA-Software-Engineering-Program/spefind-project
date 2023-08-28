@@ -10,10 +10,16 @@ import { useEffect } from "react"
 
 const Home = () => {
   const { fetchedUserData } = useGetRequest("api/stat/get/all")
-  // console.log(fetchedUserData?.data[1]?.all_profile_created_users)
-  // console.log(fetchedUserData?.data[2][0]?.all_profile_live_users)
+
+  function generateRandomCode() {
+    const min = 100000
+    const max = 999999
+    const randomCode = Math.floor(Math.random() * (max - min + 1)) + min
+    return randomCode
+  }
+
   const saveStat = async () => {
-    mixpanel.identify(new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" }))
+    await mixpanel.identify(generateRandomCode())
     mixpanel.track("Users", {
       AllUsers: fetchedUserData?.data[0]?.all_users,
       AllProfileCreatedUsers: fetchedUserData?.data[1][0]?.all_profile_created_users,
@@ -21,8 +27,11 @@ const Home = () => {
     })
   }
   useEffect(() => {
-    mixpanel.init("f70c5b20ede9fa1fafe32f3c5c187ce2", { debug: true, track_pageview: true, persistence: "localStorage" })
-    saveStat()
+    mixpanel.init("f70c5b20ede9fa1fafe32f3c5c187ce2", { debug: true, persistence: "localStorage" })
+    // delay the function for few seconds before running the function
+    setTimeout(() => {
+      saveStat()
+    }, 5000)
   }, [])
 
   return (
