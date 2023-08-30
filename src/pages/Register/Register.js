@@ -14,12 +14,20 @@ import AppLayout from "../../layout/AppLayout"
 import { API_LINK } from "../../utils/api"
 import { useDispatch } from "react-redux"
 import { authActions } from "../../store/auth-slice"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
 function Register() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
-
+  const [showPassword, setShowPassword] = useState(false)
+  const [showCpassword, setShowCpassword] = useState(false)
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
+  const toggleCpasswordVisibility = () => {
+    setShowCpassword(!showCpassword)
+  }
   const handleGoogleSignUp = async () => {
     try {
       // await googleSignIn()
@@ -242,10 +250,10 @@ function Register() {
               {emailInputHasError && !enteredEmailIsValid && <p className={styles.errorText}>Please enter a valid email !</p>}
             </div>
 
-            <div className='w-100 mb-4'>
+            <div className='w-100 mb-4 position-relative'>
               <label className='labelForm'>Password</label>
               <input
-                type='password'
+                type={showPassword ? "text" : "password"}
                 label='Create password'
                 name='password'
                 required
@@ -261,12 +269,25 @@ function Register() {
                   character !
                 </p>
               )}
+              {showPassword ? (
+                <AiOutlineEye
+                  className='position-absolute'
+                  style={{ top: "2.5rem", right: "2rem", cursor: "pointer" }}
+                  onClick={togglePasswordVisibility}
+                />
+              ) : (
+                <AiOutlineEyeInvisible
+                  className='position-absolute'
+                  style={{ top: "2.5rem", right: "2rem", cursor: "pointer" }}
+                  onClick={togglePasswordVisibility}
+                />
+              )}
             </div>
 
-            <div className='w-100 mb-4'>
+            <div className='w-100 mb-4 position-relative'>
               <label className='labelForm'>Confirm Password</label>
               <input
-                type='password'
+                type={showCpassword ? "text" : "password"}
                 placeholder='Confirm password'
                 required
                 className={confirmPasswordInputHasError ? `${styles.invalidInput} regInput mb-0` : "regInput mb-0"}
@@ -277,6 +298,19 @@ function Register() {
               />
               {confirmPasswordInputHasError && !enteredConfirmPasswordIsValid && (
                 <p className={styles.errorText}>Passwords do not match !</p>
+              )}
+              {showCpassword ? (
+                <AiOutlineEye
+                  className='position-absolute'
+                  style={{ top: "2.5rem", right: "2rem", cursor: "pointer" }}
+                  onClick={toggleCpasswordVisibility}
+                />
+              ) : (
+                <AiOutlineEyeInvisible
+                  className='position-absolute'
+                  style={{ top: "2.5rem", right: "2rem", cursor: "pointer" }}
+                  onClick={toggleCpasswordVisibility}
+                />
               )}
             </div>
 
