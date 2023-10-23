@@ -6,9 +6,9 @@ import { AiOutlineClockCircle } from "react-icons/ai"
 // import { MdOutlinePhoneInTalk } from "react-icons/md";
 import Footer from "../../Components/Footer/Footer"
 import Header from "../../Components/Navbar/Navbar"
-import "./Bookme.css"
+import "./BookMe.css"
 
-const Bookme = () => {
+const BookMe = () => {
   return (
     <div className='bookme'>
       <Header />
@@ -149,4 +149,4 @@ const Bookme = () => {
   )
 }
 
-export default Bookme
+export default BookMe

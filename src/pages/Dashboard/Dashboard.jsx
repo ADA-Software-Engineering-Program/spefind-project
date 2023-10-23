@@ -12,6 +12,7 @@ import Logout from "../../Components/Logout/Logout"
 
 import PersonalDetails from "./components/PersonalDetails/PersonalDetails"
 import ViewProfile from "./components/ViewProfile/ViewProfile"
+import OrganizerProfile from "./components/OrganizerProfile/OrganizerProfile"
 import Upgrade from "./components/Upgrade/Upgrade"
 import Field from "./components/Field/Field"
 import Availability from "./components/Availability/Availability"
@@ -135,7 +136,7 @@ const Dashboard = () => {
           </div>
           <div className='dahsboardBody'>
             {/* Check if there is an outlet, if there is not, render the personal details component */}
-            {outlet === null && <ViewProfile />}
+            {outlet === null && <OrganizerProfile />}
             <Outlet />
           </div>
         </div>
