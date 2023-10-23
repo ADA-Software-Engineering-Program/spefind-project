@@ -1,0 +1,166 @@
+.coverBanner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.coverBanner img {
+  width: 100%;
+  height: 20rem;
+}
+.speakerDetails {
+  padding: 7rem 4rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.speakerDetails h4 {
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 45px;
+  color: #ffffff;
+}
+.speakerDetails p {
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 25px;
+  color: #948d8d;
+}
+.about {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+}
+.imgContainer,
+.aboutTextContainer {
+  padding: 2rem;
+}
+.imgContainer img {
+  width: 100%;
+  height: 10rem;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
+.imgContainer button {
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  color: #e3502f;
+  text-decoration: underline;
+  border: none;
+  margin: 2rem auto;
+}
+
+.aboutTextContainer h5 {
+  font-weight: 600;
+  font-size: 29.6px;
+  line-height: 36px;
+}
+.aboutTextContainer p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+.aboutTextContainer p span {
+  font-weight: 600;
+  color: #948d8d;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.speakerRating {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.speakerRating span {
+  display: flex;
+  gap: 1rem;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  color: #e3502f;
+}
+.speakerRating span p {
+  color: #948d8d;
+}
+.pasteventsHeading {
+  font-weight: 600;
+  font-size: 29.6px;
+  line-height: 36px;
+  text-align: center;
+}
+.pastEventsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  margin: 2rem;
+  gap: 1rem;
+}
+.singleEvents {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  text-align: center;
+  height: max-content;
+}
+.singleEvents img {
+  width: 100%;
+  height: 10rem;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
+.eventDetails {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.eventDetails h6 {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 34px;
+}
+.eventDetails p {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+}
+.pastEventsContainer div button {
+  border: 1.32756px solid #948d8d;
+  border-radius: 29.7216px;
+  font-weight: 400;
+  font-size: 14.3027px;
+  line-height: 17px;
+  color: #359e4c;
+  padding: 0.5rem 1rem;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 676px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+  .speakerDetails h4 {
+    font-size: 2rem;
+    line-height: 35px;
+  }
+  .speakerDetails p {
+    font-size: 1rem;
+    line-height: 20px;
+  }
+  .imgContainer {
+    display: grid;
+  }
+  .imgContainer img {
+    width: 70%;
+    margin: auto;
+  }
+  .imgContainer,
+  .aboutTextContainer {
+    padding: 0.5rem;
+  }
+  .pastEventsContainer {
+    grid-template-columns: 1fr;
+  }
+}
